@@ -8,10 +8,8 @@ from django.db import models
 
 
 class Compras(models.Model):
-    cantidad_compra = models.CharField(max_length=400 ,blank=True, null=True)
     total_compra = models.CharField(max_length=400 ,blank=True, null=True)
     fecha_compra = models.CharField(max_length=400 ,blank=True, null=True)
-    nombre_compra = models.CharField(max_length=400 ,blank=True, null=True)
 
 
     def __str__(self):
@@ -21,29 +19,44 @@ class Compras(models.Model):
 class Detalles_compras(models.Model):
     
     id_compra = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla compra
-    id_produccion = models.CharField(max_length=400 ,blank=True, null=True) # conectado a la tabla produccion
-    id_categoria_compra = models.CharField(max_length=400 ,blank=True, null=True)
+    id_insumo = models.CharField(max_length=400 ,blank=True, null=True) # conectado a la tabla produccion
+    cantidad = models.CharField(max_length=400 ,blank=True, null=True)
     precio = models.CharField(max_length=400 ,blank=True, null=True)
     subtotal = models.CharField(max_length=400 ,blank=True, null=True)
+    unidad_de_medida = models.CharField(max_length=400 ,blank=True, null=True)
+
 
     def __str__(self):
         return "detalles {}".format(self.subtotal)
 
-class Categoria_compras(models.Model):
+
+
+# tablas de isnumos
+# -------------------------------------------------------------
+
+class Insumos(models.Model):
     
-    nombre_categoria = models.CharField(max_length=400 ,blank=True, null=True)
+    Nombre = models.CharField(max_length=400 ,blank=True, null=True)
+    Cantidad = models.CharField(max_length=400 ,blank=True, null=True)
+    Categoria = models.CharField(max_length=400 ,blank=True, null=True)
+    
     
     def __str__(self):
-        return "detalles {}".format(self.nombre_categoria)
+        return "detalles {}".format(self.estado)
+
+class Detalles_insumos(models.Model):
+    
+    Cantidad = models.CharField(max_length=400 ,blank=True, null=True)
+    id_insumos = models.CharField(max_length=400 ,blank=True, null=True)
+    
+    
+    def __str__(self):
+        return "detalles {}".format(self.estado)
+
+# fin de tablas de isnumos
+# ------------------------------------------------------
 
 
-# ----------------------------------------------
-# fin de las tablas compras
-
-
-
-# tablas de produccion 
-# -------------------------------------------------------------
 class Produccion(models.Model):
     
     Fecha_estimada = models.CharField(max_length=400 ,blank=True, null=True)
@@ -95,3 +108,5 @@ class Detalles_pedidos(models.Model):
 
     def __str__(self):
         return "detalles {}".format(self.subtotal)
+
+
