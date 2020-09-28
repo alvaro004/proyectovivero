@@ -9,8 +9,57 @@
 </head>
 <body>
     <div class="container">
-        <h1>{{var}}</h1>
+        <fieldset>
+            <legend>
+                <form action="" method="post"></form>
+                <div class="form-group">
+                    <input type="text" name="producto" id="producto" placeholder="">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="cantidad" id="cantidad" placeholder="">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="precio" id="precio" placeholder="">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="subtotal" id="subtotal" placeholder="">
+                </div>
+                <br>
+            </legend>
+        </fieldset>
 
+        <table class="table" id="myTable">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Entrada</th>
+                <th scope="col">Salida</th>
+                <th scope="col">Turno</th>
+                <th scope="col">Fecha</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            
+            {% for  in  %}
+                
+            <tbody>
+
+                <tr>
+                    <td>{{user.nombre}}</td>
+                    <td>{{user.entrada}}</td>
+                    <td>{{user.salida}}</td>
+                    <td>{{user.turno}}</td>
+                    <td>{{user.dia}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+                
+    
+                
 
     </div>
 </body>
