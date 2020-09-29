@@ -75,7 +75,57 @@
                                 <td>{{compra.precio}}</td>
                                 <td>{{compra.subtotal}}</td>
 
-                                <td></td>
+                                <td style="color: black; text-align: left;">
+                                    {% load static %}
+                                    <i style="color: white;" type="button" data-toggle="modal"
+                                      data-target="#editar{{compra.id}}"><i><img src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+                      
+                                    <div class="modal fade" id="editar{{compra.id}}" tabindex="-1" role="dialog"
+                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form method="POST" action="/editar">
+                                              {% csrf_token %}
+                                              <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                                <input name="nombre" value="{{user.nombre}}" type="text" class="form-control"
+                                                  id="recipient-name">
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Email:</label>
+                                                <input name="email" value="{{user.email}}" type="text" class="form-control"
+                                                  id="recipient-name">
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Numero de Telefono:</label>
+                                                <input name="numero" value="{{user.numero}}" type="text" class="form-control"
+                                                  id="recipient-name">
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Comentario:</label>
+                                                <textarea name="comentario" class="form-control"
+                                                  id="message-text">{{user.comentario}}</textarea>
+                                              </div>
+                                              <input type="hidden" name="iden" value="{{user.id}}">
+                                              <input type="hidden" name="admin" value="{{admin}}">
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                            <button style="background-color: rgb(77, 231, 71); border: none;" type="submit"
+                                              class="btn btn-info">Guardar Cambios</button>
+                                          </div>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
                             </tr>
                             {% endfor %}
                                 

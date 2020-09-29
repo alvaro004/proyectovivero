@@ -21,9 +21,11 @@ def compras(request):
         
         detalles_compras.save()
 
-        insumos = Insumos(nombre=nombre_producto)
+        # insumos = Insumos(nombre=nombre_producto)
+        # insumos.save()
 
         detalles_compras = Detalles_compras.objects.all()
+        # insumos = Insumos.objects.all()
 
 
         return render(request,'compras.html',{'compras':detalles_compras})
