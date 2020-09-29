@@ -1,11 +1,25 @@
 .container{
-    width: 400px;
-    height: 400px;
-    margin: 0 auto;
-    margin-top: 8%;
-    text-align: center;
-    background-color: rgb(60, 60, 245);
-    color: white;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.637);
+    padding-top: 5%;
+    
 }
 
+
+.form{
+    display: inline-block;
+    margin: 20px;
+}
+
+.tabla{
+    display: inline-block;
+    margin: 20px;
+}
+
+.totales{
+    width: 200px;
+    padding: 5%;
+}
+
+.botones button{
+    float: right;
+    margin: 20px;
+}

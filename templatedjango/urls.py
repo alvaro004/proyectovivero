@@ -18,7 +18,7 @@ from django.urls import path
 from templatedjango.apptemplate.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', compras),
     path('login', chorizo),
     path('kaka', prueba),
 ]
