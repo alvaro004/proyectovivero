@@ -5,3 +5,5 @@ from templatedjango.apptemplate.models import *
 
 admin.site.register(Compras)
 admin.site.register(Detalles_compras)
+admin.site.register(Insumos)
+admin.site.register(Insumos_categoria)

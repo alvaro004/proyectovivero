@@ -23,7 +23,6 @@ class Detalles_compras(models.Model):
     cantidad = models.CharField(max_length=400 ,blank=True, null=True)
     precio = models.CharField(max_length=400 ,blank=True, null=True)
     subtotal = models.CharField(max_length=400 ,blank=True, null=True)
-    unidad_de_medida = models.CharField(max_length=400 ,blank=True, null=True)
 
 
     def __str__(self):
@@ -33,16 +32,24 @@ class Detalles_compras(models.Model):
 
 # tablas de isnumos
 # -------------------------------------------------------------
+class Insumos_categoria(models.Model):
+    
+    Nombre = models.CharField(max_length=400 ,blank=True, null=True)
+      
+    def __str__(self):
+        return "{}".format(self.Nombre)
 
 class Insumos(models.Model):
     
-    Nombre = models.CharField(max_length=400 ,blank=True, null=True)
-    Cantidad = models.CharField(max_length=400 ,blank=True, null=True)
-    Categoria = models.CharField(max_length=400 ,blank=True, null=True)
+    nombre = models.CharField(max_length=400 ,blank=True, null=True)
+    unidad_de_medida = models.CharField(max_length=400 ,blank=True, null=True)
+    cantidad = models.CharField(max_length=400 ,blank=True, null=True)
+    categoria = models.ForeignKey(Insumos_categoria, on_delete=models.CASCADE)
     
     
     def __str__(self):
-        return "detalles {}".format(self.estado)
+        return "detalles {}".format(self.nombre)
+
 
 class Detalles_insumos(models.Model):
     

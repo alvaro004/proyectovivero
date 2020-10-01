@@ -1,17 +1,19 @@
-.container{
+.contenedor{
     padding-top: 5%;
+    width: fit-content;
+    margin: 0 auto;
     
 }
 
 
 .form{
     display: inline-block;
-    margin: 20px;
+    margin: 0 10px;
 }
 
 .tabla{
     display: inline-block;
-    margin: 20px;
+    margin: 0 10px;
 }
 
 .totales{

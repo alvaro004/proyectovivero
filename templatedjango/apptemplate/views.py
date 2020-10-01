@@ -8,8 +8,7 @@ def compras(request):
 
     if request.method == 'POST':
         print('entro')
-        categoria = request.POST.get('categoria')
-        nombre_producto = request.POST.get('nombre_producto')
+        id_insumo = request.POST.get('id_insumo')
         cantidad = request.POST.get('cantidad')
         precio = request.POST.get('precio')
 
@@ -17,7 +16,7 @@ def compras(request):
 
         print(categoria,nombre_producto,cantidad,precio,total)
 
-        detalles_compras = Detalles_compras(id_insumo=categoria,cantidad=cantidad,precio=precio,subtotal=total)
+        detalles_compras = Detalles_compras(id_insumo=id_insumo,cantidad=cantidad,precio=precio,subtotal=total,unidad_de_medida=unidad_medida)
         
         detalles_compras.save()
 
@@ -25,13 +24,17 @@ def compras(request):
         # insumos.save()
 
         detalles_compras = Detalles_compras.objects.all()
-        # insumos = Insumos.objects.all()
+        insumos = Insumos.objects.(id=id_insumo)
+        categoria_insumos = Insumos_categoria.objects.all()
+
+        return render(request,'compras.html',{'compras':detalles_compras,'insumos':insumos,'categoria':categoria_insumos})
 
 
-        return render(request,'compras.html',{'compras':detalles_compras})
-
-
-    return render(request,'compras.html')
+    insumos = Insumos.objects.all()
+    detalles_compras = Detalles_compras.objects.all()
+    categoria_insumos = Insumos_categoria.objects.all()
+    print(insumos[0])
+    return render(request,'compras.html',{'compras':detalles_compras,'insumos':insumos,'categoria':categoria_insumos})
 
 def chorizo(request):
 
