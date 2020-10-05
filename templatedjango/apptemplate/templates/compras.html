@@ -170,6 +170,45 @@
                     </div>
                   </div>
                 </td>
+
+
+
+                <td style="color: black; text-align: left;">
+
+                  <!-- Button trigger modal -->
+                  <i style="color: white;" type="button" data-toggle="modal"
+                    data-target="#borrar{{user.id}}">
+                    {% load static %}
+                    <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                  </i>
+    
+                  <!-- Modal -->
+                  <div class="modal fade" id="borrar{{user.id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form action="borrar" method="post">
+                          {% csrf_token %}
+                          <div class="modal-body">
+                            <input type="hidden" name="iden" value="{{compra.id_detalles_compras}}">
+                            Desea Eliminar este Registro ?
+                          </div>
+                          <div class="modal-footer">
+    
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-info">Borrar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
               {% endfor %}
 
