@@ -87,18 +87,19 @@
               {% for compra in compras  %}
 
               <tr>
-                <td>{{compra.id_insumo}}</td>
-                <td>{{compra.unidad_de_medida}}</td>
+                <td>{{compra.categoria}}</td>
+                <td id="select{{compra.id_detalles_compras}}">{{compra.nombre}}</td>
+                <td>{{compra.unidad_medida}}</td>
                 <td>{{compra.cantidad}}</td>
                 <td>{{compra.precio}}</td>
                 <td>{{compra.subtotal}}</td>
 
                 <td style="color: black; text-align: left;">
                   {% load static %}
-                  <i style="color: white;" type="button" data-toggle="modal" data-target="#editar{{compra.id}}"><i><img
+                  <i style="color: white;" type="button" data-toggle="modal" data-target="#editar{{compra.id_detalles_compras}}"><i><img
                         src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
-                  <div class="modal fade" id="editar{{compra.id}}" tabindex="-1" role="dialog"
+                  <div class="modal fade" id="editar{{compra.id_detalles_compras}}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -116,11 +117,11 @@
                                                   <textarea name="comentario" class="form-control"
                                                   id="message-text">{{user.comentario}}</textarea> -->
 
-                              <label for="turno{{categorias.id}}" class="col-form-label">Categoria:</label>
-                              <select name="turno" id="turno{{categorias.id}}" class="form-control">
+                              <label for="nombre{{insumo.id}}" class="col-form-label">Producto:</label>
+                              <select name="producto" id="nombre{{insumo.id}}" class="form-control">
 
-                                {% for categorias in categoria  %}
-                                <option id="opcion{{categorias.id}}" value="{{categorias.Nombre}}">{{categorias.Nombre}}
+                                {% for insumo in insumos  %}
+                                <option class="options{{compra.id_detalles_compras}}" id="opcion{{insumo.id}}"  value="{{insumo.nombre}}">{{insumo.nombre}}
                                 </option>
 
                                 {% endfor %}
@@ -128,43 +129,35 @@
 
                               </select>
 
-                              <!-- <script>
-                                                  var select = document.getElementById('opcion1{{user.id}}')
-                                                  var select2 = document.getElementById('opcion2{{user.id}}')
-                                                  select.setAttribute('selected', 'selected')
-                                                  select.innerHTML = '{{user.turno}}'
-                                                  select.value = '{{user.turno}}'
-                      
-                                                  var turno = select.value
-                      
-                                                  if (turno == 'mañana') {
-                                                    select2.value = 'tarde'
-                                                    select2.innerHTML = 'tarde'
-                                                    console.log('entro')
-                                                  } else {
-                                                    console.log('entro 2')
-                                                    select2.value = 'mañana'
-                                                    select2.innerHTML = 'mañana'
+                                                <script>
+                                                  var elements = 0
+                                                  elements = document.getElementsByClassName('options{{compra.id_detalles_compras}}')
+                                                  var select = document.getElementById('select{{compra.id_detalles_compras}}')
+
+                                                  for (i =0; i < elements.length; i++)
+                                                  {
+                                                    if (elements[i].value == select.innerHTML)
+                                                    {
+                                                      elements[i].setAttribute('selected','selected')
+                                                    }
                                                   }
-                                                </script> -->
-                            </div>
-                            <div class="form-group">
-                              <label for="recipient-name" class="col-form-label">Nombre del Producto:</label>
-                              <input name="email" value="{{user.email}}" type="text" class="form-control"
-                                id="recipient-name">
+
+                                                  console.log(elements.length)
+                                                </script>
                             </div>
                             <div class="form-group">
                               <label for="recipient-name" class="col-form-label">Cantidad:</label>
-                              <input name="numero" value="{{user.numero}}" type="text" class="form-control"
+                              <input name="cantidad" value="{{compra.cantidad}}" type="text" class="form-control"
                                 id="recipient-name">
                             </div>
                             <div class="form-group">
-                              <label for="message-text" class="col-form-label">precio:</label>
-                              <textarea name="comentario" class="form-control"
-                                id="message-text">{{user.comentario}}</textarea>
+                              <label for="recipient-name" class="col-form-label">Precio:</label>
+                              <input name="precio" value="{{compra.precio}}" type="text" class="form-control"
+                                id="recipient-name">
                             </div>
-                            <input type="hidden" name="iden" value="{{user.id}}">
-                            <input type="hidden" name="admin" value="{{admin}}">
+                  
+                            <input type="hidden" name="iden" value="{{compra.id_detalles_compras}}">
+        
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
