@@ -3,6 +3,8 @@ from templatedjango.apptemplate.models import *
 
 # Create your views here.
 
+# este es el codigo de la vista de compras 
+
 
 def compras(request):
 
@@ -36,20 +38,25 @@ def compras(request):
         for i in range(cant):    
             iden = int(detalles_compras[i].id_insumo)
             insumos2 = Insumos.objects.get(id=iden)
-            comprasiter += [
-                {
-                    'id_insumo':insumos2.id,
-                    'id_detalles_compras':detalles_compras[i].id,
-                    'nombre':insumos2.nombre,
-                    'unidad_medida':insumos2.unidad_de_medida,
-                    'cantidad':detalles_compras[i].cantidad,
-                    'precio':detalles_compras[i].precio,
-                    'subtotal':detalles_compras[i].subtotal,
-                    'categoria':insumos2.categoria.Nombre,
-                },
-            ]
 
-        print(comprasiter)
+            if not detalles_compras[i].id_compra:
+
+                comprasiter += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
+
+        
+
+        # print(comprasiter)
 
         categoria_insumos = Insumos_categoria.objects.all()
 
@@ -67,20 +74,20 @@ def compras(request):
     comprasiter = []
 
     for i in range(cant):    
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)
-        comprasiter += [
-            {
-                'id_insumo':insumos2.id,
-                'id_detalles_compras':detalles_compras[i].id,
-                'nombre':insumos2.nombre,
-                'unidad_medida':insumos2.unidad_de_medida,
-                'cantidad':detalles_compras[i].cantidad,
-                'precio':detalles_compras[i].precio,
-                'subtotal':detalles_compras[i].subtotal,
-                'categoria':insumos2.categoria.Nombre,
-            },
-        ]
+       if not detalles_compras[i].id_compra:
+
+                comprasiter += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
@@ -113,20 +120,20 @@ def editar(request):
     comprasiter = []
 
     for i in range(cant):    
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)
-        comprasiter += [
-            {
-                'id_insumo':insumos2.id,
-                'id_detalles_compras':detalles_compras[i].id,
-                'nombre':insumos2.nombre,
-                'unidad_medida':insumos2.unidad_de_medida,
-                'cantidad':detalles_compras[i].cantidad,
-                'precio':detalles_compras[i].precio,
-                'subtotal':detalles_compras[i].subtotal,
-                'categoria':insumos2.categoria.Nombre,
-            },
-        ]
+        if not detalles_compras[i].id_compra:
+
+                comprasiter += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
@@ -171,20 +178,20 @@ def registrar(request):
     comprasiter = []
 
     for i in range(cant):    
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)
-        comprasiter += [
-            {
-                'id_insumo':insumos2.id,
-                'id_detalles_compras':detalles_compras[i].id,
-                'nombre':insumos2.nombre,
-                'unidad_medida':insumos2.unidad_de_medida,
-                'cantidad':detalles_compras[i].cantidad,
-                'precio':detalles_compras[i].precio,
-                'subtotal':detalles_compras[i].subtotal,
-                'categoria':insumos2.categoria.Nombre,
-            },
-        ]
+        if not detalles_compras[i].id_compra:
+
+                comprasiter += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
@@ -211,21 +218,27 @@ def borrar(request):
     comprasiter = []
 
     for i in range(cant):    
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)
-        comprasiter += [
-            {
-                'id_insumo':insumos2.id,
-                'id_detalles_compras':detalles_compras[i].id,
-                'nombre':insumos2.nombre,
-                'unidad_medida':insumos2.unidad_de_medida,
-                'cantidad':detalles_compras[i].cantidad,
-                'precio':detalles_compras[i].precio,
-                'subtotal':detalles_compras[i].subtotal,
-                'categoria':insumos2.categoria.Nombre,
-            },
-        ]
+        if not detalles_compras[i].id_compra:
+
+                comprasiter += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
     return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+
+
+
+
+    # aca finaliza el codigo de la vista de compras 
+    # ----------------------------------------------------------------------
