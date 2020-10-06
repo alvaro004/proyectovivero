@@ -143,6 +143,9 @@ def registrar(request):
 
     print(total)
 
+    # aca se realiza la consulta para guardar la fecha y la hora de la compra y 
+    # luego se procede a guardar el id de la compra 
+
     compras = Compras(total_compra=total,fecha_compra=fecha)
     compras.save()
     cantidad_compras = int(len(Compras.objects.all())) - 1
@@ -157,6 +160,46 @@ def registrar(request):
         get_compras = Detalles_compras.objects.get(id=id_para_compras[i])
         get_compras.id_compra = compra_para_guardar
         get_compras.save()
+
+
+    # este codigo hay que optimizar para copiar en las demas vistas
+
+    detalles_compras = Detalles_compras.objects.all()
+    insumos = Insumos.objects.all()
+
+    cant = int(len(detalles_compras))
+    comprasiter = []
+
+    for i in range(cant):    
+        iden = int(detalles_compras[i].id_insumo)
+        insumos2 = Insumos.objects.get(id=iden)
+        comprasiter += [
+            {
+                'id_insumo':insumos2.id,
+                'id_detalles_compras':detalles_compras[i].id,
+                'nombre':insumos2.nombre,
+                'unidad_medida':insumos2.unidad_de_medida,
+                'cantidad':detalles_compras[i].cantidad,
+                'precio':detalles_compras[i].precio,
+                'subtotal':detalles_compras[i].subtotal,
+                'categoria':insumos2.categoria.Nombre,
+            },
+        ]
+
+    categoria_insumos = Insumos_categoria.objects.all()
+    # print(insumos[0])
+    return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+
+
+
+def borrar(request):
+
+
+    id_borrar = request.POST.get('id_borrar')
+
+    consulta_borrar = Detalles_compras.objects.filter(id=id_borrar)
+    consulta_borrar.delete()
+
 
 
     # este codigo hay que optimizar para copiar en las demas vistas

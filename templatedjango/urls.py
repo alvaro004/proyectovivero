@@ -21,4 +21,5 @@ urlpatterns = [
     path('compras', compras),
     path('editar', editar),
     path('registrar', registrar),
+    path('borrar', borrar),
 ]

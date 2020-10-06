@@ -93,8 +93,11 @@
                 <td>{{compra.cantidad}}</td>
                 <td>{{compra.precio}}</td>
                 <td class="calcular_compra">{{compra.subtotal}}</td>
+                
 
-                <td style="color: black; text-align: left;">
+                <!-- codigo para el boton de editar 
+                -------------------------------------------------- -->
+                <td>
                   {% load static %}
                   <i style="color: white;" type="button" data-toggle="modal" data-target="#editar{{compra.id_detalles_compras}}"><i><img
                         src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
@@ -172,18 +175,19 @@
                 </td>
 
 
-
-                <td style="color: black; text-align: left;">
+                <!-- codigo para el boton de borrar  -->
+                <!-- -------------------------------------------- -->
+                <td>
 
                   <!-- Button trigger modal -->
                   <i style="color: white;" type="button" data-toggle="modal"
-                    data-target="#borrar{{user.id}}">
+                    data-target="#borrar{{compra.id_detalles_compras}}">
                     {% load static %}
                     <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
                   </i>
     
                   <!-- Modal -->
-                  <div class="modal fade" id="borrar{{user.id}}" tabindex="-1" role="dialog"
+                  <div class="modal fade" id="borrar{{compra.id_detalles_compras}}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -196,7 +200,7 @@
                         <form action="borrar" method="post">
                           {% csrf_token %}
                           <div class="modal-body">
-                            <input type="hidden" name="iden" value="{{compra.id_detalles_compras}}">
+                            <input type="hidden" name="id_borrar" value="{{compra.id_detalles_compras}}">
                             Desea Eliminar este Registro ?
                           </div>
                           <div class="modal-footer">
