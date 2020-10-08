@@ -3,9 +3,46 @@ from templatedjango.apptemplate.models import *
 
 # Create your views here.
 
+
+
+# codigo para consultar insumos y detalles compras y luego enviar a la vista 
+# en forma de lista con diccionario las tablas detalles compras y 
+# insumos juntos 
+
+# ------------------------------------------------------------
+# en este codigo de abajo con el for lo que se esta 
+# realizando es un conteo a la tabla 
+# de detalle compras para luego utilizar el id en la 
+# tabla insumos y poder acceder al nombre y mostrar por medio de una lista
+
+
+def objetocompras():
+    detalles_compras = Detalles_compras.objects.all()
+    cant = int(len(detalles_compras))
+    compras = []
+
+    for i in range(cant): 
+        iden = int(detalles_compras[i].id_insumo)
+        insumos2 = Insumos.objects.get(id=iden)   
+        if not detalles_compras[i].id_compra:
+
+            compras += [
+                {
+                    'id_insumo':insumos2.id,
+                    'id_detalles_compras':detalles_compras[i].id,
+                    'nombre':insumos2.nombre,
+                    'unidad_medida':insumos2.unidad_de_medida,
+                    'cantidad':detalles_compras[i].cantidad,
+                    'precio':detalles_compras[i].precio,
+                    'subtotal':detalles_compras[i].subtotal,
+                    'categoria':insumos2.categoria.Nombre,
+                },
+            ]
+    return compras
+
+
 # este es el codigo de la vista de compras 
 # ---------------------------------------------------------
-
 
 def compras(request):
 
@@ -27,72 +64,19 @@ def compras(request):
         detalles_compras = Detalles_compras.objects.all()
         insumos = Insumos.objects.all()
 
-
-        # en este codigo de abajo con el for lo que se esta 
-        # realizando es un conteo a la tabla 
-        # de detalle compras para luego utilizar el id en la 
-        # tabla insumos y poder acceder al nombre y mostrar por medio de una lista
-
-        cant = int(len(detalles_compras))
-        comprasiter = []
-
-        for i in range(cant):    
-            iden = int(detalles_compras[i].id_insumo)
-            insumos2 = Insumos.objects.get(id=iden)
-
-            if not detalles_compras[i].id_compra:
-
-                comprasiter += [
-                    {
-                        'id_insumo':insumos2.id,
-                        'id_detalles_compras':detalles_compras[i].id,
-                        'nombre':insumos2.nombre,
-                        'unidad_medida':insumos2.unidad_de_medida,
-                        'cantidad':detalles_compras[i].cantidad,
-                        'precio':detalles_compras[i].precio,
-                        'subtotal':detalles_compras[i].subtotal,
-                        'categoria':insumos2.categoria.Nombre,
-                    },
-                ]
-
-        
-
+        # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
+        # a vistas con las tablas detalles compras y insumos juntas
+        comprasiter = objetocompras()
         # print(comprasiter)
 
         categoria_insumos = Insumos_categoria.objects.all()
 
         return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
-
-
-
-    # este codigo hay que optimizar para copiar en las demas vistas 
-
-    insumos = Insumos.objects.all()
-    detalles_compras = Detalles_compras.objects.all()
-
-    cant = int(len(detalles_compras))
-    comprasiter = []
-
-    for i in range(cant): 
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)   
-        if not detalles_compras[i].id_compra:
-
-            comprasiter += [
-                {
-                    'id_insumo':insumos2.id,
-                    'id_detalles_compras':detalles_compras[i].id,
-                    'nombre':insumos2.nombre,
-                    'unidad_medida':insumos2.unidad_de_medida,
-                    'cantidad':detalles_compras[i].cantidad,
-                    'precio':detalles_compras[i].precio,
-                    'subtotal':detalles_compras[i].subtotal,
-                    'categoria':insumos2.categoria.Nombre,
-                },
-            ]
+    comprasiter = objetocompras()
 
     categoria_insumos = Insumos_categoria.objects.all()
+    insumos = Insumos.objects.all()
     # print(insumos[0])
     return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
@@ -113,32 +97,13 @@ def editar(request):
 
     compras.save()
 
-
-     # este codigo hay que optimizar para copiar en las demas vistas 
-
     insumos = Insumos.objects.all()
     detalles_compras = Detalles_compras.objects.all()
 
-    cant = int(len(detalles_compras))
-    comprasiter = []
+    # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
+    # a vistas con las tablas detalles compras y insumos juntas
 
-    for i in range(cant): 
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)   
-        if not detalles_compras[i].id_compra:
-
-                comprasiter += [
-                    {
-                        'id_insumo':insumos2.id,
-                        'id_detalles_compras':detalles_compras[i].id,
-                        'nombre':insumos2.nombre,
-                        'unidad_medida':insumos2.unidad_de_medida,
-                        'cantidad':detalles_compras[i].cantidad,
-                        'precio':detalles_compras[i].precio,
-                        'subtotal':detalles_compras[i].subtotal,
-                        'categoria':insumos2.categoria.Nombre,
-                    },
-                ]
+    comprasiter = objetocompras()
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
@@ -174,31 +139,13 @@ def registrar(request):
         get_compras.save()
 
 
-    # este codigo hay que optimizar para copiar en las demas vistas
-
     detalles_compras = Detalles_compras.objects.all()
     insumos = Insumos.objects.all()
 
-    cant = int(len(detalles_compras))
-    comprasiter = []
+    # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
+    # a vistas con las tablas detalles compras y insumos juntas
 
-    for i in range(cant):
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)    
-        if not detalles_compras[i].id_compra:
-
-                comprasiter += [
-                    {
-                        'id_insumo':insumos2.id,
-                        'id_detalles_compras':detalles_compras[i].id,
-                        'nombre':insumos2.nombre,
-                        'unidad_medida':insumos2.unidad_de_medida,
-                        'cantidad':detalles_compras[i].cantidad,
-                        'precio':detalles_compras[i].precio,
-                        'subtotal':detalles_compras[i].subtotal,
-                        'categoria':insumos2.categoria.Nombre,
-                    },
-                ]
+    comprasiter = objetocompras()
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
@@ -215,39 +162,17 @@ def borrar(request):
     consulta_borrar.delete()
 
 
-
-    # este codigo hay que optimizar para copiar en las demas vistas
-
     detalles_compras = Detalles_compras.objects.all()
     insumos = Insumos.objects.all()
 
-    cant = int(len(detalles_compras))
-    comprasiter = []
+    # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
+    # a vistas con las tablas detalles compras y insumos juntas
 
-    for i in range(cant): 
-        iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)   
-        if not detalles_compras[i].id_compra:
-
-                comprasiter += [
-                    {
-                        'id_insumo':insumos2.id,
-                        'id_detalles_compras':detalles_compras[i].id,
-                        'nombre':insumos2.nombre,
-                        'unidad_medida':insumos2.unidad_de_medida,
-                        'cantidad':detalles_compras[i].cantidad,
-                        'precio':detalles_compras[i].precio,
-                        'subtotal':detalles_compras[i].subtotal,
-                        'categoria':insumos2.categoria.Nombre,
-                    },
-                ]
+    comprasiter = objetocompras()
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
     return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
-
-
-
 
     # aca finaliza el codigo de la vista de compras 
     # ----------------------------------------------------------------------
@@ -264,35 +189,15 @@ def ver_compras(request):
 
         detalles_compras = Detalles_compras.objects.filter(id_compra=id_ver_compra)
         insumos = Insumos.objects.all()
-
-        cant = int(len(detalles_compras))
-        comprasiter = []
-
-        for i in range(cant):  
-            iden = int(detalles_compras[i].id_insumo)
-            insumos2 = Insumos.objects.get(id=iden)  
-            if detalles_compras[i].id_compra:
-
-                    comprasiter += [
-                        {
-                            'id_insumo':insumos2.id,
-                            'id_detalles_compras':detalles_compras[i].id,
-                            'nombre':insumos2.nombre,
-                            'unidad_medida':insumos2.unidad_de_medida,
-                            'cantidad':detalles_compras[i].cantidad,
-                            'precio':detalles_compras[i].precio,
-                            'subtotal':detalles_compras[i].subtotal,
-                            'categoria':insumos2.categoria.Nombre,
-                        },
-                    ]
+        
+        # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
+        # a vistas con las tablas detalles compras y insumos juntas
+        comprasiter = objetocompras()
 
         compras = Compras.objects.all()
         fecha_compra = Compras.objects.get(id=id_ver_compra)
 
         return render(request,'ver_compras.html',{'compras':compras,'ver_compras':comprasiter,'fecha':fecha_compra.fecha_compra})
-
-
-
 
     compras = Compras.objects.all()
     return render(request,'ver_compras.html',{'compras':compras})
