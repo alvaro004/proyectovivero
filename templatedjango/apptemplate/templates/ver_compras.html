@@ -39,9 +39,9 @@
 
             {% for compra in compras  %}
         
-                <h3>Fecha: {{compra.fecha_compra}}</h3>
-                <h3>Total de la compra: {{compra.total_compra}}</h3>
-                <form action="ver_compras" method="post">
+            <h3>Fecha: {{compra.fecha_compra}}</h3>
+            <h3>Total de la compra: {{compra.total_compra}}</h3>
+                <form action="ver_compras" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="id_ver_compras" value="{{compra.id}}">
                     <button type="submit"> Ver Compras Realizadas</button>

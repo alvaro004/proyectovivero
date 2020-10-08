@@ -52,8 +52,11 @@ def compras(request):
         cantidad = request.POST.get('cantidad')
         precio = request.POST.get('precio')
 
+        # cantidad = cantidad.replace('.', '')
+        precio = precio.replace('.', '')
+
     
-        total = int(cantidad) * int(precio)
+        total = float(cantidad) * float(precio)
 
         print(id_insumo,cantidad,precio,total)
 
@@ -71,14 +74,14 @@ def compras(request):
 
         categoria_insumos = Insumos_categoria.objects.all()
 
-        return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+        return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
     comprasiter = objetocompras()
 
     categoria_insumos = Insumos_categoria.objects.all()
     insumos = Insumos.objects.all()
     # print(insumos[0])
-    return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+    return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
 def editar(request):
 
@@ -87,13 +90,14 @@ def editar(request):
     cantidad = request.POST.get('cantidad')
     precio = request.POST.get('precio')
 
+    precio = precio.replace('.', '')
 
     compras = Detalles_compras.objects.get(id=iden)
 
     compras.id_insumo = producto
     compras.cantidad = cantidad
     compras.precio = precio 
-    compras.subtotal = int(cantidad) * int(precio)
+    compras.subtotal = float(cantidad) * float(precio)
 
     compras.save()
 
@@ -107,7 +111,7 @@ def editar(request):
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
-    return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+    return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
 
 def registrar(request):
@@ -118,7 +122,7 @@ def registrar(request):
     total = request.POST.get('total_compra')
     
 
-    print(total)
+    print(id_para_compras)
 
     # aca se realiza la consulta para guardar la fecha y la hora de la compra y 
     # luego se procede a guardar el id de la compra 
@@ -132,6 +136,9 @@ def registrar(request):
     compra_para_guardar = id_compras[cantidad_compras].id
 
     cantidad_id = int(len(id_para_compras))
+
+    # aca se utiliza los id enviados por post en una lista para filtrar las compras realizadas y 
+    # agregar a dichas compras el id de la compra con la fecha realizada
 
     for i in range(cantidad_id):
         get_compras = Detalles_compras.objects.get(id=id_para_compras[i])
@@ -149,7 +156,7 @@ def registrar(request):
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
-    return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+    return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
 
 
@@ -172,7 +179,7 @@ def borrar(request):
 
     categoria_insumos = Insumos_categoria.objects.all()
     # print(insumos[0])
-    return render(request,'compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+    return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
     # aca finaliza el codigo de la vista de compras 
     # ----------------------------------------------------------------------
@@ -184,6 +191,7 @@ def ver_compras(request):
 
     # print(id_ver_compra)
     if request.method == 'POST':
+
         id_ver_compra = request.POST.get('id_ver_compras')
 
 
@@ -192,7 +200,26 @@ def ver_compras(request):
         
         # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
         # a vistas con las tablas detalles compras y insumos juntas
-        comprasiter = objetocompras()
+        cant = int(len(detalles_compras))
+        comprasiter = []
+
+        for i in range(cant): 
+            iden = int(detalles_compras[i].id_insumo)
+            insumos2 = Insumos.objects.get(id=iden)   
+            if detalles_compras[i].id_compra:
+
+                comprasiter += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
 
         compras = Compras.objects.all()
         fecha_compra = Compras.objects.get(id=id_ver_compra)
