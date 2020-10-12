@@ -23,5 +23,6 @@ urlpatterns = [
     path('registrar', registrar),
     path('borrar', borrar),
     path('ver_compras', ver_compras),
+    path('insumos', insumos),
 
 ]

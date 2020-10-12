@@ -228,3 +228,6 @@ def ver_compras(request):
 
     compras = Compras.objects.all()
     return render(request,'ver_compras.html',{'compras':compras})
+
+def insumos(request):
+    return render(request,'insumos/insumos.html')

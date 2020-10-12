@@ -8,13 +8,19 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  
+
   {% block titulocompras %}
-    
+
   {% endblock titulocompras %}
-    
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  
+  <!--  Datatables  -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+
+  <!--  extension responsive  -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
   <!-- Bootstrap core CSS -->
   <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
   {% load static %}
@@ -33,24 +39,42 @@
         <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
       </div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2"><img
-              src="img/icon_cart.svg"></i><small class="text-uppercase font-weight-bold"
+        <a href="compras" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2">
+          {% load static %}
+          <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold"
             style="color: #A3A6B4;">Compras</small></a>
-        <a href="ver_compras" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2"><img
-              src="img/icon_cart.svg"></i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Insumos</small></a>
-        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2"><img
-              src="img/icon_cart.svg"></i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Produccion</small></a>
-        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2"><img
-              src="img/icon_cart.svg"></i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Ventas</small></a>
-        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2"><img
-              src="img/icon_cart.svg"></i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Pedidos</small></a>
-        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2"><img
-              src="img/icon_cart.svg"></i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Productos</small></a>
+
+        <a 
+          href="insumos" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Insumos</small>
+        </a>
+
+        <a 
+          href="#" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Produccion</small>
+        </a>
+
+        <a 
+          href="ver_compras" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
+        </a>
+
+        <a 
+          href="ver_compras" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Pedidos</small>
+        </a>
+
+        <a 
+          href="#" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Productos</small>
+        </a>
+
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -62,8 +86,9 @@
 
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-light bg-white rounded-pill shadow-sm" id="menu-toggle"><i class="fa fa-bars mr-2"><img
-              src="img/icon_down-arrow-small.svg"></i><small class="text-uppercase font-weight-bold"
+        <button class="btn btn-light bg-white rounded-pill shadow-sm" id="menu-toggle"><i class="fa fa-bars mr-2">
+          {% load static %}
+          <img src="{% static '/assets/icons/icon_down-arrow-small.svg' %}"></i><small class="text-uppercase font-weight-bold"
             style="color: #A3A6B4;">Menu</small></button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -97,18 +122,26 @@
 
       <div class="card shadow p-3 mb-5 bg-white rounded border" style="margin: 20px 50px ">
 
-        
+        <!-- COMPRAS -->
+
         {% block compras %}
-          
+
         {% endblock compras %}
 
-        
+
         {% block listado %}
-          
+
         {% endblock listado %}
 
-          
-          
+
+        <!-- INSUMOS -->
+
+        {% block insumos %}
+
+        {% endblock insumos%}
+
+
+
       </div>
 
       <!-- /#page-content-wrapper -->
@@ -118,9 +151,7 @@
 
     <!-- Bootstrap core JavaScript -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
@@ -128,8 +159,40 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
 
+    <!--   Datatables-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+    <!-- extension responsive -->
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
     <!-- Menu Toggle Script -->
     <script>
+      $(document).ready(function () {
+        $('#example').DataTable({
+          responsive: true,
+          "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+          }
+
+          //Otra forma de cambiar el idioma
+          // "language": {
+          //     "lengthMenu": "Mostrando _MENU_ ",
+          //     "zeroRecords": "No se encontro nada - ¡Lo siento!",
+          //     "info": "Mostrando pagina _PAGE_ de _PAGES_",
+          //     "infoEmpty": "No hay registros disponibles",
+          //     "infoFiltered": "(filtrando de _MAX_ registros totales)",
+          //      "search": "Busqueda:",
+          //      "paginate": {
+          //          "previous": "Anterior",
+          //          "next": "Siguiente"
+
+          //      }
+          //  }
+
+        });
+
+      });
+
       $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
