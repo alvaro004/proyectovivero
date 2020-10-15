@@ -139,10 +139,16 @@ def registrar(request):
 
     # aca se utiliza los id enviados por post en una lista para filtrar las compras realizadas y 
     # agregar a dichas compras el id de la compra con la fecha realizada
+    # luego tambien se suma la cantidad comprada del insumo con la que ya se aniadio anteriormente
+    # en la vista insumos
 
     for i in range(cantidad_id):
         get_compras = Detalles_compras.objects.get(id=id_para_compras[i])
         get_compras.id_compra = compra_para_guardar
+        
+        sumar_cantidad = Insumos.objects.get(id=get_compras.id_insumo)
+        sumar_cantidad.cantidad = int(sumar_cantidad.cantidad) + int(get_compras.cantidad)
+        sumar_cantidad.save()
         get_compras.save()
 
 
@@ -229,5 +235,71 @@ def ver_compras(request):
     compras = Compras.objects.all()
     return render(request,'ver_compras.html',{'compras':compras})
 
+
+
+
+# aca comienzan las vistas de insumos 
+# ----------------------------------------------------------
+
+
 def insumos(request):
-    return render(request,'insumos/insumos.html')
+
+    if request.method == "POST":
+        if request.POST.get('guardar'):  
+
+            insumo_categoria = request.POST.get('categoria')
+            nombre = request.POST.get('producto')
+            cantidad = request.POST.get('cantidad')
+            medida = request.POST.get('medida')
+
+            # filtrar_categoria = Insumos_categoria.objects.get(id=insumo_categoria)
+            Guardar_insumos = Insumos(cantidad=cantidad,nombre=nombre,unidad_de_medida=medida,categoria_id=insumo_categoria)
+            Guardar_insumos.save()
+
+
+            categoria = Insumos_categoria.objects.all()
+            insumos = Insumos.objects.all()
+            return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
+        
+        if request.POST.get('editar'):
+
+
+            iden = request.POST.get('iden')
+            insumo_categoria = request.POST.get('categoria')
+            nombre = request.POST.get('nombre')
+            cantidad = request.POST.get('cantidad')
+            medida = request.POST.get('medida')
+
+            editar_insumos = Insumos.objects.get(id=iden)
+
+            editar_insumos.cantidad = cantidad
+            editar_insumos.categoria_id = insumo_categoria
+            editar_insumos.nombre = nombre
+            editar_insumos.unidad_de_medida = medida
+
+            editar_insumos.save()
+        
+
+            
+
+            categoria = Insumos_categoria.objects.all()
+            insumos = Insumos.objects.all()
+            return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
+
+        if request.POST.get('borrar'):
+
+            id_borrar = request.POST.get('id_borrar')
+
+            borrar_insumos = Insumos.objects.filter(id=id_borrar)
+            borrar_insumos.delete()
+
+            categoria = Insumos_categoria.objects.all()
+            insumos = Insumos.objects.all()
+            return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
+
+
+
+
+    categoria = Insumos_categoria.objects.all()
+    insumos = Insumos.objects.all()
+    return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
