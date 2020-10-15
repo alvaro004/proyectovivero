@@ -1,13 +1,20 @@
-function verificar(){
+function verificar() {
     table = document.getElementsByTagName('td')
+    console.log(table.length)
 
-    if(table.length < 1){
-        ocultar = document.getElementsByClassName('bg-light')
 
-        for(var i =0; i < ocultar.length; i++)
-        {
+    ocultar = document.getElementsByClassName('bg-light')
 
-            ocultar[i].setAttribute('href','')
+    if(table.length > 0){
+
+        for (var i = 0; i < ocultar.length; i++) {
+
+            ocultar[i].setAttribute('href', '')
         }
     }
+
 }
+
+window.onload = function () {
+    verificar()
+};

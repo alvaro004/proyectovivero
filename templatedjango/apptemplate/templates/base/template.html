@@ -64,7 +64,7 @@
         </a>
 
         <a 
-          href="ver_compras" class="list-group-item list-group-item-action bg-light">
+          href="ver_compras" onclick="verificar()"class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Pedidos</small>
         </a>
@@ -198,8 +198,7 @@
         $("#wrapper").toggleClass("toggled");
       });
     </script>
-
-    <script src="{% static '/js/functions.js' %}"></script>
+    
 
 </body>
 

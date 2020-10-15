@@ -153,7 +153,7 @@
                                                     // elements[1].setAttribute('selected','selected')
                                                     var select = document.getElementById('select{{insumo.id}}')
 
-                                                    function selected(elements,select){
+                                                    function selected(elements, select) {
 
                                                         for (var i = 0; i < elements.length; i++) {
                                                             // console.log(elements[i].innerHTML)
@@ -166,7 +166,7 @@
                                                         }
                                                     }
 
-                                                    selected(elements,select)
+                                                    selected(elements, select)
 
 
                                                     // console.log(select.innerHTML)
@@ -190,14 +190,16 @@
                                                     Medida:</label>
                                                 <select class="form-control" name="medida" id="recipient-name">
                                                     <!-- <option disabled selected>Medida</option> -->
-                                                    <option class="categoria_medida{{insumo.id}}" value="unidades">unidades</option>
+                                                    <option class="categoria_medida{{insumo.id}}" value="unidades">
+                                                        unidades</option>
                                                     <option class="categoria_medida{{insumo.id}}" value="kg">kg</option>
                                                 </select>
                                                 <script type="text/javascript">
-                                                    categorias = document.getElementsByClassName('categoria_medida{{insumo.id}}')
+                                                    categorias = document.getElementsByClassName(
+                                                        'categoria_medida{{insumo.id}}')
                                                     opciones = document.getElementById('medida{{insumo.id}}')
 
-                                                    selected(categorias,opciones)
+                                                    selected(categorias, opciones)
 
                                                     // console.log(select.innerHTML, 'fuera del for')
                                                 </script>
@@ -239,7 +241,8 @@
                                         </div>
                                         <div class="modal-footer">
 
-                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                data-dismiss="modal">Cancelar</button>
                                             <button type="submit" class="btn btn-outline-info">Borrar</button>
                                         </div>
                                     </form>
@@ -265,6 +268,8 @@
 
         </div>
     </div>
+
+   
 </div>
 
 {% endblock insumos%}

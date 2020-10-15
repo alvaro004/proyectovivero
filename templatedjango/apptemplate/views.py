@@ -23,21 +23,24 @@ def objetocompras():
 
     for i in range(cant): 
         iden = int(detalles_compras[i].id_insumo)
-        insumos2 = Insumos.objects.get(id=iden)   
-        if not detalles_compras[i].id_compra:
+        try:
+            insumos2 = Insumos.objects.get(id=iden)   
+            if not detalles_compras[i].id_compra:
 
-            compras += [
-                {
-                    'id_insumo':insumos2.id,
-                    'id_detalles_compras':detalles_compras[i].id,
-                    'nombre':insumos2.nombre,
-                    'unidad_medida':insumos2.unidad_de_medida,
-                    'cantidad':detalles_compras[i].cantidad,
-                    'precio':detalles_compras[i].precio,
-                    'subtotal':detalles_compras[i].subtotal,
-                    'categoria':insumos2.categoria.Nombre,
-                },
-            ]
+                compras += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
+        except:
+            compras =[]
     return compras
 
 
@@ -80,7 +83,11 @@ def compras(request):
 
     categoria_insumos = Insumos_categoria.objects.all()
     insumos = Insumos.objects.all()
-    # print(insumos[0])
+    # try:
+    #     insumos_prueba = Insumos.objects.get(id=1)
+    # except:
+
+    #     print('no se pudo')
     return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
 
 def editar(request):
@@ -149,6 +156,7 @@ def registrar(request):
         sumar_cantidad = Insumos.objects.get(id=get_compras.id_insumo)
         sumar_cantidad.cantidad = int(sumar_cantidad.cantidad) + int(get_compras.cantidad)
         sumar_cantidad.save()
+
         get_compras.save()
 
 
@@ -211,21 +219,36 @@ def ver_compras(request):
 
         for i in range(cant): 
             iden = int(detalles_compras[i].id_insumo)
-            insumos2 = Insumos.objects.get(id=iden)   
-            if detalles_compras[i].id_compra:
+            try:
+                insumos2 = Insumos.objects.get(id=iden)   
+                if detalles_compras[i].id_compra:
 
-                comprasiter += [
-                    {
-                        'id_insumo':insumos2.id,
-                        'id_detalles_compras':detalles_compras[i].id,
-                        'nombre':insumos2.nombre,
-                        'unidad_medida':insumos2.unidad_de_medida,
-                        'cantidad':detalles_compras[i].cantidad,
-                        'precio':detalles_compras[i].precio,
-                        'subtotal':detalles_compras[i].subtotal,
-                        'categoria':insumos2.categoria.Nombre,
-                    },
-                ]
+                    comprasiter += [
+                        {
+                            'id_insumo':insumos2.id,
+                            'id_detalles_compras':detalles_compras[i].id,
+                            'nombre':insumos2.nombre,
+                            'unidad_medida':insumos2.unidad_de_medida,
+                            'cantidad':detalles_compras[i].cantidad,
+                            'precio':detalles_compras[i].precio,
+                            'subtotal':detalles_compras[i].subtotal,
+                            'categoria':insumos2.categoria.Nombre,
+                        },
+                    ]
+            except:
+                    comprasiter += [
+                        {
+                            'id_insumo':'no se encuentra',
+                            'id_detalles_compras':detalles_compras[i].id,
+                            'nombre':'se borro el insumo',
+                            'unidad_medida':'se borro el insumo',
+                            'cantidad':detalles_compras[i].cantidad,
+                            'precio':detalles_compras[i].precio,
+                            'subtotal':detalles_compras[i].subtotal,
+                            'categoria':'se borro el insumo',
+                        },
+                    ]
+               
 
         compras = Compras.objects.all()
         fecha_compra = Compras.objects.get(id=id_ver_compra)

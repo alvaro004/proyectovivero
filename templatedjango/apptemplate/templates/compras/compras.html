@@ -37,7 +37,7 @@
                 required>
             </div>
 
-            <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+            <button type="submit" class="btn btn-outline-info float-right" >Agregar</button>
 
           </form>
         </div>
@@ -194,8 +194,7 @@
               </td>
             </tr>
             {% endfor %}
-            {% else %}
-              <td></td>
+           
             {% endif %}
               
 
@@ -311,5 +310,31 @@
 
     </div>
   </div>
+
+
+  <!-- <script>
+    function verificar() {
+        table = document.getElementsByTagName('td')
+        console.log(table.length)
+
+
+        ocultar = document.getElementsByClassName('bg-light')
+
+        if(table.length > 0){
+
+            for (var i = 0; i < ocultar.length; i++) {
+
+                ocultar[i].setAttribute('href', '')
+            }
+        }
+
+    }
+
+    window.onload = function () {
+        verificar()
+    };
+</script> -->
+{% load static %}
+<script src="{% static '/js/functions.js' %}"></script>
 </div>
 {% endblock compras %}
