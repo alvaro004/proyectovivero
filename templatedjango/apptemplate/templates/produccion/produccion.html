@@ -1,0 +1,190 @@
+{% extends 'base/template.html' %}
+
+{% block titulocompras %}
+<title>Produccion</title>
+{% endblock titulocompras %}
+
+
+{% block produccion %}
+
+<div class="container rounded">
+    <button id="productos" class="btn btn-outline-info boton" data-li="productos">Productos</button>
+    <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Insumos</button>
+
+
+    <div class="row" style="margin-top: 20px;">
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 item productos">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+
+                <div class="card-body responsive">
+                    <h5 class="card-title">Produccion!</h5>
+
+                    <form action="" method="post">
+
+                        <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1" name="nombre_categoria">
+                                <option value="tunas">Tunas</option>
+                                <option value="suculentas">Suculentas</option>
+                                <option value="plantas ornamentales">Plantas Ornamentales</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect2" name="nombre_productos">
+                                <option value="Tunas_blancas">Tunas Blancas</option>
+                                <option value="tunas_del_desierto">Tunas del desierto</option>
+                                <option value="cactus">Cactus</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="cantidad_detalle"
+                                placeholder="Cantidad Produccion">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 item productos">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
+
+                        <thead style="background-color: #F5F6FA;">
+                            <tr>
+                                <th style="color: #A3A6B4;" scope="col">Categoria</th>
+                                <th style="color: #A3A6B4;" scope="col">Producto</th>
+                                <th style="color: #A3A6B4;" scope="col">Cantidad</th>
+                                <th style="color: #A3A6B4;" scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <th class="small">Tunas</th>
+                                <td class="small">Tuna del desierto</td>
+                                <td class="small">4</td>
+                                <td class="small"><i><img style="padding-right: 10px;"
+                                            src="img/icon_edit.svg"></i><i><img src="img/circle-remove.svg"
+                                            alt=""></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="small">Tunas</th>
+                                <td class="small">Tuna gris</td>
+                                <td class="small">10</td>
+                                <td class="small"><i><img style="padding-right: 10px;"
+                                            src="img/icon_edit.svg"></i><i><img src="img/circle-remove.svg"
+                                            alt=""></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="small">Plantas Oranmentales</th>
+                                <td class="small">Orquidea</td>
+                                <td class="small">4</td>
+                                <td class="small"><i><img style="padding-right: 10px;"
+                                            src="img/icon_edit.svg"></i><i><img src="img/circle-remove.svg"
+                                            alt=""></i>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos" style="border:none; display: none;">
+
+            <div class="table-responsive">
+                <table id="example" class="table  table-hover table-bordered  display nowrap" cellspacing="0"
+                    width="100%">
+                    <thead>
+                        <tr>
+                            <th style="color: #A3A6B4;">Insumo</th>
+                            <th style="color: #A3A6B4;">Cantidad Actual</th>
+                            <th style="color: #A3A6B4;">Medida</th>
+                            <th style="color: #A3A6B4;">Cantidad a usar</th>
+                            <th style="color: #A3A6B4;">Medida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Plantas Madre</td>
+                            <td>5</td>
+                            <td>unidades</td>
+                            <td>
+                                <form action="" method="post"></form>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="cantidad_detalle"
+                                        placeholder="Cantidad Produccion">
+                                </div>
+                            </td>
+                            <td>unidades</td>
+
+                        </tr>
+
+
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th style="color: #A3A6B4;">Categoría</th>
+                            <th style="color: #A3A6B4;">Insumo</th>
+                            <th style="color: #A3A6B4;">Cantidad</th>
+                            <th style="color: #A3A6B4;">Unidad de Medida</th>
+                            <th style="color: #A3A6B4;">Acciones</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-12">
+
+            <div class="totales">
+
+                <div class="form-group">
+                    <label for="fecha_produccion">Fecha de Inicio:</label>
+                    <input type="date" class="form-control" id="fecha" placeholder="Fecha de Inicio">
+                    <!-- style de codigo para establecer el tamanho del input fecha -->
+                    <style>
+                        @media only screen and (min-width: 600px) {
+                            #fecha {
+                                width: 25%;
+                            }
+                        }
+                    </style>
+                </div>
+            </div>
+
+            <div class="botones">
+                <button type="submit" class="btn btn-outline-success float-right">Registrar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock produccion%}

@@ -52,7 +52,7 @@
         </a>
 
         <a 
-          href="#" class="list-group-item list-group-item-action bg-light">
+          href="produccion" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Produccion</small>
         </a>
@@ -140,6 +140,12 @@
 
         {% endblock insumos%}
 
+        <!-- PRODUCCION -->
+
+        {% block produccion %}
+        
+        {% endblock produccion%}
+
 
 
       </div>
@@ -150,6 +156,14 @@
     <!-- /#wrapper -->
 
     <!-- Bootstrap core JavaScript -->
+
+
+    <!-- HACEMOS REFERENCIA AL SCRIPT PARA EL HIDE Y SHOW -->
+
+    {% load static %}
+    <script src="{% static '/js/functions.js' %}"></script>
+
+    <!-- HASTA ACA -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"

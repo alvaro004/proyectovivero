@@ -326,3 +326,6 @@ def insumos(request):
     categoria = Insumos_categoria.objects.all()
     insumos = Insumos.objects.all()
     return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
+
+def produccion(request):
+    return render(request,'produccion/produccion.html')
