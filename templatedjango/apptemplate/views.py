@@ -328,4 +328,16 @@ def insumos(request):
     return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
 
 def produccion(request):
+    # if request.method == "POST":
+    #     if request.POST.get('guardar'):
+
+
+    #     if request.POST.get('editar'):
+
+    #     if request.POST.get('borrar'):
+
+    #     if request.POST.get('registrar'):
+
+    
+    
     return render(request,'produccion/produccion.html')

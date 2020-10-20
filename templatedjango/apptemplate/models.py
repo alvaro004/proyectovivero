@@ -63,7 +63,7 @@ class Detalles_insumos(models.Model):
 # fin de tablas de isnumos
 # ------------------------------------------------------
 
-
+# en esta tabla se guardan los datos al presionar el boton registrar en la vista produccion 
 class Produccion(models.Model):
     
     id_detalle_insumo = models.CharField(max_length=400 ,blank=True, null=True) # conectado a detalles insumos
@@ -89,7 +89,7 @@ class Detalles_Produccion(models.Model):
 class Productos(models.Model):
     
     id_nombre_producto = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla compra
-    id_categoria = models.CharField(max_length=400 ,blank=True, null=True)
+    # id_categoria = models.CharField(max_length=400 ,blank=True, null=True)
     descripcion_producto = models.CharField(max_length=400 ,blank=True, null=True) # conectado a la tabla produccion
     cantidad_stock = models.CharField(max_length=400 ,blank=True, null=True)
     imagen = models.CharField(max_length=400 ,blank=True, null=True)
@@ -108,6 +108,8 @@ class Categoria_productos(models.Model):
 class Nombre_productos(models.Model):
     
     nombre_productos = models.CharField(max_length=400 ,blank=True, null=True)
+    categoria = models.ForeignKey(Categoria_productos, on_delete=models.CASCADE,blank=True, null=True)
+
     
     def __str__(self):
         return "detalles {}".format(self.nombre_categoria)
