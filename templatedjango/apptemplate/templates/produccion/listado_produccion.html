@@ -1,0 +1,54 @@
+{% extends 'base/template.html' %}
+
+{% block titulocompras %}
+<title>Listado Produccion</title>
+{% endblock titulocompras %}
+
+{% block listado_produccion %}
+
+<div class="container rounded">
+
+    <div class="row" style="margin-top: 100px; align-items: center; display: flex; justify-content: center;"> <!-- este style es para centar el div de la clase col -->
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+            <table id="example" class="table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th style="color: #A3A6B4;">Fecha</th>
+                        <th style="color: #A3A6B4;">Estado</th>
+                        <th style="color: #A3A6B4;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <tr class="small">
+                        <td id="select{{insumo.id}}">20/10/2020</td>
+                        <td>En Proceso</td>
+                        <td>
+                            {% load static %}
+                            <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                data-target="#borrar{{compra.id_detalles_compras}}">
+                                {% load static %}
+                                <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
+                            </i>
+                        </td>
+                        
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th style="color: #A3A6B4;">Fecha</th>
+                        <th style="color: #A3A6B4;">Estado</th>
+                        <th style="color: #A3A6B4;">Acciones</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+ 
+</div>
+
+{% endblock listado_produccion %}
