@@ -330,20 +330,8 @@ def insumos(request):
 # VISTA DE PRODUCCION 
 
 def produccion(request):
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
     return render(request,'produccion/produccion.html')
 
-# VISTA DE LISTADO DE PRODUCCION
-def listado_produccion(request):
-    return render(request,'produccion/listado_produccion.html')
-=======
-    # if request.method == "POST":
-    #     if request.POST.get('guardar'):
-=======
->>>>>>> pruebas2
     if request.method == "POST":
         if request.POST.get('guardar'):
             id_productos = request.POST.get('id_producto')
@@ -353,31 +341,14 @@ def listado_produccion(request):
 
 
             print(id_productos)
-<<<<<<< HEAD
-=======
->>>>>>> 33b28c3... programando la vista de produccion
->>>>>>> pruebas2
 
-
-    #     if request.POST.get('editar'):
-
-    #     if request.POST.get('borrar'):
-
-    #     if request.POST.get('registrar'):
 
     
-<<<<<<< HEAD
+
     Productos_para_produccion = Nombre_productos.objects.all()
     categoria = Categoria_productos.objects.all()
     return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria})
-=======
-<<<<<<< HEAD
-    
-    return render(request,'produccion/produccion.html')
->>>>>>> ed00a77... empezando con las vistas de produccion
-=======
-    Productos_para_produccion = Nombre_productos.objects.all()
-    categoria = Categoria_productos.objects.all()
-    return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria})
->>>>>>> 33b28c3... programando la vista de produccion
->>>>>>> pruebas2
+
+# VISTA DE LISTADO DE PRODUCCION
+def listado_produccion(request):
+    return render(request,'produccion/listado_produccion.html')
