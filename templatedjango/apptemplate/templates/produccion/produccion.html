@@ -22,21 +22,24 @@
                 <div class="card-body responsive">
                     <h5 class="card-title">Produccion!</h5>
 
-                    <form action="" method="post">
+                    <form action="produccion" method="post">
+                        {% csrf_token %}
 
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="nombre_categoria">
-                                <option value="tunas">Tunas</option>
-                                <option value="suculentas">Suculentas</option>
-                                <option value="plantas ornamentales">Plantas Ornamentales</option>
+                            <select class="form-control" id="exampleFormControlSelect1" onchange="filtrar(this.value)">
+                                <option disabled selected> Seleccionar Categoria</option>
+                                {% for categorias in categoria  %}
+                                <option class="categoria" id="opcion{{categorias.id}}" value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
+                                {% endfor %}
                             </select>
                         </div>
-
+                        
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect2" name="nombre_productos">
-                                {% for categorias in categoria  %}
-                                    <option option id="opcion{{categorias.id}}" value="{{categorias.id}}">{{categorias.Nombre}}</option>
-                                    {% endfor %}
+                            <select class="form-control" id="select_default" name="nombre_productos" onchange="cambiar(this.value)">
+                                <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos</option>
+                                {% for nombre in nombre_productos  %}
+                                    <option class="nombre_productos" id="opcion{{nombre.id}}" value="{{nombre.id}}-/{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+                                {% endfor %}
                             </select>
                         </div>
 
@@ -45,9 +48,30 @@
                                 placeholder="Cantidad Produccion">
                         </div>
 
-
+                        <input type="hidden" name="guardar" value="guardar">
+                        <input type="hidden" name="id_producto" id="id_producto" value="nombre_del_producto">
                         <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
 
+                        <script>
+
+                            // en este codigo se realiza un filtro de los productos por sus categorias 
+                            // para mostrar en los Selection
+
+                            // primero se cambia la propiedad de display a none para que no se muestren los datos 
+
+                            var productos = document.getElementsByClassName('nombre_productos');
+
+                            for(var i = 0; i < productos.length; i++)
+                            {
+                                productos[i].style.display = 'none';
+
+                            }
+                                
+                            // window.onload = function () {
+                            // };
+
+
+                        </script>
                     </form>
                 </div>
 

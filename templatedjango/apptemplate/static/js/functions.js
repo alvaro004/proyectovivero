@@ -1,28 +1,27 @@
 
 function verificar() {
-    table = document.getElementsByClassName('tabla_compras')
-    console.log(table.length)
+  table = document.getElementsByClassName('tabla_compras')
+  console.log(table.length)
 
 
-    ocultar = document.getElementsByTagName('a')
+  ocultar = document.getElementsByTagName('a')
 
-    if(table.length > 0){
+  if (table.length > 0) {
 
-        for (var i = 0; i < ocultar.length; i++) {
+    for (var i = 0; i < ocultar.length; i++) {
 
-          ocultar[i].setAttribute('onclick', 'alerta()')
-          ocultar[i].removeAttribute('href')
-        }
+      ocultar[i].setAttribute('onclick', 'alerta()')
+      ocultar[i].removeAttribute('href')
     }
+  }
 
 }
-function alerta()
-{
+function alerta() {
   alert('Por favor registre la compra para continuar')
 }
 
 window.onload = function () {
-    verificar()
+  verificar()
 };
 
 
@@ -70,4 +69,70 @@ for (var i = 0; i < li_elements.length; i++) {
       console.log("");
     }
   });
+}
+
+
+// codigo para filtrar los productos y para cambiar el value de un input que e enviara en el form de
+// los productos a cargar
+
+// en esta funcion se extrae los datos del select y se dividen en dos para luego separarlos 
+// y convertirlos en array que luego se utilizara para iterar y comparar con los productos 
+
+
+function cambiar(mensaje) {
+  var separar_mensaje = mensaje.split('-/')
+
+  separar_mensaje = separar_mensaje[0]
+
+  cambiar_value = document.getElementById('id_producto');
+
+  if (cambiar_value.value) {
+    cambiar_value.value = separar_mensaje
+  }
+  // cambiar_value.value = separar_mensaje
+
+  console.log(cambiar_value.value)
+}
+
+function filtrar(mensaje)
+{
+    var productos = document.getElementsByClassName('nombre_productos');
+    var categoria = document.getElementsByClassName('categoria');
+    var select = document.getElementById('select_default')
+
+    // restableciendo el select
+
+    select.selectedIndex = 0
+         
+    var separate_productos = '';
+    var var_temporal;
+    var separate_final;
+    var longitud = productos.length + 1
+
+    for (let i = 0; i < productos.length; i++)
+    {
+       var_temporal = productos[i].value.split("-");
+       separate_productos += var_temporal[1];
+           
+    }
+        
+    separate_final = separate_productos.split('/');
+        
+    separate_final = separate_final.splice(1,longitud)
+
+
+    for (var j = 0; j < productos.length; j ++)
+    {
+        // console.log(separate_final[j]);
+        if(mensaje == separate_final[j])
+        {
+            productos[j].style.display = 'block';
+        }
+        else
+        {
+            productos[j].style.display = 'none';
+            
+        }
+    }
+    
 }

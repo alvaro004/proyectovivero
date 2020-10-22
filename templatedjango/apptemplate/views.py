@@ -331,6 +331,7 @@ def insumos(request):
 
 def produccion(request):
 <<<<<<< HEAD
+<<<<<<< HEAD
     return render(request,'produccion/produccion.html')
 
 # VISTA DE LISTADO DE PRODUCCION
@@ -339,6 +340,17 @@ def listado_produccion(request):
 =======
     # if request.method == "POST":
     #     if request.POST.get('guardar'):
+=======
+    if request.method == "POST":
+        if request.POST.get('guardar'):
+            id_productos = request.POST.get('id_producto')
+            cantidad = request.POST.get('cantidad')
+
+            
+
+
+            print(id_productos)
+>>>>>>> 33b28c3... programando la vista de produccion
 
 
     #     if request.POST.get('editar'):
@@ -348,6 +360,12 @@ def listado_produccion(request):
     #     if request.POST.get('registrar'):
 
     
+<<<<<<< HEAD
     
     return render(request,'produccion/produccion.html')
 >>>>>>> ed00a77... empezando con las vistas de produccion
+=======
+    Productos_para_produccion = Nombre_productos.objects.all()
+    categoria = Categoria_productos.objects.all()
+    return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria})
+>>>>>>> 33b28c3... programando la vista de produccion
