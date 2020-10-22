@@ -327,5 +327,11 @@ def insumos(request):
     insumos = Insumos.objects.all()
     return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
 
+# VISTA DE PRODUCCION 
+
 def produccion(request):
     return render(request,'produccion/produccion.html')
+
+# VISTA DE LISTADO DE PRODUCCION
+def listado_produccion(request):
+    return render(request,'produccion/listado_produccion.html')
