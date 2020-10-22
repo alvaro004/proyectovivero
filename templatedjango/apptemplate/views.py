@@ -330,7 +330,6 @@ def insumos(request):
 # VISTA DE PRODUCCION 
 
 def produccion(request):
-    return render(request,'produccion/produccion.html')
 
     if request.method == "POST":
         if request.POST.get('guardar'):
