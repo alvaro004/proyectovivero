@@ -8,7 +8,7 @@
 {% block produccion %}
 
 <div class="container rounded">
-    <button id="productos" class="btn btn-outline-info boton" data-li="productos">Productos</button>
+    <button id="productos" class="btn btn-outline-info boton" data-li="productos">Produccion</button>
     <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Insumos</button>
 
 
@@ -34,14 +34,14 @@
 
                         <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect2" name="nombre_productos">
-                                <option value="Tunas_blancas">Tunas Blancas</option>
-                                <option value="tunas_del_desierto">Tunas del desierto</option>
-                                <option value="cactus">Cactus</option>
+                                {% for categorias in categoria  %}
+                                    <option option id="opcion{{categorias.id}}" value="{{categorias.id}}">{{categorias.Nombre}}</option>
+                                    {% endfor %}
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cantidad_detalle"
+                            <input type="number" class="form-control" name="cantidad"
                                 placeholder="Cantidad Produccion">
                         </div>
 

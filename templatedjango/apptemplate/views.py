@@ -330,8 +330,24 @@ def insumos(request):
 # VISTA DE PRODUCCION 
 
 def produccion(request):
+<<<<<<< HEAD
     return render(request,'produccion/produccion.html')
 
 # VISTA DE LISTADO DE PRODUCCION
 def listado_produccion(request):
     return render(request,'produccion/listado_produccion.html')
+=======
+    # if request.method == "POST":
+    #     if request.POST.get('guardar'):
+
+
+    #     if request.POST.get('editar'):
+
+    #     if request.POST.get('borrar'):
+
+    #     if request.POST.get('registrar'):
+
+    
+    
+    return render(request,'produccion/produccion.html')
+>>>>>>> ed00a77... empezando con las vistas de produccion
