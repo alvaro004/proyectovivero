@@ -103,7 +103,7 @@ class Categoria_productos(models.Model):
     nombre_categoria = models.CharField(max_length=400 ,blank=True, null=True)
     
     def __str__(self):
-        return "detalles {}".format(self.nombre_categoria)
+        return "{}".format(self.nombre_categoria)
 
 class Nombre_productos(models.Model):
     
@@ -112,7 +112,7 @@ class Nombre_productos(models.Model):
 
     
     def __str__(self):
-        return "detalles {}".format(self.nombre_categoria)
+        return "{}".format(self.nombre_productos)
 
 
 

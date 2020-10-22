@@ -328,8 +328,15 @@ def insumos(request):
     return render(request,'insumos/insumos.html',{'categoria':categoria, 'insumos':insumos})
 
 def produccion(request):
-    # if request.method == "POST":
-    #     if request.POST.get('guardar'):
+    if request.method == "POST":
+        if request.POST.get('guardar'):
+            id_productos = request.POST.get('id_producto')
+            cantidad = request.POST.get('cantidad')
+
+            
+
+
+            print(id_productos)
 
 
     #     if request.POST.get('editar'):
@@ -339,5 +346,6 @@ def produccion(request):
     #     if request.POST.get('registrar'):
 
     
-    
-    return render(request,'produccion/produccion.html')
+    Productos_para_produccion = Nombre_productos.objects.all()
+    categoria = Categoria_productos.objects.all()
+    return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria})
