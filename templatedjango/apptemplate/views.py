@@ -43,6 +43,30 @@ def objetocompras():
             compras =[]
     return compras
 
+def objetos_productos():
+
+    detalles_Produccion = Detalles_Produccion.objects.all()
+    cant = int(len(detalles_Produccion))
+    productos_objeto = []
+
+    for i in range(cant):
+        try:
+            iden = int(detalles_Produccion[i].id_producto)
+            productos = Nombre_productos.objects.get(id=iden)
+            productos_objeto += [
+                {
+                    'id_produccion':detalles_Produccion[i].id,
+                    'nombre':productos.nombre_productos,
+                    'categoria':productos.categoria,
+                    'cantidad':detalles_Produccion[i].cantidad_detalle,
+
+                },
+            ]
+        except:
+            productos_objeto = []
+            
+    return productos_objeto
+
 
 # este es el codigo de la vista de compras 
 # ---------------------------------------------------------
@@ -63,6 +87,8 @@ def compras(request):
 
         print(id_insumo,cantidad,precio,total)
 
+        # analogia consulta en SQL
+
         detalles_compras = Detalles_compras(id_insumo=id_insumo,cantidad=cantidad,precio=precio,subtotal=total)
         
         detalles_compras.save()
@@ -75,20 +101,11 @@ def compras(request):
         comprasiter = objetocompras()
         # print(comprasiter)
 
-        categoria_insumos = Insumos_categoria.objects.all()
+        return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos})
 
-        return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
-
-    comprasiter = objetocompras()
-
-    categoria_insumos = Insumos_categoria.objects.all()
     insumos = Insumos.objects.all()
-    # try:
-    #     insumos_prueba = Insumos.objects.get(id=1)
-    # except:
 
-    #     print('no se pudo')
-    return render(request,'compras/compras.html',{'compras':comprasiter,'insumos':insumos,'categoria':categoria_insumos})
+    return render(request,'compras/compras.html',{'insumos':insumos})
 
 def editar(request):
 
@@ -336,17 +353,23 @@ def produccion(request):
             id_productos = request.POST.get('id_producto')
             cantidad = request.POST.get('cantidad')
 
+            detalles_Produccion = Detalles_Produccion(id_producto=id_productos, cantidad_detalle=cantidad)
+            detalles_Produccion.save()
+
             
-
-
-            print(id_productos)
+                
+            productos_objetos = objetos_productos()
+            print(productos_objetos)
+            # print(filtrar_produccion[0].id_producto)
 
 
     
+    productos_objetos = objetos_productos()
 
     Productos_para_produccion = Nombre_productos.objects.all()
     categoria = Categoria_productos.objects.all()
-    return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria})
+    return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria,'productos':productos_objetos})
+
 
 # VISTA DE LISTADO DE PRODUCCION
 def listado_produccion(request):

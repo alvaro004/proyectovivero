@@ -29,23 +29,26 @@
                             <select class="form-control" id="exampleFormControlSelect1" onchange="filtrar(this.value)">
                                 <option disabled selected> Seleccionar Categoria</option>
                                 {% for categorias in categoria  %}
-                                <option class="categoria" id="opcion{{categorias.id}}" value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <select class="form-control" id="select_default" name="nombre_productos" onchange="cambiar(this.value)">
-                                <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos</option>
-                                {% for nombre in nombre_productos  %}
-                                    <option class="nombre_productos" id="opcion{{nombre.id}}" value="{{nombre.id}}-/{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+                                <option class="categoria" id="opcion{{categorias.id}}"
+                                    value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
                                 {% endfor %}
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cantidad"
-                                placeholder="Cantidad Produccion">
+                            <select class="form-control" id="select_default" name="nombre_productos"
+                                onchange="cambiar(this.value)">
+                                <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos
+                                </option>
+                                {% for nombre in nombre_productos  %}
+                                <option class="nombre_productos" id="opcion{{nombre.id}}"
+                                    value="{{nombre.id}}-/{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad Produccion" required>
                         </div>
 
                         <input type="hidden" name="guardar" value="guardar">
@@ -53,7 +56,6 @@
                         <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
 
                         <script>
-
                             // en este codigo se realiza un filtro de los productos por sus categorias 
                             // para mostrar en los Selection
 
@@ -61,16 +63,13 @@
 
                             var productos = document.getElementsByClassName('nombre_productos');
 
-                            for(var i = 0; i < productos.length; i++)
-                            {
+                            for (var i = 0; i < productos.length; i++) {
                                 productos[i].style.display = 'none';
 
                             }
-                                
+
                             // window.onload = function () {
                             // };
-
-
                         </script>
                     </form>
                 </div>
@@ -98,33 +97,146 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <th class="small">Tunas</th>
-                                <td class="small">Tuna del desierto</td>
-                                <td class="small">4</td>
-                                <td class="small"><i><img style="padding-right: 10px;"
-                                            src="img/icon_edit.svg"></i><i><img src="img/circle-remove.svg"
-                                            alt=""></i>
+                            {% for producto in productos  %}
+
+                            <tr class="tabla_compras">
+                                <td class="small">{{producto.categoria}}</td>
+                                <td class="small" id="select{{compra.id_detalles_compras}}">{{producto.nombre}}</td>
+                                <td class="small">{{producto.cantidad}}</td>
+                                
+
+
+                                <!-- codigo para el boton de editar 
+                -------------------------------------------------- -->
+                                <td class="small">
+                                    {% load static %}
+                                    <i style="color: white;" type="button" data-toggle="modal"
+                                        data-target="#editar{{compra.id_detalles_compras}}"><i><img
+                                                src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+
+                                    <div class="modal fade" id="editar{{compra.id_detalles_compras}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="POST" action="/editar">
+                                                        {% csrf_token %}
+                                                        <div class="form-group">
+
+                                                            <label for="nombre{{insumo.id}}"
+                                                                class="col-form-label">Producto:</label>
+                                                            <select name="producto" id="nombre{{insumo.id}}"
+                                                                class="form-control">
+
+                                                                {% for insumo in insumos  %}
+                                                                <option class="productos{{compra.id_detalles_compras}}"
+                                                                    id="opcion{{insumo.nombre}}" value="{{insumo.id}}">
+                                                                    {{insumo.nombre}}</option>
+
+                                                                {% endfor %}
+
+
+                                                            </select>
+
+                                                            <script>
+                                                                var elements = document.getElementsByClassName(
+                                                                    'productos{{compra.id_detalles_compras}}')
+                                                                var select = document.getElementById(
+                                                                    'select{{compra.id_detalles_compras}}')
+
+                                                                for (var i = 0; i < elements.length; i++) {
+                                                                    console.log(elements[i].innerHTML)
+                                                                    if (elements[i].innerHTML == select.innerHTML) {
+                                                                        elements[i].setAttribute('selected',
+                                                                        'selected');
+
+                                                                    }
+                                                                }
+
+                                                                console.log(select.innerHTML)
+                                                            </script>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="recipient-name"
+                                                                class="col-form-label">Cantidad:</label>
+                                                            <input name="cantidad" value="{{compra.cantidad}}"
+                                                                type="text" class="form-control" id="recipient-name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="recipient-name"
+                                                                class="col-form-label">Precio:</label>
+                                                            <input name="precio" value="{{compra.precio}}" type="text"
+                                                                class="form-control" id="recipient-name">
+                                                        </div>
+
+                                                        <input type="hidden" name="iden"
+                                                            value="{{compra.id_detalles_compras}}">
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger"
+                                                        data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-outline-success">Guardar
+                                                        Cambios</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- codigo para el boton de borrar  -->
+                                    <!-- -------------------------------------------- -->
+
+
+                                    <!-- Button trigger modal -->
+                                    <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                        data-target="#borrar{{compra.id_detalles_compras}}">
+                                        {% load static %}
+                                        <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                                    </i>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="borrar{{compra.id_detalles_compras}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="borrar" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id_borrar"
+                                                            value="{{compra.id_detalles_compras}}">
+                                                        Desea Eliminar este Registro ?
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                            data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit"
+                                                            class="btn btn-outline-info">Borrar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th class="small">Tunas</th>
-                                <td class="small">Tuna gris</td>
-                                <td class="small">10</td>
-                                <td class="small"><i><img style="padding-right: 10px;"
-                                            src="img/icon_edit.svg"></i><i><img src="img/circle-remove.svg"
-                                            alt=""></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="small">Plantas Oranmentales</th>
-                                <td class="small">Orquidea</td>
-                                <td class="small">4</td>
-                                <td class="small"><i><img style="padding-right: 10px;"
-                                            src="img/icon_edit.svg"></i><i><img src="img/circle-remove.svg"
-                                            alt=""></i>
-                                </td>
-                            </tr>
+                            {% endfor %}
 
                         </tbody>
                     </table>
@@ -135,7 +247,8 @@
 
         </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos" style="border:none; display: none;">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos"
+            style="border:none; display: none;">
 
             <div class="table-responsive">
                 <table id="example" class="table  table-hover table-bordered  display nowrap" cellspacing="0"

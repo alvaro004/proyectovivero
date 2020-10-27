@@ -9,4 +9,6 @@ admin.site.register(Insumos)
 admin.site.register(Insumos_categoria)
 admin.site.register(Categoria_productos)
 admin.site.register(Nombre_productos)
+admin.site.register(Detalles_Produccion)
+admin.site.register(Produccion)
 
