@@ -13,13 +13,15 @@
 
   {% endblock titulocompras %}
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
   <!--  Datatables  -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
 
   <!--  extension responsive  -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
   <!-- Bootstrap core CSS -->
   <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -36,41 +38,38 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">
-        <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
+        <a href="inicio" style="text-decoration: none;">
+          <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
+        </a>
       </div>
       <div class="list-group list-group-flush">
         <a href="compras" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2">
-          {% load static %}
-          <img src="{% static '/assets/icons/icon_cart.svg' %}">
-          </i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Compras</small></a>
+            {% load static %}
+            <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Compras</small></a>
 
-        <a 
-          href="insumos" class="list-group-item list-group-item-action bg-light">
+        <a href="insumos" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
-          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;" onclick="verificar()">Insumos</small>
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;"
+            onclick="verificar()">Insumos</small>
         </a>
 
-        <a 
-          href="produccion" class="list-group-item list-group-item-action bg-light">
+        <a href="produccion" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Produccion</small>
         </a>
 
-        <a 
-          href="ver_compras" class="list-group-item list-group-item-action bg-light">
+        <a href="ver_compras" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a>
 
-        <a 
-          href="listado_produccion" onclick="verificar()"class="list-group-item list-group-item-action bg-light">
+        <a href="listado_produccion" onclick="verificar()" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Produccion</small>
         </a>
 
-        <a 
-          href="#" class="list-group-item list-group-item-action bg-light">
+        <a href="#" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Productos</small>
         </a>
@@ -80,16 +79,16 @@
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <div id="page-content-wrapper" style="background-color: #F0F0F7;">
+    <div class="fondo" id="page-content-wrapper" style="background-color: #F0F0F7;">
 
       <!-- <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button> -->
 
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="este">
         <button class="btn btn-light bg-white rounded-pill shadow-sm" id="menu-toggle"><i class="fa fa-bars mr-2">
-          {% load static %}
-          <img src="{% static '/assets/icons/icon_down-arrow-small.svg' %}"></i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Menu</small></button>
+            {% load static %}
+            <img src="{% static '/assets/icons/icon_down-arrow-small.svg' %}"></i><small
+            class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Menu</small></button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,8 +118,18 @@
           </ul>
         </div>
       </nav>
+      {% block estilos %}
 
-      <div class="card shadow p-3 mb-5 bg-white rounded border" style="margin: 20px 50px ">
+      {% endblock estilos %}
+
+      <!-- INICIO -->
+
+      {% block background %}
+
+      {% endblock background %}
+
+      <div class="bloque card shadow p-3 mb-5 bg-white rounded border" style="margin: 20px 50px ">
+
 
         <!-- COMPRAS -->
 
@@ -143,13 +152,13 @@
         <!-- PRODUCCION -->
 
         {% block produccion %}
-        
-        {% endblock produccion%}
 
+        {% endblock produccion%}
+        
         <!-- LISTADO PRODUCCION -->
 
         {% block listado_produccion %}
-        
+
         {% endblock listado_produccion %}
 
 
@@ -187,7 +196,7 @@
     <!-- Menu Toggle Script -->
     <script>
       $(document).ready(function () {
-        $('#example').DataTable({
+        $('.tablita').DataTable({
           responsive: true,
           "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
@@ -217,7 +226,7 @@
         $("#wrapper").toggleClass("toggled");
       });
     </script>
-    
+
 
 </body>
 

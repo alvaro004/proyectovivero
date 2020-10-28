@@ -351,3 +351,9 @@ def produccion(request):
 # VISTA DE LISTADO DE PRODUCCION
 def listado_produccion(request):
     return render(request,'produccion/listado_produccion.html')
+
+
+# VISTA DEL INICIO 
+
+def inicio(request):
+    return render(request, 'inicio/inicio.html')

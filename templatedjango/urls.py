@@ -26,5 +26,5 @@ urlpatterns = [
     path('insumos', insumos),
     path('produccion', produccion),
     path('listado_produccion', listado_produccion),
-
+    path('inicio', inicio),
 ]
