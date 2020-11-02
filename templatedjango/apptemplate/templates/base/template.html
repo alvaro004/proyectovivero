@@ -46,8 +46,14 @@
         <a href="compras" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2">
             {% load static %}
             <img src="{% static '/assets/icons/icon_cart.svg' %}">
-          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Compras</small></a>
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Compras</small>
+        </a>
 
+        <a href="listado_compras" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Compras</small>
+        </a>
+        
         <a href="insumos" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;"
@@ -58,16 +64,17 @@
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Produccion</small>
         </a>
-
+        
+        <a href="listado_produccion" onclick="verificar()" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Produccion</small>
+        </a>
+        
         <a href="ver_compras" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a>
 
-        <a href="listado_produccion" onclick="verificar()" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
-          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Produccion</small>
-        </a>
 
         <a href="#" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
@@ -154,12 +161,18 @@
         {% block produccion %}
 
         {% endblock produccion%}
-        
+
         <!-- LISTADO PRODUCCION -->
 
         {% block listado_produccion %}
 
         {% endblock listado_produccion %}
+
+        <!-- LISTADO COMPRAS  -->
+
+        {% block listado_compras %}
+
+        {% endblock listado_compras %}
 
 
       </div>
@@ -196,7 +209,7 @@
     <!-- Menu Toggle Script -->
     <script>
       $(document).ready(function () {
-        $('.tablita').DataTable({
+        $('table.tablita').DataTable({
           responsive: true,
           "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"

@@ -13,12 +13,12 @@
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
 
-            <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
+            <table id="example" class="tablita table  table-hover table-bordered  display nowrap" width="100%">
                 <thead>
-                    <tr>
-                        <th style="color: #A3A6B4;">Fecha</th>
-                        <th style="color: #A3A6B4;">Estado</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                    <tr style="color: #A3A6B4;">
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +28,8 @@
                         <td>En Proceso</td>
                         <td>
                             {% load static %}
-                            <i style="color: white; padding:0 10px ;" type="button" ; data-toggle="modal" ;
-                                data-target="#exampleModalCenter" ;>
+                            <i style="color: white; padding:0 10px ;" type="button"; data-toggle="modal";
+                                data-target="#exampleModalCenter";>
                                 {% load static %}
                                 <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
                             </i>
@@ -72,11 +72,10 @@
 
 
                                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item productos"
-                                                    style="border:none; ">
+                                                    style="border:none; margin-top: 20px;">
 
                                                     <div class="table-responsive">
-                                                        <table id="example" class="tablita table  table-hover table-bordered  display nowrap"
-                                                            cellspacing="0" width="100%">
+                                                        <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
                                                             <thead>
                                                                 <tr style="color: #A3A6B4;">
                                                                     <th>Categoría</th>
@@ -118,10 +117,11 @@
                                                 </div>
 
                                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos"
-                                                    style="border:none; display: none;">
+                                                    style="border:none; margin-top: 20px; display: none;">
 
                                                     <div class="table-responsive">
-                                                        <table id="example" class="tablita table  table-hover table-bordered  display nowrap"
+                                                        <table id="example"
+                                                            class="tablita table  table-hover table-bordered  display nowrap"
                                                             cellspacing="0" width="100%">
                                                             <thead>
                                                                 <tr style="color: #A3A6B4;">
@@ -184,7 +184,8 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-danger"
                                                 data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                            <button type="submit" class="btn btn-outline-success">Guardar
+                                                Cambios</button>
                                         </div>
                                     </div>
                                 </div>
