@@ -100,8 +100,8 @@
                             {% for producto in productos  %}
 
                             <tr class="tabla_compras">
-                                <td class="small">{{producto.categoria}}</td>
-                                <td class="small" id="select{{compra.id_detalles_compras}}">{{producto.nombre}}</td>
+                                <td class="small" id="producto{{producto.id_produccion}}" >{{producto.categoria}}</td>
+                                <td class="small">{{producto.nombre}}</td>
                                 <td class="small">{{producto.cantidad}}</td>
                                 
 
@@ -111,10 +111,10 @@
                                 <td class="small">
                                     {% load static %}
                                     <i style="color: white;" type="button" data-toggle="modal"
-                                        data-target="#editar{{compra.id_detalles_compras}}"><i><img
+                                        data-target="#editar{{producto.id_produccion}}"><i><img
                                                 src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
-                                    <div class="modal fade" id="editar{{compra.id_detalles_compras}}" tabindex="-1"
+                                    <div class="modal fade" id="editar{{producto.id_produccion}}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -131,49 +131,118 @@
                                                         <div class="form-group">
 
                                                             <label for="nombre{{insumo.id}}"
-                                                                class="col-form-label">Producto:</label>
-                                                            <select name="producto" id="nombre{{insumo.id}}"
+                                                                class="col-form-label">Categoria:</label>
+                                                            <select name="producto" id="prueba{{producto.id_produccion}}"
                                                                 class="form-control">
 
-                                                                {% for insumo in insumos  %}
-                                                                <option class="productos{{compra.id_detalles_compras}}"
-                                                                    id="opcion{{insumo.nombre}}" value="{{insumo.id}}">
-                                                                    {{insumo.nombre}}</option>
+                                                                {% for categorias in categoria  %}
+                                                                <option class="categorias{{producto.id_produccion}}"
+                                                                         value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
 
                                                                 {% endfor %}
 
 
                                                             </select>
 
-                                                            <script>
-                                                                var elements = document.getElementsByClassName(
-                                                                    'productos{{compra.id_detalles_compras}}')
-                                                                var select = document.getElementById(
-                                                                    'select{{compra.id_detalles_compras}}')
-
-                                                                for (var i = 0; i < elements.length; i++) {
-                                                                    console.log(elements[i].innerHTML)
-                                                                    if (elements[i].innerHTML == select.innerHTML) {
-                                                                        elements[i].setAttribute('selected',
-                                                                        'selected');
-
-                                                                    }
-                                                                }
-
-                                                                console.log(select.innerHTML)
-                                                            </script>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="recipient-name"
-                                                                class="col-form-label">Cantidad:</label>
-                                                            <input name="cantidad" value="{{compra.cantidad}}"
-                                                                type="text" class="form-control" id="recipient-name">
+
+                                                            <label for="nombre{{insumo.id}}"
+                                                            class="col-form-label">Producto:</label>
+                                                            <select name="producto" id="select_default{{producto.id_produccion}}" 
+                                                            class="form-control">
+
+                                                            <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos</option>
+
+                                                                {% for nombre in nombre_productos  %}
+                                                                <option class="nombre_productos{{producto.id_produccion}}" style="display: none;"
+                                                                 value="{{nombre.id}}-/{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+
+                                                                {% endfor %}
+
+                                                            </select>
                                                         </div>
+                                                                        <script>
+                                                                            // selecion = document.getElementById("prueba")
+                                                                            var opciones = ''
+                                                                            var tabla_valor = ''
+                                                                            opciones = document.getElementsByClassName("categorias{{producto.id_produccion}}")
+                                                                            tabla_valor = document.getElementById("producto{{producto.id_produccion}}")
+
+                                                                            for (var i = 0; i < opciones.length; i++)
+                                                                            {
+                                                                                if (opciones[i].innerHTML == tabla_valor.innerHTML)
+                                                                                {
+                                                                                    opciones[i].setAttribute('selected','selected')
+                                                                                    // console.log(opciones[i].innerHTML)
+                                                                                    // console.log(tabla_valor.innerHTML)
+                                                                                }
+                                                                            }
+
+                                                                            var mensaje = document.getElementById("prueba{{producto.id_produccion}}")
+
+                                                                            
+                                                                            
+                                                                                var productos = document.getElementsByClassName('nombre_productos{{producto.id_produccion}}');
+
+                                                                                // restableciendo el select         
+                                                                                    
+                                                                                var separate_productos = '';
+                                                                                var var_temporal;
+                                                                                var separate_final;
+                                                                                var longitud = productos.length + 1
+
+                                                                                for (var i = 0; i < productos.length; i++)
+                                                                                {
+                                                                                var_temporal = productos[i].value.split("-");
+                                                                                separate_productos += var_temporal[1];
+                                                                                // console.log(separate_productos)
+                                                                                }
+                                                                                    
+                                                                                separate_final = separate_productos.split('/');
+                                                                                    
+                                                                                separate_final = separate_final.splice(1,longitud)
+
+                                                                                // console.log(separate_final)
+
+
+                                                                                for (var j = 0; j < productos.length; j ++)
+                                                                                {
+                                                                                    // console.log(separate_final[j]);
+                                                                                    if(mensaje.value == separate_final[j])
+                                                                                    {
+                                                                                        productos[j].style.display = 'block';
+                                                                                        // productos[j].setAttribute('selected','selected')
+                                                                                    }
+                                                                                    // else
+                                                                                    // {
+                                                                                    //     productos[j].style.display = 'none';
+                                                                                    // }
+                                                                                }
+                                                                                
+                                                                                // console.log(mensaje)
+                                                                            
+                                                                            
+                                                                            // obtener(valor_categoria.value)
+
+                                                                            var productos = document.getElementsByClassName('nombre_productos{{producto.id_produccion}}');
+                                                                            var select = document.getElementById('select_default{{producto.id_produccion}}')
+                                                        
+                                                                            
+                                                                            mensaje.addEventListener("change", function() {
+                                                                                filtrar_de_nuevo(mensaje.value,productos,select);
+                                                                            });
+                                                                            
+                                                                            
+                                                                            
+                                                                            // console.log('valores de la tabla',tabla_valor.innerHTML)
+                                                                        </script>
+                                                        
                                                         <div class="form-group">
                                                             <label for="recipient-name"
-                                                                class="col-form-label">Precio:</label>
+                                                            class="col-form-label">Precio:</label>
                                                             <input name="precio" value="{{compra.precio}}" type="text"
-                                                                class="form-control" id="recipient-name">
+                                                            class="form-control" id="recipient-name">
                                                         </div>
 
                                                         <input type="hidden" name="iden"
@@ -199,13 +268,13 @@
 
                                     <!-- Button trigger modal -->
                                     <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
-                                        data-target="#borrar{{compra.id_detalles_compras}}">
+                                        data-target="#borrar{{producto.id_produccion}}">
                                         {% load static %}
                                         <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
                                     </i>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="borrar{{compra.id_detalles_compras}}" tabindex="-1"
+                                    <div class="modal fade" id="borrar{{producto.id_produccion}}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -216,11 +285,13 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="borrar" method="post">
+                                                <form action="produccion" method="post">
                                                     {% csrf_token %}
                                                     <div class="modal-body">
                                                         <input type="hidden" name="id_borrar"
-                                                            value="{{compra.id_detalles_compras}}">
+                                                            value="{{producto.id_produccion}}">
+                                                        <input type="hidden" name="borrar"
+                                                            value="borrar">
                                                         Desea Eliminar este Registro ?
                                                     </div>
                                                     <div class="modal-footer">
@@ -268,7 +339,6 @@
                             <td>5</td>
                             <td>unidades</td>
                             <td>
-                                <form action="" method="post"></form>
                                 <div class="form-group">
                                     <input type="number" class="form-control" name="cantidad_detalle"
                                         placeholder="Cantidad Produccion">
@@ -302,7 +372,7 @@
 
                 <div class="form-group">
                     <label for="fecha_produccion">Fecha de Inicio:</label>
-                    <input type="date" class="form-control" id="fecha" placeholder="Fecha de Inicio">
+                    <input type="date" class="form-control" id="fecha" >
                     <!-- style de codigo para establecer el tamanho del input fecha -->
                     <style>
                         @media only screen and (min-width: 600px) {
