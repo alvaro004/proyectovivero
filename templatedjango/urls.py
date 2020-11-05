@@ -28,4 +28,5 @@ urlpatterns = [
     path('listado_produccion', listado_produccion),
     path('inicio', inicio),
     path('listado_compras', listado_compras),
+    path('productos', productos),
 ]

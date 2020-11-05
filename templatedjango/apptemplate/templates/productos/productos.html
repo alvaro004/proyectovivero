@@ -1,0 +1,90 @@
+{% extends 'base/template.html'%}
+
+{% block productos%}
+
+<div class="container rounded">
+
+    <div class="row" style="margin-top: 100px; align-items: center; display: flex; justify-content: center;">
+        <!-- este style es para centar el div de la clase col -->
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+                <div class="card-body text-center">
+
+                    <h5 class="card-title">¡Productos!</h5>
+
+                    <form action="" method="post">
+
+                        <!-- {% csrf_token %} -->
+
+                        <input type="hidden" name="guardar" value="guardar">
+                        <div class="form-group">
+
+
+                            <div class="form-group">
+
+                                <select class="form-control selectpicker" title="Selecione una categoría">
+
+                                    <option value="tunas">Tunas</option>
+                                    <option value="suculentas">Suculentas</option>
+                                    <option value="plantas_ornamentales">Plantas Ornamentales</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <select class="form-control selectpicker" data-live-search="true"
+                                    title="Seleccione un Producto" data-live-search-placeholder="Buscar...">
+                                    <option value="unidades">Tunas verde</option>
+                                    <option value="copao">Copao</option>
+                                    <option value="tulipanes">Tulipanes</option>
+                                    <option value="xoconostle">Xoconostle</option>
+                                    <option value="pitahaya">Pitahaya</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <textarea class="form-control" id="" rows="3" placeholder="Ingrese una descripción"></textarea>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <input type="number" class="form-control" name="cantidad" placeholder="Cantidad" required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <input type="number" class="form-control" name="precio" placeholder="Ingrese el precio" required>
+
+                            </div>
+
+                            
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-info">Guardar</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{% endblock productos %}

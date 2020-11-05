@@ -358,5 +358,12 @@ def listado_produccion(request):
 def inicio(request):
     return render(request, 'inicio/inicio.html')
 
+#VISTA DEL LISTADO DE LAS COMPRAS
+
 def listado_compras(request):
     return render(request, 'compras/listado_compras.html')
+
+#VISTA DE PRODUCTOS
+
+def productos(request):
+    return render(request, 'productos/productos.html')

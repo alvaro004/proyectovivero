@@ -18,8 +18,9 @@
           <form action="compras" method="POST">
             {% csrf_token %}
             <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1" name="id_insumo" required>
-                <!-- <option disabled selected value="0">Nombre Producto</option> -->
+              <select class="form-control selectpicker" name="id_insumo" data-live-search="true"
+              title="Selecione un Producto" data-live-search-placeholder="Buscar..." required>
+                
                 {% for insumo in insumos  %}
                 <option option id="opcion{{insumo.id}}" value="{{insumo.id}}">{{insumo.nombre}}</option>
 
