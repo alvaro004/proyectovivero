@@ -80,33 +80,33 @@ for (var i = 0; i < li_elements.length; i++) {
 
 
 function cambiar(mensaje) {
-  var separar_mensaje = mensaje.split('-/')
+  var separar_mensaje = mensaje.split('-/');
 
-  separar_mensaje = separar_mensaje[0]
+  separar_mensaje = separar_mensaje[0];
 
   cambiar_value = document.getElementById('id_producto');
 
   if (cambiar_value.value) {
-    cambiar_value.value = separar_mensaje
+    cambiar_value.value = separar_mensaje;
   }
   // cambiar_value.value = separar_mensaje
 
-  console.log(cambiar_value.value)
+  console.log(cambiar_value.value);
 }
 
 function filtrar(mensaje)
 {
     var productos = document.getElementsByClassName('nombre_productos');
-    var select = document.getElementById('select_default')
+    var select = document.getElementById('select_default');
 
     // restableciendo el select
 
-    select.selectedIndex = 0
+    select.selectedIndex = 0;
          
     var separate_productos = '';
     var var_temporal;
     var separate_final;
-    var longitud = productos.length + 1
+    var longitud = productos.length + 1;
 
     for (var i = 0; i < productos.length; i++)
     {
@@ -117,7 +117,7 @@ function filtrar(mensaje)
         
     separate_final = separate_productos.split('/');
         
-    separate_final = separate_final.splice(1,longitud)
+    separate_final = separate_final.splice(1,longitud);
 
 
     for (var j = 0; j < productos.length; j ++)
@@ -141,7 +141,7 @@ function filtrar_de_nuevo(mensaje,productos,select)
 {    
     // restableciendo el select
     
-    select.selectedIndex = 0
+    select.selectedIndex = 0;
     
     var separate_productos = '';
     var var_temporal;
@@ -157,7 +157,7 @@ function filtrar_de_nuevo(mensaje,productos,select)
     
     separate_final = separate_productos.split('/');
     
-    separate_final = separate_final.splice(1,longitud)
+    separate_final = separate_final.splice(1,longitud);
     
     // mensaje = toString(mensaje)
     
@@ -170,10 +170,10 @@ function filtrar_de_nuevo(mensaje,productos,select)
             productos[j].style.display = 'block';
             // console.log('entro')
         }
-        // else
-        // {
-        //     productos[j].style.display = 'none';
+        else
+        {
+            productos[j].style.display = 'none';
             
-        // }
+        }
     }
 }

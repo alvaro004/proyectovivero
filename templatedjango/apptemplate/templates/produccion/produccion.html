@@ -155,7 +155,7 @@
                                                             <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos</option>
 
                                                                 {% for nombre in nombre_productos  %}
-                                                                <option class="nombre_productos{{producto.id_produccion}}" style="display: none;"
+                                                                <option class="nombre_productos{{producto.id_produccion}}"
                                                                  value="{{nombre.id}}-/{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
 
                                                                 {% endfor %}
@@ -164,69 +164,69 @@
                                                         </div>
                                                                         <script>
                                                                             // selecion = document.getElementById("prueba")
-                                                                            var opciones = ''
-                                                                            var tabla_valor = ''
-                                                                            opciones = document.getElementsByClassName("categorias{{producto.id_produccion}}")
-                                                                            tabla_valor = document.getElementById("producto{{producto.id_produccion}}")
+                                                                            // var opciones = '';
+                                                                            // var tabla_valor = '';
+                                                                            opciones = document.getElementsByClassName("categorias{{producto.id_produccion}}");
+                                                                            tabla_valor = document.getElementById("producto{{producto.id_produccion}}");
 
                                                                             for (var i = 0; i < opciones.length; i++)
                                                                             {
                                                                                 if (opciones[i].innerHTML == tabla_valor.innerHTML)
                                                                                 {
-                                                                                    opciones[i].setAttribute('selected','selected')
+                                                                                    opciones[i].setAttribute('selected','selected');
                                                                                     // console.log(opciones[i].innerHTML)
                                                                                     // console.log(tabla_valor.innerHTML)
                                                                                 }
                                                                             }
 
-                                                                            var mensaje = document.getElementById("prueba{{producto.id_produccion}}")
+                                                                            var mensaje = document.getElementById("prueba{{producto.id_produccion}}");
 
                                                                             
                                                                             
-                                                                                var productos = document.getElementsByClassName('nombre_productos{{producto.id_produccion}}');
+                                                                            var productos = document.getElementsByClassName('nombre_productos{{producto.id_produccion}}');
 
                                                                                 // restableciendo el select         
                                                                                     
-                                                                                var separate_productos = '';
-                                                                                var var_temporal;
-                                                                                var separate_final;
-                                                                                var longitud = productos.length + 1
+                                                                            var separate_productos = '';
+                                                                            var var_temporal = '';
+                                                                            var separate_final = '';
+                                                                            var longitud = productos.length + 1;
 
-                                                                                for (var i = 0; i < productos.length; i++)
-                                                                                {
+                                                                            for (var i = 0; i < productos.length; i++)
+                                                                            {
                                                                                 var_temporal = productos[i].value.split("-");
                                                                                 separate_productos += var_temporal[1];
                                                                                 // console.log(separate_productos)
-                                                                                }
+                                                                            }
                                                                                     
-                                                                                separate_final = separate_productos.split('/');
+                                                                            separate_final = separate_productos.split('/');
                                                                                     
-                                                                                separate_final = separate_final.splice(1,longitud)
+                                                                            separate_final = separate_final.splice(1,longitud);
 
                                                                                 // console.log(separate_final)
 
 
-                                                                                for (var j = 0; j < productos.length; j ++)
-                                                                                {
+                                                                            for (var j = 0; j < productos.length; j ++)
+                                                                            {
                                                                                     // console.log(separate_final[j]);
-                                                                                    if(mensaje.value == separate_final[j])
-                                                                                    {
-                                                                                        productos[j].style.display = 'block';
+                                                                                if(mensaje.value == separate_final[j])
+                                                                                {
+                                                                                    productos[j].style.display = 'block';
                                                                                         // productos[j].setAttribute('selected','selected')
-                                                                                    }
-                                                                                    // else
-                                                                                    // {
-                                                                                    //     productos[j].style.display = 'none';
-                                                                                    // }
                                                                                 }
+                                                                                else
+                                                                                {
+                                                                                    productos[j].style.display = 'none';
+                                                                                }
+                                                                            }
                                                                                 
                                                                                 // console.log(mensaje)
                                                                             
                                                                             
                                                                             // obtener(valor_categoria.value)
 
-                                                                            var productos = document.getElementsByClassName('nombre_productos{{producto.id_produccion}}');
-                                                                            var select = document.getElementById('select_default{{producto.id_produccion}}')
+                                                                            // var productos = document.getElementsByClassName('nombre_productos{{producto.id_produccion}}');
+                                                                            var select = document.getElementById('select_default{{producto.id_produccion}}');
                                                         
                                                                             
                                                                             mensaje.addEventListener("change", function() {
