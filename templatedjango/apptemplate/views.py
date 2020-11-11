@@ -64,7 +64,7 @@ def objetos_productos():
             ]
         except:
             productos_objeto = []
-            
+
     return productos_objeto
 
 
@@ -347,6 +347,7 @@ def insumos(request):
 # VISTA DE PRODUCCION 
 
 def produccion(request):
+    productos_objetos = []
 
     if request.method == "POST":
         if request.POST.get('guardar'):
@@ -355,16 +356,27 @@ def produccion(request):
 
             detalles_Produccion = Detalles_Produccion(id_producto=id_productos, cantidad_detalle=cantidad)
             detalles_Produccion.save()
-
-            
-                
+        
             productos_objetos = objetos_productos()
-            print(productos_objetos)
+            # print(productos_objetos)
             # print(filtrar_produccion[0].id_producto)
 
 
-    
-    productos_objetos = objetos_productos()
+        if request.POST.get('borrar'):
+            id_borrar = request.POST.get('id_borrar')
+
+            print(id_borrar)
+
+            borrar_produccion = Detalles_Produccion.objects.filter(id=id_borrar)
+            borrar_produccion.delete()
+
+        # if request.POST.get('editar'):
+            
+
+
+
+    if not productos_objetos:
+        productos_objetos = objetos_productos()
 
     Productos_para_produccion = Nombre_productos.objects.all()
     categoria = Categoria_productos.objects.all()

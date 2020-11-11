@@ -97,7 +97,6 @@ function cambiar(mensaje) {
 function filtrar(mensaje)
 {
     var productos = document.getElementsByClassName('nombre_productos');
-    var categoria = document.getElementsByClassName('categoria');
     var select = document.getElementById('select_default')
 
     // restableciendo el select
@@ -109,7 +108,7 @@ function filtrar(mensaje)
     var separate_final;
     var longitud = productos.length + 1
 
-    for (let i = 0; i < productos.length; i++)
+    for (var i = 0; i < productos.length; i++)
     {
        var_temporal = productos[i].value.split("-");
        separate_productos += var_temporal[1];
@@ -128,11 +127,53 @@ function filtrar(mensaje)
         {
             productos[j].style.display = 'block';
         }
-        else
-        {
-            productos[j].style.display = 'none';
+        // else
+        // {
+        //     productos[j].style.display = 'none';
             
-        }
+        // }
     }
     
+}
+
+
+function filtrar_de_nuevo(mensaje,productos,select)
+{    
+    // restableciendo el select
+    
+    select.selectedIndex = 0
+    
+    var separate_productos = '';
+    var var_temporal;
+    var separate_final;
+    var longitud = productos.length + 1
+    
+    for (let i = 0; i < productos.length; i++)
+    {
+        var_temporal = productos[i].value.split("-");
+        separate_productos += var_temporal[1];
+        
+    }
+    
+    separate_final = separate_productos.split('/');
+    
+    separate_final = separate_final.splice(1,longitud)
+    
+    // mensaje = toString(mensaje)
+    
+    for (let j = 0; j < productos.length; j ++)
+    {
+      if(mensaje == separate_final[j])
+      {
+          console.log(separate_final[j]);
+            // productos[j].setAttribute('selected','selected')
+            productos[j].style.display = 'block';
+            // console.log('entro')
+        }
+        // else
+        // {
+        //     productos[j].style.display = 'none';
+            
+        // }
+    }
 }
