@@ -1,2 +1,2 @@
-templatedjango/_pycache_
-.sqlite3
+_pycache_/
+*.sqlite3
