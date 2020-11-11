@@ -82,7 +82,7 @@ class Detalles_Produccion(models.Model):
     cantidad_real_detalle = models.CharField(max_length=400 ,blank=True, null=True)
 
     def __str__(self):
-        return "detalles {}".format(self.estado)
+        return "detalles {}".format(self.id_producto)
 # ----------------------------------------------------
 # fin tablas producccion
 
