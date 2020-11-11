@@ -360,8 +360,17 @@ def produccion(request):
             productos_objetos = objetos_productos()
             # print(productos_objetos)
             # print(filtrar_produccion[0].id_producto)
+<<<<<<< HEAD
+=======
 
 
+        if request.POST.get('borrar'):
+            id_borrar = request.POST.get('id_borrar')
+>>>>>>> pruebas3
+
+            print(id_borrar)
+
+<<<<<<< HEAD
         if request.POST.get('borrar'):
             id_borrar = request.POST.get('id_borrar')
 
@@ -373,6 +382,14 @@ def produccion(request):
         # if request.POST.get('editar'):
             
 
+=======
+            borrar_produccion = Detalles_Produccion.objects.filter(id=id_borrar)
+            borrar_produccion.delete()
+
+        # if request.POST.get('editar'):
+            
+
+>>>>>>> pruebas3
 
 
     if not productos_objetos:
@@ -386,3 +403,25 @@ def produccion(request):
 # VISTA DE LISTADO DE PRODUCCION
 def listado_produccion(request):
     return render(request,'produccion/listado_produccion.html')
+
+
+# VISTA DEL INICIO 
+
+def inicio(request):
+    return render(request, 'inicio/inicio.html')
+
+#VISTA DEL LISTADO DE LAS COMPRAS
+
+def listado_compras(request):
+    return render(request, 'compras/listado_compras.html')
+
+#VISTA DE PRODUCTOS
+
+def productos(request):
+    return render(request, 'productos/productos.html')
+
+def listado_productos(request):
+    return render(request, 'productos/listado_productos.html')
+
+def ventas(request):
+    return render(request, 'ventas/ventas.html')

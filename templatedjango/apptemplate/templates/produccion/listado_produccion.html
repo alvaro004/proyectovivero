@@ -8,32 +8,190 @@
 
 <div class="container rounded">
 
-    <div class="row" style="margin-top: 100px; align-items: center; display: flex; justify-content: center;"> <!-- este style es para centar el div de la clase col -->
+    <div class="row" style="margin-top: 100px; align-items: center; display: flex; justify-content: center;">
+        <!-- este style es para centar el div de la clase col -->
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
 
-            <table id="example" class="table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
+            <table id="example" class="tablita table  table-hover table-bordered  display nowrap" width="100%">
                 <thead>
-                    <tr>
-                        <th style="color: #A3A6B4;">Fecha</th>
-                        <th style="color: #A3A6B4;">Estado</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                    <tr style="color: #A3A6B4;">
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                   
+
                     <tr class="small">
                         <td id="select{{insumo.id}}">20/10/2020</td>
                         <td>En Proceso</td>
                         <td>
                             {% load static %}
-                            <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
-                                data-target="#borrar{{compra.id_detalles_compras}}">
+                            <i style="color: white; padding:0 10px ;" type="button"; data-toggle="modal";
+                                data-target="#exampleModalCenter";>
                                 {% load static %}
                                 <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
                             </i>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Produccion</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <div class="container rounded">
+
+                                                <div class="form-group">
+                                                    <label for="fecha_produccion">Fecha de Inicio:</label>
+                                                    <input type="date" readonly class="form-control" id="fecha"
+                                                        placeholder="Fecha de Inicio">
+                                                    <!-- style de codigo para establecer el tamanho del input fecha -->
+                                                    <style>
+                                                        @media only screen and (min-width: 600px) {
+                                                            #fecha {
+                                                                width: 25%;
+                                                            }
+                                                        }
+                                                    </style>
+                                                </div>
+
+
+                                                <button id="productos" class="btn btn-outline-info boton"
+                                                    data-li="productos">Produccion</button>
+                                                <button id="insumos" class="btn btn-outline-info boton"
+                                                    data-li="insumos">Insumos</button>
+
+
+                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item productos"
+                                                    style="border:none; margin-top: 20px;">
+
+                                                    <div class="table-responsive">
+                                                        <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="color: #A3A6B4;">
+                                                                    <th>Categoría</th>
+                                                                    <th>Producto</th>
+                                                                    <th>Cantidad Inicial</th>
+                                                                    <th>Cantidad final</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Tunas</td>
+                                                                    <td>Tuna del desierto</td>
+                                                                    <td>5</td>
+                                                                    <td>
+                                                                        <form action="" method="post"></form>
+                                                                        <div class="form-group">
+                                                                            <input type="number" class="form-control"
+                                                                                name="cantidad_real_detalle"
+                                                                                placeholder="Cantidad Final">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+
+
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th style="color: #A3A6B4;">Categoría</th>
+                                                                    <th style="color: #A3A6B4;">Producto</th>
+                                                                    <th style="color: #A3A6B4;">Cantidad Inicial</th>
+                                                                    <th style="color: #A3A6B4;">Cantidad final</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos"
+                                                    style="border:none; margin-top: 20px; display: none;">
+
+                                                    <div class="table-responsive">
+                                                        <table id="example"
+                                                            class="tablita table  table-hover table-bordered  display nowrap"
+                                                            cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="color: #A3A6B4;">
+                                                                    <th>Insumo</th>
+                                                                    <th>Cantidad Actual</th>
+                                                                    <th>Cantidad a Usar</th>
+                                                                    <th>Medida</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Plantas Madre</td>
+                                                                    <td>5</td>
+                                                                    <td>2</td>
+                                                                    <td>unidades</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr style="color: #A3A6B4;">
+                                                                    <th>Insumo</th>
+                                                                    <th>Cantidad Actual</th>
+                                                                    <th>Cantidad a Usar</th>
+                                                                    <th>Medida</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-sm-12">
+
+                                                    <div class="totales">
+
+                                                        <div class="form-group">
+                                                            <label for="fecha_produccion">Fecha de Acabado:</label>
+                                                            <input type="date" class="form-control" id="fecha"
+                                                                placeholder="Fecha de Inicio">
+                                                            <!-- style de codigo para establecer el tamanho del input fecha -->
+                                                            <style>
+                                                                @media only screen and (min-width: 600px) {
+                                                                    #fecha {
+                                                                        width: 25%;
+                                                                    }
+                                                                }
+                                                            </style>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-danger"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-success">Guardar
+                                                Cambios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
-                        
+
                     </tr>
 
                 </tbody>
@@ -48,7 +206,7 @@
 
         </div>
     </div>
- 
+
 </div>
 
 {% endblock listado_produccion %}

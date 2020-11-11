@@ -8,24 +8,29 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-
   {% block titulocompras %}
 
   {% endblock titulocompras %}
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
   <!--  Datatables  -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
 
   <!--  extension responsive  -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
   <!-- Bootstrap core CSS -->
   <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
   {% load static %}
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="{% static '/css/simple-sidebar.css' %}">
+
 
 </head>
 
@@ -36,43 +41,58 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">
-        <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
+        <a href="inicio" style="text-decoration: none;">
+          <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
+        </a>
       </div>
       <div class="list-group list-group-flush">
         <a href="compras" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2">
-          {% load static %}
-          <img src="{% static '/assets/icons/icon_cart.svg' %}">
-          </i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Compras</small></a>
+            {% load static %}
+            <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Compras</small>
+        </a>
+        
 
-        <a 
-          href="insumos" class="list-group-item list-group-item-action bg-light">
+        <a href="listado_compras" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
-          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;" onclick="verificar()">Insumos</small>
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Compras</small>
         </a>
 
-        <a 
-          href="produccion" class="list-group-item list-group-item-action bg-light">
+        <a href="insumos" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;"
+            onclick="verificar()">Insumos</small>
+        </a>
+
+        <a href="produccion" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Produccion</small>
         </a>
 
-        <a 
-          href="ver_compras" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
-          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
-        </a>
-
-        <a 
-          href="listado_produccion" onclick="verificar()"class="list-group-item list-group-item-action bg-light">
+        <a href="listado_produccion" onclick="verificar()" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Produccion</small>
         </a>
 
-        <a 
-          href="#" class="list-group-item list-group-item-action bg-light">
+        <a href="ver_compras" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
+        </a>
+
+
+        <a href="productos" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Productos</small>
+        </a>
+
+        <a href="listado_productos" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Productos</small>
+        </a>
+
+        <a href="ventas" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a>
 
       </div>
@@ -80,16 +100,16 @@
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <div id="page-content-wrapper" style="background-color: #F0F0F7;">
+    <div class="fondo" id="page-content-wrapper" style="background-color: #F0F0F7;">
 
       <!-- <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button> -->
 
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="este">
         <button class="btn btn-light bg-white rounded-pill shadow-sm" id="menu-toggle"><i class="fa fa-bars mr-2">
-          {% load static %}
-          <img src="{% static '/assets/icons/icon_down-arrow-small.svg' %}"></i><small class="text-uppercase font-weight-bold"
-            style="color: #A3A6B4;">Menu</small></button>
+            {% load static %}
+            <img src="{% static '/assets/icons/icon_down-arrow-small.svg' %}"></i><small
+            class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Menu</small></button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,15 +119,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="inicio">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">Login</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                Dropdown
+                Desplegable
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Action</a>
@@ -119,8 +139,18 @@
           </ul>
         </div>
       </nav>
+      {% block estilos %}
 
-      <div class="card shadow p-3 mb-5 bg-white rounded border" style="margin: 20px 50px ">
+      {% endblock estilos %}
+
+      <!-- INICIO -->
+
+      {% block background %}
+
+      {% endblock background %}
+
+      <div class="bloque card shadow p-3 mb-5 bg-white rounded border" style="margin: 20px 50px ">
+
 
         <!-- COMPRAS -->
 
@@ -143,15 +173,32 @@
         <!-- PRODUCCION -->
 
         {% block produccion %}
-        
+
         {% endblock produccion%}
 
         <!-- LISTADO PRODUCCION -->
 
         {% block listado_produccion %}
-        
+
         {% endblock listado_produccion %}
 
+        <!-- LISTADO COMPRAS  -->
+
+        {% block listado_compras %}
+
+        {% endblock listado_compras %}
+
+        <!-- PRODUCTOS  -->
+
+        {% block productos %}
+
+        {% endblock productos %}
+
+        <!-- LISTADO PRODUCTOS -->
+
+        {% block listado_productos %}
+
+        {% endblock listado_productos %}
 
       </div>
 
@@ -160,7 +207,18 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
+
+
+
+    <!-- data live search -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Importante -->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Le da la funcionalidad-->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    <!-- ----------------- -->
 
 
     <!-- HACEMOS REFERENCIA AL SCRIPT PARA EL HIDE Y SHOW -->
@@ -170,13 +228,21 @@
 
     <!-- HASTA ACA -->
 
+    <!-- Bootstrap core JavaScript -->
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+
+    <!-- comentamos estas lineas para que funcione el data live search -->
+
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-    </script>
+    </script> -->
+
+    <!-- ------------------------------- -->
 
     <!--   Datatables-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
@@ -187,7 +253,7 @@
     <!-- Menu Toggle Script -->
     <script>
       $(document).ready(function () {
-        $('#example').DataTable({
+        $('table.tablita').DataTable({
           responsive: true,
           "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
@@ -217,7 +283,7 @@
         $("#wrapper").toggleClass("toggled");
       });
     </script>
-    
+
 
 </body>
 

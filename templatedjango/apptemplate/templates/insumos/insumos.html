@@ -27,7 +27,7 @@
 
                             <div class="form-group">
 
-                                <select class="form-control" name="categoria" placeholder="Categoria">
+                                <select class="form-control selectpicker" name="categoria" title="Selecione una categoría" >
                                     {% for categorias in categoria  %}
                                     <option option id="opcion{{categorias.id}}" value="{{categorias.id}}">
                                         {{categorias.Nombre}}</option>
@@ -76,7 +76,7 @@
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
 
-            <table id="example" class="table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
+            <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th style="color: #A3A6B4;">Categoría</th>

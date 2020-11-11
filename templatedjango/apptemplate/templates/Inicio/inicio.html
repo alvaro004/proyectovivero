@@ -1,0 +1,32 @@
+{% extends 'base/template.html' %}
+
+{% block estilos %}
+
+{% load static %}
+<style>
+
+    /* OCULTA EL CONTENIDO DEL TEMPLATE QUE NO ME INTERESA MOSTRAR */
+    .bloque {
+        display: none !important;
+    }
+    /* -------------------------------------- */
+
+    /* CENTRA LA IMAGEN ACORDE AL TEMPLATE USANDO LA CLASE BLOQUE */
+    .fondo{
+    min-height:100%;
+    background: url("{% static '/assets/img/Group5.png' %}")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center center;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    }
+
+</style>
+
+{% endblock estilos %}
+
+{% block background %}
+
+{% endblock background %}
