@@ -27,7 +27,7 @@
 
                             <div class="form-group">
 
-                                <select class="form-control" name="categoria" placeholder="Categoria">
+                                <select class="form-control selectpicker" name="categoria" title="Selecione una categoría" >
                                     {% for categorias in categoria  %}
                                     <option option id="opcion{{categorias.id}}" value="{{categorias.id}}">
                                         {{categorias.Nombre}}</option>

@@ -367,3 +367,9 @@ def listado_compras(request):
 
 def productos(request):
     return render(request, 'productos/productos.html')
+
+def listado_productos(request):
+    return render(request, 'productos/listado_productos.html')
+
+def ventas(request):
+    return render(request, 'ventas/ventas.html')

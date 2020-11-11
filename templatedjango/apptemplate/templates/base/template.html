@@ -51,6 +51,7 @@
             <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Compras</small>
         </a>
+        
 
         <a href="listado_compras" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
@@ -84,6 +85,16 @@
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Productos</small>
         </a>
 
+        <a href="listado_productos" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Productos</small>
+        </a>
+
+        <a href="ventas" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
+        </a>
+
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -108,15 +119,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="inicio">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">Login</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                Dropdown
+                Desplegable
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Action</a>
@@ -183,6 +194,11 @@
 
         {% endblock productos %}
 
+        <!-- LISTADO PRODUCTOS -->
+
+        {% block listado_productos %}
+
+        {% endblock listado_productos %}
 
       </div>
 

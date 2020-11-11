@@ -29,4 +29,6 @@ urlpatterns = [
     path('inicio', inicio),
     path('listado_compras', listado_compras),
     path('productos', productos),
+    path('listado_productos', listado_productos),
+    path('ventas', ventas),
 ]
