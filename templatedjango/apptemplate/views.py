@@ -360,17 +360,9 @@ def produccion(request):
             productos_objetos = objetos_productos()
             # print(productos_objetos)
             # print(filtrar_produccion[0].id_producto)
-<<<<<<< HEAD
-=======
 
+            # print(id_borrar)
 
-        if request.POST.get('borrar'):
-            id_borrar = request.POST.get('id_borrar')
->>>>>>> pruebas3
-
-            print(id_borrar)
-
-<<<<<<< HEAD
         if request.POST.get('borrar'):
             id_borrar = request.POST.get('id_borrar')
 
@@ -382,14 +374,6 @@ def produccion(request):
         # if request.POST.get('editar'):
             
 
-=======
-            borrar_produccion = Detalles_Produccion.objects.filter(id=id_borrar)
-            borrar_produccion.delete()
-
-        # if request.POST.get('editar'):
-            
-
->>>>>>> pruebas3
 
 
     if not productos_objetos:
