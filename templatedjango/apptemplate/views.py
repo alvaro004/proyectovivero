@@ -15,6 +15,35 @@ from templatedjango.apptemplate.models import *
 # de detalle compras para luego utilizar el id en la 
 # tabla insumos y poder acceder al nombre y mostrar por medio de una lista
 
+def filtrar_compras(id_filtro):
+    detalles_compras = Detalles_compras.objects.filter(id_compra=int(id_filtro))
+    cant = int(len(detalles_compras))
+    compras = []
+    for i in range(cant): 
+        iden = int(detalles_compras[i].id_insumo)
+        try:
+            insumos2 = Insumos.objects.get(id=iden)   
+            if detalles_compras[i].id_compra:
+
+                compras += [
+                    {
+                        'id_insumo':insumos2.id,
+                        'id_detalles_compras':detalles_compras[i].id,
+                        'nombre':insumos2.nombre,
+                        'unidad_medida':insumos2.unidad_de_medida,
+                        'cantidad':detalles_compras[i].cantidad,
+                        'precio':detalles_compras[i].precio,
+                        'subtotal':detalles_compras[i].subtotal,
+                        'categoria':insumos2.categoria.Nombre,
+                    },
+                ]
+        except:
+            compras =[]
+
+
+    return compras
+
+
 
 def objetocompras():
     detalles_compras = Detalles_compras.objects.all()
@@ -42,6 +71,24 @@ def objetocompras():
         except:
             compras =[]
     return compras
+
+def objeto_listado():
+
+    compras_fecha = Compras.objects.all()
+    cant2 = int(len(compras_fecha))
+    compras_array = []
+
+
+    for i in range(cant2):
+        compras_array += [
+            {
+                'total_compra':compras_fecha[i].total_compra,
+                'fecha_compra':compras_fecha[i].fecha_compra,
+                'compras':filtrar_compras(compras_fecha[i].id),
+                'id':compras_fecha[i].id
+            },
+        ]
+    return compras_array
 
 def objetos_productos():
 
@@ -217,63 +264,63 @@ def borrar(request):
 
     # iniciando codigo de prueba de visualizacion de las compras por fecha 
 
-def ver_compras(request):
-    # id_ver_compra = request.POST.get('id_ver_compras')
+# def ver_compras(request):
+#     # id_ver_compra = request.POST.get('id_ver_compras')
 
-    # print(id_ver_compra)
-    if request.method == 'POST':
+#     # print(id_ver_compra)
+#     if request.method == 'POST':
 
-        id_ver_compra = request.POST.get('id_ver_compras')
+#         id_ver_compra = request.POST.get('id_ver_compras')
 
 
-        detalles_compras = Detalles_compras.objects.filter(id_compra=id_ver_compra)
-        insumos = Insumos.objects.all()
+#         detalles_compras = Detalles_compras.objects.filter(id_compra=id_ver_compra)
+#         insumos = Insumos.objects.all()
         
-        # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
-        # a vistas con las tablas detalles compras y insumos juntas
-        cant = int(len(detalles_compras))
-        comprasiter = []
+#         # se ha optimizado el codigo llamando a una funcion que retorna el objeto para envoar 
+#         # a vistas con las tablas detalles compras y insumos juntas
+#         cant = int(len(detalles_compras))
+#         comprasiter = []
 
-        for i in range(cant): 
-            iden = int(detalles_compras[i].id_insumo)
-            try:
-                insumos2 = Insumos.objects.get(id=iden)   
-                if detalles_compras[i].id_compra:
+#         for i in range(cant): 
+#             iden = int(detalles_compras[i].id_insumo)
+#             try:
+#                 insumos2 = Insumos.objects.get(id=iden)   
+#                 if detalles_compras[i].id_compra:
 
-                    comprasiter += [
-                        {
-                            'id_insumo':insumos2.id,
-                            'id_detalles_compras':detalles_compras[i].id,
-                            'nombre':insumos2.nombre,
-                            'unidad_medida':insumos2.unidad_de_medida,
-                            'cantidad':detalles_compras[i].cantidad,
-                            'precio':detalles_compras[i].precio,
-                            'subtotal':detalles_compras[i].subtotal,
-                            'categoria':insumos2.categoria.Nombre,
-                        },
-                    ]
-            except:
-                    comprasiter += [
-                        {
-                            'id_insumo':'no se encuentra',
-                            'id_detalles_compras':detalles_compras[i].id,
-                            'nombre':'se borro el insumo',
-                            'unidad_medida':'se borro el insumo',
-                            'cantidad':detalles_compras[i].cantidad,
-                            'precio':detalles_compras[i].precio,
-                            'subtotal':detalles_compras[i].subtotal,
-                            'categoria':'se borro el insumo',
-                        },
-                    ]
+#                     comprasiter += [
+#                         {
+#                             'id_insumo':insumos2.id,
+#                             'id_detalles_compras':detalles_compras[i].id,
+#                             'nombre':insumos2.nombre,
+#                             'unidad_medida':insumos2.unidad_de_medida,
+#                             'cantidad':detalles_compras[i].cantidad,
+#                             'precio':detalles_compras[i].precio,
+#                             'subtotal':detalles_compras[i].subtotal,
+#                             'categoria':insumos2.categoria.Nombre,
+#                         },
+#                     ]
+#             except:
+#                     comprasiter += [
+#                         {
+#                             'id_insumo':'no se encuentra',
+#                             'id_detalles_compras':detalles_compras[i].id,
+#                             'nombre':'se borro el insumo',
+#                             'unidad_medida':'se borro el insumo',
+#                             'cantidad':detalles_compras[i].cantidad,
+#                             'precio':detalles_compras[i].precio,
+#                             'subtotal':detalles_compras[i].subtotal,
+#                             'categoria':'se borro el insumo',
+#                         },
+#                     ]
                
 
-        compras = Compras.objects.all()
-        fecha_compra = Compras.objects.get(id=id_ver_compra)
+#         compras = Compras.objects.all()
+#         fecha_compra = Compras.objects.get(id=id_ver_compra)
 
-        return render(request,'ver_compras.html',{'compras':compras,'ver_compras':comprasiter,'fecha':fecha_compra.fecha_compra})
+#         return render(request,'compras/listado_compras.html',{'compras':compras,'ver_compras':comprasiter,'fecha':fecha_compra.fecha_compra})
 
-    compras = Compras.objects.all()
-    return render(request,'ver_compras.html',{'compras':compras})
+#     compras = Compras.objects.all()
+#     return render(request,'compras/listado_compras.html',{'compras':compras})
 
 
 
@@ -396,8 +443,11 @@ def inicio(request):
 
 #VISTA DEL LISTADO DE LAS COMPRAS
 
-def listado_compras(request):
-    return render(request, 'compras/listado_compras.html')
+def ver_compras(request):
+    compras = objeto_listado()
+
+    # print(imprimir[1]['compras'][0]['nombre'])
+    return render(request, 'compras/listado_compras.html',{'compras':compras})
 
 #VISTA DE PRODUCTOS
 

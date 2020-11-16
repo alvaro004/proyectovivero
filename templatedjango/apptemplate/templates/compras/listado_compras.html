@@ -21,18 +21,20 @@
                 </thead>
                 <tbody>
 
+                    {% for compra in compras  %}
+                      
                     <tr class="small">
-                        <td id="select{{insumo.id}}">20/10/2020</td>
-                        <td>120.000</td>
+                        <td >{{compra.fecha_compra}}</td>
+                        <td>{{compra.total_compra}}</td>
                         <td>
                             {% load static %}
                             <i style="color: white; padding:0 10px;" type="button" data-toggle="modal"
-                                data-target="#exampleModalCenter">
+                                data-target="#ver_mas{{compra.id}}">
                                 {% load static %}
                                 <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
                             </i>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="ver_mas{{compra.id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
                                 <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -52,7 +54,7 @@
                                                 <div class="form-group">
                                                     <label for="fecha_produccion">Fecha de la Compra:</label>
                                                     <input type="date" readonly class="form-control" id="fecha"
-                                                        placeholder="Fecha de Inicio">
+                                                        placeholder="Fecha de Inicio" value="{{compra.fecha_compra}}">
                                                     <!-- style de codigo para establecer el tamanho del input fecha -->
                                                     <style>
                                                         @media only screen and (min-width: 600px) {
@@ -81,14 +83,17 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                {% for compra_fecha in compra.compras  %}
+                                                                  
                                                                 <tr>
-                                                                    <td>Hola</td>
-                                                                    <td>Hola</td>
-                                                                    <td>Hola</td>
-                                                                    <td>Hola</td>
-                                                                    <td>Hola</td>
-                                                                    <td>Hola</td>
+                                                                    <td>{{compra_fecha.categoria}}</td>
+                                                                    <td>{{compra_fecha.nombre}}</td>
+                                                                    <td>{{compra_fecha.cantidad}}</td>
+                                                                    <td>{{compra_fecha.unidad_medida}}</td>
+                                                                    <td>{{compra_fecha.precio}}</td>
+                                                                    <td>{{compra_fecha.subtotal}}</td>
                                                                 </tr>
+                                                                {% endfor %}
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr style="color: #A3A6B4;">
@@ -108,7 +113,7 @@
 
                                                 <div class="form-group">
                                                     <label for="total_compra">Total de la Compra:</label>
-                                                    <input type="number" readonly class="form-control" id="total_compra" value="150.000">
+                                                    <input type="number" readonly class="form-control" id="total_compra" value="{{compra.total_compra}}">
                                                     <!-- style de codigo para establecer el tamanho del input fecha -->
                                                     <style>
                                                         @media only screen and (min-width: 600px) {
@@ -133,6 +138,8 @@
                         </td>
 
                     </tr>
+                    {% endfor %}
+
 
                 </tbody>
                 <tfoot>
@@ -146,6 +153,10 @@
 
         </div>
     </div>
+
+    <!-- {% for compra in compras %}
+      {{compra.total_compra}}
+    {% endfor %} -->
 
 </div>
 
