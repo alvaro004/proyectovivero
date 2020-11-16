@@ -455,7 +455,9 @@ def productos(request):
     return render(request, 'productos/productos.html')
 
 def listado_productos(request):
-    return render(request, 'productos/listado_productos.html')
+    productos = Productos.objects.all()
+    print(productos)
+    return render(request,'productos/listado_productos.html',{'productos':productos})
 
 def ventas(request):
     return render(request, 'ventas/ventas.html')
