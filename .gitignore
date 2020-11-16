@@ -1,4 +1,2 @@
-templatedjango/_pycache_/
-templatedjango/apptemplate/_pycache_/
-templatedjango/apptemplate/migrations/_pycache_/
+*.pyc
 *.sqlite3
