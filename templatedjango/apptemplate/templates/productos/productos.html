@@ -61,7 +61,8 @@
                                         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">¡Añada el Nombre de un Producto Nuevo!</h5>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">¡Añada el Nombre
+                                                        de un Producto Nuevo!</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -71,58 +72,76 @@
 
                                                     <div class="container rounded">
 
-                                                        <div class="row" >
+                                                        <div class="row">
 
                                                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
-                                                    
-                                                                <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
-                                                    
+
+                                                                <div class="card shadow p-3 mb-5 bg-white rounded"
+                                                                    style="border:none;">
+
                                                                     <div class="card-body">
-                                                    
+
                                                                         <h5 class="card-title">Nombre del Producto!</h5>
-                                                    
+
                                                                         <form action="" method="post">
-                                                    
+
                                                                             <!-- {% csrf_token %} -->
-                                                    
-                                                                            <input type="hidden" name="guardar" value="guardar">
+
+                                                                            <input type="hidden" name="guardar"
+                                                                                value="guardar">
                                                                             <div class="form-group">
-                                                    
+
                                                                                 <div class="form-group">
-                                                    
-                                                                                    <select class="form-control selectpicker" name="categoria" title="Selecione una categoría" >
-                                                                                        
-                                                                                        <option option id="" value="Tunas">Tunas</option>
-                                                                                        <option option id="" value="Suculentas">Suculentas</option>
-                                                                                        <option option id="" value="Plantas Ornamentales">Plantas Ornamentales</option>
-                                                    
-            
+
+                                                                                    <select
+                                                                                        class="form-control selectpicker"
+                                                                                        name="categoria"
+                                                                                        title="Selecione una categoría">
+
+                                                                                        <option option id=""
+                                                                                            value="Tunas">Tunas</option>
+                                                                                        <option option id=""
+                                                                                            value="Suculentas">
+                                                                                            Suculentas</option>
+                                                                                        <option option id=""
+                                                                                            value="Plantas Ornamentales">
+                                                                                            Plantas Ornamentales
+                                                                                        </option>
+
+
                                                                                     </select>
-                                                    
+
                                                                                 </div>
-                                                    
+
                                                                                 <div class="form-group">
-                                                    
-                                                                                    <input type="text" class="form-control" name="producto"
-                                                                                        placeholder="Nombre del Producto" required>
-                                                    
-                                                                                </div>       
-                                                    
+
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="producto"
+                                                                                        placeholder="Nombre del Producto"
+                                                                                        required>
+
+                                                                                </div>
+
                                                                             </div>
-                                                    
-                                                                            <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
-                                                    
+
+                                                                            <button type="submit"
+                                                                                class="btn btn-outline-info float-right">Agregar</button>
+
                                                                         </form>
-                                                    
+
                                                                     </div>
-                                                    
+
                                                                 </div>
-                                                    
+
                                                             </div>
-                                                    
-                                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
-                                                    
-                                                                <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
+
+                                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded"
+                                                                style="border:none;">
+
+                                                                <table id="example"
+                                                                    class="tablita table  table-hover table-bordered  display nowrap"
+                                                                    cellspacing="0" width="100%">
                                                                     <thead>
                                                                         <tr>
                                                                             <th style="color: #A3A6B4;">Producto</th>
@@ -131,34 +150,38 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                                                       
+
                                                                         <tr>
                                                                             <td class="small" id=""></td>
                                                                             <td class="small"></td>
-                                             
+
                                                                             <!-- codigo para el boton de editar 
                                                                                 -------------------------------------------------- -->
                                                                             <td class="small">
                                                                                 {% load static %}
-                                                                                <i style="color: white;" type="button" data-toggle="modal"
+                                                                                <i style="color: white;" type="button"
+                                                                                    data-toggle="modal"
                                                                                     data-target="#editar{{insumo.id}}"><i><img
-                                                                                            src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
-                                                    
+                                                                                            src="{% static '/assets/icons/icon_edit.svg' %}"
+                                                                                            alt=""></i></i>
+
                                                                                 <!-- codigo para el boton de borrar  -->
                                                                                 <!-- -------------------------------------------- -->
                                                                                 <!-- Button trigger modal -->
-                                                                                <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                                                                <i style="color: white; padding:0 10px ;"
+                                                                                    type="button" data-toggle="modal"
                                                                                     data-target="#borrar{{compra.id_detalles_compras}}">
                                                                                     {% load static %}
-                                                                                    <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                                                                                    <img src="{% static '/assets/icons/circle-remove.svg' %}"
+                                                                                        alt="">
                                                                                 </i>
-                                                    
+
                                                                             </td>
 
-                                                                        </tr>     
-                                                                        
-                                                                        
-                                                    
+                                                                        </tr>
+
+
+
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <tr>
@@ -168,7 +191,7 @@
                                                                         </tr>
                                                                     </tfoot>
                                                                 </table>
-                                                    
+
                                                             </div>
                                                         </div>
 
@@ -185,6 +208,13 @@
                                     </div>
                                 </div>
 
+                            </div>
+
+                            <div class="form-group mayonesa">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Sube una imagen</label>
+                                </div>                                
                             </div>
 
                             <div class="form-group">
@@ -226,6 +256,9 @@
     </div>
 
 </div>
+
+
+
 
 
 

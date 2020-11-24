@@ -9,17 +9,22 @@
 <div class="row">
 
     {% for mostrar in productos  %}
-    
-    <div>
-        <div class="card" style="width: 18rem; margin: 1rem 2rem; display: inline-block;">
-            <img class="card-img-top" src="{{mostrar.imagen.url}}" alt="Card image cap" style="width:100%;max-width:300px; max-height: 200px;">
+   
+    <div class="col-xl-3">
+        <div class="card shadow p-3 mb-5 bg-white rounded border">
+
+            <img class="card-img-top" src="{{mostrar.imagen.url}}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-outline-primary">Ver mas</a>
             </div>
+
           </div>
+          
     </div>
+
+    
     {% endfor %}
 
     <!-- <div class="col-xl-12">
