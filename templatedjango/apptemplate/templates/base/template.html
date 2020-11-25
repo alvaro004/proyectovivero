@@ -11,119 +11,114 @@
     {% block titulocompras %}
     
     {% endblock titulocompras %}
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    
+    <!--  Datatables  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+    
+    <!--  extension responsive  -->
+    <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    {% load static %}
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static '/css/simple-sidebar.css' %}">
+    
     <!-- HACEMOS REFERENCIA AL SCRIPT PARA EL HIDE Y SHOW -->
     {% load static %}
-    <script src="{% static '/js/functions.js' %}"></script>
+    <script src="{% static '/js/functions_table.js' %}"></script>
     
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
-
-
-  <!--  Datatables  -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
-
-  <!--  extension responsive  -->
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-
-  <!-- Bootstrap core CSS -->
-  <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-  {% load static %}
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="{% static '/css/simple-sidebar.css' %}">
-
-  <!-- Jquery libraries -->
-
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-
-</head>
-
-<body>
-
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">
-        <a href="inicio" style="text-decoration: none;">
-          <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
-        </a>
-      </div>
-      <div class="list-group list-group-flush">
-        <a href="compras" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2">
+  </head>
+  
+  <body>
+    
+    <div class="d-flex" id="wrapper">
+      
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">
+          <a href="inicio" style="text-decoration: none;">
+            <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
+          </a>
+        </div>
+        <div class="list-group list-group-flush">
+          <a href="compras" class="list-group-item list-group-item-action bg-light"><i class="fa fa-bars mr-2">
             {% load static %}
             <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Compras</small>
         </a>
-
-
+        
+        
         <a href="ver_compras" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Compras</small>
         </a>
-
+        
         <a href="insumos" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;"
-            onclick="verificar()">Insumos</small>
+          onclick="verificar()">Insumos</small>
         </a>
-
+        
         <a href="produccion" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Produccion</small>
         </a>
-
+        
         <a href="listado_produccion" onclick="verificar()" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Produccion</small>
         </a>
-
+        
         <!-- <a href="ver_compras" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a> -->
-
-
+        
+        
         <a href="productos" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Productos</small>
         </a>
-
+        
         <a href="listado_productos" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Productos</small>
         </a>
-
+        
         <a href="ventas" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a>
-
+        
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
-
+    
     <!-- Page Content -->
     <div class="fondo" id="page-content-wrapper" style="background-color: #F0F0F7;">
-
+      
       <!-- <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button> -->
-
-
+      
+      
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="este">
         <button class="btn btn-light bg-white rounded-pill shadow-sm" id="menu-toggle"><i class="fa fa-bars mr-2">
-            {% load static %}
-            <img src="{% static '/assets/icons/icon_down-arrow-small.svg' %}"></i><small
-            class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Menu</small></button>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          {% load static %}
+          <img src="{% static '/assets/icons/icon_down-arrow-small.svg' %}"></i><small
+          class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Menu</small></button>
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
@@ -134,97 +129,97 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Desplegable
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      {% block estilos %}
-
-      {% endblock estilos %}
-
-      <!-- INICIO -->
-
-      {% block background %}
-
-      {% endblock background %}
-
-      <div class="bloque card shadow p-3 mb-5 bg-white rounded border" style="margin: 20px 50px ">
-
-
-        <!-- COMPRAS -->
-
-        {% block compras %}
-
-        {% endblock compras %}
-
-
-        {% block listado %}
-
-        {% endblock listado %}
-
-
-        <!-- INSUMOS -->
-
-        {% block insumos %}
-
-        {% endblock insumos%}
-
-        <!-- PRODUCCION -->
-
-        {% block produccion %}
-
-        {% endblock produccion%}
-
-        <!-- LISTADO PRODUCCION -->
-
-        {% block listado_produccion %}
-
-        {% endblock listado_produccion %}
-
-        <!-- LISTADO COMPRAS  -->
-
-        {% block listado_compras %}
-
-        {% endblock listado_compras %}
-
-        <!-- PRODUCTOS  -->
-
-        {% block productos %}
-
-        {% endblock productos %}
-
-        <!-- LISTADO PRODUCTOS -->
-
-        {% block listado_productos %}
-
-        {% endblock listado_productos %}
-        
-        {% block ventas %}
-        
-        {% endblock ventas %}
-        
+              aria-haspopup="true" aria-expanded="false">
+              Desplegable
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
       </div>
+    </nav>
+    {% block estilos %}
+    
+    {% endblock estilos %}
+    
+    <!-- INICIO -->
+    
+    {% block background %}
+    
+    {% endblock background %}
+    
+    <div class="bloque card shadow p-3 mb-5 bg-white rounded border" style="margin: 20px 50px ">
       
-      <!-- /#page-content-wrapper -->
+      
+      <!-- COMPRAS -->
+      
+      {% block compras %}
+      
+      {% endblock compras %}
+      
+      
+      {% block listado %}
+      
+      {% endblock listado %}
+      
+      
+      <!-- INSUMOS -->
+      
+      {% block insumos %}
+      
+      {% endblock insumos%}
+      
+      <!-- PRODUCCION -->
+      
+      {% block produccion %}
+      
+      {% endblock produccion%}
+      
+      <!-- LISTADO PRODUCCION -->
+      
+      {% block listado_produccion %}
+      
+      {% endblock listado_produccion %}
+      
+      <!-- LISTADO COMPRAS  -->
+      
+      {% block listado_compras %}
+      
+      {% endblock listado_compras %}
+      
+      <!-- PRODUCTOS  -->
+      
+      {% block productos %}
+      
+      {% endblock productos %}
+      
+      <!-- LISTADO PRODUCTOS -->
+      
+      {% block listado_productos %}
+      
+      {% endblock listado_productos %}
+      
+      {% block ventas %}
+      
+      {% endblock ventas %}
       
     </div>
-    <!-- /#wrapper -->
     
+    <!-- /#page-content-wrapper -->
     
-    
-    
-    <!-- data live search -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript"
+  </div>
+  <!-- /#wrapper -->
+  
+  
+  
+  
+  <!-- data live search -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Importante -->
+  <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <!-- Le da la funcionalidad-->
     <script type="text/javascript"
@@ -233,43 +228,43 @@
     <!-- ----------------- -->
     
     
-
-
+    
+    
     <!-- HASTA ACA -->
-
+    
     <!-- Bootstrap core JavaScript -->
-
-
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+    
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
 
-    <!-- comentamos estas lineas para que funcione el data live search -->
+<!-- comentamos estas lineas para que funcione el data live search -->
 
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-    </script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+</script> -->
 
-    <!-- ------------------------------- -->
+<!-- ------------------------------- -->
 
-    <!--   Datatables-->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+<!--   Datatables-->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 
-    <!-- extension responsive -->
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<!-- extension responsive -->
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-      $(document).ready(function () {
-        $('table.tablita').DataTable({
-          responsive: true,
-          "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-          }
+<!-- Menu Toggle Script -->
+<script>
+  $(document).ready(function () {
+    $('table.tablita').DataTable({
+      responsive: true,
+      "language": {
+        "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+      }
 
-          //Otra forma de cambiar el idioma
-          // "language": {
+      //Otra forma de cambiar el idioma
+      // "language": {
           //     "lengthMenu": "Mostrando _MENU_ ",
           //     "zeroRecords": "No se encontro nada - ¡Lo siento!",
           //     "info": "Mostrando pagina _PAGE_ de _PAGES_",
@@ -277,30 +272,25 @@
           //     "infoFiltered": "(filtrando de _MAX_ registros totales)",
           //      "search": "Busqueda:",
           //      "paginate": {
-          //          "previous": "Anterior",
-          //          "next": "Siguiente"
-
-          //      }
-          //  }
-
+            //          "previous": "Anterior",
+            //          "next": "Siguiente"
+            
+            //      }
+            //  }
+            
+          });
+          
         });
-
-      });
-
+        
       $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
-    </script>
+      </script>
 
-    <script>
-      // Add the following code if you want the name of the file appear on select
-      $(".custom-file-input").on("change", function () {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-      });
-    </script>
-
+<!-- HACEMOS REFERENCIA AL SCRIPT PARA EL HIDE Y SHOW -->
+{% load static %}
+<script src="{% static '/js/functions.js' %}"></script>
 
 </body>
 
