@@ -460,4 +460,12 @@ def listado_productos(request):
     return render(request,'productos/listado_productos.html',{'productos':productos})
 
 def ventas(request):
-    return render(request, 'ventas/ventas.html')
+
+    # if request.method == "POST":
+        
+    categoria = Categoria_productos.objects.all()
+
+    nombre_producto = Nombre_productos.objects.all()
+
+
+    return render(request, 'ventas/ventas.html',{'categoria':categoria,'nombre_producto':nombre_producto})

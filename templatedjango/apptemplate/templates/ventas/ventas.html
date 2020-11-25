@@ -9,321 +9,365 @@
 
 <div class="container rounded">
 
-    <div class="row" style="margin-top: 100px;">
-  
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
-  
-        <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
-          <div class="card-body">
-            <h5 class="card-title">Ventas!</h5>
-  
-            <form action="" method="POST">
-              <!-- {% csrf_token %} -->
-              <div class="form-group">
-                <select class="form-control selectpicker" name="categoria" title="Selecione una Categoria" required>
-                  
-                  <option id="" value="">Something</option>
-                  
-                </select>
-              </div>
+  <div class="row" style="margin-top: 100px;">
 
-              <div class="form-group">
-                <select class="form-control selectpicker" name="id_insumo" data-live-search="true"
-                title="Selecione un Producto" data-live-search-placeholder="Buscar..." required>
-                  
-                  <!-- {% for insumo in insumos  %} -->
-                  <option option id="" value="">Tunas</option>
-  
-                  <!-- {% endfor %} -->
-                </select>
-              </div>
-  
-              <div class="form-group">
-                <input type="number" class="form-control" id="exampleInputPassword1" name="cantidad"
-                  placeholder="Cantidad" step="0.01" required>
-              </div>
-  
-              <div class="form-group">
-                <input type="number" class="form-control" id="exampleInputPassword1" name="precio" placeholder="Precio"
-                  required>
-              </div>
-  
-              <button type="submit" class="btn btn-outline-info float-right" >Agregar</button>
-  
-            </form>
-          </div>
-        </div>
-  
-      </div>
-  
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
-  
-        <div class="table-responsive">
-  
-          <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
-  
-            <thead style="background-color: #F5F6FA;">
-              <tr>
-                <th style="color: #A3A6B4;" scope="col">Categoria</th>
-                <th style="color: #A3A6B4;" scope="col">Producto</th>
-                <th style="color: #A3A6B4;" scope="col">Cantidad</th>
-                <th style="color: #A3A6B4;" scope="col">Medida</th>
-                <th style="color: #A3A6B4;" scope="col">Precio</th>
-                <th style="color: #A3A6B4;" scope="col">Total</th>
-                <th style="color: #A3A6B4;" scope="col">Acciones</th>
-              </tr>
-            </thead>
-  
-            <tbody>
-              
-              {% if compras %}
-                
-              {% for compra in compras  %}
-  
-              <tr class="tabla_compras">
-                <td class="small">{{compra.categoria}}</td>
-                <td class="small" id="select{{compra.id_detalles_compras}}">{{compra.nombre}}</td>
-                <td class="small">{{compra.cantidad}}</td>
-                <td class="small">{{compra.unidad_medida}}</td>
-                <td class="small">{{compra.precio}}</td>
-                <td class=" small calcular_compra">{{compra.subtotal}}</td>
-  
-  
-                <!-- codigo para el boton de editar 
-                  -------------------------------------------------- -->
-                <td class="small">
-                  {% load static %}
-                  <i style="color: white;" type="button" data-toggle="modal"
-                    data-target="#editar{{compra.id_detalles_compras}}"><i><img
-                        src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
-  
-                  <div class="modal fade" id="editar{{compra.id_detalles_compras}}" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <form method="POST" action="/editar">
-                            {% csrf_token %}
-                            <div class="form-group">
-  
-                              <label for="nombre{{insumo.id}}" class="col-form-label">Producto:</label>
-                              <select name="producto" id="nombre{{insumo.id}}" class="form-control">
-  
-                                {% for insumo in insumos  %}
-                                <option class="productos{{compra.id_detalles_compras}}" id="opcion{{insumo.nombre}}"
-                                  value="{{insumo.id}}">{{insumo.nombre}}</option>
-  
-                                {% endfor %}
-  
-  
-                              </select>
-  
-                              <script>
-                                var elements = document.getElementsByClassName(
-                                  'productos{{compra.id_detalles_compras}}')
-                                var select = document.getElementById('select{{compra.id_detalles_compras}}')
-  
-                                for (var i = 0; i < elements.length; i++) {
-                                  console.log(elements[i].innerHTML)
-                                  if (elements[i].innerHTML == select.innerHTML) {
-                                    elements[i].setAttribute('selected', 'selected');
-  
-                                  }
-                                }
-  
-                                console.log(select.innerHTML)
-                              </script>
-                            </div>
-                            <div class="form-group">
-                              <label for="recipient-name" class="col-form-label">Cantidad:</label>
-                              <input name="cantidad" value="{{compra.cantidad}}" type="text" class="form-control"
-                                id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                              <label for="recipient-name" class="col-form-label">Precio:</label>
-                              <input name="precio" value="{{compra.precio}}" type="text" class="form-control"
-                                id="recipient-name">
-                            </div>
-  
-                            <input type="hidden" name="iden" value="{{compra.id_detalles_compras}}">
-  
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                          <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
-                        </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-  
-  
-  
-                  <!-- codigo para el boton de borrar  -->
-                  <!-- -------------------------------------------- -->
-  
-  
-                  <!-- Button trigger modal -->
-                  <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
-                    data-target="#borrar{{compra.id_detalles_compras}}">
-                    {% load static %}
-                    <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
-                  </i>
-  
-                  <!-- Modal -->
-                  <div class="modal fade" id="borrar{{compra.id_detalles_compras}}" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <form action="borrar" method="post">
-                          {% csrf_token %}
-                          <div class="modal-body">
-                            <input type="hidden" name="id_borrar" value="{{compra.id_detalles_compras}}">
-                            Desea Eliminar este Registro ?
-                          </div>
-                          <div class="modal-footer">
-  
-                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-outline-info">Borrar</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              {% endfor %}
-             
-              {% endif %}
-                
-  
-  
-            </tbody>
-          </table>
-        </div>
-  
-  
-  
-  
-        <div class="totales">
-  
-          <div class="form-group">
-            <input type="text" style="width: 50%;" class="form-control" id="total" placeholder="Total" readonly>
-          </div>
-          <div class="form-group">
-            <input type="date" style="width: 50%;" class="form-control" id="fecha_parcial">
-          </div>
-  
-        </div>
-  
-        <div class="botones">
-  
-          <form action="registrar" method="post">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
+
+      <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+        <div class="card-body">
+          <h5 class="card-title">Ventas!</h5>
+
+          <form action="" method="POST">
+
             {% csrf_token %}
-            {% for conjunto_compras in compras  %}
-            <input type="hidden" name="id_para_compras" value="{{conjunto_compras.id_detalles_compras}}">
-            {% endfor %}
-  
-            <input type="hidden" id="fecha" name="fecha">
-            <input type="hidden" id="total_compra" name="total_compra">
-  
-            <script>
-              // este codigo es para poder mostrar en tiempo real la cantidad total de la compra 
-  
-              var calcular_total = document.getElementsByClassName('calcular_compra')
-              var suma = 0
-              for (i = 0; i < calcular_total.length; i++) {
-                suma += parseInt(calcular_total[i].innerHTML, 10);
-              }
-  
-              total_compra = document.getElementById('total')
-              total_compra.innerHTML = suma;
-              total_compra.value = suma;
-  
-              total_definido = document.getElementById('total_compra')
-              total_definido.value = suma
-  
-              fecha = document.getElementById('fecha')
-  
-              // el codigo de abajo es para poder poner la fecha por defecto en el input de tipo date
-  
-              var today = new Date();
-              var dd = String(today.getDate()).padStart(2, '0');
-              var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-              var yyyy = String(today.getFullYear());
-  
-              date = String(yyyy + '-' + mm + '-' + dd);
-              // document.write(today);
-  
-  
-              fecha_parcial = document.getElementById('fecha_parcial');
-  
-              // fecha_utc = date.toUTCString()
-              fecha_parcial.value = date;
-              fecha_parcial.defaulValue = date;
-              fecha_parcial.innerHTML = date;
-  
-  
-              console.log(date)
-  
-  
-              // en esta funcion se cambia el vlor de la fecha al input oculto ara poer enviarlo al servidor
-              function cambio() {
-                fecha = document.getElementById('fecha')
-                fecha_parcial = document.getElementById('fecha_parcial');
-                fecha.value = fecha_parcial.value;
-  
-              }
-            </script>
-            <button type="button" class="btn btn-outline-success float-right" data-toggle="modal" data-target="#confirmar"
-              onclick="cambio()">Registrar</button>
-  
-            <div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-  
-  
-                  <div class="modal-body">
-                    Desea registrar esta compra?
-                  </div>
-                  <div class="modal-footer">
-  
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-outline-success">Registrar</button>
-                  </div>
-  
-                </div>
-              </div>
-  
-  
+
+            <div class="form-group">
+
+              <select class="form-control selectpicker" id="categoria" name="categoria" title="Selecione una Categoria" required>
+                {%for categorias in categoria %}
+                <option class="categoria" id="opcion{{categorias.id}}" value="{{categorias.nombre_categoria}}">
+                  {{categorias.nombre_categoria}}</option>
+                {% endfor %}
+              </select>
+
             </div>
+
+            <div class="form-group">
+
+              <!-- EL FILTRO FUNCIONA SI ES QUE AL FORM-CONTROL DE ABAJO NO LE PONEMOS LA CLASE SELECTPICKER -->
+
+              <select class="form-control " name="nombre_productos" id="select_producto"
+                data-live-search="true" title="Selecione un Producto" data-live-search-placeholder="Buscar..." required>
+                {% for nombre_productos in nombre_producto %}
+                <option id="opcion{{nombre_productos.id}}" class="nombre_productos"
+                  value="{{nombre_productos.id}}-{{nombre_productos.categoria}}">{{nombre_productos.nombre_productos}}</option>
+                {% endfor %}
+              </select>
+
+            </div>
+
+            <div class="form-group">
+
+              <input type="number" class="form-control" name="cantidad_stock" placeholder="Cantidad" step="0.01"
+                required>
+
+            </div>
+
+            <div class="form-group">
+              <input type="number" class="form-control" name="precio" placeholder="Precio" required>
+            </div>
+
+            <input type="hidden" name="guardar" value="guardar">
+            <input type="hidden" name="id_producto" id="id_producto" value="nombre_del_producto">
+            <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+
+            <script>
+              // en este codigo se realiza un filtro de los productos por sus categorias 
+              // para mostrar en los Selection
+
+              // primero se cambia la propiedad de display a none para que no se muestren los datos 
+
+              var categoria = document.getElementById('categoria');
+              var productos = document.getElementsByClassName('nombre_productos');
+              var select_productos = document.getElementById('select_producto');
+              var enviar_producto = document.getElementById('id_producto')
+
+              for (var i = 0; i < productos.length; i++) {
+                productos[i].style.display = 'none';
+
+              }
+
+              categoria.addEventListener("change", function () {
+                filtro(categoria, productos);
+                cambiar_enviar(select_productos, enviar_producto);
+              });
+
+              select_productos.addEventListener("change", function () {
+                cambiar_enviar(select_productos, enviar_producto);
+              });
+
+
+
+
+
+              // window.onload = function () {
+              // };
+            </script>
+
           </form>
         </div>
-  
       </div>
+
     </div>
-  
-  
-    <!-- <script>
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+
+      <div class="table-responsive">
+
+        <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
+
+          <thead style="background-color: #F5F6FA;">
+            <tr>
+              <th style="color: #A3A6B4;" scope="col">Categoria</th>
+              <th style="color: #A3A6B4;" scope="col">Producto</th>
+              <th style="color: #A3A6B4;" scope="col">Cantidad</th>
+              <th style="color: #A3A6B4;" scope="col">Medida</th>
+              <th style="color: #A3A6B4;" scope="col">Precio</th>
+              <th style="color: #A3A6B4;" scope="col">Total</th>
+              <th style="color: #A3A6B4;" scope="col">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {% if compras %}
+
+            {% for compra in compras  %}
+
+            <tr class="tabla_compras">
+              <td class="small">{{compra.categoria}}</td>
+              <td class="small" id="select{{compra.id_detalles_compras}}">{{compra.nombre}}</td>
+              <td class="small">{{compra.cantidad}}</td>
+              <td class="small">{{compra.unidad_medida}}</td>
+              <td class="small">{{compra.precio}}</td>
+              <td class=" small calcular_compra">{{compra.subtotal}}</td>
+
+
+              <!-- codigo para el boton de editar 
+                  -------------------------------------------------- -->
+              <td class="small">
+                {% load static %}
+                <i style="color: white;" type="button" data-toggle="modal"
+                  data-target="#editar{{compra.id_detalles_compras}}"><i><img
+                      src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+
+                <div class="modal fade" id="editar{{compra.id_detalles_compras}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST" action="/editar">
+                          {% csrf_token %}
+                          <div class="form-group">
+
+                            <label for="nombre{{insumo.id}}" class="col-form-label">Producto:</label>
+                            <select name="producto" id="nombre{{insumo.id}}" class="form-control">
+
+                              {% for insumo in insumos  %}
+                              <option class="productos{{compra.id_detalles_compras}}" id="opcion{{insumo.nombre}}"
+                                value="{{insumo.id}}">{{insumo.nombre}}</option>
+
+                              {% endfor %}
+
+
+                            </select>
+
+                            <script>
+                              var elements = document.getElementsByClassName(
+                                'productos{{compra.id_detalles_compras}}')
+                              var select = document.getElementById('select{{compra.id_detalles_compras}}')
+
+                              for (var i = 0; i < elements.length; i++) {
+                                console.log(elements[i].innerHTML)
+                                if (elements[i].innerHTML == select.innerHTML) {
+                                  elements[i].setAttribute('selected', 'selected');
+
+                                }
+                              }
+
+                              console.log(select.innerHTML)
+                            </script>
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Cantidad:</label>
+                            <input name="cantidad" value="{{compra.cantidad}}" type="text" class="form-control"
+                              id="recipient-name">
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Precio:</label>
+                            <input name="precio" value="{{compra.precio}}" type="text" class="form-control"
+                              id="recipient-name">
+                          </div>
+
+                          <input type="hidden" name="iden" value="{{compra.id_detalles_compras}}">
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <!-- codigo para el boton de borrar  -->
+                <!-- -------------------------------------------- -->
+
+
+                <!-- Button trigger modal -->
+                <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                  data-target="#borrar{{compra.id_detalles_compras}}">
+                  {% load static %}
+                  <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                </i>
+
+                <!-- Modal -->
+                <div class="modal fade" id="borrar{{compra.id_detalles_compras}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form action="borrar" method="post">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="hidden" name="id_borrar" value="{{compra.id_detalles_compras}}">
+                          Desea Eliminar este Registro ?
+                        </div>
+                        <div class="modal-footer">
+
+                          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-outline-info">Borrar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+
+            {% endif %}
+
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+      <div class="totales">
+
+        <div class="form-group">
+          <input type="text" style="width: 50%;" class="form-control" id="total" placeholder="Total" readonly>
+        </div>
+        <div class="form-group">
+          <input type="date" style="width: 50%;" class="form-control" id="fecha_parcial">
+        </div>
+
+      </div>
+
+      <div class="botones">
+
+        <form action="registrar" method="post">
+          {% csrf_token %}
+          {% for conjunto_compras in compras  %}
+          <input type="hidden" name="id_para_compras" value="{{conjunto_compras.id_detalles_compras}}">
+          {% endfor %}
+
+          <input type="hidden" id="fecha" name="fecha">
+          <input type="hidden" id="total_compra" name="total_compra">
+
+          <script>
+            // este codigo es para poder mostrar en tiempo real la cantidad total de la compra 
+
+            var calcular_total = document.getElementsByClassName('calcular_compra')
+            var suma = 0
+            for (i = 0; i < calcular_total.length; i++) {
+              suma += parseInt(calcular_total[i].innerHTML, 10);
+            }
+
+            total_compra = document.getElementById('total')
+            total_compra.innerHTML = suma;
+            total_compra.value = suma;
+
+            total_definido = document.getElementById('total_compra')
+            total_definido.value = suma
+
+            fecha = document.getElementById('fecha')
+
+            // el codigo de abajo es para poder poner la fecha por defecto en el input de tipo date
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = String(today.getFullYear());
+
+            date = String(yyyy + '-' + mm + '-' + dd);
+            // document.write(today);
+
+
+            fecha_parcial = document.getElementById('fecha_parcial');
+
+            // fecha_utc = date.toUTCString()
+            fecha_parcial.value = date;
+            fecha_parcial.defaulValue = date;
+            fecha_parcial.innerHTML = date;
+
+
+            console.log(date)
+
+
+            // en esta funcion se cambia el vlor de la fecha al input oculto ara poer enviarlo al servidor
+            function cambio() {
+              fecha = document.getElementById('fecha')
+              fecha_parcial = document.getElementById('fecha_parcial');
+              fecha.value = fecha_parcial.value;
+
+            }
+          </script>
+          <button type="button" class="btn btn-outline-success float-right" data-toggle="modal" data-target="#confirmar"
+            onclick="cambio()">Registrar</button>
+
+          <div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+
+                <div class="modal-body">
+                  Desea registrar esta compra?
+                </div>
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-outline-success">Registrar</button>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- <script>
       function verificar() {
           table = document.getElementsByTagName('td')
           console.log(table.length)
@@ -347,7 +391,7 @@
   </script> -->
   {% load static %}
   <script src="{% static '/js/functions.js' %}"></script>
-  </div>
+</div>
 
 
 {% endblock ventas %}

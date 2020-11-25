@@ -22,7 +22,7 @@
               title="Selecione un Producto" data-live-search-placeholder="Buscar..." required>
                 
                 {% for insumo in insumos  %}
-                <option option id="opcion{{insumo.id}}" value="{{insumo.id}}">{{insumo.nombre}}</option>
+                <option id="opcion{{insumo.id}}" value="{{insumo.id}}">{{insumo.nombre}}</option>
 
                 {% endfor %}
               </select>
