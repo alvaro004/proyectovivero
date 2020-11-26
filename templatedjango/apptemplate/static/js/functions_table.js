@@ -13,7 +13,7 @@ function filtro(primer_select, segundo_select) {
   
       if (primer_select.value == valor) {
   
-        segundo_select[i].style.display = 'block';
+        segundo_select[i].style.display = '';
         segundo_select[i].setAttribute('selected', 'selected')
   
       }

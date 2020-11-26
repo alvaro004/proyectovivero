@@ -25,11 +25,15 @@
 
                             <div class="form-group">
 
-                                <select class="form-control selectpicker" title="Selecione una categoría">
+                                <select class="form-control" title="Selecione una categoría" id="categoria">
+                                    <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Categorias
+                                    </option>
 
-                                    <option value="tunas">Tunas</option>
-                                    <option value="suculentas">Suculentas</option>
-                                    <option value="plantas_ornamentales">Plantas Ornamentales</option>
+                                    {% for mostrar in categoria  %}
+                                    <option value="{{mostrar.nombre_categoria}}">{{mostrar.nombre_categoria}}</option>
+                                      
+                                    {% endfor %}
+
 
                                 </select>
 
@@ -39,13 +43,15 @@
 
                                 <div class="form-group col-xl-8">
 
-                                    <select class="form-control selectpicker" data-live-search="true"
-                                        title="Seleccione un Producto" data-live-search-placeholder="Buscar...">
-                                        <option value="unidades">Tunas verde</option>
-                                        <option value="copao">Copao</option>
-                                        <option value="tulipanes">Tulipanes</option>
-                                        <option value="xoconostle">Xoconostle</option>
-                                        <option value="pitahaya">Pitahaya</option>
+                                    <select class="form-control" data-live-search="true"
+                                        title="Seleccione un Producto" id="select_producto" data-live-search-placeholder="Buscar...">
+                                        <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos
+                                        </option>
+                                        {% for mostrar in nombre %}
+
+                                        <option class="nombre_productos" value="{{mostrar.id}}-{{mostrar.categoria}}">{{mostrar.nombre_productos}}</option>
+                                        {% endfor %}
+                                      
                                     </select>
 
                                 </div>
@@ -125,9 +131,37 @@
 
                                                                             </div>
 
+                                                                            <input type="hidden" name="id_producto" id="id_producto" value="valor">
+
                                                                             <button type="submit"
                                                                                 class="btn btn-outline-info float-right">Agregar</button>
 
+                                                                            <script>
+                                                                                var categoria = document.getElementById('categoria');
+                                                                                var productos = document.getElementsByClassName('nombre_productos');
+                                                                                var select_productos = document.getElementById('select_producto');
+                                                                                var enviar_producto = document.getElementById('id_producto');
+
+                                                                                console.log(select_productos)
+
+                                                                                for (var i = 0; i < productos.length; i++) {
+                                                                                    productos[i].style.display = 'none';
+
+                                                                                }
+
+                                                                                categoria.addEventListener("change", function () {
+                                                                                    filtro(categoria, productos);
+                                                                                    cambiar_enviar(select_productos, enviar_producto);
+                                                                                    console.log(enviar_producto.value)
+                                                                                });
+
+                                                                                select_productos.addEventListener("change", function () {
+                                                                                    cambiar_enviar(select_productos, enviar_producto);
+                                                                                    console.log(enviar_producto.value)
+                                                                                });
+
+                                            
+                                                                            </script>
                                                                         </form>
 
                                                                     </div>

@@ -452,7 +452,11 @@ def ver_compras(request):
 #VISTA DE PRODUCTOS
 
 def productos(request):
-    return render(request, 'productos/productos.html')
+
+    categoria = Categoria_productos.objects.all()
+    nombre_producto = Nombre_productos.objects.all()
+
+    return render(request, 'productos/productos.html',{'categoria':categoria, 'nombre':nombre_producto})
 
 def listado_productos(request):
     productos = Productos.objects.all()
@@ -462,6 +466,9 @@ def listado_productos(request):
 def ventas(request):
 
     # if request.method == "POST":
+    #     if request.POST.get('guardar'):
+
+
         
     categoria = Categoria_productos.objects.all()
 
