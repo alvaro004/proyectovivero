@@ -15,9 +15,9 @@
 
                     <h5 class="card-title">¡Productos!</h5>
 
-                    <form action="" method="post">
+                    <form action="productos" method="POST" id="form_id">
 
-                        <!-- {% csrf_token %} -->
+                        {% csrf_token %}
 
                         <input type="hidden" name="guardar" value="guardar">
                         <div class="form-group">
@@ -44,7 +44,7 @@
                                 <div class="form-group col-xl-8">
 
                                     <select class="form-control" data-live-search="true"
-                                        title="Seleccione un Producto" id="select_producto" data-live-search-placeholder="Buscar...">
+                                        title="Seleccione un Producto" id="select_producto">
                                         <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos
                                         </option>
                                         {% for mostrar in nombre %}
@@ -54,13 +54,42 @@
                                       
                                     </select>
 
+                                    <input type="hidden" name="id_producto" id="id_producto" value="valor">
+
+                                    <script>
+                                        var categoria = document.getElementById('categoria');
+                                        var productos = document.getElementsByClassName('nombre_productos');
+                                        var select_productos = document.getElementById('select_producto');
+                                        var enviar_producto = document.getElementById('id_producto');
+
+                                        console.log(select_productos)
+
+                                        for (var i = 0; i < productos.length; i++) {
+                                            productos[i].style.display = 'none';
+
+                                        }
+
+                                        categoria.addEventListener("change", function () {
+                                            filtro(categoria, productos);
+                                            cambiar_enviar(select_productos, enviar_producto);
+                                            console.log(enviar_producto.value)
+                                        });
+
+                                        select_productos.addEventListener("change", function () {
+                                            cambiar_enviar(select_productos, enviar_producto);
+                                            console.log(enviar_producto.value)
+                                        });
+
+    
+                                    </script>
+
                                 </div>
 
                                 <div class="form-group col-xl-4">
 
                                     <button type="button" class="form-control btn btn-outline-info" data-toggle="modal"
                                         data-target="#exampleModalCenter">Añadir Producto Nuevo</button>
-                                    <!-- Modal -->
+                                    
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
@@ -89,7 +118,7 @@
 
                                                                         <h5 class="card-title">Nombre del Producto!</h5>
 
-                                                                        <form action="" method="post">
+                                                                        <!-- <form action="productos" method="post" id="id_form_modal"> -->
 
                                                                             <!-- {% csrf_token %} -->
 
@@ -124,45 +153,29 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         name="producto"
-                                                                                        placeholder="Nombre del Producto"
-                                                                                        required>
+                                                                                        placeholder="Nombre del Producto">
 
                                                                                 </div>
 
                                                                             </div>
 
-                                                                            <input type="hidden" name="id_producto" id="id_producto" value="valor">
+                                                                            
 
-                                                                            <button type="submit"
-                                                                                class="btn btn-outline-info float-right">Agregar</button>
+                                                                            <button type="button" class="btn btn-outline-info float-right" id="enviar" >Agregar</button>
 
-                                                                            <script>
-                                                                                var categoria = document.getElementById('categoria');
-                                                                                var productos = document.getElementsByClassName('nombre_productos');
-                                                                                var select_productos = document.getElementById('select_producto');
-                                                                                var enviar_producto = document.getElementById('id_producto');
+                                                                            
+                                                                            <!-- <script>
+                                                                                form = document.getElementById('id_form_modal')
+                                                                                button = document.getElementById('enviar')
 
-                                                                                console.log(select_productos)
-
-                                                                                for (var i = 0; i < productos.length; i++) {
-                                                                                    productos[i].style.display = 'none';
-
-                                                                                }
-
-                                                                                categoria.addEventListener("change", function () {
-                                                                                    filtro(categoria, productos);
-                                                                                    cambiar_enviar(select_productos, enviar_producto);
-                                                                                    console.log(enviar_producto.value)
+                                                                                categoria.addEventListener("click", function () {
+                                                                                    send_form(form)
                                                                                 });
+                                                                                      
+                                                                            </script> -->
 
-                                                                                select_productos.addEventListener("change", function () {
-                                                                                    cambiar_enviar(select_productos, enviar_producto);
-                                                                                    console.log(enviar_producto.value)
-                                                                                });
 
-                                            
-                                                                            </script>
-                                                                        </form>
+                                                                        <!-- </form> -->
 
                                                                     </div>
 
@@ -193,22 +206,22 @@
                                                                                 -------------------------------------------------- -->
                                                                             <td class="small">
                                                                                 {% load static %}
-                                                                                <i style="color: white;" type="button"
+                                                                                <!-- <i style="color: white;" type="button"
                                                                                     data-toggle="modal"
                                                                                     data-target="#editar{{insumo.id}}"><i><img
                                                                                             src="{% static '/assets/icons/icon_edit.svg' %}"
-                                                                                            alt=""></i></i>
+                                                                                            alt=""></i></i> -->
 
                                                                                 <!-- codigo para el boton de borrar  -->
                                                                                 <!-- -------------------------------------------- -->
                                                                                 <!-- Button trigger modal -->
-                                                                                <i style="color: white; padding:0 10px ;"
+                                                                                <!-- <i style="color: white; padding:0 10px ;"
                                                                                     type="button" data-toggle="modal"
-                                                                                    data-target="#borrar{{compra.id_detalles_compras}}">
+                                                                                    data-target="#borrar">
                                                                                     {% load static %}
                                                                                     <img src="{% static '/assets/icons/circle-remove.svg' %}"
                                                                                         alt="">
-                                                                                </i>
+                                                                                </i> -->
 
                                                                             </td>
 
@@ -244,9 +257,9 @@
 
                             </div>
 
-                            <div class="form-group mayonesa">
+                            <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <input type="file" class="custom-file-input" id="customFile" name="imagen">
                                     <label class="custom-file-label" for="customFile">Sube una imagen</label>
                                 </div>                                
                             </div>
@@ -254,7 +267,7 @@
                             <div class="form-group">
 
                                 <textarea class="form-control" id="" rows="3"
-                                    placeholder="Ingrese una descripción"></textarea>
+                                    placeholder="Ingrese una descripción" name="descripcion"></textarea>
 
                             </div>
 
@@ -275,7 +288,22 @@
 
                         </div>
 
-                        <button type="submit" class="btn btn-outline-info">Guardar</button>
+                        <!-- <input type="submit" class="btn btn-outline-info" value="Guardar"> -->
+
+                        <button id="enviar_principal" class="btn btn-outline-info">Guardar</button>
+
+
+                        <script>
+                            form = document.getElementById('id_form')
+                            button = document.getElementById('enviar_principal')
+
+                            categoria.addEventListener("click", function () {
+                                send_form(form)
+                            });
+                            
+
+                            
+                        </script>
 
                     </form>
 

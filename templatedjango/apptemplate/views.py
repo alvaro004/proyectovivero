@@ -453,6 +453,18 @@ def ver_compras(request):
 
 def productos(request):
 
+    if request.method == "POST":
+        if request.POST.get('guardar'):
+
+            id_producto = request.POST.get('id_producto')
+            imagen = request.POST.get('imagen')
+            descripcion = request.POST.get('descripcion')
+            cantidad = request.POST.get('cantidad')
+            precio = request.POST.get('precio')
+
+            print(id_producto,imagen,descripcion,cantidad,precio)
+
+
     categoria = Categoria_productos.objects.all()
     nombre_producto = Nombre_productos.objects.all()
 
