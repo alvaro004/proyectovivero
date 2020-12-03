@@ -15,7 +15,7 @@
 
                     <h5 class="card-title">¡Productos!</h5>
 
-                    <form action="productos" method="POST" id="form_id">
+                    <form action="productos" method="POST" id="form_id" enctype="multipart/form-data">
 
                         {% csrf_token %}
 
@@ -259,8 +259,15 @@
 
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile" name="imagen">
-                                    <label class="custom-file-label" for="customFile">Sube una imagen</label>
+
+                                    {% for mostrar in form  %}
+
+                                    <label for="{{form.auto_id}}" class="custom-file-label">{{form.label}}</label>  
+                                        {{form}}
+                                    {% endfor %}
+                                    
+
+                                    
                                 </div>                                
                             </div>
 

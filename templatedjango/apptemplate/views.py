@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from templatedjango.apptemplate.models import *
+from templatedjango.apptemplate.forms import *
 
 # Create your views here.
 
@@ -455,20 +456,23 @@ def productos(request):
 
     if request.method == "POST":
         if request.POST.get('guardar'):
-
+            form = DocumentForm(request.POST, request.FILES)
+            form.save()
             id_producto = request.POST.get('id_producto')
-            imagen = request.POST.get('imagen')
+            # imagen = request.POST.get('imagen')
             descripcion = request.POST.get('descripcion')
             cantidad = request.POST.get('cantidad')
             precio = request.POST.get('precio')
 
-            print(id_producto,imagen,descripcion,cantidad,precio)
+            print(id_producto,descripcion,cantidad,precio)
+    else:
+        form = DocumentForm(request.POST or None)
 
-
+    
     categoria = Categoria_productos.objects.all()
     nombre_producto = Nombre_productos.objects.all()
 
-    return render(request, 'productos/productos.html',{'categoria':categoria, 'nombre':nombre_producto})
+    return render(request, 'productos/productos.html',{'categoria':categoria, 'nombre':nombre_producto, 'form':form})
 
 def listado_productos(request):
     productos = Productos.objects.all()
