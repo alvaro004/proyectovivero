@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from templatedjango.apptemplate.models import *
+from templatedjango.apptemplate.forms import *
 
 # Create your views here.
 
@@ -452,7 +453,34 @@ def ver_compras(request):
 #VISTA DE PRODUCTOS
 
 def productos(request):
-    return render(request, 'productos/productos.html')
+
+    if request.method == "POST":
+        if request.POST.get('guardar'):
+            form = DocumentForm(request.POST, request.FILES)
+            form.save()
+            id_producto = request.POST.get('id_producto')
+            descripcion = request.POST.get('descripcion')
+            cantidad = request.POST.get('cantidad')
+            precio = request.POST.get('precio')
+
+            get_productos = Productos.objects.all()
+            save_productos = Productos.objects.get(id=get_productos[len(get_productos) - 1].id)
+            save_productos.id_nombre_producto = id_producto
+            save_productos.descripcion_producto = descripcion
+            save_productos.cantidad_stock = cantidad
+            save_productos.precio = precio
+            save_productos.save()
+            
+
+            print(id_producto,descripcion,cantidad,precio)
+    else:
+        form = DocumentForm(request.POST or None)
+
+    
+    categoria = Categoria_productos.objects.all()
+    nombre_producto = Nombre_productos.objects.all()
+
+    return render(request, 'productos/productos.html',{'categoria':categoria, 'nombre':nombre_producto, 'form':form})
 
 def listado_productos(request):
     productos = Productos.objects.all()
@@ -462,6 +490,9 @@ def listado_productos(request):
 def ventas(request):
 
     # if request.method == "POST":
+    #     if request.POST.get('guardar'):
+
+
         
     categoria = Categoria_productos.objects.all()
 

@@ -11,6 +11,8 @@
     {% block titulocompras %}
     
     {% endblock titulocompras %}
+    {% load static %}
+    <script src="{% static '/js/functions_table.js' %}"></script>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -32,8 +34,6 @@
     <link rel="stylesheet" href="{% static '/css/simple-sidebar.css' %}">
     
     <!-- HACEMOS REFERENCIA AL SCRIPT PARA EL HIDE Y SHOW -->
-    {% load static %}
-    <script src="{% static '/js/functions_table.js' %}"></script>
     
   </head>
   
@@ -291,6 +291,15 @@
 <!-- HACEMOS REFERENCIA AL SCRIPT PARA EL HIDE Y SHOW -->
 {% load static %}
 <script src="{% static '/js/functions.js' %}"></script>
+
+
+<script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>
 
 </body>
 
