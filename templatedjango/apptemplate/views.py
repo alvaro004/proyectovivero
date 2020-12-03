@@ -459,10 +459,18 @@ def productos(request):
             form = DocumentForm(request.POST, request.FILES)
             form.save()
             id_producto = request.POST.get('id_producto')
-            # imagen = request.POST.get('imagen')
             descripcion = request.POST.get('descripcion')
             cantidad = request.POST.get('cantidad')
             precio = request.POST.get('precio')
+
+            get_productos = Productos.objects.all()
+            save_productos = Productos.objects.get(id=get_productos[len(get_productos) - 1].id)
+            save_productos.id_nombre_producto = id_producto
+            save_productos.descripcion_producto = descripcion
+            save_productos.cantidad_stock = cantidad
+            save_productos.precio = precio
+            save_productos.save()
+            
 
             print(id_producto,descripcion,cantidad,precio)
     else:
