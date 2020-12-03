@@ -11,9 +11,28 @@
   {% for mostrar in productos  %}
 
   <div class="col-xl-3">
-    <div class="card shadow p-3 mb-5 bg-white rounded border">
+    <div class="card shadow p-3 mb-5 bg-white rounded border cont-imagen">
 
-      <img class="card-img-top img-thumbnail" src="{{mostrar.imagen.url}}" alt="Card image cap">
+      <img class="card-img-top img-thumbnail imagen" src="{{mostrar.imagen.url}}" alt="Card image cap">
+
+      <style>
+
+        .cont-imagen{
+          width: fit-content;
+          max-height: 100%;
+        }
+        .imagen{
+          width: fit-content;
+          height: 200px;
+          min-height: 120px;
+          max-height: auto;
+          float: left;
+          margin: 3px;
+          padding: 3px;
+
+          /* padding: 0 -21%; */
+        }
+      </style>
       <div class="card-body">
         <div class="row">
           <div class="form-group col-xl-12 card-title">
