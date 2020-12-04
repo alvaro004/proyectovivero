@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Vivero</title>
+</head>
+<body>
+    <div style="width: fit-content; height: fit-content; padding: 10px; margin: 7% auto;">
+        <fieldset>
+            <legend>Login in</legend>
+            <form action="" method="post">
+                {% csrf_token %}
+                <p><input type="text" name="user" id="user" placeholder="User"></p>
+                <p><input type="password" name="pass" id="pass" placeholder="Password"></p>
+                <p><button type="submit">Send</button></p>
+            </form>
+        </fieldset>
+    </div>
+</body>
+</html>
