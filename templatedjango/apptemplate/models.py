@@ -85,19 +85,6 @@ class Detalles_Produccion(models.Model):
         return "detalles {}".format(self.id_producto)
 # ----------------------------------------------------
 # fin tablas producccion
-
-class Productos(models.Model):
-    
-    id_nombre_producto = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla compra
-    # id_categoria = models.CharField(max_length=400 ,blank=True, null=True)
-    descripcion_producto = models.CharField(max_length=400 ,blank=True, null=True) # conectado a la tabla produccion
-    cantidad_stock = models.CharField(max_length=400 ,blank=True, null=True)
-    imagen = models.FileField(default='placeholder.png',null=True) 
-    precio = models.CharField(max_length=400 ,blank=True, null=True)
-
-    def __str__(self):
-        return "detalles {}".format(self.precio)
-
 class Categoria_productos(models.Model):
     
     nombre_categoria = models.CharField(max_length=400 ,blank=True, null=True)
@@ -113,6 +100,19 @@ class Nombre_productos(models.Model):
     
     def __str__(self):
         return "{}".format(self.nombre_productos)
+
+class Productos(models.Model):
+    
+    id_nombre_producto = models.ForeignKey(Nombre_productos, on_delete=models.CASCADE,blank=True, null=True)# conectado a la tabla compra
+    # id_categoria = models.CharField(max_length=400 ,blank=True, null=True)
+    descripcion_producto = models.CharField(max_length=400 ,blank=True, null=True) # conectado a la tabla produccion
+    cantidad_stock = models.CharField(max_length=400 ,blank=True, null=True)
+    imagen = models.FileField(default='placeholder.png',null=True) 
+    precio = models.CharField(max_length=400 ,blank=True, null=True)
+
+    def __str__(self):
+        return "detalles {}".format(self.precio)
+
 
 
 
