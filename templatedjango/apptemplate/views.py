@@ -486,7 +486,7 @@ def ventas(request):
 def login(request):
     if request.user.is_authenticated:
     # Do something for authenticated users.
-        return render(request,'inicio/inicio.html')
+        return redirect('/inicio')
     else:
 
         if request.method == 'POST':
@@ -497,7 +497,7 @@ def login(request):
             if user is not None:
                 dj_login(request, user)
                 # A backend authenticated the credentials
-                return render(request, 'inicio/inicio.html')
+                return redirect('/inicio')
 
         return render(request,'login/login.html')
 
