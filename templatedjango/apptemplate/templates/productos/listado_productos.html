@@ -13,174 +13,116 @@
   <div class="col-xl-3">
     <div class="card shadow p-3 mb-5 bg-white rounded border cont-imagen">
 
-      <img class="card-img-top img-thumbnail imagen" src="{{mostrar.imagen.url}}" alt="Card image cap">
+      <img class="card-img-top img-thumbnail imagen rounded mx-auto d-block" src="{{mostrar.imagen.url}}"
+        alt="Card image cap">
 
       <style>
+        /* .card-img-top {
+          width: 250px%;
+          height: 20vw;
+          object-fit: cover;
+        } */
 
-        .cont-imagen{
+        .cont-imagen {
           width: fit-content;
           max-height: 100%;
+
         }
-        .imagen{
+
+        .imagen {
           width: fit-content;
-          height: 200px;
-          min-height: 120px;
+          height: 250px;
+          min-height: 400px;
           max-height: auto;
           float: left;
           margin: 3px;
           padding: 3px;
+          object-fit: cover;
 
           /* padding: 0 -21%; */
         }
       </style>
+
       <div class="card-body">
         <div class="row">
           <div class="form-group col-xl-12 card-title">
-            <h4>{{mostrar.id_nombre_producto.nombre_productos}}</h3>
+            <h4>{{mostrar.id_nombre_producto.nombre_productos}}</h4>
           </div>
 
           <div class="form-group col-xl-8">
-            <input class="form-control text-center text-primary" type="text" placeholder="{{mostrar.precio}}" readonly>
+            <input class="form-control text-center text-primary" type="text" placeholder="{{mostrar.precio}} Gs."
+              readonly>
+          </div>
+
+          <div class="form-group col-xl-4">
+            <input class="form-control text-center text-primary" type="text" placeholder="{{mostrar.cantidad_stock}}"
+              readonly>
           </div>
 
           <div class="form-group col-xl-12">
 
-            <button type="button" class="form-control btn btn-outline-info float-right" data-toggle="modal"
-              data-target="#exampleModalCenter">Ver Mas!</button>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-info float-right" data-toggle="modal"
+              data-target="#exampleModal">
+              Ver Mas!
+            </button>
 
-              <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">¡Añada el Nombre
-                      de un Producto Nuevo!</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mas sobre el Producto!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
 
-                    <div class="container rounded">
+                    <div class="row">
 
-                      <div class="row">
-
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
-
-                          <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
-
-                            <div class="card-body">
-
-                              <h5 class="card-title">Nombre del Producto!</h5>
-
-                              <form action="" method="post">
-
-                                <!-- {% csrf_token %} -->
-
-                                <input type="hidden" name="guardar" value="guardar">
-                                <div class="form-group">
-
-                                  <div class="form-group">
-
-                                    <select class="form-control selectpicker" name="categoria"
-                                      title="Selecione una categoría">
-
-                                      <option option id="" value="Tunas">Tunas</option>
-                                      <option option id="" value="Suculentas">
-                                        Suculentas</option>
-                                      <option option id="" value="Plantas Ornamentales">
-                                        Plantas Ornamentales
-                                      </option>
+                      <div class="form-group xl-12">
+                        <img class="card-img-top rounded mx-auto d-block" src="{{mostrar.imagen.url}}"
+                          alt="Card image cap">
+                      </div>
 
 
-                                    </select>
+                      <!-- Title -->
+                      <div class="form-group col-xl-12 card-title">
+                        <h4 class="card-title"><strong>{{mostrar.id_nombre_producto.nombre_productos}}</strong></h4>
+                      </div>
 
-                                  </div>
-
-                                  <div class="form-group">
-
-                                    <input type="text" class="form-control" name="producto"
-                                      placeholder="Nombre del Producto" required>
-
-                                  </div>
-
-                                </div>
-
-                                <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
-
-                              </form>
-
-                            </div>
-
-                          </div>
-
-                        </div>
-
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded"
-                          style="border:none;">
-
-                          <table id="example" class="tablita table  table-hover table-bordered  display nowrap"
-                            cellspacing="0" width="100%">
-                            <thead>
-                              <tr>
-                                <th style="color: #A3A6B4;">Producto</th>
-                                <th style="color: #A3A6B4;">Categoría</th>
-                                <th style="color: #A3A6B4;">Acciones</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-
-                              <tr>
-                                <td class="small" id=""></td>
-                                <td class="small"></td>
-
-                                <!-- codigo para el boton de editar 
-                                                                -------------------------------------------------- -->
-                                <td class="small">
-                                  {% load static %}
-                                  <i style="color: white;" type="button" data-toggle="modal"
-                                    data-target="#editar{{insumo.id}}"><i><img
-                                        src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
-
-                                  <!-- codigo para el boton de borrar  -->
-                                  <!-- -------------------------------------------- -->
-                                  <!-- Button trigger modal -->
-                                  <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
-                                    data-target="#borrar{{compra.id_detalles_compras}}">
-                                    {% load static %}
-                                    <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
-                                  </i>
-
-                                </td>
-
-                              </tr>
+                      <!-- Text -->
+                      <div class="form-group col-xl-12 card-title">
+                        <p class="card-text">"{{mostrar.descripcion_producto}}"</p>
+                      </div>
 
 
+                      <div class="form-group col-xl-7">
+                        <input class="form-control text-center text-primary" type="number"
+                          placeholder="{{mostrar.precio}} Gs." readonly>
+                      </div>
 
-                            </tbody>
-                            <tfoot>
-                              <tr>
-                                <th style="color: #A3A6B4;">Producto</th>
-                                <th style="color: #A3A6B4;">Categoría</th>
-                                <th style="color: #A3A6B4;">Acciones</th>
-                              </tr>
-                            </tfoot>
-                          </table>
+                      <div class="form-group col-xl-6">
+                        <input class="form-control text-center text-primary" type="number"
+                          placeholder="{{mostrar.cantidad_stock}}" readonly>
+                      </div>
 
-                        </div>
+                      <div class="form-group col-xl-6">
+                        <button type="button" class="form-control btn btn-outline-success">Mas</button>
                       </div>
 
                     </div>
 
-
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>
