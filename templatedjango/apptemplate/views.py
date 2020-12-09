@@ -458,6 +458,15 @@ def productos(request):
 def listado_productos(request):
 
     if request.user.is_authenticated:
+        if request.method == 'POST':
+            if request.POST.get('cambiar_valor'):
+                iden = request.POST.get('id')
+                cantidad = request.POST.get('cantidad_enviar')
+
+                get_productos = Productos.objects.get(id=iden)
+                get_productos.cantidad_stock = cantidad
+                get_productos.save()
+
         productos = Productos.objects.all()
         print(productos)
         return render(request,'productos/listado_productos.html',{'productos':productos})
