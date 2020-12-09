@@ -505,4 +505,9 @@ def logout_views(request):
     logout(request) 
     return redirect('/')
 
+# VISTA NOMBRE PRODUCTOS 
+def nombre_productos(request):
+    return render(request, 'nombre_productos/nombre_productos.html')
+
+
 

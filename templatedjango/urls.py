@@ -35,6 +35,7 @@ urlpatterns = [
     path('productos', productos),
     path('listado_productos', listado_productos),
     path('ventas', ventas),
+    path('nombre_productos', nombre_productos),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

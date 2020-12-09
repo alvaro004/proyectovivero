@@ -57,23 +57,23 @@
         
         
         <a href="ver_compras" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_408.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Compras</small>
         </a>
         
         <a href="insumos" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_404.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;"
           onclick="verificar()">Insumos</small>
         </a>
         
         <a href="produccion" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_406.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Produccion</small>
         </a>
         
         <a href="listado_produccion" onclick="verificar()" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/XMLID_1973_.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Produccion</small>
         </a>
         
@@ -84,17 +84,22 @@
         
         
         <a href="productos" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_442.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Productos</small>
         </a>
         
         <a href="listado_productos" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Component_217.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Productos</small>
+        </a>
+
+        <a href="nombre_productos" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_446.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Nombre Productos</small>
         </a>
         
         <a href="ventas" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/icon_cart.svg' %}">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Group_274.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a>
         
@@ -206,6 +211,12 @@
       {% block ventas %}
       
       {% endblock ventas %}
+
+      <!-- NOMBRE DE PRODUCTOS -->
+
+      {% block nombre_productos %}
+
+      {% endblock nombre_productos %}
       
     </div>
     
@@ -304,3 +315,15 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

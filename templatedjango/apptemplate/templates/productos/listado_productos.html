@@ -10,6 +10,7 @@
 
   {% for mostrar in productos  %}
 
+
   <div class="col-xl-3">
     <div class="card shadow p-3 mb-5 bg-white rounded border cont-imagen">
 
@@ -63,12 +64,12 @@
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-info float-right" data-toggle="modal"
-              data-target="#exampleModal">
+              data-target="#modal{{mostrar.id}}">
               Ver Mas!
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="modal{{mostrar.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -82,8 +83,8 @@
 
                     <div class="row">
 
-                      <div class="form-group xl-12">
-                        <img class="card-img-top rounded mx-auto d-block" src="{{mostrar.imagen.url}}"
+                      <div class="form-group xl-12 text-center">
+                        <img class="card-img-top img-thumbnail rounded" src="{{mostrar.imagen.url}}"
                           alt="Card image cap">
                       </div>
 
