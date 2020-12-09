@@ -101,27 +101,93 @@
 
 
                       <div class="form-group col-xl-7">
-                        <input class="form-control text-center text-primary" type="number"
-                          placeholder="{{mostrar.precio}} Gs." readonly>
+                        <input class="form-control text-center text-primary" type="text"
+                        readonly value="{{mostrar.precio}} Gs." >
                       </div>
 
                       <div class="form-group col-xl-6">
-                        <input class="form-control text-center text-primary" type="number"
-                          placeholder="{{mostrar.cantidad_stock}}" readonly>
+                        <input class="form-control text-center text-primary" type="text" id="cantidad{{mostrar.id}}"
+                          readonly value="{{mostrar.cantidad_stock}}" >
                       </div>
 
-                      <div class="form-group col-xl-6">
-                        <button type="button" class="form-control btn btn-outline-success">Mas</button>
+                      <div class="form-group col-xl-6" style="width: 200px;">
+                        <button type="button" id="boton_activ{{mostrar.id}}" class="form-control btn btn-outline-success">Agg. Cantidad</button>
+                        <button type="button" id="boton_add{{mostrar.id}}" class="btn btn-success" style=" float: left; display: none; font-weight: bold;">+</button>
+                        <button type="button" id="boton_cancel{{mostrar.id}}" class="btn btn-danger" style=" margin-left: 10px; display: none; font-weight: bold;">x</button>
                       </div>
 
                     </div>
 
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="cerrar{{mostrar.id}}" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="guardar{{mostrar.id}}" class="btn btn-outline-success" style="display: none;">Guardar Cambios</button>
+                    <form action="listado_productos" method="post" id="form{{mostrar.id}}">
+                      {% csrf_token %}
+                      <input type="hidden" name="id" id="id{{mostrar.id}}">
+                      <input type="hidden" name="cantidad_enviar" id="cantidad_enviar{{mostrar.id}}">
+                      <input type="hidden" name="cambiar_valor" value="cambiar_valor">
+                    </form>
                   </div>
                 </div>
               </div>
+
+
+              <script>
+
+                var boton_activ{{mostrar.id}} = document.getElementById('boton_activ{{mostrar.id}}');
+                var boton_add{{mostrar.id}} = document.getElementById('boton_add{{mostrar.id}}');
+                var boton_cancel{{mostrar.id}} = document.getElementById('boton_cancel{{mostrar.id}}');
+                var cerrar{{mostrar.id}} = document.getElementById('cerrar{{mostrar.id}}');
+                var guardar{{mostrar.id}} = document.getElementById('guardar{{mostrar.id}}');
+                var cantidad{{mostrar.id}} = document.getElementById('cantidad{{mostrar.id}}')
+                var cantidad_enviar{{mostrar.id}} = document.getElementById('cantidad_enviar{{mostrar.id}}')
+                var form{{mostrar.id}} = document.getElementById('form{{mostrar.id}}')
+
+                boton_activ{{mostrar.id}}.addEventListener("click", function () {
+                  boton_activ{{mostrar.id}}.style.display = 'none';
+                  boton_add{{mostrar.id}}.style.display='';
+                  boton_cancel{{mostrar.id}}.style.display='';
+                  cerrar{{mostrar.id}}.style.display='none';
+                  guardar{{mostrar.id}}.style.display='';
+
+                });
+
+                boton_cancel{{mostrar.id}}.addEventListener("click", function () {
+                  boton_activ{{mostrar.id}}.style.display = '';
+                  boton_add{{mostrar.id}}.style.display='none';
+                  boton_cancel{{mostrar.id}}.style.display='none';
+                  cerrar{{mostrar.id}}.style.display='';
+                  guardar{{mostrar.id}}.style.display='none';
+                  cantidad{{mostrar.id}}.value = {{mostrar.cantidad_stock}};
+
+                });
+
+                boton_add{{mostrar.id}}.addEventListener("click", function () {
+
+                  valor = parseInt(cantidad{{mostrar.id}}.value);
+                  valor += 1;
+                  cantidad{{mostrar.id}}.value = valor;
+
+                });
+
+                guardar{{mostrar.id}}.addEventListener("click", function () {
+
+                  cantidad_enviar{{mostrar.id}}.value = cantidad{{mostrar.id}}.value;
+                  id{{mostrar.id}}.value = {{mostrar.id}};
+                  
+                  if (confirm('Desea guardar los cambios ?'))
+                  {
+                    send_form(form{{mostrar.id}});
+                  }
+                });
+
+
+
+
+
+
+              </script>
             </div>
 
           </div>
