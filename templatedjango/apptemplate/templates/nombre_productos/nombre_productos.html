@@ -95,29 +95,51 @@
                     <tr>
                         <td class="small" id="">{{mostrar.categoria.nombre_categoria}}</td>
                         <td class="small">{{mostrar.nombre_productos}}</td>
-
-                        <!-- codigo para el boton de editar 
-                            -------------------------------------------------- -->
                         <td class="small">
                             {% load static %}
-                            <!-- <i style="color: white;" type="button"
-                                data-toggle="modal"
-                                data-target="#editar{{insumo.id}}"><i><img
-                                        src="{% static '/assets/icons/icon_edit.svg' %}"
-                                        alt=""></i></i> -->
+                            <i style="color: white;" type="button" data-toggle="modal"
+                                data-target=""><i><img
+                                        src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
                             <!-- codigo para el boton de borrar  -->
                             <!-- -------------------------------------------- -->
                             <!-- Button trigger modal -->
-                            <!-- <i style="color: white; padding:0 10px ;"
-                                type="button" data-toggle="modal"
-                                data-target="#borrar">
+                            <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                data-target="#borrar{{mostrar.id}}">
                                 {% load static %}
-                                <img src="{% static '/assets/icons/circle-remove.svg' %}"
-                                    alt="">
-                            </i> -->
+                                <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                            </i>
 
                         </td>
+
+                        <!-- Modal para borrar -->
+                        <div class="modal fade" id="borrar{{mostrar.id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="nombre_productos" method="post">
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <input type="hidden" name="id_borrar" value="{{mostrar.id}}">
+                                            <input type="hidden" name="borrar" value="borrar">
+                                            Desea Eliminar este Registro ?
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <button type="button" class="btn btn-outline-danger"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-info">Borrar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
                     </tr>
 

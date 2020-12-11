@@ -531,6 +531,11 @@ def nombre_productos(request):
                 save_nombre_productos = Nombre_productos(nombre_productos=nombre_productos, categoria=get_categoria)
                 save_nombre_productos.save()
 
+            if request.POST.get('borrar'):
+                id_borrar = request.POST.get('id_borrar')
+                get_productos = Nombre_productos.objects.get(id=id_borrar)
+                get_productos.delete()
+
             
         categoria = Categoria_productos.objects.all()
         nombre_productos = Nombre_productos.objects.all()
