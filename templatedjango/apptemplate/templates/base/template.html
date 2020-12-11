@@ -102,6 +102,11 @@
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Group_274.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a>
+
+        <a href="pedidos" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_461.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Pedidos</small>
+        </a>
         
       </div>
     </div>
@@ -217,6 +222,12 @@
       {% block nombre_productos %}
 
       {% endblock nombre_productos %}
+
+      <!-- PEDIDOS -->
+
+      {% block pedidos %}
+
+      {% endblock pedidos %}
       
     </div>
     

@@ -434,6 +434,7 @@ def productos(request):
                 cantidad = request.POST.get('cantidad')
                 precio = request.POST.get('precio')
 
+
                 save_productos = Productos.objects.last()
                 nombre_producto = Nombre_productos.objects.get(id=id_producto)
                 save_productos.id_nombre_producto = nombre_producto
@@ -515,8 +516,39 @@ def logout_views(request):
     return redirect('/')
 
 # VISTA NOMBRE PRODUCTOS 
+
 def nombre_productos(request):
-    return render(request, 'nombre_productos/nombre_productos.html')
 
+    if request.user.is_authenticated:
 
+        if request.method == "POST":
+            if request.POST.get('guardar'):
+                
+                id_nombre_productos = request.POST.get('id_nombre_productos')
+                nombre_productos = request.POST.get('nombre_productos')
+                
+                save_nombre_productos = Nombre_productos.objects.last()
+                save_productos.save()
+                
+                print(id_nombre_productos,nombre_productos)
+        else:
+            form = DocumentForm(request.POST or None)
 
+        categoria = Categoria_productos.objects.all()
+        nombre_productos = Nombre_productos.objects.all()
+
+        return render(request, 'nombre_productos/nombre_productos.html',{'categoria':categoria, 'nombre':nombre_productos})
+    else:
+        return redirect('/')
+
+# VISTA PEDIDOS
+
+def pedidos(request):
+
+    if request.user.is_authenticated:
+
+        return render(request, 'pedidos/pedidos.html')
+    else:
+        return redirect('/')
+
+    

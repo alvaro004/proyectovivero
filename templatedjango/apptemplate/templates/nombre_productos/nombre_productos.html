@@ -19,31 +19,21 @@
 
                     <h5 class="card-title">Nombre del Producto!</h5>
 
-                    <!-- <form action="productos" method="post" id="id_form_modal"> -->
+                    <form action="productos" method="post" id="id_form_modal">
 
-                        <!-- {% csrf_token %} -->
+                        {% csrf_token %}
 
-                        <input type="hidden" name="guardar"
-                            value="guardar">
+                        <input type="hidden" name="guardar" value="guardar"> 
+
                         <div class="form-group">
 
                             <div class="form-group">
 
-                                <select
-                                    class="form-control selectpicker"
-                                    name="categoria"
-                                    title="Selecione una categoría">
+                                <select class="form-control selectpicker" name="categoria" title="Selecione una categoría">
 
-                                    <option option id=""
-                                        value="Tunas">Tunas</option>
-                                    <option option id=""
-                                        value="Suculentas">
-                                        Suculentas</option>
-                                    <option option id=""
-                                        value="Plantas Ornamentales">
-                                        Plantas Ornamentales
-                                    </option>
-
+                                    <option option id="" value="Tunas">Tunas</option>
+                                    <option option id="" value="Suculentas"> Suculentas</option>
+                                    <option option id="" value="Plantas Ornamentales"> Plantas Ornamentales </option>
 
                                 </select>
 
@@ -51,10 +41,7 @@
 
                             <div class="form-group">
 
-                                <input type="text"
-                                    class="form-control"
-                                    name="producto"
-                                    placeholder="Nombre del Producto">
+                                <input type="text" class="form-control" name="nombre_productos" placeholder="Nombre del Producto" required>
 
                             </div>
 
@@ -62,10 +49,10 @@
 
                         
 
-                        <button type="button" class="btn btn-outline-info float-right" id="enviar" >Agregar</button>
+                        <button type="submit" class="btn btn-outline-info float-right" id="enviar">Guardar</button>
 
                         
-                        <!-- <script>
+                        <script>
                             form = document.getElementById('id_form_modal')
                             button = document.getElementById('enviar')
 
@@ -73,10 +60,10 @@
                                 send_form(form)
                             });
                                   
-                        </script> -->
+                        </script>
 
 
-                    <!-- </form> -->
+                    </form>
 
                 </div>
 
