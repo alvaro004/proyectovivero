@@ -524,16 +524,14 @@ def nombre_productos(request):
         if request.method == "POST":
             if request.POST.get('guardar'):
                 
-                id_nombre_productos = request.POST.get('id_nombre_productos')
+                id_categoria = request.POST.get('categoria')
                 nombre_productos = request.POST.get('nombre_productos')
                 
-                save_nombre_productos = Nombre_productos.objects.last()
-                save_productos.save()
-                
-                print(id_nombre_productos,nombre_productos)
-        else:
-            form = DocumentForm(request.POST or None)
+                get_categoria = Categoria_productos.objects.get(id=id_categoria)
+                save_nombre_productos = Nombre_productos(nombre_productos=nombre_productos, categoria=get_categoria)
+                save_nombre_productos.save()
 
+            
         categoria = Categoria_productos.objects.all()
         nombre_productos = Nombre_productos.objects.all()
 

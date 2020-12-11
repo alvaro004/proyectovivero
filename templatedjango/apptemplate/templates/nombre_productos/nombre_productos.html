@@ -19,7 +19,7 @@
 
                     <h5 class="card-title">Nombre del Producto!</h5>
 
-                    <form action="productos" method="post" id="id_form_modal">
+                    <form action="nombre_productos" method="post" id="id_form_modal">
 
                         {% csrf_token %}
 
@@ -31,9 +31,13 @@
 
                                 <select class="form-control selectpicker" name="categoria" title="Selecione una categoría">
 
-                                    <option option id="" value="Tunas">Tunas</option>
-                                    <option option id="" value="Suculentas"> Suculentas</option>
-                                    <option option id="" value="Plantas Ornamentales"> Plantas Ornamentales </option>
+                                    {% for mostrar in categoria %}                    
+
+                                    <option option id="" value="{{mostrar.id}}">{{mostrar.nombre_categoria}}</option>
+                                    <!-- <option option id="" value="Suculentas"> Suculentas</option>
+                                    <option option id="" value="Plantas Ornamentales"> Plantas Ornamentales </option> -->
+
+                                    {% endfor %}
 
                                 </select>
 
@@ -79,16 +83,18 @@
                 cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th style="color: #A3A6B4;">Producto</th>
-                        <th style="color: #A3A6B4;">Categoría</th>
+                        <th style="color: #A3A6B4;">categoria</th>
+                        <th style="color: #A3A6B4;">Nombre</th>
                         <th style="color: #A3A6B4;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
 
+                    {% for mostrar in nombre %}
+
                     <tr>
-                        <td class="small" id=""></td>
-                        <td class="small"></td>
+                        <td class="small" id="">{{mostrar.categoria.nombre_categoria}}</td>
+                        <td class="small">{{mostrar.nombre_productos}}</td>
 
                         <!-- codigo para el boton de editar 
                             -------------------------------------------------- -->
@@ -115,13 +121,14 @@
 
                     </tr>
 
+                    {% endfor %}
 
 
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th style="color: #A3A6B4;">Producto</th>
-                        <th style="color: #A3A6B4;">Categoría</th>
+                        <th style="color: #A3A6B4;">categoria</th>
+                        <th style="color: #A3A6B4;">Nombre</th>
                         <th style="color: #A3A6B4;">Acciones</th>
                     </tr>
                 </tfoot>
