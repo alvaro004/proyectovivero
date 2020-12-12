@@ -26,21 +26,18 @@
                         <div class="form-group">
 
                             <div class="form-group">
-
                                 <select class="form-control selectpicker" name="categoria" title="Selecione una categoría" >
+
                                     {% for categorias in categoria  %}
-                                    <option option id="opcion{{categorias.id}}" value="{{categorias.id}}">
-                                        {{categorias.Nombre}}</option>
-
+                                    <option option id="opcion{{categorias.id}}" value="{{categorias.id}}">{{categorias.Nombre}}</option>
                                     {% endfor %}
+                                    
                                 </select>
-
                             </div>
 
                             <div class="form-group">
 
-                                <input type="text" class="form-control" name="producto"
-                                    placeholder="Nombre del Producto" required>
+                                <input type="text" class="form-control" name="producto" placeholder="Nombre del Producto" required>
 
                             </div>
 
@@ -55,8 +52,8 @@
                                 <select class="form-control" name="medida" placeholder="medida">
 
                                     <!-- <option disabled selected>Medida</option> -->
-                                    <option value="unidades">Unidades</option>
-                                    <option value="kg">kg</option>
+                                    <option value="unidades">uds.</option>
+                                    <option value="kg">kg.</option>
 
                                 </select>
 
@@ -64,7 +61,8 @@
 
                         </div>
 
-                        <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+                        <button type="submit" class="btn btn-outline-success float-right">Guardar</button>
+                        <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
 
                     </form>
 
@@ -78,32 +76,32 @@
 
             <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
                 <thead>
-                    <tr>
-                        <th style="color: #A3A6B4;">Categoría</th>
-                        <th style="color: #A3A6B4;">Insumo</th>
-                        <th style="color: #A3A6B4;">Cantidad</th>
-                        <th style="color: #A3A6B4;">Unidad de Medida</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                    <tr style="color: #A3A6B4;">
+                        <th>Categoría</th>
+                        <th>Insumo</th>
+                        <th>Cantidad</th>
+                        <th>Unidad de Medida</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     {% for insumo in insumos  %}
 
-                    <tr>
-                        <td class="small" id="select{{insumo.id}}">{{insumo.categoria}}</td>
-                        <td class="small">{{insumo.nombre}}</td>
-                        <td class="small">{{insumo.cantidad}}</td>
-                        <td class="small" id="medida{{insumo.id}}">{{insumo.unidad_de_medida}}</td>
+                    <tr class="small"> 
+                        <td  id="select{{insumo.id}}">{{insumo.categoria}}</td>
+                        <td>{{insumo.nombre}}</td>
+                        <td>{{insumo.cantidad}}</td>
+                        <td  id="medida{{insumo.id}}">{{insumo.unidad_de_medida}}</td>
 
 
                         <!-- codigo para el boton de editar 
                             -------------------------------------------------- -->
-                        <td class="small">
+                        <td>
                             {% load static %}
                             <i style="color: white;" type="button" data-toggle="modal"
                                 data-target="#editar{{insumo.id}}"><i><img
-                                        src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+                                src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
                             <!-- codigo para el boton de borrar  -->
                             <!-- -------------------------------------------- -->
@@ -134,8 +132,7 @@
 
                                             <div class="form-group">
 
-                                                <label for="nombre{{insumo.id}}"
-                                                    class="col-form-label">Categoria:</label>
+                                                <label for="nombre{{insumo.id}}" class="col-form-label">Categoria:</label>
                                                 <select name="categoria" id="nombre{{insumo.id}}" class="form-control">
 
                                                     {% for categorias in categoria  %}
@@ -148,8 +145,7 @@
                                                 </select>
 
                                                 <script language="Javascript1.5">
-                                                    var elements = document.getElementsByClassName(
-                                                        'productos{{insumo.id}}')
+                                                    var elements = document.getElementsByClassName('productos{{insumo.id}}')
                                                     // elements[1].setAttribute('selected','selected')
                                                     var select = document.getElementById('select{{insumo.id}}')
 
@@ -256,12 +252,12 @@
 
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <th style="color: #A3A6B4;">Categoría</th>
-                        <th style="color: #A3A6B4;">Insumo</th>
-                        <th style="color: #A3A6B4;">Cantidad</th>
-                        <th style="color: #A3A6B4;">Unidad de Medida</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                    <tr style="color: #A3A6B4;">
+                        <th>Categoría</th>
+                        <th>Insumo</th>
+                        <th>Cantidad</th>
+                        <th>Unidad de Medida</th>
+                        <th>Acciones</th>
                     </tr>
                 </tfoot>
             </table>

@@ -1,21 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Vivero</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
 </head>
-<body>
-    <div style="width: fit-content; height: fit-content; padding: 10px; margin: 7% auto;">
-        <fieldset>
-            <legend>Login in</legend>
-            <form action="" method="post">
-                {% csrf_token %}
-                <p><input type="text" name="user" id="user" placeholder="User"></p>
-                <p><input type="password" name="pass" id="pass" placeholder="Password"></p>
-                <p><button type="submit">Send</button></p>
-            </form>
-        </fieldset>
+
+<body style="background-color: #F0F0F7;">
+
+    <div class="container rounded">
+
+        <div class="row" style="margin-top: 100px; align-items: center; display: flex; justify-content: center;">
+
+            <div class="col-xl-4 card shadow p-3 mb-5 bg-white text-center" style="border:none; margin: 100px 50px;">
+
+                <fieldset>
+                    <div class="form-group">
+                        <h5>INICIAR SESIÓN</h5>
+                    </div>
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="user" id="user" placeholder="User">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="Password">
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success">Ingresar</button>
+
+                    </form>
+
+                </fieldset>
+            </div>
+
+        </div>
     </div>
 </body>
+
 </html>
