@@ -539,7 +539,9 @@ def nombre_productos(request):
             if request.POST.get('editar'):
 
 
-                iden = request.POST.get('iden')
+                #se estira el id del registro que se va a editar
+                iden = request.POST.get('iden') 
+                #se estira el id de la categoria se va a editar
                 id_categoria = request.POST.get('categoria')
                 nombre = request.POST.get('nombre')
                 print(id_categoria)
@@ -549,9 +551,9 @@ def nombre_productos(request):
 
                 get_categoria = Categoria_productos.objects.get(id=id_categoria)
                 editar_nombre_productos.nombre_productos = nombre
+                editar_nombre_productos.categoria = get_categoria
                 
                 editar_nombre_productos.save()
-                get_categoria.save()
 
             
         categoria = Categoria_productos.objects.all()

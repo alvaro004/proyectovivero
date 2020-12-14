@@ -93,7 +93,7 @@
                     {% for mostrar in nombre %}
 
                     <tr>
-                        <td class="small" id="">{{mostrar.categoria.nombre_categoria}}</td>
+                        <td class="small" id="select{{mostrar.id}}">{{mostrar.categoria.nombre_categoria}}</td>
                         <td class="small">{{mostrar.nombre_productos}}</td>
                         <td class="small">
                             {% load static %}
@@ -137,14 +137,14 @@
 
                                                     {% for categorias in categoria %}                    
                 
-                                                    <option class="productos{{mostrar.id}}" id="opcion{{mostrar.nombre_productos}}" value="{{categorias.id}}">{{categorias.nombre_categoria}}</option>
+                                                    <option class="productos{{mostrar.id}}" id="" value="{{categorias.id}}">{{categorias.nombre_categoria}}</option>
                                             
                 
                                                     {% endfor %}
                 
                                                 </select>
 
-                                                <script language="Javascript1.5">
+                                                <script>
                                                     var elements = document.getElementsByClassName('productos{{mostrar.id}}')
                                                     var select = document.getElementById('select{{mostrar.id}}')
 
