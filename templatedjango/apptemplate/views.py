@@ -444,14 +444,23 @@ def productos(request):
                 save_productos.save()
                 
                 print(id_producto,descripcion,cantidad,precio)
+
+            # if request.POST.get('agregar_nombre'):
+                
+                
+
         else:
             form = DocumentForm(request.POST or None)
-
         
         categoria = Categoria_productos.objects.all()
         nombre_producto = Nombre_productos.objects.all()
 
-        return render(request, 'productos/productos.html',{'categoria':categoria, 'nombre':nombre_producto, 'form':form})
+        try:
+            return render(request, 'productos/productos.html',{'categoria':categoria, 'nombre':nombre_producto, 'form':form})
+        except:
+            form = DocumentForm()
+            return render(request, 'productos/productos.html',{'categoria':categoria, 'nombre':nombre_producto, 'form':form})
+
     else:
         return redirect('/')
 
@@ -551,8 +560,7 @@ def nombre_productos(request):
 
                 get_categoria = Categoria_productos.objects.get(id=id_categoria)
                 editar_nombre_productos.nombre_productos = nombre
-                editar_nombre_productos.categoria = get_categoria
-                
+                editar_nombre_productos.categoria = get_categoria                
                 editar_nombre_productos.save()
 
             

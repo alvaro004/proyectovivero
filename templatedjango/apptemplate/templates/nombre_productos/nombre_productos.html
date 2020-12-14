@@ -137,7 +137,11 @@
 
                                                     {% for categorias in categoria %}                    
                 
+<<<<<<< HEAD
                                                     <option class="productos{{mostrar.id}}" id="" value="{{categorias.id}}">{{categorias.nombre_categoria}}</option>
+=======
+                                                    <option class="productos{{mostrar.id}}" value="{{categorias.id}}">{{categorias.nombre_categoria}}</option>
+>>>>>>> 8e78365 (agregando ediciones en la vista de productos y nombre productos terminado)
                                             
                 
                                                     {% endfor %}
@@ -157,11 +161,10 @@
 
                                                             }
 
-
                                                         }
                                                     }
 
-                                                    selected(elements, select)
+                                                    selected(elements, select);
 
 
                                                     // console.log(select.innerHTML)

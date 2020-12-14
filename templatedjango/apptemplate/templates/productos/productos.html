@@ -160,7 +160,7 @@
                                                                                     send_form(form)
                                                                                 });
                                                                                       
-                                                                            </script> -->
+                                                                        </script> -->
 
 
                                                                         <!-- </form> -->
@@ -178,7 +178,7 @@
 
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button id="enviar" type="button" class="btn btn-outline-info float-right" data-dismiss="modal">Guardar</button>
+                                                    <button id="enviar_form" type="button" class="btn btn-outline-info float-right" data-dismiss="modal">Guardar</button>
                                                 </div>
 
                                                 
@@ -225,7 +225,6 @@
 
                             </div>
 
-
                         </div>
 
                         <!-- <input type="submit" class="btn btn-outline-info" value="Guardar"> -->
@@ -233,18 +232,43 @@
                         <button id="enviar_principal" class="btn btn-outline-info">Guardar</button>
 
 
-                        <script>
-                            form = document.getElementById('id_form')
-                            button = document.getElementById('enviar_principal')
-
-                            button.addEventListener("click", function () {
-                                alert(' Desea guardar este producto?. ')
-                                send_form(form)
-                            });
-                        </script>
 
                     </form>
 
+                    <form action="productos" method="post" id="segundo_form">
+                        {% csrf_token %}
+                        <input type="hidden" value="valor" name="id_categoria">
+                        <input type="hidden" value="valor" name="nombre_producto">
+                        <input type="hidden" value="agregar_nombre" name="agregar_nombre">
+                    </form>
+
+                        <script>
+
+                            form = document.getElementById('id_form');
+                            button = document.getElementById('enviar_principal');
+                            boton_segundo_form = document.getElementById('enviar_form')
+                            segundo_form = document.getElementById('segundo_form')
+
+                            button.addEventListener("click", function () {
+                                confirm(' Desea guardar este producto?. ');
+                                if (confirm){
+                                    send_form(form);
+                                }
+                            });
+
+                            boton_segundo_form.addEventListener("click", function () {
+                                confirm(' Desea guardar este nomre de producto?. ');
+                                if (confirm){
+                                    send_form(segundo_form);
+                                }
+                            });
+
+
+
+
+
+
+                        </script>
                 </div>
 
             </div>
