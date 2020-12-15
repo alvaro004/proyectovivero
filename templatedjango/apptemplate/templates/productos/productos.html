@@ -75,12 +75,12 @@
                                         categoria.addEventListener("change", function () {
                                             filtro(categoria, productos);
                                             cambiar_enviar(select_productos, enviar_producto);
-                                            console.log(enviar_producto.value)
+                                            console.log(enviar_producto.value);
                                         });
 
                                         select_productos.addEventListener("change", function () {
                                             cambiar_enviar(select_productos, enviar_producto);
-                                            console.log(enviar_producto.value)
+                                            console.log(enviar_producto.value);
                                         });
                                     </script>
 
@@ -129,11 +129,12 @@
 
                                                                             <div class="form-group">
 
-                                                                                <select class="form-control selectpicker" name="categoria" title="Selecione una categoría">
+                                                                                <select class="form-control selectpicker" id="id_categoria_cambiar" name="categoria" title="Selecione una categoría">
 
-                                                                                    <option option id="" value="Tunas"> Tunas</option>
-                                                                                    <option option id="" value="Suculentas"> Suculentas</option>
-                                                                                    <option option id="" value="Plantas Ornamentales"> Plantas Ornamentales </option>
+                                                                                    {% for mostrar_modal in categoria  %}
+                                                                                        <option value="{{mostrar_modal.id}}">{{mostrar_modal.nombre_categoria}}</option>
+
+                                                                                    {% endfor %}
 
                                                                                 </select>
 
@@ -141,29 +142,11 @@
 
                                                                             <div class="form-group"> 
 
-                                                                                <input type="text" class="form-control" name="producto" placeholder="Nombre del Producto">
+                                                                                <input type="text" class="form-control" name="producto" placeholder="Nombre del Producto" id="nombre_producto_cambiar">
 
                                                                             </div>
 
                                                                         </div>
-
-
-
-                                                                        
-
-
-                                                                        <!-- <script>
-                                                                                form = document.getElementById('id_form_modal')
-                                                                                button = document.getElementById('enviar')
-                                        
-                                                                                categoria.addEventListener("click", function () {
-                                                                                    send_form(form)
-                                                                                });
-                                                                                      
-                                                                        </script> -->
-
-
-                                                                        <!-- </form> -->
 
                                                                     </div>
 
@@ -237,8 +220,8 @@
 
                     <form action="productos" method="post" id="segundo_form">
                         {% csrf_token %}
-                        <input type="hidden" value="valor" name="id_categoria">
-                        <input type="hidden" value="valor" name="nombre_producto">
+                        <input type="hidden" value="valor" name="id_categoria" id="id_categoria">
+                        <input type="hidden" value="valor" name="nombre_producto" id="nombre_producto">
                         <input type="hidden" value="agregar_nombre" name="agregar_nombre">
                     </form>
 
@@ -246,8 +229,12 @@
 
                             form = document.getElementById('id_form');
                             button = document.getElementById('enviar_principal');
-                            boton_segundo_form = document.getElementById('enviar_form')
-                            segundo_form = document.getElementById('segundo_form')
+                            boton_segundo_form = document.getElementById('enviar_form');
+                            segundo_form = document.getElementById('segundo_form');
+                            id_categoria = document.getElementById('id_categoria');
+                            nombre_producto = document.getElementById('nombre_producto');
+                            id_categoria_cambiar = document.getElementById('id_categoria_cambiar');
+                            nombre_producto_cambiar = document.getElementById('nombre_producto_cambiar');
 
                             button.addEventListener("click", function () {
                                 confirm(' Desea guardar este producto?. ');
@@ -259,14 +246,15 @@
                             boton_segundo_form.addEventListener("click", function () {
                                 confirm(' Desea guardar este nomre de producto?. ');
                                 if (confirm){
+
+                                    id_categoria.value = id_categoria_cambiar.value;
+                                    nombre_producto.value = nombre_producto_cambiar.value;
+                                    // console.log(id_categoria.value);
+                                    // console.log(nombre_producto.value);
                                     send_form(segundo_form);
+
                                 }
                             });
-
-
-
-
-
 
                         </script>
                 </div>

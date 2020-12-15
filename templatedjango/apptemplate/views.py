@@ -445,7 +445,15 @@ def productos(request):
                 
                 print(id_producto,descripcion,cantidad,precio)
 
-            # if request.POST.get('agregar_nombre'):
+            if request.POST.get('agregar_nombre'):
+                id_categoria = request.POST.get('id_categoria')
+                nombre_producto = request.POST.get('nombre_producto')
+
+                get_categoria = Categoria_productos.objects.get(id=id_categoria) 
+                save_productos = Nombre_productos(nombre_productos=nombre_producto,categoria=get_categoria)
+                save_productos.save()
+                print('entro en agregar')
+
                 
                 
 
