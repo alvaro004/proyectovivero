@@ -387,7 +387,8 @@ def produccion(request):
 
         Productos_para_produccion = Nombre_productos.objects.all()
         categoria = Categoria_productos.objects.all()
-        return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria,'productos':productos_objetos})
+        insumos = Insumos.objects.all()
+        return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria,'productos':productos_objetos,'insumos':insumos})
     else:
         return redirect('/')
 

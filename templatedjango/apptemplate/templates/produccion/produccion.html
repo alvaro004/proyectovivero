@@ -227,9 +227,15 @@
 
                                                         <div class="form-group">
                                                             <label for="recipient-name"
+<<<<<<< HEAD
                                                                 class="col-form-label">Precio:</label>
                                                             <input name="precio" value="{{compra.precio}}" type="text"
                                                                 class="form-control" id="recipient-name">
+=======
+                                                            class="col-form-label">Cantidad:</label>
+                                                            <input name="cantidad" value="{{producto.cantidad}}" type="text"
+                                                            class="form-control" id="recipient-name">
+>>>>>>> 1ac1df9 (editando produccion y las vistas)
                                                         </div>
 
                                                         <input type="hidden" id="iden" name="iden" value="nothing">
@@ -320,19 +326,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Plantas Madre</td>
-                            <td>5</td>
-                            <td>unidades</td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="number" class="form-control" name="cantidad_detalle"
+                        
+                        {% for mostrar_insumos in insumos %}
+                            <tr>
+                              
+                            
+                                <td>{{mostrar_insumos.nombre}}</td>
+                                <td>{{mostrar_insumos.cantidad}}</td>
+                                <td>{{mostrar_insumos.unidad_de_medida}}</td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="cantidad_detalle"
                                         placeholder="Cantidad Produccion">
-                                </div>
-                            </td>
-                            <td>unidades</td>
+                                        <input type="hidden" name="id_insumo" value="{{mostrar_insumos.id}}">
+                                    </div>
+                                </td>
+                                <td>{{mostrar_insumos.unidad_de_medida}}</td>
 
-                        </tr>
+                            </tr>
+                            {% endfor %}
+
 
 
 
