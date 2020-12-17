@@ -79,31 +79,31 @@
                                 filtro(categoria, productos);
                                 cambiar_enviar(select_productos, enviar_producto);
                             });
-                            
+
                             select_productos.addEventListener("change", function () {
                                 cambiar_enviar(select_productos, enviar_producto);
                             });
-                            
-                              
+
+
                             // window.onload = function () {
-                                // };
+                            // };
                         </script>
                     </form>
                 </div>
-                
+
             </div>
-            
+
         </div>
-        
+
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 item productos">
-            
+
             <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
-                
-                
+
+
                 <div class="table-responsive">
-                    
+
                     <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
-                        
+
                         <thead style="background-color: #F5F6FA;">
                             <tr>
                                 <th style="color: #A3A6B4;" scope="col">Categoria</th>
@@ -112,32 +112,33 @@
                                 <th style="color: #A3A6B4;" scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             {% for producto in productos  %}
-                            
+
                             <tr class="tabla_compras">
                                 <td class="small" id="producto{{producto.id_produccion}}">{{producto.categoria}}</td>
-                                <td class="small" id="nombre_producto{{producto.id_produccion}}" >{{producto.nombre}}</td>
+                                <td class="small" id="nombre_producto{{producto.id_produccion}}">{{producto.nombre}}
+                                </td>
                                 <td class="small">{{producto.cantidad}}</td>
-                                
-                                
-                                
+
+
+
                                 <!-- codigo para el boton de editar 
                                     -------------------------------------------------- -->
-                                    <td class="small">
-                                        {% load static %}
-                                        <i style="color: white;" type="button" data-toggle="modal"
+                                <td class="small">
+                                    {% load static %}
+                                    <i style="color: white;" type="button" data-toggle="modal"
                                         data-target="#editar{{producto.id_produccion}}"><i><img
-                                            src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
-                                            
-                                            <div class="modal fade" id="editar{{producto.id_produccion}}" tabindex="-1"
-                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
+                                                src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+
+                                    <div class="modal fade" id="editar{{producto.id_produccion}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -146,86 +147,94 @@
                                                     <form method="POST" action="/produccion">
                                                         {% csrf_token %}
                                                         <div class="form-group">
-                                                            
+
                                                             <label for="nombre{{insumo.id}}"
-                                                            class="col-form-label">Categoria:</label>
+                                                                class="col-form-label">Categoria:</label>
                                                             <select name="producto"
-                                                            id="prueba{{producto.id_produccion}}"
-                                                            class="form-control">
+                                                                id="prueba{{producto.id_produccion}}"
+                                                                class="form-control">
 
-                                                            {% for categorias in categoria  %}
-                                                            
-                                                            <option class="categorias{{producto.id_produccion}}"
-                                                            value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
-                                                            
-                                                            {% endfor %}
-                                                            
-                                                            
-                                                        </select>
-                                                        
-                                                    </div>
-                                                    <div class="form-group">
-                                                        
-                                                        <label for="nombre{{insumo.id}}"
-                                                        class="col-form-label">Producto:</label>
-                                                        <select name="producto"
-                                                        id="select_default{{producto.id_produccion}}"
-                                                        class="form-control">
+                                                                {% for categorias in categoria  %}
 
-                                                        <!-- <option id="desactivar" disabled='disabled'
+                                                                <option class="categorias{{producto.id_produccion}}"
+                                                                    value="{{categorias.nombre_categoria}}">
+                                                                    {{categorias.nombre_categoria}}</option>
+
+                                                                {% endfor %}
+
+
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="form-group">
+
+                                                            <label for="nombre{{insumo.id}}"
+                                                                class="col-form-label">Producto:</label>
+                                                            <select name="producto"
+                                                                id="select_default{{producto.id_produccion}}"
+                                                                class="form-control">
+
+                                                                <!-- <option id="desactivar" disabled='disabled'
                                                                     selected='selected'> Seleccionar Productos
                                                                 </option> -->
-                                                                
+
                                                                 {% for nombre in nombre_productos  %}
                                                                 <option
-                                                                class="nombre_productos{{producto.id_produccion}}"
-                                                                value="{{nombre.id}}-{{nombre.categoria}}"
-                                                                >{{nombre.nombre_productos}}</option>
-                                                                
+                                                                    class="nombre_productos{{producto.id_produccion}}"
+                                                                    value="{{nombre.id}}-{{nombre.categoria}}">
+                                                                    {{nombre.nombre_productos}}</option>
+
                                                                 {% endfor %}
-                                                                
+
                                                             </select>
                                                         </div>
                                                         <script>
-                                                            
-                                                            var opciones_categorias = document.getElementsByClassName("categorias{{producto.id_produccion}}");
-                                                            var tabla_valor_producto = document.getElementById("producto{{producto.id_produccion}}");
-                                                            var tabla_valor_nombre = document.getElementById("nombre_producto{{producto.id_produccion}}");
-                                                            var select_nombre_productos = document.getElementsByClassName("nombre_productos{{producto.id_produccion}}");
-                                                            var select_categorias = document.getElementById("prueba{{producto.id_produccion}}");
+                                                            var opciones_categorias = document.getElementsByClassName(
+                                                                "categorias{{producto.id_produccion}}");
+                                                            var tabla_valor_producto = document.getElementById(
+                                                                "producto{{producto.id_produccion}}");
+                                                            var tabla_valor_nombre = document.getElementById(
+                                                                "nombre_producto{{producto.id_produccion}}");
+                                                            var select_nombre_productos = document
+                                                                .getElementsByClassName(
+                                                                    "nombre_productos{{producto.id_produccion}}");
+                                                            var select_categorias = document.getElementById(
+                                                                "prueba{{producto.id_produccion}}");
                                                             var input_editar = document.getElementById('iden')
-                                                            var select_enviar = document.getElementById('select_default{{producto.id_produccion}}')
-                                                            
-                                                            
-                                                            filtro_editar(opciones_categorias,tabla_valor_producto); 
-                                                            
-                                                            filtro_editar_con_select(select_categorias,select_nombre_productos);
-                                                            
-                                                            filtrar_select_nombre_modal(tabla_valor_nombre,select_nombre_productos);
-                                                            
-                                                            
-                                                            select_categorias.addEventListener("change", function () {    
-                                                                filtro(select_categorias,select_nombre_productos);
+                                                            var select_enviar = document.getElementById(
+                                                                'select_default{{producto.id_produccion}}')
+
+
+                                                            filtro_editar(opciones_categorias, tabla_valor_producto);
+
+                                                            filtro_editar_con_select(select_categorias,
+                                                                select_nombre_productos);
+
+                                                            filtrar_select_nombre_modal(tabla_valor_nombre,
+                                                                select_nombre_productos);
+
+
+                                                            select_categorias.addEventListener("change", function () {
+                                                                filtro(select_categorias,
+                                                                    select_nombre_productos);
                                                             });
-                                                            
+
                                                             // cambiar_enviar(input_editar,select_enviar)
 
-                                                            
+
                                                             console.log(input_editar)
-                                                            
-                                                            </script>
+                                                        </script>
 
                                                         <div class="form-group">
                                                             <label for="recipient-name"
-                                                            class="col-form-label">Precio:</label>
+                                                                class="col-form-label">Precio:</label>
                                                             <input name="precio" value="{{compra.precio}}" type="text"
-                                                            class="form-control" id="recipient-name">
+                                                                class="form-control" id="recipient-name">
                                                         </div>
-                                                        
+
                                                         <input type="hidden" id="iden" name="iden" value="nothing">
-                                                        <input type="hidden" name="editar"
-                                                        value="editar">
-                                                        
+                                                        <input type="hidden" name="editar" value="editar">
+
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-danger"
@@ -296,7 +305,7 @@
         </div>
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos"
-            style="border:none; display: none;">
+            style="border:none; display: none; margin: 0 auto; width: fit-content;">
 
             <div class="table-responsive">
                 <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0"
@@ -349,7 +358,7 @@
 
                 <div class="form-group">
                     <label for="fecha_produccion">Fecha de Inicio:</label>
-                    <input type="date" class="form-control" id="fecha">
+                    <input type="date" class="form-control" id="fecha_parcial">
                     <!-- style de codigo para establecer el tamanho del input fecha -->
                     <style>
                         @media only screen and (min-width: 600px) {
@@ -364,11 +373,46 @@
             <div class="botones">
                 <button type="submit" class="btn btn-outline-success float-right">Registrar</button>
             </div>
+            
+            <input type="hidden" id="fecha" name="fecha">
+
+            <script>
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = String(today.getFullYear());
+
+                date = String(yyyy + '-' + mm + '-' + dd);
+                // document.write(today);
+
+
+                fecha_parcial = document.getElementById('fecha_parcial');
+
+                // fecha_utc = date.toUTCString()
+                fecha_parcial.value = date;
+                fecha_parcial.defaulValue = date;
+                fecha_parcial.innerHTML = date;
+
+
+                console.log(date)
+
+
+                // en esta funcion se cambia el valor de la fecha al input oculto ara poer enviarlo al servidor
+                function cambio() {
+                    fecha = document.getElementById('fecha')
+                    fecha_parcial = document.getElementById('fecha_parcial');
+                    fecha.value = fecha_parcial.value;
+
+                }
+            </script>
+
 
         </div>
 
     </div>
 </div>
+
+
 
 
 {% endblock produccion%}

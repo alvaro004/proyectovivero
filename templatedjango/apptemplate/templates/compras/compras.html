@@ -214,6 +214,14 @@
         </div>
         <div class="form-group">
           <input type="date" style="width: 50%;" class="form-control" id="fecha_parcial">
+          <!-- style de codigo para establecer el tamanho del input fecha -->
+                    <style>
+                        @media only screen and (min-width: 600px) {
+                            #fecha {
+                                width: 25%;
+                            }
+                        }
+                    </style>
         </div>
 
       </div>
@@ -277,6 +285,7 @@
 
             }
           </script>
+          
           <button type="button" class="btn btn-outline-success float-right" data-toggle="modal" data-target="#confirmar"
             onclick="cambio()">Registrar</button>
 
