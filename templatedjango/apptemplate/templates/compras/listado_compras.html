@@ -37,7 +37,7 @@
                             <div class="modal fade" id="ver_mas{{compra.id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
-                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLongTitle">Detalles de la Compra
@@ -55,22 +55,13 @@
                                                     <label for="fecha_produccion">Fecha de la Compra:</label>
                                                     <input type="date" readonly class="form-control" id="fecha"
                                                         placeholder="Fecha de Inicio" value="{{compra.fecha_compra}}">
-                                                    <!-- style de codigo para establecer el tamanho del input fecha -->
-                                                    <style>
-                                                        @media only screen and (min-width: 600px) {
-                                                            #fecha {
-                                                                width: 25%;
-                                                            }
-                                                        }
-                                                    </style>
                                                 </div>
 
-                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded"
-                                                    style="border:none; ">
+                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded"
+                                                    style="border:none;">
 
                                                     <div class="table-responsive">
-                                                        <table id="example"
-                                                            class="tablita table  table-hover table-bordered  display nowrap"
+                                                        <table id="example" class="tablita table  table-hover table-bordered  display nowrap"
                                                             cellspacing="0" width="100%">
                                                             <thead>
                                                                 <tr style="color: #A3A6B4;">
@@ -114,14 +105,6 @@
                                                 <div class="form-group">
                                                     <label for="total_compra">Total de la Compra:</label>
                                                     <input type="number" readonly class="form-control" id="total_compra" value="{{compra.total_compra}}">
-                                                    <!-- style de codigo para establecer el tamanho del input fecha -->
-                                                    <style>
-                                                        @media only screen and (min-width: 600px) {
-                                                            #total_compra{
-                                                                width: 25%;
-                                                            }
-                                                        }
-                                                    </style>
                                                 </div>
 
                                             </div>
