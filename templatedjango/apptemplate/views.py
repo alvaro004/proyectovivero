@@ -403,7 +403,8 @@ def listado_produccion(request):
 def inicio(request):
 
     if request.user.is_authenticated:
-        return render(request, "inicio/inicio.html")
+        view = 'inicio'
+        return render(request, "inicio/inicio.html",{'name':view})
     else:
         return redirect('/')
 
