@@ -28,8 +28,8 @@
                         <td>En Proceso</td>
                         <td>
                             {% load static %}
-                            <i style="color: white; padding:0 10px ;" type="button"; data-toggle="modal";
-                                data-target="#exampleModalCenter";>
+                            <i style="color: white; padding:0 10px ;" type="button" ; data-toggle="modal" ;
+                                data-target="#exampleModalCenter" ;>
                                 {% load static %}
                                 <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
                             </i>
@@ -37,7 +37,7 @@
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
-                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Produccion</h5>
@@ -54,14 +54,6 @@
                                                     <label for="fecha_produccion">Fecha de Inicio:</label>
                                                     <input type="date" readonly class="form-control" id="fecha"
                                                         placeholder="Fecha de Inicio">
-                                                    <!-- style de codigo para establecer el tamanho del input fecha -->
-                                                    <style>
-                                                        @media only screen and (min-width: 600px) {
-                                                            #fecha {
-                                                                width: 25%;
-                                                            }
-                                                        }
-                                                    </style>
                                                 </div>
 
 
@@ -71,11 +63,13 @@
                                                     data-li="insumos">Insumos</button>
 
 
-                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item productos"
+                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item productos"
                                                     style="border:none; margin-top: 20px;">
 
                                                     <div class="table-responsive">
-                                                        <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
+                                                        <table id="example"
+                                                            class="tablita table  table-hover table-bordered  display nowrap"
+                                                            cellspacing="0" width="100%">
                                                             <thead>
                                                                 <tr style="color: #A3A6B4;">
                                                                     <th>Categoría</th>
@@ -116,7 +110,7 @@
 
                                                 </div>
 
-                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos"
+                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item insumos"
                                                     style="border:none; margin-top: 20px; display: none;">
 
                                                     <div class="table-responsive">
@@ -156,22 +150,46 @@
 
                                                 <div class="col-sm-12">
 
-                                                    <div class="totales">
-
+                                                    <div class="Fecha">
                                                         <div class="form-group">
                                                             <label for="fecha_produccion">Fecha de Acabado:</label>
-                                                            <input type="date" class="form-control" id="fecha"
+                                                            <input type="date" class="form-control" id="fecha_parcial"
                                                                 placeholder="Fecha de Inicio">
-                                                            <!-- style de codigo para establecer el tamanho del input fecha -->
-                                                            <style>
-                                                                @media only screen and (min-width: 600px) {
-                                                                    #fecha {
-                                                                        width: 25%;
-                                                                    }
-                                                                }
-                                                            </style>
                                                         </div>
                                                     </div>
+
+                                                    <script>
+                                                        // el codigo de abajo es para poder poner la fecha por defecto en el input de tipo date
+
+                                                        var today = new Date();
+                                                        var dd = String(today.getDate()).padStart(2, '0');
+                                                        var mm = String(today.getMonth() + 1).padStart(2,
+                                                        '0'); //January is 0!
+                                                        var yyyy = String(today.getFullYear());
+
+                                                        date = String(yyyy + '-' + mm + '-' + dd);
+                                                        // document.write(today);
+
+
+                                                        fecha_parcial = document.getElementById('fecha_parcial');
+
+                                                        // fecha_utc = date.toUTCString()
+                                                        fecha_parcial.value = date;
+                                                        fecha_parcial.defaulValue = date;
+                                                        fecha_parcial.innerHTML = date;
+
+
+                                                        console.log(date)
+
+
+                                                        // en esta funcion se cambia el vlor de la fecha al input oculto ara poer enviarlo al servidor
+                                                        function cambio() {
+                                                            fecha = document.getElementById('fecha')
+                                                            fecha_parcial = document.getElementById('fecha_parcial');
+                                                            fecha.value = fecha_parcial.value;
+
+                                                        }
+                                                    </script>
 
 
 
