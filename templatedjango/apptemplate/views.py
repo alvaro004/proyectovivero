@@ -403,7 +403,7 @@ def listado_produccion(request):
 def inicio(request):
 
     if request.user.is_authenticated:
-        return render(request, 'templates/inicio/inicio.html')
+        return render(request,'inicio/inicio.html')
     else:
         return redirect('/')
 
