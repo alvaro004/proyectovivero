@@ -515,7 +515,7 @@ def ventas(request):
 def login(request):
     if request.user.is_authenticated:
     # Do something for authenticated users.
-        return redirect('/inicio')
+        return redirect('inicio/')
     else:
 
         if request.method == 'POST':
