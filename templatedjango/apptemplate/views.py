@@ -404,7 +404,7 @@ def inicio(request):
 
     if request.user.is_authenticated:
         view = 'inicio'
-        return render(request, "inicio/inicio.html",{'name':view})
+        return render(request, 'inicio/inicio.html',{'name':view})
     else:
         return redirect('/')
 
