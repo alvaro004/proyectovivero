@@ -525,7 +525,7 @@ def login(request):
             if user is not None:
                 dj_login(request, user)
                 # A backend authenticated the credentials
-                return redirect('/inicio')
+                return redirect('inicio/')
 
         return render(request,'login/login.html')
 
