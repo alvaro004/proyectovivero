@@ -169,16 +169,14 @@
                                                             <label for="nombre{{insumo.id}}"
                                                                 class="col-form-label">Producto:</label>
                                                             <select name="producto"
-                                                                id="select_default{{producto.id_produccion}}"
-                                                                class="form-control">
+                                                                id="select_default{{producto.id_produccion}}" class="form-control">
 
                                                                 <!-- <option id="desactivar" disabled='disabled'
                                                                     selected='selected'> Seleccionar Productos
                                                                 </option> -->
 
                                                                 {% for nombre in nombre_productos  %}
-                                                                <option
-                                                                    class="nombre_productos{{producto.id_produccion}}" value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+                                                                <option class="nombre_productos{{producto.id_produccion}}" value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
 
                                                                 {% endfor %}
 
@@ -202,8 +200,7 @@
 
 
                                                             select_categorias.addEventListener("change", function () {
-                                                                filtro(select_categorias,
-                                                                    select_nombre_productos);
+                                                                filtro(select_categorias,select_nombre_productos);
                                                             });
 
                                                             // cambiar_enviar(input_editar,select_enviar)
@@ -218,7 +215,7 @@
                                                             <input name="cantidad" value="{{producto.cantidad}}" type="text" class="form-control" id="recipient-name">
                                                         </div>
 
-                                                        <input type="hidden" id="iden" name="iden" value="nothing">
+                                                        <input type="hidden" id="iden" name="iden" value="">
                                                         <input type="hidden" name="editar" value="editar">
 
                                                 </div>

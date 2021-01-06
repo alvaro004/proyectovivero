@@ -54,7 +54,7 @@ class Insumos(models.Model):
 class Detalles_insumos(models.Model):
     
     Cantidad = models.CharField(max_length=400 ,blank=True, null=True)
-    id_insumos = models.CharField(max_length=400 ,blank=True, null=True)
+    id_insumos = models.ForeignKey(Insumos, on_delete=models.CASCADE,blank=True, null=True)
     
     
     def __str__(self):
@@ -63,28 +63,6 @@ class Detalles_insumos(models.Model):
 # fin de tablas de isnumos
 # ------------------------------------------------------
 
-# en esta tabla se guardan los datos al presionar el boton registrar en la vista produccion 
-class Produccion(models.Model):
-    
-    id_detalle_insumo = models.CharField(max_length=400 ,blank=True, null=True) # conectado a detalles insumos
-    fecha_produccion = models.CharField(max_length=400 ,blank=True, null=True)
-    estado_produccion = models.CharField(max_length=400 ,blank=True, null=True)
-    fecha_acabado = models.CharField(max_length=400 ,blank=True, null=True)
-    
-    
-    def __str__(self):
-        return "detalles {}".format(self.estado)
-
-class Detalles_Produccion(models.Model):
-    id_produccion = models.CharField(max_length=400,blank=True, null=True) # conectado a produccion
-    id_producto = models.CharField(max_length=400 ,blank=True, null=True) # conectado a producto
-    cantidad_detalle = models.CharField(max_length=400 ,blank=True, null=True)
-    cantidad_real_detalle = models.CharField(max_length=400 ,blank=True, null=True)
-
-    def __str__(self):
-        return "detalles {}".format(self.id_producto)
-# ----------------------------------------------------
-# fin tablas producccion
 class Categoria_productos(models.Model):
     
     nombre_categoria = models.CharField(max_length=400 ,blank=True, null=True)
@@ -114,6 +92,28 @@ class Productos(models.Model):
         return "detalles {}".format(self.precio)
 
 
+# en esta tabla se guardan los datos al presionar el boton registrar en la vista produccion 
+class Produccion(models.Model):
+    
+    id_detalle_insumo = models.CharField(max_length=400 ,blank=True, null=True) # conectado a detalles insumos
+    fecha_produccion = models.CharField(max_length=400 ,blank=True, null=True)
+    estado_produccion = models.CharField(max_length=400 ,blank=True, null=True)
+    fecha_acabado = models.CharField(max_length=400 ,blank=True, null=True)
+    
+    
+    def __str__(self):
+        return "detalles {}".format(self.estado)
+
+class Detalles_Produccion(models.Model):
+    id_produccion = models.CharField(max_length=400,blank=True, null=True) # conectado a produccion
+    id_producto = models.CharField(max_length=400 ,blank=True, null=True) # conectado a producto
+    cantidad_detalle = models.CharField(max_length=400 ,blank=True, null=True)
+    cantidad_real_detalle = models.CharField(max_length=400 ,blank=True, null=True)
+
+    def __str__(self):
+        return "detalles {}".format(self.id_producto)
+# ----------------------------------------------------
+# fin tablas producccion
 
 
 class Detalles_pedidos(models.Model):

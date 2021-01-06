@@ -378,8 +378,28 @@ def produccion(request):
                 borrar_produccion.delete()
 
             # if request.POST.get('editar'):
-                
 
+
+            #     detalles_Produccion = Detalles_Produccion.objects.all()
+            #     cant = int(len(detalles_Produccion))
+            #     productos_objeto = []
+
+            #     for i in range(cant):
+            #         try:
+            #             iden = int(detalles_Produccion[i].id_producto)
+            #             productos = Nombre_productos.objects.get(id=iden)
+            #             productos_objeto += [
+            #             {
+            #                 'id_produccion':detalles_Produccion[i].id,
+            #                 'nombre':productos.nombre_productos,
+            #                 'categoria':productos.categoria,
+            #                 'cantidad':detalles_Produccion[i].cantidad_detalle,
+
+            #                 },
+            #             ]
+            #         except:
+            #             productos_objeto = []
+                
 
 
         if not productos_objetos:
