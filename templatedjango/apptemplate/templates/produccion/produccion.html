@@ -118,8 +118,7 @@
 
                             <tr class="tabla_compras">
                                 <td class="small" id="producto{{producto.id_produccion}}">{{producto.categoria}}</td>
-                                <td class="small" id="nombre_producto{{producto.id_produccion}}">{{producto.nombre}}
-                                </td>
+                                <td class="small" id="nombre_producto{{producto.id_produccion}}">{{producto.nombre}}</td>
                                 <td class="small">{{producto.cantidad}}</td>
 
 
@@ -157,8 +156,7 @@
                                                                 {% for categorias in categoria  %}
 
                                                                 <option class="categorias{{producto.id_produccion}}"
-                                                                    value="{{categorias.nombre_categoria}}">
-                                                                    {{categorias.nombre_categoria}}</option>
+                                                                    value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
 
                                                                 {% endfor %}
 
@@ -180,38 +178,27 @@
 
                                                                 {% for nombre in nombre_productos  %}
                                                                 <option
-                                                                    class="nombre_productos{{producto.id_produccion}}"
-                                                                    value="{{nombre.id}}-{{nombre.categoria}}">
-                                                                    {{nombre.nombre_productos}}</option>
+                                                                    class="nombre_productos{{producto.id_produccion}}" value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
 
                                                                 {% endfor %}
 
                                                             </select>
                                                         </div>
                                                         <script>
-                                                            var opciones_categorias = document.getElementsByClassName(
-                                                                "categorias{{producto.id_produccion}}");
-                                                            var tabla_valor_producto = document.getElementById(
-                                                                "producto{{producto.id_produccion}}");
-                                                            var tabla_valor_nombre = document.getElementById(
-                                                                "nombre_producto{{producto.id_produccion}}");
-                                                            var select_nombre_productos = document
-                                                                .getElementsByClassName(
-                                                                    "nombre_productos{{producto.id_produccion}}");
-                                                            var select_categorias = document.getElementById(
-                                                                "prueba{{producto.id_produccion}}");
-                                                            var input_editar = document.getElementById('iden')
-                                                            var select_enviar = document.getElementById(
-                                                                'select_default{{producto.id_produccion}}')
+                                                            var opciones_categorias = document.getElementsByClassName("categorias{{producto.id_produccion}}");
+                                                            var tabla_valor_producto = document.getElementById("producto{{producto.id_produccion}}");
+                                                            var tabla_valor_nombre = document.getElementById("nombre_producto{{producto.id_produccion}}");
+                                                            var select_nombre_productos = document.getElementsByClassName("nombre_productos{{producto.id_produccion}}");
+                                                            var select_categorias = document.getElementById("prueba{{producto.id_produccion}}");
+                                                            var input_editar = document.getElementById('iden');
+                                                            var select_enviar = document.getElementById('select_default{{producto.id_produccion}}');
 
 
                                                             filtro_editar(opciones_categorias, tabla_valor_producto);
 
-                                                            filtro_editar_con_select(select_categorias,
-                                                                select_nombre_productos);
+                                                            filtro_editar_con_select(select_categorias,select_nombre_productos);
 
-                                                            filtrar_select_nombre_modal(tabla_valor_nombre,
-                                                                select_nombre_productos);
+                                                            filtrar_select_nombre_modal(tabla_valor_nombre,select_nombre_productos);
 
 
                                                             select_categorias.addEventListener("change", function () {
@@ -228,8 +215,7 @@
                                                         <div class="form-group">
                                                             <label for="recipient-name"
                                                             class="col-form-label">Cantidad:</label>
-                                                            <input name="cantidad" value="{{producto.cantidad}}" type="text"
-                                                            class="form-control" id="recipient-name">
+                                                            <input name="cantidad" value="{{producto.cantidad}}" type="text" class="form-control" id="recipient-name">
                                                         </div>
 
                                                         <input type="hidden" id="iden" name="iden" value="nothing">
