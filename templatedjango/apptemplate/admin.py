@@ -12,5 +12,6 @@ admin.site.register(Nombre_productos)
 admin.site.register(Detalles_Produccion)
 admin.site.register(Produccion)
 admin.site.register(Productos)
+admin.site.register(Detalles_insumos)
 
 
