@@ -55,6 +55,7 @@ for (var i = 0; i < li_elements.length; i++) {
 
     // aca se mide la longitud de los elementos que contienen la clase productos para luego mostrarlos cuando de realiza click en el boton de productos
     cantidad = document.getElementsByClassName('productos')
+    cantidad2 = document.getElementsByClassName('insumos')
     // aca se detecta que clase se clickeo para mostrar
     console.log(cantidad.length)
 
@@ -64,7 +65,10 @@ for (var i = 0; i < li_elements.length; i++) {
         document.getElementsByClassName('productos')[i].style.display = "block";
       }
     } else if (li_value == "insumos") {
-      document.querySelector("." + li_value).style.display = "block";
+      for (var i = 0; i < cantidad2.length; i++) {
+        document.getElementsByClassName('insumos')[i].style.display = "block";
+      }
+      // document.querySelector("." + li_value).style.display = "block";
     } else {
       console.log("");
     }

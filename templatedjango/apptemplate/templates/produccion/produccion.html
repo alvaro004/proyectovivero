@@ -189,34 +189,24 @@
                                                             </select>
                                                         </div>
                                                         <script>
-                                                            var opciones_categorias = document.getElementsByClassName(
-                                                                "categorias{{producto.id_produccion}}");
-                                                            var tabla_valor_producto = document.getElementById(
-                                                                "producto{{producto.id_produccion}}");
-                                                            var tabla_valor_nombre = document.getElementById(
-                                                                "nombre_producto{{producto.id_produccion}}");
-                                                            var select_nombre_productos = document
-                                                                .getElementsByClassName(
-                                                                    "nombre_productos{{producto.id_produccion}}");
-                                                            var select_categorias = document.getElementById(
-                                                                "prueba{{producto.id_produccion}}");
+                                                            var opciones_categorias = document.getElementsByClassName("categorias{{producto.id_produccion}}");
+                                                            var tabla_valor_producto = document.getElementById("producto{{producto.id_produccion}}");
+                                                            var tabla_valor_nombre = document.getElementById("nombre_producto{{producto.id_produccion}}");
+                                                            var select_nombre_productos = document.getElementsByClassName("nombre_productos{{producto.id_produccion}}");
+                                                            var select_categorias = document.getElementById("prueba{{producto.id_produccion}}");
                                                             var input_editar = document.getElementById('iden')
-                                                            var select_enviar = document.getElementById(
-                                                                'select_default{{producto.id_produccion}}')
+                                                            var select_enviar = document.getElementById('select_default{{producto.id_produccion}}')
 
 
                                                             filtro_editar(opciones_categorias, tabla_valor_producto);
 
-                                                            filtro_editar_con_select(select_categorias,
-                                                                select_nombre_productos);
+                                                            filtro_editar_con_select(select_categorias, select_nombre_productos);
 
-                                                            filtrar_select_nombre_modal(tabla_valor_nombre,
-                                                                select_nombre_productos);
+                                                            filtrar_select_nombre_modal(tabla_valor_nombre, select_nombre_productos);
 
 
                                                             select_categorias.addEventListener("change", function () {
-                                                                filtro(select_categorias,
-                                                                    select_nombre_productos);
+                                                                filtro(select_categorias, select_nombre_productos);
                                                             });
 
                                                             // cambiar_enviar(input_editar,select_enviar)
@@ -304,60 +294,248 @@
 
         </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded item insumos"
-            style="border:none; display: none; margin: 0 auto; width: fit-content;">
 
-            <div class="table-responsive">
-                <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0"
-                    width="100%">
-                    <thead>
-                        <tr>
-                            <th style="color: #A3A6B4;">Insumo</th>
-                            <th style="color: #A3A6B4;">Cantidad Actual</th>
-                            <th style="color: #A3A6B4;">Medida</th>
-                            <th style="color: #A3A6B4;">Cantidad a usar</th>
-                            <th style="color: #A3A6B4;">Medida</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 item insumos" style="display: none;">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+
+                <div class="card-body responsive">
+                    <h5 class="card-title">Insumos!</h5>
+
+                    <form action="produccion" method="post" id="formulario">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <select class="form-control" id="categoria">
+                                <option disabled selected> Seleccionar Categoria</option>
+                                <option class="categoria" id="" value="">Algo</option>                               
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name="nombre_insumo" id="select_insumo" required>
+                                <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Insumo</option>  
+                                <option class="nombre_insumo" id="" value="">Algo</option>                               
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad a Usar" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad a Usar" required>
+                        </div>
+
+                        <input type="hidden" name="guardar" value="guardar">
+                        <input type="hidden" name="" id="" value="">
+                        <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+
                         
-                        {% for mostrar_insumos in insumos %}
-                            <tr>
-                              
-                            
-                                <td>{{mostrar_insumos.nombre}}</td>
-                                <td>{{mostrar_insumos.cantidad}}</td>
-                                <td>{{mostrar_insumos.unidad_de_medida}}</td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" name="cantidad_detalle"
-                                        placeholder="Cantidad Produccion">
-                                        <input type="hidden" name="id_insumo" value="{{mostrar_insumos.id}}">
-                                    </div>
-                                </td>
-                                <td>{{mostrar_insumos.unidad_de_medida}}</td>
-
-                            </tr>
-                            {% endfor %}
-
-
-
-
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th style="color: #A3A6B4;">Categoría</th>
-                            <th style="color: #A3A6B4;">Insumo</th>
-                            <th style="color: #A3A6B4;">Cantidad</th>
-                            <th style="color: #A3A6B4;">Unidad de Medida</th>
-                            <th style="color: #A3A6B4;">Acciones</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                    </form>
+                </div>
 
             </div>
 
         </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 item insumos" style="display: none;">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
+
+                        <thead style="background-color: #F5F6FA;">
+                            <tr>
+                                <th style="color: #A3A6B4;" scope="col">Categoria</th>
+                                <th style="color: #A3A6B4;" scope="col">Insumo</th>
+                                <th style="color: #A3A6B4;" scope="col">Cantidad a Usar</th>
+                                <th style="color: #A3A6B4;" scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="tabla_insumos">
+                                <td class="small" id=""></td>
+                                <td class="small" id=""></td>
+                                <td class="small"></td>
+
+
+
+                                <!-- codigo para el boton de editar 
+                                    -------------------------------------------------- -->
+                                <td class="small">
+                                    {% load static %}
+                                    <i style="color: white;" type="button" data-toggle="modal"
+                                        data-target="#editar{{producto.id_produccion}}"><i><img
+                                                src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+
+                                    <div class="modal fade" id="editar{{producto.id_produccion}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="POST" action="/produccion">
+                                                        {% csrf_token %}
+                                                        <div class="form-group">
+
+                                                            <label for="nombre{{insumo.id}}"
+                                                                class="col-form-label">Categoria:</label>
+                                                            <select name="producto"
+                                                                id="prueba{{producto.id_produccion}}"
+                                                                class="form-control">
+
+                                                                {% for categorias in categoria  %}
+
+                                                                <option class="categorias{{producto.id_produccion}}"
+                                                                    value="{{categorias.nombre_categoria}}">
+                                                                    {{categorias.nombre_categoria}}</option>
+
+                                                                {% endfor %}
+
+
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="form-group">
+
+                                                            <label for="nombre{{insumo.id}}"
+                                                                class="col-form-label">Producto:</label>
+                                                            <select name="producto"
+                                                                id="select_default{{producto.id_produccion}}"
+                                                                class="form-control">
+
+                                                                <!-- <option id="desactivar" disabled='disabled'
+                                                                    selected='selected'> Seleccionar Productos
+                                                                </option> -->
+
+                                                                {% for nombre in nombre_productos  %}
+                                                                <option
+                                                                    class="nombre_productos{{producto.id_produccion}}"
+                                                                    value="{{nombre.id}}-{{nombre.categoria}}">
+                                                                    {{nombre.nombre_productos}}</option>
+
+                                                                {% endfor %}
+
+                                                            </select>
+                                                        </div>
+                                                        <script>
+                                                            var opciones_categorias = document.getElementsByClassName("categorias{{producto.id_produccion}}");
+                                                            var tabla_valor_producto = document.getElementById("producto{{producto.id_produccion}}");
+                                                            var tabla_valor_nombre = document.getElementById("nombre_producto{{producto.id_produccion}}");
+                                                            var select_nombre_productos = document.getElementsByClassName("nombre_productos{{producto.id_produccion}}");
+                                                            var select_categorias = document.getElementById("prueba{{producto.id_produccion}}");
+                                                            var input_editar = document.getElementById('iden')
+                                                            var select_enviar = document.getElementById('select_default{{producto.id_produccion}}')
+
+
+                                                            filtro_editar(opciones_categorias, tabla_valor_producto);
+
+                                                            filtro_editar_con_select(select_categorias, select_nombre_productos);
+
+                                                            filtrar_select_nombre_modal(tabla_valor_nombre, select_nombre_productos);
+
+
+                                                            select_categorias.addEventListener("change", function () {
+                                                                filtro(select_categorias, select_nombre_productos);
+                                                            });
+
+                                                            // cambiar_enviar(input_editar,select_enviar)
+
+
+                                                            console.log(input_editar)
+                                                        </script>
+
+                                                        <div class="form-group">
+                                                            <label for="recipient-name"
+                                                            class="col-form-label">Cantidad:</label>
+                                                            <input name="cantidad" value="{{producto.cantidad}}" type="text"
+                                                            class="form-control" id="recipient-name">
+                                                        </div>
+
+                                                        <input type="hidden" id="iden" name="iden" value="nothing">
+                                                        <input type="hidden" name="editar" value="editar">
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger"
+                                                        data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-outline-success">Guardar
+                                                        Cambios</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- codigo para el boton de borrar  -->
+                                    <!-- -------------------------------------------- -->
+
+
+                                    <!-- Button trigger modal -->
+                                    <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                        data-target="#borrar{{producto.id_produccion}}">
+                                        {% load static %}
+                                        <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                                    </i>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="borrar{{producto.id_produccion}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="produccion" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id_borrar"
+                                                            value="{{producto.id_produccion}}">
+                                                        <input type="hidden" name="borrar" value="borrar">
+                                                        Desea Eliminar este Registro ?
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                            data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit"
+                                                            class="btn btn-outline-info">Borrar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        
 
         <div class="col-sm-12">
 
