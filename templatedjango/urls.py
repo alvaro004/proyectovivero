@@ -28,7 +28,7 @@ urlpatterns = [
     path('insumos', insumos),
     path('produccion', produccion),
     path('listado_produccion', listado_produccion),
-    path('inicio', inicio),
+    path('home', inicio),
     path('', login),
     path('logout', logout_views),
     # path('listado_compras', listado_compras),

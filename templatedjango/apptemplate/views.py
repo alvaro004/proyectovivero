@@ -360,34 +360,59 @@ def produccion(request):
                 id_productos = request.POST.get('id_producto')
                 cantidad = request.POST.get('cantidad')
 
-                detalles_Produccion = Detalles_Produccion(id_producto=id_productos, cantidad_detalle=cantidad)
-                detalles_Produccion.save()
-            
-                productos_objetos = objetos_productos()
-                # print(productos_objetos)
-                # print(filtrar_produccion[0].id_producto)
+                get_productos = Productos.objects.get(id=id_productos)
 
-                # print(id_borrar)
+                print(get_productos)
+
+                save_produccion = Detalles_Produccion(id_producto=get_productos)
+                save_produccion.save()
+
+                # detalles_Produccion = Detalles_Produccion(id_producto=get_productos, cantidad_detalle=cantidad)
+                # detalles_Produccion.save()
+            
+                # productos_objetos = objetos_productos()
 
             if request.POST.get('borrar'):
                 id_borrar = request.POST.get('id_borrar')
 
-                print(id_borrar)
 
                 borrar_produccion = Detalles_Produccion.objects.filter(id=id_borrar)
                 borrar_produccion.delete()
 
             # if request.POST.get('editar'):
+
+
+            #     detalles_Produccion = Detalles_Produccion.objects.all()
+            #     cant = int(len(detalles_Produccion))
+            #     productos_objeto = []
+
+            #     for i in range(cant):
+            #         try:
+            #             iden = int(detalles_Produccion[i].id_producto)
+            #             productos = Nombre_productos.objects.get(id=iden)
+            #             productos_objeto += [
+            #             {
+            #                 'id_produccion':detalles_Produccion[i].id,
+            #                 'nombre':productos.nombre_productos,
+            #                 'categoria':productos.categoria,
+            #                 'cantidad':detalles_Produccion[i].cantidad_detalle,
+
+            #                 },
+            #             ]
+            #         except:
+            #             productos_objeto = []
                 
 
 
+        # if not productos_objetos:
+        #     productos_objetos = objetos_productos()
 
-        if not productos_objetos:
-            productos_objetos = objetos_productos()
+
 
         Productos_para_produccion = Nombre_productos.objects.all()
         categoria = Categoria_productos.objects.all()
         insumos = Insumos.objects.all()
+        productos_objetos = Detalles_Produccion.objects.all()
         return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria,'productos':productos_objetos,'insumos':insumos})
     else:
         return redirect('/')
@@ -404,7 +429,7 @@ def inicio(request):
 
     if request.user.is_authenticated:
         view = 'inicio'
-        return render(request, "inicio/inicio.html",{'name':view})
+        return render(request, 'inicio/inicio.html',{'name':view})
     else:
         return redirect('/')
 
@@ -515,7 +540,7 @@ def ventas(request):
 def login(request):
     if request.user.is_authenticated:
     # Do something for authenticated users.
-        return redirect('/inicio')
+        return redirect('/home')
     else:
 
         if request.method == 'POST':
@@ -526,7 +551,7 @@ def login(request):
             if user is not None:
                 dj_login(request, user)
                 # A backend authenticated the credentials
-                return redirect('/inicio')
+                return redirect('/home')
 
         return render(request,'login/login.html')
 
