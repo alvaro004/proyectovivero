@@ -1,0 +1,211 @@
+{% extends 'base/template.html'%}
+
+{% block clientes %}
+
+{% block tituloclientes %}
+<title>Clientes</title>
+{% endblock tituloclientes %}
+
+
+<div class="container rounded">
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded"
+                style="border:none;">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">Registar Cliente!</h5>
+
+                    <form action="clientes" method="post" id="id_form_modal">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="guardar" value="guardar"> 
+
+                        <div class="form-group">
+
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" name="nombre_cliente" placeholder="Nombre del Cliente" required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" name="direccion" placeholder="Direccion del Cliente" required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" name="telefono" placeholder="Telefono del Cliente" required>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <button type="submit" class="btn btn-outline-info float-right" id="enviar">Guardar</button>
+
+                        
+                        <script>
+                            form = document.getElementById('id_form_modal')
+                            button = document.getElementById('enviar')
+
+                            categoria.addEventListener("click", function () {
+                                send_form(form)
+                            });
+                                  
+                        </script>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded"
+            style="border:none;">
+
+            <table id="example"
+                class="tablita table  table-hover table-bordered  display nowrap"
+                cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th style="color: #A3A6B4;">Nombre</th>
+                        <th style="color: #A3A6B4;">Direccion</th>
+                        <th style="color: #A3A6B4;">Telefono</th>
+                        <th style="color: #A3A6B4;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for mostrar in clientes %}
+
+                    <tr>
+                        <td class="small" id="select{{mostrar.id}}">{{mostrar.nombre_cliente}}</td>
+                        <td class="small">{{mostrar.direccion}}</td>
+                        <td class="small">{{mostrar.telefono}}</td>
+                        <td class="small">
+                            {% load static %}
+                            <i style="color: white;" type="button" data-toggle="modal"
+                                data-target="#editar{{mostrar.id}}"><i><img
+                                        src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+
+                            <!-- codigo para el boton de borrar  -->
+                            <!-- -------------------------------------------- -->
+                            <!-- Button trigger modal -->
+                            <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                data-target="#borrar{{mostrar.id}}">
+                                {% load static %}
+                                <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                            </i>
+
+                        </td>
+
+                        <!-- modal para el boton de editar -->
+
+                        <div class="modal fade" id="editar{{mostrar.id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="clientes">
+                                            {% csrf_token %}
+
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Nombre del Cliente:</label>
+                                                <input name="nombre_cliente" value="{{mostrar.nombre_cliente}}" type="text"
+                                                class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Direccion del Cliente:</label>
+                                                <input name="direccion" value="{{mostrar.direccion}}" type="text"
+                                                class="form-control" id="recipient-name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Telefono del Cliente:</label>
+                                                <input name="telefono" value="{{mostrar.telefono}}" type="text"
+                                                class="form-control" id="recipient-name" required>
+                                            </div>
+
+
+                                            <input type="hidden" name="iden" value="{{mostrar.id}}">
+                                            <input type="hidden" name="editar" value="editar">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal para borrar -->
+                        <div class="modal fade" id="borrar{{mostrar.id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="clientes" method="post">
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <input type="hidden" name="id_borrar" value="{{mostrar.id}}">
+                                            <input type="hidden" name="borrar" value="borrar">
+                                            Desea Eliminar este Registro?
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <button type="button" class="btn btn-outline-danger"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-outline-info">Borrar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th style="color: #A3A6B4;">Nombre</th>
+                        <th style="color: #A3A6B4;">Direccion</th>
+                        <th style="color: #A3A6B4;">Telefono</th>
+                        <th style="color: #A3A6B4;">Acciones</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock clientes %}

@@ -591,4 +591,50 @@ def pedidos(request):
     else:
         return redirect('/')
 
+# VISTA CLIENTES
+
+def clientes(request):
+
+    if request.user.is_authenticated:
+
+        if request.method == "POST":
+            if request.POST.get('guardar'):
+                
+                nombre_cliente = request.POST.get('nombre_cliente')
+                direccion = request.POST.get('direccion')
+                telefono = request.POST.get('telefono')
+
+                save_clientes = Clientes(nombre_cliente=nombre_cliente, direccion=direccion, telefono=telefono)
+                save_clientes.save()
+
+        if request.POST.get('borrar'):
+                id_borrar = request.POST.get('id_borrar')
+                get_clientes = Clientes.objects.get(id=id_borrar)
+                get_clientes.delete()
+
+        if request.POST.get('editar'):
+
+
+                #se estira el id del registro que se va a editar
+                iden = request.POST.get('iden')             
+                nombre_cliente = request.POST.get('nombre_cliente')
+                direccion = request.POST.get('direccion')
+                telefono = request.POST.get('telefono')
+                
+
+                editar_clientes = Clientes.objects.get(id=iden)
+
+                
+                editar_clientes.nombre_cliente = nombre_cliente
+                editar_clientes.direccion = direccion 
+                editar_clientes.telefono = telefono           
+                editar_clientes.save()
+
+        
+        clientes = Clientes.objects.all()
+
+        return render(request, 'clientes/clientes.html',{'clientes':clientes})
+    else:
+        return redirect('/')
+
     

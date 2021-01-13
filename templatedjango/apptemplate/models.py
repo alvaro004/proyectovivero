@@ -146,7 +146,7 @@ class Clientes(models.Model):
     telefono = models.CharField(max_length=400 ,blank=True, null=True) 
 
     def __str__(self):
-        return "detalles {}".format(self.subtotal)
+        return "detalles {}".format(self.nombre_cliente)
 
 class Ventas(models.Model):
     
