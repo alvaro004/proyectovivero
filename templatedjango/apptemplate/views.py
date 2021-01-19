@@ -364,7 +364,7 @@ def produccion(request):
 
                 print(get_productos)
 
-                save_produccion = Detalles_Produccion(id_producto=get_productos)
+                save_produccion = Detalles_Produccion(id_producto=get_productos, cantidad_detalle=cantidad)
                 save_produccion.save()
 
                 # detalles_Produccion = Detalles_Produccion(id_producto=get_productos, cantidad_detalle=cantidad)
@@ -612,7 +612,9 @@ def pedidos(request):
 
     if request.user.is_authenticated:
 
-        return render(request, 'pedidos/pedidos.html')
+        clientes = Clientes.objects.all
+
+        return render(request, 'pedidos/pedidos.html',{'clientes':clientes})
     else:
         return redirect('/')
 
@@ -663,3 +665,12 @@ def clientes(request):
         return redirect('/')
 
     
+def listado_pedidos(request):
+
+    if request.user.is_authenticated:
+
+        # clientes = Clientes.objects.all
+
+        return render(request, 'pedidos/listado_pedidos.html')
+    else:
+        return redirect('/')

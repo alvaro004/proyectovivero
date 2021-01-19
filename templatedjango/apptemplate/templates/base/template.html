@@ -46,7 +46,7 @@
       <!-- Sidebar -->
       <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">
-          <a href="inicio" style="text-decoration: none;">
+          <a href="home" style="text-decoration: none;">
             <h5 class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Vivero</h5>
           </a>
         </div>
@@ -99,20 +99,25 @@
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_446.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Nombre Productos</small>
         </a>
-        
-        <a href="ventas" class="list-group-item list-group-item-action bg-light">
-          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Group_274.svg' %}">
-          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
-        </a>
 
         <a href="pedidos" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Path_461.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Pedidos</small>
         </a>
 
+        <a href="listado_pedidos" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Component_217.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Listado Pedidos</small>
+        </a>
+
         <a href="clientes" class="list-group-item list-group-item-action bg-light">
           <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Layer2.svg' %}">
           </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Clientes</small>
+        </a>
+                
+        <a href="ventas" class="list-group-item list-group-item-action bg-light">
+          <i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Group_274.svg' %}">
+          </i><small class="text-uppercase font-weight-bold" style="color: #A3A6B4;">Ventas</small>
         </a>
         
       </div>
@@ -139,7 +144,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="inicio"><i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Group271.svg' %}">
+              <a class="nav-link" href="home"><i class="fa fa-bars mr-2"> {% load static %} <img src="{% static '/assets/icons/Group271.svg' %}">
               </i><span class="sr-only">(current)</span></a>
             </li>
             <!-- <li class="nav-item">
@@ -239,11 +244,19 @@
 
       {% endblock pedidos %}
 
+      <!-- LISTADO PEDIDOS -->
+
+      {% block listado_pedidos %}
+
+      {% endblock listado_pedidos %}
+
       <!-- CLIENTES  -->
 
       {% block clientes %}
 
       {% endblock clientes %}
+
+
       
     </div>
     
@@ -295,6 +308,7 @@
 <!-- Menu Toggle Script -->
 <script>
   $(document).ready(function () {
+
     $('table.tablita').DataTable({
       responsive: true,
       "language": {

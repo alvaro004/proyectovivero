@@ -1,10 +1,11 @@
 {% extends 'base/template.html' %}
 
-{% block titulocompras %}
-<title>Listado Produccion</title>
-{% endblock titulocompras %}
+{% block listado_pedidos %}
 
-{% block listado_produccion %}
+{% block titulo_listado_pedidos %}
+<title>Listado Pedidos</title>
+{% endblock titulo_listado_pedidos %}
+
 
 <div class="container rounded">
 
@@ -24,7 +25,7 @@
                 <tbody>
 
                     <tr class="small">
-                        <td id="select{{insumo.id}}">20/10/2020</td>
+                        <td id="select{{insumo.id}}">18/01/2021</td>
                         <td>En Proceso</td>
                         <td>
                             {% load static %}
@@ -40,7 +41,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Produccion</h5>
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Pedido</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -51,16 +52,12 @@
                                             <div class="container rounded">
 
                                                 <div class="form-group">
-                                                    <label for="fecha_produccion">Fecha de Inicio:</label>
-                                                    <input type="date" readonly class="form-control" id="fecha"
-                                                        placeholder="Fecha de Inicio">
+                                                    <label for="fecha_pedido">Fecha de Inicio:</label>
+                                                    <input type="date" readonly class="form-control" id="fecha" placeholder="Fecha de Inicio">
                                                 </div>
 
-
-                                                <button id="productos" class="btn btn-outline-info boton"
-                                                    data-li="productos">Produccion</button>
-                                                <button id="insumos" class="btn btn-outline-info boton"
-                                                    data-li="insumos">Insumos</button>
+                                                <button id="productos" class="btn btn-outline-info boton" data-li="productos">Pedidos</button>
+                                                <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Cliente</button>
 
 
                                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item productos"
@@ -74,8 +71,8 @@
                                                                 <tr style="color: #A3A6B4;">
                                                                     <th>Categoría</th>
                                                                     <th>Producto</th>
-                                                                    <th>Cantidad Inicial</th>
-                                                                    <th>Cantidad final</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Precio</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -83,25 +80,19 @@
                                                                     <td>Tunas</td>
                                                                     <td>Tuna del desierto</td>
                                                                     <td>5</td>
-                                                                    <td>
-                                                                        <form action="" method="post"></form>
-                                                                        <div class="form-group">
-                                                                            <input type="number" class="form-control"
-                                                                                name="cantidad_real_detalle"
-                                                                                placeholder="Cantidad Final">
-                                                                        </div>
-                                                                    </td>
+                                                                    <td>50.000</td>
+                                                                    
                                                                 </tr>
 
 
 
                                                             </tbody>
                                                             <tfoot>
-                                                                <tr>
-                                                                    <th style="color: #A3A6B4;">Categoría</th>
-                                                                    <th style="color: #A3A6B4;">Producto</th>
-                                                                    <th style="color: #A3A6B4;">Cantidad Inicial</th>
-                                                                    <th style="color: #A3A6B4;">Cantidad final</th>
+                                                                <tr style="color: #A3A6B4;">
+                                                                    <th>Categoría</th>
+                                                                    <th>Producto</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Precio</th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -119,27 +110,25 @@
                                                             cellspacing="0" width="100%">
                                                             <thead>
                                                                 <tr style="color: #A3A6B4;">
-                                                                    <th>Insumo</th>
-                                                                    <th>Cantidad Actual</th>
-                                                                    <th>Cantidad a Usar</th>
-                                                                    <th>Medida</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Direccion</th>
+                                                                    <th>Telefono</th>
+                                                                    <!-- <th>Accion</th> -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>Plantas Madre</td>
-                                                                    <td>5</td>
-                                                                    <td>2</td>
-                                                                    <td>unidades</td>
+                                                                    <td>Alvaro Basilicio Rodriguez Llano</td>
+                                                                    <td>Eleuterio Cabrera c/ Juan Oleari</td>
+                                                                    <td>0973572212</td>
                                                                 </tr>
-
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr style="color: #A3A6B4;">
-                                                                    <th>Insumo</th>
-                                                                    <th>Cantidad Actual</th>
-                                                                    <th>Cantidad a Usar</th>
-                                                                    <th>Medida</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Direccion</th>
+                                                                    <th>Telefono</th>
+                                                                    <!-- <th>Accion</th> -->
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -150,9 +139,14 @@
 
                                                 <div class="col-sm-12">
 
+                                                    <div class="form-group">
+                                                        <label for="total_compra">Monto Total del Pedido:</label>
+                                                        <input type="number" readonly class="form-control" id="cantidad_total" value="">
+                                                    </div>
+
                                                     <div class="Fecha">
                                                         <div class="form-group">
-                                                            <label for="fecha_produccion">Fecha de Acabado:</label>
+                                                            <label for="fecha_pedido">Fecha de Acabado:</label>
                                                             <input type="date" class="form-control" id="fecha_parcial"
                                                                 placeholder="Fecha de Inicio">
                                                         </div>
@@ -227,4 +221,5 @@
 
 </div>
 
-{% endblock listado_produccion %}
+
+{% endblock %}

@@ -1,10 +1,11 @@
 {% extends 'base/template.html' %}
 
+{% block compras %}
+
 {% block titulocompras %}
 <title>Compras</title>
 {% endblock titulocompras %}
 
-{% block compras %}
 <div class="container rounded">
 
   <div class="row">
@@ -30,12 +31,11 @@
 
             <div class="form-group">
               <input type="number" class="form-control" id="exampleInputPassword1" name="cantidad"
-                placeholder="Cantidad" step="0.01" required>
+                placeholder="Cantidad" step="0.01" min="0" max="100000000000" required>
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" id="exampleInputPassword1" name="precio" placeholder="Precio"
-                required>
+              <input type="number" class="form-control" id="exampleInputPassword1" name="precio" placeholder="Precio" min="0" required>
             </div>
 
             <button type="submit" class="btn btn-outline-info float-right" >Agregar</button>
