@@ -674,3 +674,24 @@ def listado_pedidos(request):
         return render(request, 'pedidos/listado_pedidos.html')
     else:
         return redirect('/')
+
+
+def login2(request):
+
+
+    if request.user.is_authenticated:
+    # Do something for authenticated users.
+        return redirect('/home')
+    else:
+
+        if request.method == 'POST':
+
+            passsword = request.POST.get('pass')
+            user = request.POST.get('user')
+            user = authenticate(username=user, password=passsword)
+            if user is not None:
+                dj_login(request, user)
+                # A backend authenticated the credentials
+                return redirect('/home')
+
+        return render(request,'login/login2.html')

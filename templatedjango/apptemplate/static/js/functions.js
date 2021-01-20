@@ -17,7 +17,7 @@ function verificar() {
 
 }
 function alerta() {
-  alert('Por favor registre la compra para continuar')
+  alert('¡Por Favor Registre la Compra o elimine los Productos para Continuar!')
 }
 
 window.onload = function () {
@@ -79,3 +79,12 @@ for (var i = 0; i < li_elements.length; i++) {
 function send_form(form){
   form.submit();
 }
+
+boton_logout = document.getElementById('logout_button');
+
+  boton_logout.onclick = function(){
+    console.log('entro')
+    if (confirm('¿Desea cerrar la sesión? ')) {
+      window.location = 'logout';
+    }
+  }
