@@ -41,7 +41,7 @@
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Pedido</h5>
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Detalles de la Venta</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -51,12 +51,12 @@
 
                                         <div class="container rounded">
 
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="fecha_pedido">Fecha de Inicio:</label>
                                                 <input type="date" readonly class="form-control" id="fecha" placeholder="Fecha de Inicio">
-                                            </div>
+                                            </div> -->
 
-                                            <button id="productos" class="btn btn-outline-info boton" data-li="productos">Pedidos</button>
+                                            <button id="productos" class="btn btn-outline-info boton" data-li="productos">Productos</button>
                                             <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Cliente</button>
 
 
@@ -140,15 +140,15 @@
                                             <div class="col-sm-12">
 
                                                 <div class="form-group">
-                                                    <label for="total_compra">Monto Total del Pedido:</label>
+                                                    <label for="total_compra">Monto Total de la Venta:</label>
                                                     <input type="number" readonly class="form-control" id="cantidad_total" value="">
                                                 </div>
 
                                                 <div class="Fecha">
                                                     <div class="form-group">
-                                                        <label for="fecha_pedido">Fecha de Acabado:</label>
+                                                        <label for="fecha_pedido">Fecha de la Venta:</label>
                                                         <input type="date" class="form-control" id="fecha_parcial"
-                                                            placeholder="Fecha de Inicio">
+                                                            placeholder="Fecha de Inicio" disabled>
                                                     </div>
                                                 </div>
 
@@ -195,9 +195,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger"
-                                            data-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-outline-success">Guardar
-                                            Cambios</button>
+                                            data-dismiss="modal">Cerrar</button>
                                     </div>
                                 </div>
                             </div>
