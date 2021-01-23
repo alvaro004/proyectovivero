@@ -4,6 +4,7 @@ from templatedjango.apptemplate.forms import *
 from django.contrib.auth import authenticate, login as dj_login
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.db.models import Q
 
 # Create your views here.
 
@@ -131,12 +132,17 @@ def compras(request):
             precio = request.POST.get('precio')
 
             # cantidad = cantidad.replace('.', '')
-            precio = precio.replace('.', '')
 
-        
             total = float(cantidad) * float(precio)
 
-            print(id_insumo,cantidad,precio,total)
+            precio = precio.replace('.', '')
+            
+            # CODIGO PARA FORMATEAR LOS NUMEROS
+            # total = ('{:,}'.format(int(total)).replace(',','.'))
+            # precio = ('{:,}'.format(int(precio)).replace(',','.'))
+
+            # print(id_insumo,cantidad,precio,total)
+
 
             # analogia consulta en SQL
 
@@ -460,7 +466,7 @@ def productos(request):
                 descripcion = request.POST.get('descripcion')
                 cantidad = request.POST.get('cantidad')
                 precio = request.POST.get('precio')
-
+                # precio = ('{:,}'.format(int(precio)).replace(',','.'))
 
                 save_productos = Productos.objects.last()
                 nombre_producto = Nombre_productos.objects.get(id=id_producto)
@@ -503,6 +509,8 @@ def productos(request):
 def listado_productos(request):
 
     if request.user.is_authenticated:
+        productos = Productos.objects.all()
+
         if request.method == 'POST':
             if request.POST.get('cambiar_valor'):
                 iden = request.POST.get('id')
@@ -511,9 +519,14 @@ def listado_productos(request):
                 get_productos = Productos.objects.get(id=iden)
                 get_productos.cantidad_stock = cantidad
                 get_productos.save()
+                
+        filtroNombre = request.GET.get('filtroNombre')
+    
+        if filtroNombre != '' and filtroNombre is not None:       
+            productos = productos.filter(Q(precio = filtroNombre) | Q(descripcion_producto__icontains = filtroNombre) 
+            | Q(cantidad_stock = filtroNombre))
 
-        productos = Productos.objects.all()
-        print(productos)
+
         return render(request,'productos/listado_productos.html',{'productos':productos})
     else:
         return redirect('/')

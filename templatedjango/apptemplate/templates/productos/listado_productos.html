@@ -6,6 +6,23 @@
 
 {% block listado_productos %}
 
+<form action="listado_productos" method="get">
+
+  <div class="row">
+    <div class="form-group col-xl-8">
+      <input type="search" class="form-control" name="filtroNombre" placeholder="Escriba lo que desea buscar..." id="">
+    </div>
+    <div class="form-group col-xl-2">
+      <button type="submit" class="form-control btn btn-outline-info">Buscar...</button>
+    </div>
+    <div class="form-group col-xl-2">
+      <a class="form-control btn btn-outline-danger" href="listado_productos">Mostrar Todo</a>
+    </div>
+  </div>
+  
+
+</form>
+
 <div class="row aca">
   <style>
     /* ESTE ESTILO SIRVE PARA QUE EL CONTENIDO DE LOS DIVS HIJOS TENGAN EL MISMO TAMANO */
@@ -64,6 +81,7 @@
             <h4>{{mostrar.id_nombre_producto.nombre_productos}}</h4>
           </div>
 
+          
           <div class="form-group col-xl-8">
             <input class="form-control text-center text-primary" type="text" placeholder="{{mostrar.precio}} Gs."
               readonly>
@@ -206,10 +224,6 @@
                     send_form(form{{mostrar.id}});
                   }
                 });
-
-
-
-
 
 
               </script>

@@ -30,12 +30,12 @@
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" id="exampleInputPassword1" name="cantidad"
-                placeholder="Cantidad" min="0" step="0.1" required>
+              <input type="number" class="form-control"  name="cantidad"
+                placeholder="Cantidad" min="0"  required>
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" id="exampleInputPassword1" step="100" name="precio" placeholder="Precio" min="0" required>
+              <input type="number" class="form-control"  step="100" name="precio" placeholder="Precio" min="0" required>
             </div>
 
             <button type="submit" class="btn btn-outline-info float-right" >Agregar</button>
@@ -52,15 +52,15 @@
 
         <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
 
-          <thead style="background-color: #F5F6FA;">
+          <thead>
             <tr>
-              <th style="color: #A3A6B4;" scope="col">Categoria</th>
-              <th style="color: #A3A6B4;" scope="col">Producto</th>
-              <th style="color: #A3A6B4;" scope="col">Cantidad</th>
-              <th style="color: #A3A6B4;" scope="col">Medida</th>
-              <th style="color: #A3A6B4;" scope="col">Precio</th>
-              <th style="color: #A3A6B4;" scope="col">Total</th>
-              <th style="color: #A3A6B4;" scope="col">Acciones</th>
+              <th  scope="col">Categoria</th>
+              <th  scope="col">Producto</th>
+              <th  scope="col">Cantidad</th>
+              <th  scope="col">Medida</th>
+              <th  scope="col">Precio</th>
+              <th  scope="col">Total</th>
+              <th  scope="col">Acciones</th>
             </tr>
           </thead>
 
@@ -83,7 +83,7 @@
                 -------------------------------------------------- -->
               <td class="small">
                 {% load static %}
-                <i style="color: white;" type="button" data-toggle="modal"
+                <i type="button" data-toggle="modal" class="editar_icono"
                   data-target="#editar{{compra.id_detalles_compras}}"><i><img
                       src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
@@ -218,14 +218,7 @@
         </div>
         <div class="form-group">
           <input type="date" style="width: 50%;" class="form-control" id="fecha_parcial">
-          <!-- style de codigo para establecer el tamanho del input fecha -->
-                    <style>
-                        @media only screen and (min-width: 600px) {
-                            #fecha {
-                                width: 25%;
-                            }
-                        }
-                    </style>
+          
         </div>
 
       </div>
