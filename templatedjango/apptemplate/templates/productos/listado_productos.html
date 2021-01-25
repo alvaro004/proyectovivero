@@ -6,12 +6,43 @@
 
 {% block listado_productos %}
 
-<div class="row">
+<form action="listado_productos" method="POST">
+  {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-xl-8">
+      <input type="search" class="form-control" name="filtroNombre" placeholder="Escriba lo que desea buscar..." id="">
+    </div>
+    <div class="form-group col-xl-2">
+      <button type="submit" class="form-control btn btn-outline-info">Buscar...</button>
+    </div>
+    <div class="form-group col-xl-2">
+      <a class="form-control btn btn-outline-danger" href="listado_productos">Mostrar Todo</a>
+    </div>
+  </div>
+  
+
+</form>
+
+<div class="row aca">
+  <style>
+    /* ESTE ESTILO SIRVE PARA QUE EL CONTENIDO DE LOS DIVS HIJOS TENGAN EL MISMO TAMANO */
+    .aca{
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+    .aca2{
+      display: -webkit-flex;
+      display: flex;
+    }
+    
+  </style>
 
   {% for mostrar in productos  %}
 
 
-  <div class="col-xl-3">
+  <div class="col-xl-3 aca2">
     <div class="card shadow p-3 mb-5 bg-white rounded border cont-imagen">
 
       <img class="card-img-top img-thumbnail imagen rounded mx-auto d-block" src="{{mostrar.imagen.url}}"
@@ -24,16 +55,16 @@
           object-fit: cover;
         } */
 
-        .cont-imagen {
+        /* .cont-imagen {
           width: fit-content;
           max-height: 100%;
 
-        }
+        } */
 
         .imagen {
           width: fit-content;
           height: 250px;
-          min-height: 400px;
+          min-height: 300px;
           max-height: auto;
           float: left;
           margin: 3px;
@@ -50,6 +81,7 @@
             <h4>{{mostrar.id_nombre_producto.nombre_productos}}</h4>
           </div>
 
+          
           <div class="form-group col-xl-8">
             <input class="form-control text-center text-primary" type="text" placeholder="{{mostrar.precio}} Gs."
               readonly>
@@ -81,11 +113,22 @@
                   </div>
                   <div class="modal-body">
 
-                    <div class="row">
+                    <div class="row padre">
 
-                      <div class="form-group xl-12 text-center">
-                        <img class="card-img-top img-thumbnail rounded" src="{{mostrar.imagen.url}}"
+                      <div class="form-group ">
+                        <img class="card-img-top img-thumbnail hijo" src="{{mostrar.imagen.url}}"
                           alt="Card image cap">
+                          <style>
+                            .padre{
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                            }
+                            .hijo{
+                              width: 100%;
+                              height: 100%;
+                            }
+                          </style>
                       </div>
 
 
@@ -181,10 +224,6 @@
                     send_form(form{{mostrar.id}});
                   }
                 });
-
-
-
-
 
 
               </script>

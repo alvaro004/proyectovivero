@@ -99,3 +99,5 @@ function cambiar_enviar(valor, enviar) {
   function confirmar_logout(){
     confirm(' Desea cerrar la sesion?. ')
   }
+
+  

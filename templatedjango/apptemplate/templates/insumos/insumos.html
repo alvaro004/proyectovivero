@@ -26,7 +26,7 @@
                         <div class="form-group">
 
                             <div class="form-group">
-                                <select class="form-control selectpicker" name="categoria" title="Selecione una categoría" >
+                                <select class="form-control selectpicker" name="categoria" title="Selecione una categoría" required>
 
                                     {% for categorias in categoria  %}
                                     <option option id="opcion{{categorias.id}}" value="{{categorias.id}}">{{categorias.Nombre}}</option>
@@ -43,7 +43,7 @@
 
                             <div class="form-group">
 
-                                <input type="number" class="form-control" name="cantidad" placeholder="Cantidad" required>
+                                <input type="number" class="form-control" name="cantidad" placeholder="Cantidad" min="0" step="0.1" required>
 
                             </div>
 
@@ -186,9 +186,9 @@
                                                     Medida:</label>
                                                 <select class="form-control" name="medida" id="recipient-name">
                                                     <!-- <option disabled selected>Medida</option> -->
-                                                    <option class="categoria_medida{{insumo.id}}" value="unidades">
+                                                    <option class="categoria_medida{{insumo.id}}" value="uds.">
                                                         uds.</option>
-                                                    <option class="categoria_medida{{insumo.id}}" value="kg">kg</option>
+                                                    <option class="categoria_medida{{insumo.id}}" value="kg.">kg.</option>
                                                 </select>
                                                 <script type="text/javascript">
                                                     categorias = document.getElementsByClassName(
@@ -267,5 +267,6 @@
 
    
 </div>
+
 
 {% endblock insumos%}

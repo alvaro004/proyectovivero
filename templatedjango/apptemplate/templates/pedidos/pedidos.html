@@ -7,4 +7,243 @@
 <title>Pedidos</title>
 {% endblock titulopedidos %}
 
+
+<div class="container rounded">
+
+    <button id="productos" class="btn btn-outline-info boton" data-li="productos">Pedidos</button>
+    <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Cliente</button>
+
+
+    <div class="row" style="margin-top: 20px;">
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 item productos">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+
+                <div class="card-body responsive">
+                    <h5 class="card-title">Pedidos!</h5>
+
+                    <form action="" method="post" id="formulario">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <select class="form-control" id="categoria_productos">
+                                <option disabled selected> Seleccionar Categoria</option>
+                                {% for categorias in categoria  %}
+                                <option class="categoria" id="opcion{{categorias.id}}"
+                                    value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" name="nombre_productos" id="select_producto" required>
+                                <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Producto</option>
+                                {% for nombre in nombre_productos  %}
+                                <option class="nombre_productoss" id="opcion{{nombre.id}}"
+                                    value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="precio_producto" placeholder="Precio Producto" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="cantidad_stock_producto" placeholder="Cantidad Existente" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad Pedido" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="precio" placeholder="Precio Pedido" disabled>
+                        </div>
+
+                        <input type="hidden" name="guardar" value="guardar">
+                        <input type="hidden" name="id_producto" id="id_producto" value="nombre_del_producto">
+                        <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+
+                        <script>
+                            // en este codigo se realiza un filtro de los productos por sus categorias 
+                            // para mostrar en los Selection
+
+                            // primero se cambia la propiedad de display a none para que no se muestren los datos 
+
+                            var categoria = document.getElementById('categoria_producto');
+                            var productos = document.getElementsByClassName('nombre_productoss');
+                            var select_productos = document.getElementById('select_producto');
+                            var enviar_producto = document.getElementById('id_producto')
+
+                            for (var i = 0; i < productos.length; i++) {
+                                productos[i].style.display = 'none';
+
+                            }
+
+                            categoria.addEventListener("change", function () {
+                                filtro(categoria, productos);
+                                cambiar_enviar(select_productos, enviar_producto);
+                            });
+
+                            select_productos.addEventListener("change", function () {
+                                cambiar_enviar(select_productos, enviar_producto);
+                            });
+
+
+                            // window.onload = function () {
+                            // };
+                        </script>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 item productos">
+
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
+
+                        <thead style="background-color: #F5F6FA;">
+                            <tr>
+                                <th style="color: #A3A6B4;" scope="col">Categoria</th>
+                                <th style="color: #A3A6B4;" scope="col">Producto</th>
+                                <th style="color: #A3A6B4;" scope="col">Cantidad Pedido</th>
+                                <th style="color: #A3A6B4;" scope="col">Precio</th>
+                                <th style="color: #A3A6B4;" scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 card shadow p-3 mb-5 bg-white rounded item insumos"
+            style="border:none; display: none;">
+
+            <div class="card-body">
+
+                <h5 class="card-title">Registar Cliente!</h5>
+
+                <form action="clientes" method="post" id="id_form_modal">
+
+                    {% csrf_token %}
+
+                    <input type="hidden" name="guardar" value="guardar"> 
+
+                    <div class="form-group">
+
+                        <div class="form-group">
+
+                            <select class="form-control selectpicker" name="nombre_cliente" data-live-search="true"
+                            title="Selecione un Cliente" data-live-search-placeholder="Buscar..." required>
+                              
+                              {% for mostrar in clientes  %}
+
+                              <option id="opcion{{mostrar.id}}" value="{{mostrar.id}}">{{mostrar.nombre_cliente}}</option>
+              
+                              {% endfor %}
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" name="direccion" placeholder="Direccion del Cliente" disabled>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" name="telefono" placeholder="Telefono del Cliente" disabled>
+
+                        </div>
+
+                    </div>
+
+                    
+                    <script>
+                        form = document.getElementById('id_form_modal')
+                        button = document.getElementById('enviar')
+
+                        categoria.addEventListener("click", function () {
+                            send_form(form)
+                        });
+                                
+                    </script>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="totales">
+
+        <div class="form-group">
+          <input type="text"  class="form-control" id="total" placeholder="Total" readonly>
+        </div>
+        <div class="form-group">
+          <input type="date"  class="form-control" id="fecha_parcial">      
+        </div>
+
+    </div>
+
+    <div class="botones">
+        <button type="submit" class="btn btn-outline-success float-right">Registrar</button>
+    </div>
+
+    <input type="hidden" id="fecha" name="fecha">
+
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = String(today.getFullYear());
+
+        date = String(yyyy + '-' + mm + '-' + dd);
+        // document.write(today);
+
+
+        fecha_parcial = document.getElementById('fecha_parcial');
+
+        // fecha_utc = date.toUTCString()
+        fecha_parcial.value = date;
+        fecha_parcial.defaulValue = date;
+        fecha_parcial.innerHTML = date;
+
+
+        console.log(date)
+
+
+        // en esta funcion se cambia el valor de la fecha al input oculto ara poer enviarlo al servidor
+        function cambio() {
+            fecha = document.getElementById('fecha')
+            fecha_parcial = document.getElementById('fecha_parcial');
+            fecha.value = fecha_parcial.value;
+
+        }
+    </script>
+
+</div>
+
 {% endblock pedidos%}

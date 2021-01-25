@@ -4,6 +4,7 @@ from templatedjango.apptemplate.forms import *
 from django.contrib.auth import authenticate, login as dj_login
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.db.models import Q
 
 # Create your views here.
 
@@ -131,12 +132,17 @@ def compras(request):
             precio = request.POST.get('precio')
 
             # cantidad = cantidad.replace('.', '')
-            precio = precio.replace('.', '')
 
-        
             total = float(cantidad) * float(precio)
 
-            print(id_insumo,cantidad,precio,total)
+            precio = precio.replace('.', '')
+            
+            # CODIGO PARA FORMATEAR LOS NUMEROS
+            # total = ('{:,}'.format(int(total)).replace(',','.'))
+            # precio = ('{:,}'.format(int(precio)).replace(',','.'))
+
+            # print(id_insumo,cantidad,precio,total)
+
 
             # analogia consulta en SQL
 
@@ -455,7 +461,7 @@ def productos(request):
                 descripcion = request.POST.get('descripcion')
                 cantidad = request.POST.get('cantidad')
                 precio = request.POST.get('precio')
-
+                # precio = ('{:,}'.format(int(precio)).replace(',','.'))
 
                 save_productos = Productos.objects.last()
                 nombre_producto = Nombre_productos.objects.get(id=id_producto)
@@ -498,6 +504,8 @@ def productos(request):
 def listado_productos(request):
 
     if request.user.is_authenticated:
+        productos = Productos.objects.all()
+
         if request.method == 'POST':
             if request.POST.get('cambiar_valor'):
                 iden = request.POST.get('id')
@@ -506,9 +514,17 @@ def listado_productos(request):
                 get_productos = Productos.objects.get(id=iden)
                 get_productos.cantidad_stock = cantidad
                 get_productos.save()
+                
+        filtroNombre = request.POST.get('filtroNombre')
+    
+        # for mostrar in productos:
+        #     hola = mostrar.id_nombre_producto.nombre_productos
+        #     print(hola)
 
-        productos = Productos.objects.all()
-        print(productos)
+        if filtroNombre != '' and filtroNombre is not None:       
+            productos = productos.filter(Q(precio = filtroNombre) | Q(descripcion_producto__icontains = filtroNombre) | Q(cantidad_stock = filtroNombre) | Q( id_nombre_producto__nombre_productos__icontains = filtroNombre))
+
+
         return render(request,'productos/listado_productos.html',{'productos':productos})
     else:
         return redirect('/')
@@ -607,7 +623,12 @@ def pedidos(request):
 
     if request.user.is_authenticated:
 
-        return render(request, 'pedidos/pedidos.html')
+        clientes = Clientes.objects.all
+        categoria = Categoria_productos.objects.all()
+        nombre_productos = Nombre_productos.objects.all()
+        print(nombre_productos)
+
+        return render(request, 'pedidos/pedidos.html',{'clientes':clientes, 'categoria':categoria, 'nombre_productos':nombre_productos})
     else:
         return redirect('/')
 
@@ -658,3 +679,33 @@ def clientes(request):
         return redirect('/')
 
     
+def listado_pedidos(request):
+
+    if request.user.is_authenticated:
+
+        # clientes = Clientes.objects.all
+
+        return render(request, 'pedidos/listado_pedidos.html')
+    else:
+        return redirect('/')
+
+
+def login2(request):
+
+
+    if request.user.is_authenticated:
+    # Do something for authenticated users.
+        return redirect('/home')
+    else:
+
+        if request.method == 'POST':
+
+            passsword = request.POST.get('pass')
+            user = request.POST.get('user')
+            user = authenticate(username=user, password=passsword)
+            if user is not None:
+                dj_login(request, user)
+                # A backend authenticated the credentials
+                return redirect('/home')
+
+        return render(request,'login/login2.html')

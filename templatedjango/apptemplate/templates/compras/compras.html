@@ -1,10 +1,11 @@
 {% extends 'base/template.html' %}
 
+{% block compras %}
+
 {% block titulocompras %}
 <title>Compras</title>
 {% endblock titulocompras %}
 
-{% block compras %}
 <div class="container rounded">
 
   <div class="row">
@@ -29,13 +30,12 @@
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" id="exampleInputPassword1" name="cantidad"
-                placeholder="Cantidad" step="0.01" required>
+              <input type="number" class="form-control"  name="cantidad"
+                placeholder="Cantidad" min="0"  required>
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" id="exampleInputPassword1" name="precio" placeholder="Precio"
-                required>
+              <input type="number" class="form-control"  step="100" name="precio" placeholder="Precio" min="0" required>
             </div>
 
             <button type="submit" class="btn btn-outline-info float-right" >Agregar</button>
@@ -52,15 +52,15 @@
 
         <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
 
-          <thead style="background-color: #F5F6FA;">
+          <thead>
             <tr>
-              <th style="color: #A3A6B4;" scope="col">Categoria</th>
-              <th style="color: #A3A6B4;" scope="col">Producto</th>
-              <th style="color: #A3A6B4;" scope="col">Cantidad</th>
-              <th style="color: #A3A6B4;" scope="col">Medida</th>
-              <th style="color: #A3A6B4;" scope="col">Precio</th>
-              <th style="color: #A3A6B4;" scope="col">Total</th>
-              <th style="color: #A3A6B4;" scope="col">Acciones</th>
+              <th  scope="col">Categoria</th>
+              <th  scope="col">Producto</th>
+              <th  scope="col">Cantidad</th>
+              <th  scope="col">Medida</th>
+              <th  scope="col">Precio</th>
+              <th  scope="col">Total</th>
+              <th  scope="col">Acciones</th>
             </tr>
           </thead>
 
@@ -83,7 +83,7 @@
                 -------------------------------------------------- -->
               <td class="small">
                 {% load static %}
-                <i style="color: white;" type="button" data-toggle="modal"
+                <i type="button" data-toggle="modal" class="editar_icono"
                   data-target="#editar{{compra.id_detalles_compras}}"><i><img
                       src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
@@ -102,8 +102,12 @@
                           {% csrf_token %}
                           <div class="form-group">
 
+                            <!-- ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                            
+                            -->
                             <label for="nombre{{insumo.id}}" class="col-form-label">Producto:</label>
-                            <select name="producto" id="nombre{{insumo.id}}" class="form-control">
+                            <select name="producto" id="nombre{{insumo.id}}" class="form-control selectpicker" data-live-search="true" title="Selecione un Producto" 
+                            data-live-search-placeholder="Buscar...">
 
                               {% for insumo in insumos  %}
                               <option class="productos{{compra.id_detalles_compras}}" id="opcion{{insumo.nombre}}"
@@ -214,14 +218,7 @@
         </div>
         <div class="form-group">
           <input type="date" style="width: 50%;" class="form-control" id="fecha_parcial">
-          <!-- style de codigo para establecer el tamanho del input fecha -->
-                    <style>
-                        @media only screen and (min-width: 600px) {
-                            #fecha {
-                                width: 25%;
-                            }
-                        }
-                    </style>
+          
         </div>
 
       </div>
@@ -289,31 +286,49 @@
           <button type="button" class="btn btn-outline-success float-right" data-toggle="modal" data-target="#confirmar"
             onclick="cambio()">Registrar</button>
 
+          <button style="margin-right: 10px;" type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#borrar_todo"
+          onclick="">Borrar Todo</button>
+
           <div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-
-
                 <div class="modal-body">
-                  Desea registrar esta compra?
+                  ¿Está Seguro que Desea Registrar Esta Compra?
                 </div>
                 <div class="modal-footer">
-
                   <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-outline-success">Registrar</button>
+                  <button type="submit" class="btn btn-outline-success">Confirmar</button>
                 </div>
-
               </div>
             </div>
+          </div>
 
-
+          <div class="modal fade" id="borrar_todo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ¿Está Seguro que Desea Borrar Todos los Elementos de Esta Compra?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-outline-success">Confirmar</button>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </div>

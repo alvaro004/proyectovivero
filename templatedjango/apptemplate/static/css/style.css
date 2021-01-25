@@ -1,27 +1,27 @@
-.contenedor{
-    padding-top: 5%;
-    width: fit-content;
-    margin: 0 auto;
-    
+/* COMPRAS  */
+
+#totales{
+    /* style de codigo para establecer el tamanho del input fecha  */
+                    
+    @media only screen and (min-width: 600px) {
+        #fecha {
+            width: 25%;
+        }
+    }
+                    
 }
 
-
-.form{
-    display: inline-block;
-    margin: 0 10px;
+/* data tables */
+thead {
+    background-color: #F5F6FA;
 }
 
-.tabla{
-    display: inline-block;
-    margin: 0 10px;
+th{
+    color: #A3A6B4;
 }
 
-.totales{
-    width: 200px;
-    padding: 5%;
-}
+/* icono para editar */
 
-.botones button{
-    float: right;
-    margin: 20px;
+#editar_icono{
+    color: white;
 }
