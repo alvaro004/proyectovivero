@@ -10,8 +10,12 @@ function filtro(primer_select, segundo_select) {
       valor = segundo_select[i].value
       valor = valor.split('-')
       valor = valor[1]
+
+      console.log(primer_select.value)
   
       if (primer_select.value == valor) {
+
+        // console.log('entro en el if')
   
         segundo_select[i].style.display = '';
         segundo_select[i].setAttribute('selected', 'selected')
@@ -35,10 +39,13 @@ function cambiar_enviar(valor, enviar) {
   // funcion para establecer un valor predeterminado por el valor de la tabla que contiene los datos a editar
   function filtro_editar(valores, valor_tabla) {
     // console.log(valor_tabla.innerHTML)
-    for (var i = 0; i < valores.length; i++) {
+
+    console.log(valores);
+    console.log(valor_tabla);
+      for (var i = 0; i < valores.length; i++) {
   
         // console.log(valores[i].value)
-        if (valores[i].value == valor_tabla.innerHTML) {
+        if (valores[i].value == valor_tabla.innerText) {
   
         valores[i].setAttribute('selected', 'selected');
         }

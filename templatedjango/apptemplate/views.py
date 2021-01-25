@@ -351,6 +351,8 @@ def insumos(request):
 
 # VISTA DE PRODUCCION 
 
+# cuando vengas pelotudo tenes que cambiar la consuta pra guardar los productos en etalles produccion
+
 def produccion(request):
     if request.user.is_authenticated:
         productos_objetos = []
@@ -360,11 +362,14 @@ def produccion(request):
                 id_productos = request.POST.get('id_producto')
                 cantidad = request.POST.get('cantidad')
 
-                get_productos = Productos.objects.get(id=id_productos)
+                # get_nombre_producto = Nombre_productos.objects.get(id=id_productos)
 
-                print(get_productos)
+                get_producto = Productos.objects.get(id=id_productos)
 
-                save_produccion = Detalles_Produccion(id_producto=get_productos)
+                print(get_producto)
+                print(cantidad)
+
+                save_produccion = Detalles_Produccion(id_producto=get_producto,cantidad_detalle=cantidad)
                 save_produccion.save()
 
                 # detalles_Produccion = Detalles_Produccion(id_producto=get_productos, cantidad_detalle=cantidad)
@@ -379,37 +384,27 @@ def produccion(request):
                 borrar_produccion = Detalles_Produccion.objects.filter(id=id_borrar)
                 borrar_produccion.delete()
 
-            # if request.POST.get('editar'):
+            if request.POST.get('editar'):
 
+                iden = request.POST.get('iden')
+                producto = request.POST.get('nombre_productos').split('-')[0]
+                cantidad = request.POST.get('cantidad')
 
-            #     detalles_Produccion = Detalles_Produccion.objects.all()
-            #     cant = int(len(detalles_Produccion))
-            #     productos_objeto = []
+                print(producto)
+                print(cantidad)
 
-            #     for i in range(cant):
-            #         try:
-            #             iden = int(detalles_Produccion[i].id_producto)
-            #             productos = Nombre_productos.objects.get(id=iden)
-            #             productos_objeto += [
-            #             {
-            #                 'id_produccion':detalles_Produccion[i].id,
-            #                 'nombre':productos.nombre_productos,
-            #                 'categoria':productos.categoria,
-            #                 'cantidad':detalles_Produccion[i].cantidad_detalle,
+                get_producto = Productos.objects.get(id=producto)
+                get_detalles = Detalles_Produccion.objects.get(id=iden)
 
-            #                 },
-            #             ]
-            #         except:
-            #             productos_objeto = []
-                
-
-
-        # if not productos_objetos:
-        #     productos_objetos = objetos_productos()
+                get_detalles.id_producto = get_producto
+                get_detalles.cantidad_detalle = cantidad
+                get_detalles.save()
 
 
 
-        Productos_para_produccion = Nombre_productos.objects.all()
+
+
+        Productos_para_produccion = Productos.objects.all()
         categoria = Categoria_productos.objects.all()
         insumos = Insumos.objects.all()
         productos_objetos = Detalles_Produccion.objects.all()

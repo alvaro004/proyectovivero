@@ -7,7 +7,7 @@ class DocumentForm(forms.ModelForm):
         label='',
         widget=forms.FileInput(
             attrs={
-                "id":"inputGroupFile01",                
+                "id":"id_imagen",                
                 "class": "custom-file-input",
                 "aria-describedby":"inputGroupFileAddon01"
             }

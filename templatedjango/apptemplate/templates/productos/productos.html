@@ -212,7 +212,7 @@
 
                         <!-- <input type="submit" class="btn btn-outline-info" value="Guardar"> -->
 
-                        <button id="enviar_principal" class="btn btn-outline-info">Guardar</button>
+                        <button id="enviar_principal" type="button" class="btn btn-outline-info">Guardar</button>
 
 
 
@@ -235,17 +235,35 @@
                             nombre_producto = document.getElementById('nombre_producto');
                             id_categoria_cambiar = document.getElementById('id_categoria_cambiar');
                             nombre_producto_cambiar = document.getElementById('nombre_producto_cambiar');
+                            id_imagen = document.getElementById('id_imagen');
 
+                            console.log(id_imagen.url);
                             button.addEventListener("click", function () {
-                                confirm(' Desea guardar este producto?. ');
-                                if (confirm){
-                                    form.submit();
+                                if (form.value) {
+                                    
+                                    if (confirm(' Desea guardar este producto?. ')){
+                                        form.submit();
+                                    }
+                                }
+                                else
+                                {
+                                    alert('Por favor complete el formulario!!!');
                                 }
                             });
 
+                            // form.addEventListener("submit", function () {
+                            //    if (form.value == '') {
+                            //         alert("Por favor complete el formulario!");
+                            //         return false;
+                            //    }
+                            //    else{
+                            //        form.submit()
+                            //    }
+                            // });
+
                             boton_segundo_form.addEventListener("click", function () {
-                                confirm(' Desea guardar este nomre de producto?. ');
-                                if (confirm){
+                                
+                                if (confirm(' Desea guardar este nomre de producto?. ')){
 
                                     id_categoria.value = id_categoria_cambiar.value;
                                     nombre_producto.value = nombre_producto_cambiar.value;

@@ -77,7 +77,7 @@ class Productos(models.Model):
     # id_categoria = models.CharField(max_length=400 ,blank=True, null=True)
     descripcion_producto = models.CharField(max_length=400 ,blank=True, null=True) # conectado a la tabla produccion
     cantidad_stock = models.CharField(max_length=400 ,blank=True, null=True)
-    imagen = models.FileField(default='placeholder.png',null=True) 
+    imagen = models.FileField(default='',blank=True,null=True) 
     precio = models.CharField(max_length=400 ,blank=True, null=True)
 
     def __str__(self):

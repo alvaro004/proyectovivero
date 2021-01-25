@@ -28,11 +28,13 @@
                         <div class="form-group">
                             <select class="form-control" id="categoria">
                                 <option disabled selected> Seleccionar Categoria</option>
-                                {% for categorias in categoria  %}
+                                {% for categorias in categoria %}
                                 <option class="categoria" id="opcion{{categorias.id}}"
                                     value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
                                 {% endfor %}
+
                             </select>
+
                         </div>
 
                         <div class="form-group">
@@ -40,19 +42,18 @@
                                 <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos
                                 </option>
                                 {% for nombre in nombre_productos  %}
-                                <option class="nombre_productos" id="opcion{{nombre.id}}"
-                                    value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+                                    <option class="nombre_productos" id="opcion{{nombre.id}}" value="{{nombre.id}}-{{nombre.id_nombre_producto.categoria.nombre_categoria}}">{{nombre.id_nombre_producto.nombre_productos}}</option>
                                 {% endfor %}
 
                                 <!-- {% for nombre in nombre_productos  %}
-                                    <input type="hidden" class="cambio_valor" value="{{nombre.categoria}}-{{nombre.id}}">
+                                    <input type="hidden" class="cambio_valor" value="{{nombre.id_nombre_producto.categoria.nombre_categoria}}-{{nombre.id}}">
                                 {% endfor %} -->
+
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad Produccion"
-                                required>
+                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad Produccion" required>
                         </div>
 
                         <input type="hidden" name="guardar" value="guardar">
@@ -68,7 +69,7 @@
                             var categoria = document.getElementById('categoria');
                             var productos = document.getElementsByClassName('nombre_productos');
                             var select_productos = document.getElementById('select_producto');
-                            var enviar_producto = document.getElementById('id_producto')
+                            var enviar_producto = document.getElementById('id_producto');
 
                             for (var i = 0; i < productos.length; i++) {
                                 productos[i].style.display = 'none';
@@ -117,8 +118,8 @@
                             {% for producto in productos  %}
 
                             <tr class="tabla_compras">
-                                <td class="small" id="producto{{producto.id_produccion}}">{{producto.id_producto.id_nombre_producto.categoria}}</td>
-                                <td class="small" id="nombre_producto{{producto.id_produccion}}">{{producto.id_producto.id_nombre_producto.nombre_productos}}</td>
+                                <td class="small" id="producto{{producto.id}}">{{producto.id_producto.id_nombre_producto.categoria}}</td>
+                                <td class="small" id="nombre_producto{{producto.id}}">{{producto.id_producto.id_nombre_producto.nombre_productos}}</td>
                                 <td class="small">{{producto.cantidad_detalle}}</td>
 
 
@@ -128,10 +129,10 @@
                                 <td class="small">
                                     {% load static %}
                                     <i style="color: white;" type="button" data-toggle="modal"
-                                        data-target="#editar{{producto.id_produccion}}"><i><img
+                                        data-target="#editar{{producto.id}}"><i><img
                                                 src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
-                                    <div class="modal fade" id="editar{{producto.id_produccion}}" tabindex="-1"
+                                    <div class="modal fade" id="editar{{producto.id}}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -149,13 +150,13 @@
 
                                                             <label for="nombre{{insumo.id}}"
                                                                 class="col-form-label">Categoria:</label>
-                                                            <select name="producto"
-                                                                id="prueba{{producto.id_produccion}}"
+                                                            <select
+                                                                id="prueba{{producto.id}}"
                                                                 class="form-control">
 
                                                                 {% for categorias in categoria  %}
 
-                                                                <option class="categorias{{producto.id_produccion}}"
+                                                                <option class="categorias{{producto.id}}"
                                                                     value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
 
                                                                 {% endfor %}
@@ -168,62 +169,57 @@
 
                                                             <label for="nombre{{insumo.id}}"
                                                                 class="col-form-label">Producto:</label>
-                                                            <select name="producto"
-                                                                id="select_default{{producto.id_produccion}}" class="form-control">
+                                                            <select name="nombre_productos"
+                                                                id="select_default{{producto.id}}" class="form-control">
 
                                                                 <!-- <option id="desactivar" disabled='disabled'
                                                                     selected='selected'> Seleccionar Productos
                                                                 </option> -->
 
                                                                 {% for nombre in nombre_productos  %}
-                                                                <option class="nombre_productos{{producto.id_produccion}}" value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
-
+                                                                    <option class="nombre_productos{{producto.id}}" id="opcion{{nombre.id}}" value="{{nombre.id}}-{{nombre.id_nombre_producto.categoria.nombre_categoria}}">{{nombre.id_nombre_producto.nombre_productos}}</option>
                                                                 {% endfor %}
 
                                                             </select>
                                                         </div>
                                                         <script>
-                                                            var opciones_categorias = document.getElementsByClassName("categorias{{producto.id_produccion}}");
-                                                            var tabla_valor_producto = document.getElementById("producto{{producto.id_produccion}}");
-                                                            var tabla_valor_nombre = document.getElementById("nombre_producto{{producto.id_produccion}}");
-                                                            var select_nombre_productos = document.getElementsByClassName("nombre_productos{{producto.id_produccion}}");
-                                                            var select_categorias = document.getElementById("prueba{{producto.id_produccion}}");
-                                                            var input_editar = document.getElementById('iden');
-                                                            var select_enviar = document.getElementById('select_default{{producto.id_produccion}}');
+                                                            var opciones_categorias{{producto.id}} = document.getElementsByClassName("categorias{{producto.id}}");
+                                                            var tabla_valor_producto{{producto.id}} = document.getElementById("producto{{producto.id}}");
+                                                            var tabla_valor_nombre{{producto.id}} = document.getElementById("nombre_producto{{producto.id}}");
+                                                            var select_nombre_productos{{producto.id}} = document.getElementsByClassName("nombre_productos{{producto.id}}");
+                                                            var select_categorias{{producto.id}} = document.getElementById("prueba{{producto.id}}");
+                                                            var input_editar{{producto.id}} = document.getElementById('iden');
+                                                            var select_enviar{{producto.id}} = document.getElementById('select_default{{producto.id}}');
 
 
-                                                            filtro_editar(opciones_categorias, tabla_valor_producto);
+                                                            filtro_editar(opciones_categorias{{producto.id}}, tabla_valor_producto{{producto.id}});
 
-                                                            filtro_editar_con_select(select_categorias,select_nombre_productos);
+                                                            filtro_editar_con_select(select_categorias{{producto.id}},select_nombre_productos{{producto.id}});
 
-                                                            filtrar_select_nombre_modal(tabla_valor_nombre,select_nombre_productos);
+                                                            filtrar_select_nombre_modal(tabla_valor_nombre{{producto.id}},select_nombre_productos{{producto.id}});
 
 
-                                                            select_categorias.addEventListener("change", function () {
-                                                                filtro(select_categorias,select_nombre_productos);
+                                                            select_categorias{{producto.id}}.addEventListener("change", function () {
+                                                                filtro(select_categorias{{producto.id}},select_nombre_productos{{producto.id}});
                                                             });
 
-                                                            // cambiar_enviar(input_editar,select_enviar)
-
-
-                                                            console.log(input_editar)
+                    
                                                         </script>
 
                                                         <div class="form-group">
                                                             <label for="recipient-name"
                                                             class="col-form-label">Cantidad:</label>
-                                                            <input name="cantidad" value="{{producto.cantidad}}" type="text" class="form-control" id="recipient-name">
+                                                            <input name="cantidad" value="{{producto.cantidad_detalle}}" type="text" class="form-control" id="recipient-name">
                                                         </div>
 
-                                                        <input type="hidden" id="iden" name="iden" value="">
+                                                        <input type="hidden" id="iden" name="iden" value="{{producto.id}}">
                                                         <input type="hidden" name="editar" value="editar">
 
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-danger"
                                                         data-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="btn btn-outline-success">Guardar
-                                                        Cambios</button>
+                                                    <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                                 </div>
                                                 </form>
                                             </div>
