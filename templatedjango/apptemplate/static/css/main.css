@@ -282,11 +282,11 @@ iframe {
   -moz-transition: all 0.4s;
   transition: all 0.4s;
 
-  background: #d41872;
-  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
-  background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
-  background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
-  background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: #eceaed;
+  background: -webkit-linear-gradient(left, #eceaed, #eceaed, #eceaed);
+  background: -o-linear-gradient(left, #eceaed, #eceaed, #eceaed);
+  background: -moz-linear-gradient(left, #eceaed, #eceaed, #eceaed);
+  background: linear-gradient(left, #eceaed, #eceaed, #eceaed);
 }
 
 .focus-input100::after {
@@ -314,7 +314,7 @@ iframe {
 
 .input100:focus + .focus-input100::after {
   left: 23px;
-  color: #d41872;
+  color: #eceaed;
 }
 
 .input100:focus + .focus-input100::before {
@@ -323,7 +323,7 @@ iframe {
 
 .has-val.input100 + .focus-input100::after {
   left: 23px;
-  color: #d41872;
+  color: #eceaed;
 }
 
 .has-val.input100 + .focus-input100::before {
@@ -367,11 +367,11 @@ iframe {
   height: 42px;
   border-radius: 21px;
 
-  background: #d41872;
+  background: #eceaed;
   background: -webkit-linear-gradient(left, #ccc, #aaa, #999);
-  background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
-  background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
-  background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -o-linear-gradient(left, #eceaed, #eceaed, #eceaed);
+  background: -moz-linear-gradient(left, #eceaed, #eceaed, #eceaed);
+  background: linear-gradient(left, #eceaed, #eceaed, #eceaed);
   position: relative;
   z-index: 1;
 
@@ -422,7 +422,7 @@ iframe {
   position: absolute;
   max-width: 70%;
   background-color: #fff;
-  border: 1px solid #c80000;
+  border: 1px solid #eceaed;
   border-radius: 2px;
   padding: 4px 25px 4px 10px;
   top: 50%;
@@ -435,7 +435,7 @@ iframe {
   pointer-events: none;
 
   font-family: Ubuntu-Bold;
-  color: #c80000;
+  color: #eceaed;
   font-size: 13px;
   line-height: 1.4;
   text-align: left;
@@ -453,7 +453,7 @@ iframe {
   content: "\f12a";
   font-family: FontAwesome;
   font-size: 16px;
-  color: #c80000;
+  color: #eceaed;
 
   display: block;
   position: absolute;

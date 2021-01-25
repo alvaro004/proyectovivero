@@ -28,7 +28,7 @@
                         {% csrf_token %}
 
                         <div class="form-group">
-                            <select class="form-control" id="">
+                            <select class="form-control" id="categoria_productos">
                                 <option disabled selected> Seleccionar Categoria</option>
                                 {% for categorias in categoria  %}
                                 <option class="categoria" id="opcion{{categorias.id}}"
@@ -41,7 +41,7 @@
                             <select class="form-control" name="nombre_productos" id="select_producto" required>
                                 <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Producto</option>
                                 {% for nombre in nombre_productos  %}
-                                <option class="nombre_productos" id="opcion{{nombre.id}}"
+                                <option class="nombre_productoss" id="opcion{{nombre.id}}"
                                     value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
                                 {% endfor %}
                             </select>
@@ -73,8 +73,8 @@
 
                             // primero se cambia la propiedad de display a none para que no se muestren los datos 
 
-                            var categoria = document.getElementById('categoria');
-                            var productos = document.getElementsByClassName('nombre_productos');
+                            var categoria = document.getElementById('categoria_producto');
+                            var productos = document.getElementsByClassName('nombre_productoss');
                             var select_productos = document.getElementById('select_producto');
                             var enviar_producto = document.getElementById('id_producto')
 
@@ -176,10 +176,6 @@
                         </div>
 
                     </div>
-
-                    
-
-                    <button type="submit" class="btn btn-outline-info float-right" id="enviar">Guardar</button>
 
                     
                     <script>

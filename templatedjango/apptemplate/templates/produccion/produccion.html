@@ -37,8 +37,7 @@
 
                         <div class="form-group">
                             <select class="form-control" name="nombre_productos" id="select_producto" required>
-                                <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos
-                                </option>
+                                <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Productos</option>
                                 {% for nombre in nombre_productos  %}
                                 <option class="nombre_productos" id="opcion{{nombre.id}}"
                                     value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>

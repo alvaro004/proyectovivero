@@ -520,11 +520,14 @@ def listado_productos(request):
                 get_productos.cantidad_stock = cantidad
                 get_productos.save()
                 
-        filtroNombre = request.GET.get('filtroNombre')
+        filtroNombre = request.POST.get('filtroNombre')
     
+        # for mostrar in productos:
+        #     hola = mostrar.id_nombre_producto.nombre_productos
+        #     print(hola)
+
         if filtroNombre != '' and filtroNombre is not None:       
-            productos = productos.filter(Q(precio = filtroNombre) | Q(descripcion_producto__icontains = filtroNombre) 
-            | Q(cantidad_stock = filtroNombre))
+            productos = productos.filter(Q(precio = filtroNombre) | Q(descripcion_producto__icontains = filtroNombre) | Q(cantidad_stock = filtroNombre) | Q( id_nombre_producto__nombre_productos__icontains = filtroNombre))
 
 
         return render(request,'productos/listado_productos.html',{'productos':productos})
@@ -626,8 +629,11 @@ def pedidos(request):
     if request.user.is_authenticated:
 
         clientes = Clientes.objects.all
+        categoria = Categoria_productos.objects.all()
+        nombre_productos = Nombre_productos.objects.all()
+        print(nombre_productos)
 
-        return render(request, 'pedidos/pedidos.html',{'clientes':clientes})
+        return render(request, 'pedidos/pedidos.html',{'clientes':clientes, 'categoria':categoria, 'nombre_productos':nombre_productos})
     else:
         return redirect('/')
 
