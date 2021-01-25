@@ -81,10 +81,9 @@ function send_form(form){
 }
 
 boton_logout = document.getElementById('logout_button');
-
-  boton_logout.onclick = function(){
-    console.log('entro')
-    if (confirm('¿Desea cerrar la sesión? ')) {
-      window.location = 'logout';
-    }
+boton_logout.onclick = function(){
+  console.log('entro')
+  if (confirm('¿Desea cerrar la sesión? ')) {
+    window.location = 'logout';
   }
+}
