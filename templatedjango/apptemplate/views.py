@@ -9,6 +9,15 @@ from django.db.models import Q
 # Create your views here.
 
 
+# VISTA DEL INICIO 
+
+def inicio(request):
+
+    if request.user.is_authenticated:
+        view = 'inicio'
+        return render(request, 'inicio/inicio.html',{'name':view})
+    else:
+        return redirect('/')
 
 # codigo para consultar insumos y detalles compras y luego enviar a la vista 
 # en forma de lista con diccionario las tablas detalles compras y 
@@ -368,8 +377,6 @@ def produccion(request):
                 id_productos = request.POST.get('id_producto')
                 cantidad = request.POST.get('cantidad')
 
-                # get_nombre_producto = Nombre_productos.objects.get(id=id_productos)
-
                 get_producto = Productos.objects.get(id=id_productos)
 
                 print(get_producto)
@@ -378,10 +385,7 @@ def produccion(request):
                 save_produccion = Detalles_Produccion(id_producto=get_producto,cantidad_detalle=cantidad)
                 save_produccion.save()
 
-                # detalles_Produccion = Detalles_Produccion(id_producto=get_productos, cantidad_detalle=cantidad)
-                # detalles_Produccion.save()
-            
-                # productos_objetos = objetos_productos()
+
 
             if request.POST.get('borrar'):
                 id_borrar = request.POST.get('id_borrar')
@@ -406,6 +410,77 @@ def produccion(request):
                 get_detalles.cantidad_detalle = cantidad
                 get_detalles.save()
 
+            if request.POST.get('guardar_insumo'):
+
+                cantidad_usar = request.POST.get('cantidad_usar')
+                nombre_insumo = request.POST.get('nombre_insumo').split('-')[0]
+
+                get_insumos = Insumos.objects.get(id=nombre_insumo)
+
+                save_detalles_insumos = Detalles_insumos(id_insumos=get_insumos, Cantidad=cantidad_usar)
+                save_detalles_insumos.save()
+
+                print(get_insumos)
+
+            if request.POST.get('borrar_insumo'):
+                # print('entro en borrar insumo')
+                id_borrar_insumo = request.POST.get('id_borrar')
+                delete_insumo = Detalles_insumos.objects.get(id=id_borrar_insumo)
+                delete_insumo.delete()
+
+            if request.POST.get('editar_insumo'):
+                print('editar')
+                insumos_nombre = request.POST.get('insumos_nombre').split('-')[0]
+                cantidad_usar_editar = request.POST.get('cantidad')
+                id_insumo_editar = request.POST.get('editar_insumo')
+
+                get_detalles_insumos = Detalles_insumos(id=id_insumo_editar)
+                get_insumos = Insumos.objects.get(id=insumos_nombre)
+
+                get_detalles_insumos.Cantidad = cantidad_usar_editar
+                get_detalles_insumos.id_insumos = get_insumos
+                get_detalles_insumos.save()
+
+                # print(get_detalles_insumos)
+                # print(get_insumos)    
+                # print(id_insumo_editar)
+
+            if request.POST.get('registrar_produccion'):
+                print('entro en registrar')
+
+                productos_registrar = request.POST.getlist('productos_enviar')
+                insumos_registrar = request.POST.getlist('insumos_enviar')
+                fecha_registrar = request.POST.get('fecha_enviar')
+
+                save_produccion = Produccion(fecha_produccion=fecha_registrar,estado_produccion='En Proceso')
+                save_produccion.save()
+
+                get_produccion_last = Produccion.objects.last()
+
+
+                for iterar_p in productos_registrar:
+                    get_detalles_produccion = Detalles_Produccion.objects.get(id=iterar_p)
+                    get_detalles_produccion.id_produccion = get_produccion_last
+                    get_detalles_produccion.save()
+                    print(iterar_p)
+
+
+                for iterar_i in insumos_registrar:
+                    get_detalles_insumos = Detalles_insumos.objects.get(id=iterar_i)
+                    get_detalles_insumos.id_produccion = get_produccion_last
+                    get_detalles_insumos.save()
+                    print(iterar_i)
+
+                print(productos_registrar)
+                print(insumos_registrar)
+                print(fecha_registrar)
+            
+            
+
+
+
+            
+
 
 
 
@@ -413,8 +488,21 @@ def produccion(request):
         Productos_para_produccion = Productos.objects.all()
         categoria = Categoria_productos.objects.all()
         insumos = Insumos.objects.all()
+        categoria_insumos = Insumos_categoria.objects.all()
         productos_objetos = Detalles_Produccion.objects.all()
-        return render(request,'produccion/produccion.html',{'nombre_productos':Productos_para_produccion,'categoria':categoria,'productos':productos_objetos,'insumos':insumos})
+        detalles_insumos = Detalles_insumos.objects.all()
+
+
+        return render(request,'produccion/produccion.html',{
+            'nombre_productos':Productos_para_produccion,
+            'categoria':categoria,
+            'productos':productos_objetos,
+            'insumos':insumos,
+            'categoria_insumos':categoria_insumos,
+            'detalles_insumos':detalles_insumos
+        })
+
+
     else:
         return redirect('/')
 
@@ -424,15 +512,6 @@ def listado_produccion(request):
     return render(request,'produccion/listado_produccion.html')
 
 
-# VISTA DEL INICIO 
-
-def inicio(request):
-
-    if request.user.is_authenticated:
-        view = 'inicio'
-        return render(request, 'inicio/inicio.html',{'name':view})
-    else:
-        return redirect('/')
 
         
 
@@ -543,9 +622,6 @@ def ventas(request):
     else:
         return redirect('/')
 
-
-
-        
 
 
 def login(request):

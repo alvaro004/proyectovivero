@@ -8,6 +8,8 @@ function filtro(primer_select, segundo_select) {
 
     for (var i = 0; i < segundo_select.length; i++) {
       valor = segundo_select[i].value
+      // console.log(valor)
+
       valor = valor.split('-')
       valor = valor[1]
 
@@ -27,6 +29,7 @@ function filtro(primer_select, segundo_select) {
   
   
       }
+
     }
   
   }
@@ -40,8 +43,8 @@ function cambiar_enviar(valor, enviar) {
   function filtro_editar(valores, valor_tabla) {
     // console.log(valor_tabla.innerHTML)
 
-    console.log(valores);
-    console.log(valor_tabla);
+    // console.log(valores);
+    // console.log(valor_tabla);
       for (var i = 0; i < valores.length; i++) {
   
         // console.log(valores[i].value)
@@ -100,13 +103,16 @@ function cambiar_enviar(valor, enviar) {
     confirm(' Desea cerrar la sesion?. ')
   }
 
-
-  boton_logout = document.getElementById('logout_button');
-
-  boton_logout.onclick = function(){
-    console.log('entro')
-    if (confirm('¿Desea cerrar la sesión? ')) {
-      window.location = 'logout';
+  function verif_tabla(clases_tabla_valores){
+    if (clases_tabla_valores.length > 0) {
+      return true
+      
+    }
+    else
+    {
+      return false
     }
   }
+
+
   
