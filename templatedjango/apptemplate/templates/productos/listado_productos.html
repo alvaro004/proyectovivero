@@ -23,6 +23,8 @@
 
 </form>
 
+<hr>
+
 <div class="row aca">
   <style>
     /* ESTE ESTILO SIRVE PARA QUE EL CONTENIDO DE LOS DIVS HIJOS TENGAN EL MISMO TAMANO */
@@ -136,6 +138,7 @@
                       <div class="form-group col-xl-12 card-title">
                         <h4 class="card-title"><strong>{{mostrar.id_nombre_producto.nombre_productos}}</strong></h4>
                       </div>
+                      
 
                       <!-- Text -->
                       <div class="form-group col-xl-12 card-title">
@@ -143,26 +146,28 @@
                       </div>
 
 
-                      <div class="form-group col-xl-7">
+                      <hr>
+                      <div class="form-group col-xl-12">
                         <input class="form-control text-center text-primary" type="text"
                         readonly value="{{mostrar.precio}} Gs." >
                       </div>
 
-                      <div class="form-group col-xl-6">
+                      <div class="form-group col-xl-12">
                         <input class="form-control text-center text-primary" type="text" id="cantidad{{mostrar.id}}"
                           readonly value="{{mostrar.cantidad_stock}}" >
                       </div>
 
-                      <div class="form-group col-xl-6" style="width: 200px;">
+                      <!-- <div class="form-group col-xl-6" style="width: 200px;">
                         <button type="button" id="boton_activ{{mostrar.id}}" class="form-control btn btn-outline-success">Agg. Cantidad</button>
                         <button type="button" id="boton_add{{mostrar.id}}" class="btn btn-success" style=" float: left; display: none; font-weight: bold;">+</button>
                         <button type="button" id="boton_cancel{{mostrar.id}}" class="btn btn-danger" style=" margin-left: 10px; display: none; font-weight: bold;">x</button>
-                      </div>
+                      </div> -->
 
                     </div>
 
                   </div>
-                  <div class="modal-footer">
+                  <!-- BOTONES PARA AGREGAR MAS CANTIDAD -->
+                  <!-- <div class="modal-footer">
                     <button type="button" id="cerrar{{mostrar.id}}" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
                     <button type="button" id="guardar{{mostrar.id}}" class="btn btn-outline-success" style="display: none;">Guardar Cambios</button>
                     <form action="listado_productos" method="post" id="form{{mostrar.id}}">
@@ -171,12 +176,12 @@
                       <input type="hidden" name="cantidad_enviar" id="cantidad_enviar{{mostrar.id}}">
                       <input type="hidden" name="cambiar_valor" value="cambiar_valor">
                     </form>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
-
-              <script>
+              <!-- SCRIPT PARA QUE FUNCIONEN LOS BOTONES DE AGREGAR MAS CANTIDAD -->
+              <!-- <script>
 
                 var boton_activ{{mostrar.id}} = document.getElementById('boton_activ{{mostrar.id}}');
                 var boton_add{{mostrar.id}} = document.getElementById('boton_add{{mostrar.id}}');
@@ -226,7 +231,7 @@
                 });
 
 
-              </script>
+              </script> -->
             </div>
 
           </div>
