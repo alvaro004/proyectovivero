@@ -462,28 +462,14 @@ def produccion(request):
                     get_detalles_produccion = Detalles_Produccion.objects.get(id=iterar_p)
                     get_detalles_produccion.id_produccion = get_produccion_last
                     get_detalles_produccion.save()
-                    print(iterar_p)
+                    # print(iterar_p)
 
 
                 for iterar_i in insumos_registrar:
                     get_detalles_insumos = Detalles_insumos.objects.get(id=iterar_i)
                     get_detalles_insumos.id_produccion = get_produccion_last
                     get_detalles_insumos.save()
-                    print(iterar_i)
-
-                print(productos_registrar)
-                print(insumos_registrar)
-                print(fecha_registrar)
-            
-            
-
-
-
-            
-
-
-
-
+                    # print(iterar_i)
 
         Productos_para_produccion = Productos.objects.all()
         categoria = Categoria_productos.objects.all()
@@ -509,7 +495,10 @@ def produccion(request):
 
 # VISTA DE LISTADO DE PRODUCCION
 def listado_produccion(request):
-    return render(request,'produccion/listado_produccion.html')
+
+    show_detalles_produccion = Detalles_Produccion.objects.all()
+    show_produccion = Produccion.objects.all()
+    return render(request,'produccion/listado_produccion.html',{'detalles_produccion':show_detalles_produccion,'produccion':show_produccion})
 
 
 

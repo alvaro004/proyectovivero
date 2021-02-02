@@ -375,15 +375,15 @@
                                 
                             }
                             
-                            categoria_insumos.onchange = function(){
-                                filtro(categoria_insumos,insumos);
+                            categoria_insumo.onchange = function(){
+                                filtro(categoria_insumo,insumos);
                                 cantidad_disabled.value = select_insumo.value.split('-')[2] + ' ' + select_insumo.value.split('-')[3];
                                 // console.log(select_insumo.value)
 
                             };
                             
                             select_insumo.addEventListener("change", function () {
-                                filtro(select_categorias, select_nombre_productos);
+                                filtro(categoria_insumos, insumos);
                                 cantidad_disabled.value = select_insumo.value.split('-')[2] + ' ' + select_insumo.value.split('-')[3];
                             });
 
