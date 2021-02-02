@@ -163,8 +163,7 @@
 
                                                         var today = new Date();
                                                         var dd = String(today.getDate()).padStart(2, '0');
-                                                        var mm = String(today.getMonth() + 1).padStart(2,
-                                                        '0'); //January is 0!
+                                                        var mm = String(today.getMonth() + 1).padStart(2,'0'); //January is 0!
                                                         var yyyy = String(today.getFullYear());
 
                                                         date = String(yyyy + '-' + mm + '-' + dd);
@@ -184,7 +183,8 @@
 
                                                         // en esta funcion se cambia el vlor de la fecha al input oculto ara poer enviarlo al servidor
                                                         function cambio() {
-                                                            fecha = document.getElementById('fecha')
+
+                                                            fecha = document.getElementById('fecha');
                                                             fecha_parcial = document.getElementById('fecha_parcial');
                                                             fecha.value = fecha_parcial.value;
 
@@ -202,8 +202,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-danger"
                                                 data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-outline-success">Guardar
-                                                Cambios</button>
+                                            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                         </div>
                                     </div>
                                 </div>

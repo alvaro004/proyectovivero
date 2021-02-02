@@ -1,7 +1,7 @@
 
 function verificar() {
   table = document.getElementsByClassName('tabla_compras')
-  console.log(table.length)
+  // console.log(table.length)
 
 
   ocultar = document.getElementsByTagName('a')
@@ -57,7 +57,7 @@ for (var i = 0; i < li_elements.length; i++) {
     cantidad = document.getElementsByClassName('productos')
     cantidad2 = document.getElementsByClassName('insumos')
     // aca se detecta que clase se clickeo para mostrar
-    console.log(cantidad.length)
+    // console.log(cantidad.length)
 
     // en esta condicion se pregunt si se realiza click en el boton productos
     if (li_value == "productos") {
@@ -81,8 +81,9 @@ function send_form(form){
 }
 
 boton_logout = document.getElementById('logout_button');
+
 boton_logout.onclick = function(){
-  console.log('entro')
+  // console.log('entro')
   if (confirm('¿Desea cerrar la sesión? ')) {
     window.location = 'logout';
   }
