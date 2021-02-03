@@ -72,7 +72,18 @@
 
         </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos" style="border:none;">
+
+            {% load static %}
+            <div id="membreteContenedor">
+                <div class="div ahora" >
+                    <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
+                    <!-- <h1>Vivero</h1> -->
+                    <span id="tituloMembrete">Vivero Pasión por las <br> Tunas y Suculentas</span>
+                </div>
+                <span id="telefonoMembrete">Tel: 0975663976</span> <br>
+                <span id="calle">Eleuterio Cabrera C/ Juan Oleari</span>
+            </div>
 
             <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -81,7 +92,7 @@
                         <th>Insumo</th>
                         <th>Cantidad</th>
                         <th>Unidad de Medida</th>
-                        <th>Acciones</th>
+                        <th class="ocultar">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,7 +108,7 @@
 
                         <!-- codigo para el boton de editar 
                             -------------------------------------------------- -->
-                        <td>
+                        <td class="ocultar">
                             {% load static %}
                             <i style="color: white;" type="button" data-toggle="modal"
                                 data-target="#editar{{insumo.id}}"><i><img
@@ -257,11 +268,13 @@
                         <th>Insumo</th>
                         <th>Cantidad</th>
                         <th>Unidad de Medida</th>
-                        <th>Acciones</th>
+                        <th class="ocultar">Acciones</th>
                     </tr>
                 </tfoot>
             </table>
-
+            <div class="botones ocultar">
+                <button id="btnCrearPdf" class="btn btn-outline-warning float-right">Generar PDF</button>
+            </div>
         </div>
     </div>
 

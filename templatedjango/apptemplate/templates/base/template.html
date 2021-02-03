@@ -269,28 +269,28 @@
   
   
   
-  <!-- data live search -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Importante -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <!-- Le da la funcionalidad-->
-    <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<!-- data live search -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Importante -->
+<script type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<!-- Le da la funcionalidad-->
+<script type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     
-    <!-- ----------------- -->
-    
-    
+<!-- ----------------- -->
     
     
-    <!-- HASTA ACA -->
-    
-    <!-- Bootstrap core JavaScript -->
     
     
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
+<!-- HASTA ACA -->
+    
+<!-- Bootstrap core JavaScript -->
+    
+    
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
 
 <!-- comentamos estas lineas para que funcione el data live search -->
 
@@ -306,48 +306,19 @@
 <!-- extension responsive -->
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-    <!-- El script de la librería para generar el pdf-->
+<!-- El script de la librería para generar el pdf-->
 
-    {% load static %}
-    <script src="{% static '/js/html2pdf.bundle.min.js' %}"></script>
-    <script src="{% static '/js/scriptpdf.js' %}"></script>
+{% load static %}
+<script src="{% static '/js/html2pdf.bundle.min.js' %}"></script>
+<script src="{% static '/js/scriptpdf.js' %}"></script>
     
-
 <!-- Menu Toggle Script -->
-<script>
-  $(document).ready(function () {
 
-    $('table.tablita').DataTable({
-      responsive: true,
-      "language": {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-      }
-      
+<!-- DATA TABLE SCRIPT -->
 
-      //Otra forma de cambiar el idioma
-      // "language": {
-          //     "lengthMenu": "Mostrando _MENU_ ",
-          //     "zeroRecords": "No se encontro nada - ¡Lo siento!",
-          //     "info": "Mostrando pagina _PAGE_ de _PAGES_",
-          //     "infoEmpty": "No hay registros disponibles",
-          //     "infoFiltered": "(filtrando de _MAX_ registros totales)",
-          //      "search": "Busqueda:",
-          //      "paginate": {
-            //          "previous": "Anterior",
-            //          "next": "Siguiente"
-            
-            //      }
-            //  }
-            
-          });
-          
-        });
-        
-      $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-      });
-      </script>
+{% load static %}
+<script src="{% static '/js/dataTable.js' %}"></script>
+
 
 <!-- HACEMOS REFERENCIA AL SCRIPT PARA EL HIDE Y SHOW -->
 {% load static %}

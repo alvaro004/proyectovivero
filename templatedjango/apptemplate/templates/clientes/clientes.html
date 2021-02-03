@@ -74,9 +74,7 @@
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos"
             style="border:none;">
-            <div class="botones ocultar">
-                <button id="btnCrearPdf" class="btn btn-outline-warning ">Generar PDF</button>
-            </div>
+            
             {% load static %}
             <div id="membreteContenedor">
                 <div class="div ahora" >
@@ -214,8 +212,11 @@
                         <th class="ocultar">Acciones</th>
                     </tr>
                 </tfoot>
+                
             </table>
-
+            <div class="botones ocultar">
+                <button id="btnCrearPdf" class="btn btn-outline-warning float-right">Generar PDF</button>
+            </div>
         </div>
     </div>
 

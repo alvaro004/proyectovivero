@@ -12,15 +12,26 @@
     <div class="row" style="align-items: center; display: flex; justify-content: center;">
         <!-- este style es para centar el div de la clase col -->
 
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
-
-            <table id="example" class="tablita table  table-hover table-bordered  display nowrap" cellspacing="0"
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos" style="border:none;">
+            
+            {% load static %}
+            <div id="membreteContenedor">
+                <div class="div ahora" >
+                    <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
+                    <!-- <h1>Vivero</h1> -->
+                    <span id="tituloMembrete">Vivero Pasión por las <br> Tunas y Suculentas</span>
+                </div>
+                <span id="telefonoMembrete">Tel: 0975663976</span> <br>
+                <span id="calle">Eleuterio Cabrera C/ Juan Oleari</span>
+            </div>
+            
+            <table id="example" class="tablita table  table-hover table-bordered display nowrap" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr style="color: #A3A6B4;">
                         <th>Fecha</th>
                         <th>Total</th>
-                        <th>Ver Más</th>
+                        <th class="ocultar">Ver Más</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +41,7 @@
                     <tr class="small">
                         <td >{{compra.fecha_compra}}</td>
                         <td>{{compra.total_compra}}</td>
-                        <td>
+                        <td class="ocultar">
                             {% load static %}
                             <i style="color: white; padding:0 10px;" type="button" data-toggle="modal"
                                 data-target="#ver_mas{{compra.id}}">
@@ -44,16 +55,26 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Detalles de la Compra
-                                            </h5>
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Detalles de la Compra</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
+                                                <span class="ocultar" aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
 
 
                                             <div class="container rounded">
+
+                                                {% load static %}
+                                                <div id="membreteContenedor">
+                                                    <div class="div ahora" >
+                                                        <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
+                                                        <!-- <h1>Vivero</h1> -->
+                                                        <span id="tituloMembrete">Vivero Pasión por las <br> Tunas y Suculentas</span>
+                                                    </div>
+                                                    <span id="telefonoMembrete">Tel: 0975663976</span> <br>
+                                                    <span id="calle">Eleuterio Cabrera C/ Juan Oleari</span>
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label for="fecha_produccion">Fecha de la Compra:</label>
@@ -113,14 +134,18 @@
 
                                             </div>
 
-
+                                            <!-- <div class="botones ocultar form-group">
+                                                <button id="btnCrearPdf" class="btn btn-outline-warning form-control">Generar PDF</button>
+                                            </div> -->
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="modal-footer ocultar">
                                             <button type="button" class="btn btn-outline-danger"
                                                 data-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
+                                    
                                 </div>
+                                
                             </div>
                         </td>
 
@@ -133,10 +158,13 @@
                     <tr style="color: #A3A6B4;">
                         <th>Fecha</th>
                         <th>Total</th>
-                        <th>Ver Más</th>
+                        <th class="ocultar">Ver Más</th>
                     </tr>
                 </tfoot>
             </table>
+            <div class="botones ocultar">
+                <button id="btnCrearPdf" class="btn btn-outline-warning float-right">Generar PDF</button>
+            </div>
 
         </div>
     </div>
