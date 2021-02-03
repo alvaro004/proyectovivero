@@ -114,5 +114,3 @@ function cambiar_enviar(valor, enviar) {
     }
   }
 
-
-  
