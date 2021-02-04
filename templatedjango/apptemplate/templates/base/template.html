@@ -160,10 +160,11 @@
               </i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="">Gestionar Usuario</a>
+              <a class="dropdown-item" href="gestionar_usuario">Gestionar Usuario</a>
+              <a class="dropdown-item" href="auditoria">Auditoría</a>
               <!-- <a class="dropdown-item" href="#">Another action</a> -->
               <div class="dropdown-divider"></div>
-              <a id="logout_button" class="dropdown-item" href="#">Cerrar Sesion</a>
+              <a id="logout_button" class="dropdown-item" href="#">Cerrar Sesión</a>
             </div>
           </li>
         </ul>
@@ -260,7 +261,17 @@
 
       {% endblock clientes %}
 
+      <!-- AUDITORIA -->
 
+      {% block auditoria %}
+
+      {% endblock auditoria %}
+
+      <!-- GESTIONAR USUARIOS -->
+
+      {% block gestionar_usuario %}
+
+      {% endblock gestionar_usuario %}
       
     </div>
     

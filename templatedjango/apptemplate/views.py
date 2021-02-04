@@ -775,3 +775,19 @@ def login2(request):
                 return redirect('/home')
 
         return render(request,'login/login2.html')
+
+def auditoria(request):
+
+    if request.user.is_authenticated:
+        return render(request, 'auditoria/auditoria.html')
+    else:
+        return redirect('/')
+
+def gestionar_usuario(request):
+
+    if request.user.is_authenticated:
+        return render(request, 'gestionar_usuario/gestionar_usuario.html')
+    else:
+        return redirect('/')
+
+        

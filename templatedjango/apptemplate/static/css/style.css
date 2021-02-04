@@ -47,6 +47,10 @@ h1{
 h5{
     color: #007bff;
 }
+h3{
+    color:  #007bff;
+    font-weight: bold;
+}
 #calle{
     color: #a6a8b5;
     /* font-weight: bold; */

@@ -1,0 +1,92 @@
+{% extends 'base/template.html' %}
+
+{% block gestionar_usuario %}
+
+{% block titulo_gestionar_usuario %}
+<title>Gestionar Usuario</title>
+{% endblock titulo_gestionar_usuario %}
+
+<div class="container rounded">
+
+    <div class="row" style="align-items: center; display: flex; justify-content: center;">
+        <!-- este style es para centar el div de la clase col -->
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos" style="border:none;">
+            <h3>GESTIÓN DE USUARIO</h3>
+            <br>
+            
+            <table id="example" class="table  table-hover table-bordered display nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Juan</td>
+                        <td>***</td>
+                        <td>
+                            {% load static %}
+                            <i style="color: white;" type="button" data-toggle="modal"
+                            data-target="#editar{{mostrar.id}}"><i><img src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+                            
+                            <!-- modal para el boton de editar -->
+
+                        <div class="modal fade" id="editar{{mostrar.id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="gestionar_usuario">
+                                        {% csrf_token %}
+
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Nombre del Usuario</label>
+                                            <input name="" value="" type="text"
+                                            class="form-control" id="recipient-name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Contraseña</label>
+                                            <input name="" value="" type="password" class="form-control" id="recipient-name" required>
+                                        </div>
+
+                                        <input type="hidden" name="iden" value="{{mostrar.id}}">
+                                        <input type="hidden" name="editar" value="editar">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-danger"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                        
+                         </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Contraseña</th>
+                        <th>Editar</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock gestionar_usuario %}
