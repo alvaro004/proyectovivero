@@ -1,0 +1,59 @@
+{% extends 'base/template.html' %}
+
+{% block auditoria %}
+
+{% block tituloauditoria %}
+<title>Auditoría</title>
+{% endblock tituloauditoria %}
+
+<div class="container rounded">
+
+    <div class="row" style="align-items: center; display: flex; justify-content: center;">
+        <!-- este style es para centar el div de la clase col -->
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos" style="border:none;">
+            
+            {% load static %}
+            <div id="membreteContenedor">
+                <div class="div ahora" >
+                    <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
+                    <!-- <h1>Vivero</h1> -->
+                    <span id="tituloMembrete">Vivero Pasión por las <br> Tunas y Suculentas</span>
+                </div>
+                <span id="telefonoMembrete">Tel: 0975663976</span> <br>
+                <span id="calle">Eleuterio Cabrera C/ Juan Oleari</span>
+            </div>
+            
+            <table id="example" class="tablita table  table-hover table-bordered display nowrap" cellspacing="0"
+                width="100%">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Acción Realizada</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="small">
+                        <td >2020-02-04</td>
+                        <td>Se edito la tabla bla bla</td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Acción Realizada</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="botones ocultar">
+                <button id="btnCrearPdf" class="btn btn-outline-warning float-right">Generar PDF</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock auditoria %}

@@ -8,7 +8,7 @@
 {% block produccion %}
 
 <div class="container rounded">
-    <button id="productos" class="btn btn-outline-info boton" data-li="productos">Produccion</button>
+    <button id="productos" class="btn btn-outline-info boton" data-li="productos">Producción</button>
     <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Insumos</button>
 
 
@@ -20,7 +20,7 @@
 
 
                 <div class="card-body responsive">
-                    <h5 class="card-title">Produccion!</h5>
+                    <h5 class="card-title">¡Producción!</h5>
 
                     <form action="produccion" method="post" id="formulario">
                         {% csrf_token %}
@@ -52,12 +52,13 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad Produccion" required>
+                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad Producción" required>
                         </div>
 
                         <input type="hidden" name="guardar" value="guardar">
                         <input type="hidden" name="id_producto" id="id_producto" value="nombre_del_producto">
                         <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+                        <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
 
                         <script>
                             // en este codigo se realiza un filtro de los productos por sus categorias 
@@ -104,12 +105,12 @@
 
                     <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
 
-                        <thead style="background-color: #F5F6FA;">
+                        <thead>
                             <tr>
-                                <th style="color: #A3A6B4;" scope="col">Categoria</th>
-                                <th style="color: #A3A6B4;" scope="col">Producto</th>
-                                <th style="color: #A3A6B4;" scope="col">Cantidad</th>
-                                <th style="color: #A3A6B4;" scope="col">Acciones</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
 
@@ -121,9 +122,9 @@
                             {% if not producto.id_produccion %}
                                 
                             <tr class="tabla_productos">
-                                <td class="small" id="producto{{producto.id}}">{{producto.id_producto.id_nombre_producto.categoria}}</td>
-                                <td class="small" id="nombre_producto{{producto.id}}">{{producto.id_producto.id_nombre_producto.nombre_productos}}</td>
-                                <td class="small">{{producto.cantidad_detalle}}</td>
+                                <td id="producto{{producto.id}}">{{producto.id_producto.id_nombre_producto.categoria}}</td>
+                                <td id="nombre_producto{{producto.id}}">{{producto.id_producto.id_nombre_producto.nombre_productos}}</td>
+                                <td>{{producto.cantidad_detalle}}</td>
 
 
 
@@ -248,7 +249,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -260,14 +261,14 @@
                                                         <input type="hidden" name="id_borrar"
                                                             value="{{producto.id}}">
                                                         <input type="hidden" name="borrar" value="borrar">
-                                                        Desea Eliminar este Registro ?
+                                                        ¿Desea Eliminar este Registro ?
                                                     </div>
                                                     <div class="modal-footer">
 
-                                                        <button type="button" class="btn btn-outline-danger"
+                                                        <button type="button" class="btn btn-outline-warning"
                                                             data-dismiss="modal">Cancelar</button>
                                                         <button type="submit"
-                                                            class="btn btn-outline-info">Borrar</button>
+                                                            class="btn btn-outline-danger">Borrar</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -316,7 +317,7 @@
 
 
                 <div class="card-body responsive">
-                    <h5 class="card-title">Insumos!</h5>
+                    <h5 class="card-title">¡Insumos!</h5>
 
                     <form action="produccion" method="post" id="formulario">
                         {% csrf_token %}
@@ -361,6 +362,8 @@
 
                         <input type="hidden" name="guardar_insumo" value="guardar_insumo">
                         <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+                        <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
+                        
 
                         <!-- codigo para el select de la vista  -->
 
@@ -405,12 +408,12 @@
 
                     <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
 
-                        <thead style="background-color: #F5F6FA;">
+                        <thead>
                             <tr>
-                                <th style="color: #A3A6B4;" scope="col">Categoria</th>
-                                <th style="color: #A3A6B4;" scope="col">Insumo</th>
-                                <th style="color: #A3A6B4;" scope="col">Cantidad a Usar</th>
-                                <th style="color: #A3A6B4;" scope="col">Acciones</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Insumo</th>
+                                <th scope="col">Cantidad a Usar</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
 
@@ -423,9 +426,9 @@
                             {% if not ver_insumos.id_produccion %}
 
                                 <tr class="tabla_insumos">
-                                    <td class="small" id="producto{{ver_insumos.id}}">{{ver_insumos.id_insumos.categoria}}</td>
-                                    <td class="small" id="nombre_producto{{ver_insumos.id}}">{{ver_insumos.id_insumos.nombre}}</td>
-                                    <td class="small">{{ver_insumos.Cantidad}} {{ver_insumos.id_insumos.unidad_de_medida}}</td>
+                                    <td id="producto{{ver_insumos.id}}">{{ver_insumos.id_insumos.categoria}}</td>
+                                    <td id="nombre_producto{{ver_insumos.id}}">{{ver_insumos.id_insumos.nombre}}</td>
+                                    <td>{{ver_insumos.Cantidad}} {{ver_insumos.id_insumos.unidad_de_medida}}</td>
     
     
     
@@ -546,7 +549,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -558,14 +561,14 @@
                                                             <input type="hidden" name="id_borrar"
                                                                 value="{{ver_insumos.id}}">
                                                             <input type="hidden" name="borrar_insumo" value="borrar_insumo">
-                                                            Desea Eliminar este Registro ?
+                                                            ¿Desea Eliminar este Registro ?
                                                         </div>
                                                         <div class="modal-footer">
 
-                                                            <button type="button" class="btn btn-outline-danger"
+                                                            <button type="button" class="btn btn-outline-warning"
                                                                 data-dismiss="modal">Cancelar</button>
                                                             <button type="submit"
-                                                                class="btn btn-outline-info">Borrar</button>
+                                                                class="btn btn-outline-danger">Borrar</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -682,7 +685,7 @@
                     boton_registrar.addEventListener('click',function(){
                         if (verif_tabla(tabla_insumos) && verif_tabla(tabla_productos))
                         {
-                            if (confirm('Desea Registrar la Produccion ?...')) {
+                            if (confirm('¿Desea Registrar la Producción?')) {
                                 fecha_enviar.value = fecha_parcial.value;
                                 form_enviar.submit();
                                 
@@ -691,7 +694,7 @@
                         }
                         else
                         {
-                            alert('Por favor agregue datos para registrar la Produccion');
+                            alert('¡¡¡Por favor agregue los datos necesarios para registrar la Producción!!!');
                         }
                         
                     })

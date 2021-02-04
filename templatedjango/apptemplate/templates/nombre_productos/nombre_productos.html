@@ -17,7 +17,7 @@
 
                 <div class="card-body">
 
-                    <h5 class="card-title">Nombre del Producto!</h5>
+                    <h5 class="card-title">¡Nombre del Producto!</h5>
 
                     <form action="nombre_productos" method="post" id="id_form_modal">
 
@@ -83,19 +83,19 @@
                 cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th style="color: #A3A6B4;">categoria</th>
-                        <th style="color: #A3A6B4;">Nombre</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                        <th>categoria</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="small">
 
                     {% for mostrar in nombre %}
 
                     <tr>
-                        <td class="small" id="select{{mostrar.id}}">{{mostrar.categoria.nombre_categoria}}</td>
-                        <td class="small">{{mostrar.nombre_productos}}</td>
-                        <td class="small">
+                        <td id="select{{mostrar.id}}">{{mostrar.categoria.nombre_categoria}}</td>
+                        <td>{{mostrar.nombre_productos}}</td>
+                        <td>
                             {% load static %}
                             <i style="color: white;" type="button" data-toggle="modal"
                                 data-target="#editar{{mostrar.id}}"><i><img
@@ -194,7 +194,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -204,13 +204,13 @@
                                         <div class="modal-body">
                                             <input type="hidden" name="id_borrar" value="{{mostrar.id}}">
                                             <input type="hidden" name="borrar" value="borrar">
-                                            Desea Eliminar este Registro?
+                                            ¿Desea Eliminar este Registro?
                                         </div>
                                         <div class="modal-footer">
 
                                             <button type="button" class="btn btn-outline-danger"
                                                 data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-outline-info">Borrar</button>
+                                            <button type="submit" class="btn btn-outline-success">Borrar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -225,9 +225,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th style="color: #A3A6B4;">categoria</th>
-                        <th style="color: #A3A6B4;">Nombre</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                        <th>categoria</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
                     </tr>
                 </tfoot>
             </table>

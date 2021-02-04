@@ -22,7 +22,7 @@
 
 
                 <div class="card-body responsive">
-                    <h5 class="card-title">Pedidos!</h5>
+                    <h5 class="card-title">¡Pedidos!</h5>
 
                     <form action="" method="post" id="formulario">
                         {% csrf_token %}
@@ -66,6 +66,7 @@
                         <input type="hidden" name="guardar" value="guardar">
                         <input type="hidden" name="id_producto" id="id_producto" value="nombre_del_producto">
                         <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
+                        <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
 
                         <script>
                             // en este codigo se realiza un filtro de los productos por sus categorias 
@@ -112,13 +113,13 @@
 
                     <table class="table table-hover shadow p-3 mb-5 bg-white rounded ">
 
-                        <thead style="background-color: #F5F6FA;">
+                        <thead>
                             <tr>
-                                <th style="color: #A3A6B4;" scope="col">Categoria</th>
-                                <th style="color: #A3A6B4;" scope="col">Producto</th>
-                                <th style="color: #A3A6B4;" scope="col">Cantidad Pedido</th>
-                                <th style="color: #A3A6B4;" scope="col">Precio</th>
-                                <th style="color: #A3A6B4;" scope="col">Acciones</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Cantidad Pedido</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
 
@@ -139,7 +140,7 @@
 
             <div class="card-body">
 
-                <h5 class="card-title">Registar Cliente!</h5>
+                <h5 class="card-title">¡Cliente!</h5>
 
                 <form action="clientes" method="post" id="id_form_modal">
 

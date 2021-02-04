@@ -18,7 +18,7 @@
 
                 <div class="card-body">
 
-                    <h5 class="card-title">Registar Cliente!</h5>
+                    <h5 class="card-title">¡Registar Cliente!</h5>
 
                     <form action="clientes" method="post" id="id_form_modal">
 
@@ -50,16 +50,17 @@
 
                         
 
-                        <button type="submit" class="btn btn-outline-info float-right" id="enviar">Guardar</button>
+                        <button type="submit" class="btn btn-outline-success float-right" id="enviar">Guardar</button>
+                        <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
 
                         
                         <script>
                             form = document.getElementById('id_form_modal')
                             button = document.getElementById('enviar')
 
-                            categoria.addEventListener("click", function () {
-                                send_form(form)
-                            });
+                            // categoria.addEventListener("click", function () {
+                            //     send_form(form)
+                            //});
                                   
                         </script>
 
@@ -72,29 +73,40 @@
 
         </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded"
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos"
             style="border:none;">
+            
+            {% load static %}
+            <div id="membreteContenedor">
+                <div class="div ahora" >
+                    <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
+                    <!-- <h1>Vivero</h1> -->
+                    <span id="tituloMembrete">Vivero Pasión por las <br> Tunas y Suculentas</span>
+                </div>
+                <span id="telefonoMembrete">Tel: 0975663976</span> <br>
+                <span id="calle">Eleuterio Cabrera C/ Juan Oleari</span>
+            </div>
 
             <table id="example"
                 class="tablita table  table-hover table-bordered  display nowrap"
                 cellspacing="0" width="100%">
                 <thead>
-                    <tr>
-                        <th style="color: #A3A6B4;">Nombre</th>
-                        <th style="color: #A3A6B4;">Direccion</th>
-                        <th style="color: #A3A6B4;">Telefono</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                    <tr style="color: #A3A6B4;">
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th class="ocultar">Acciones</th> 
                     </tr>
                 </thead>
                 <tbody>
 
                     {% for mostrar in clientes %}
 
-                    <tr>
-                        <td class="small" id="select{{mostrar.id}}">{{mostrar.nombre_cliente}}</td>
-                        <td class="small">{{mostrar.direccion}}</td>
-                        <td class="small">{{mostrar.telefono}}</td>
-                        <td class="small">
+                    <tr class="small">
+                        <td id="select{{mostrar.id}}">{{mostrar.nombre_cliente}}</td>
+                        <td>{{mostrar.direccion}}</td>
+                        <td>{{mostrar.telefono}}</td>
+                        <td class="ocultar">
                             {% load static %}
                             <i style="color: white;" type="button" data-toggle="modal"
                                 data-target="#editar{{mostrar.id}}"><i><img
@@ -164,7 +176,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -174,13 +186,13 @@
                                         <div class="modal-body">
                                             <input type="hidden" name="id_borrar" value="{{mostrar.id}}">
                                             <input type="hidden" name="borrar" value="borrar">
-                                            Desea Eliminar este Registro?
+                                            ¿Desea Eliminar este Registro?
                                         </div>
                                         <div class="modal-footer">
 
-                                            <button type="button" class="btn btn-outline-danger"
+                                            <button type="button" class="btn btn-outline-warning"
                                                 data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-outline-info">Borrar</button>
+                                            <button type="submit" class="btn btn-outline-danger">Borrar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -194,15 +206,18 @@
 
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <th style="color: #A3A6B4;">Nombre</th>
-                        <th style="color: #A3A6B4;">Direccion</th>
-                        <th style="color: #A3A6B4;">Telefono</th>
-                        <th style="color: #A3A6B4;">Acciones</th>
+                    <tr style="color: #A3A6B4;">
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th class="ocultar">Acciones</th>
                     </tr>
                 </tfoot>
+                
             </table>
-
+            <div class="botones ocultar">
+                <button id="btnCrearPdf" class="btn btn-outline-warning float-right">Generar PDF</button>
+            </div>
         </div>
     </div>
 

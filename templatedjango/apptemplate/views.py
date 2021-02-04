@@ -496,10 +496,24 @@ def produccion(request):
 # VISTA DE LISTADO DE PRODUCCION
 def listado_produccion(request):
 
-    show_detalles_produccion = Detalles_Produccion.objects.all()
-    show_produccion = Produccion.objects.all()
-    show_detalles_insumos = Detalles_insumos.objects.all()
-    return render(request,'produccion/listado_produccion.html',{'detalles_produccion':show_detalles_produccion,'produccion':show_produccion,'detalles_insumos':show_detalles_insumos})
+    if request.user.is_authenticated:
+        
+        if request.POST.get('terminar_produccion'):
+            cantidad_final = request.POST.getlist('cantidad_final')
+
+            print(cantidad_final)
+
+        show_detalles_produccion = Detalles_Produccion.objects.all()
+        show_produccion = Produccion.objects.all()
+        show_detalles_insumos = Detalles_insumos.objects.all()
+        return render(request,'produccion/listado_produccion.html',{'detalles_produccion':show_detalles_produccion,'produccion':show_produccion,'detalles_insumos':show_detalles_insumos})
+    else:
+        return redirect('/')
+
+        
+
+
+    
 
 
 
@@ -775,3 +789,19 @@ def login2(request):
                 return redirect('/home')
 
         return render(request,'login/login2.html')
+
+def auditoria(request):
+
+    if request.user.is_authenticated:
+        return render(request, 'auditoria/auditoria.html')
+    else:
+        return redirect('/')
+
+def gestionar_usuario(request):
+
+    if request.user.is_authenticated:
+        return render(request, 'gestionar_usuario/gestionar_usuario.html')
+    else:
+        return redirect('/')
+
+        

@@ -8,7 +8,7 @@
 
 <div class="container rounded">
 
-    <div class="row" style="margin-top: 100px; align-items: center; display: flex; justify-content: center;">
+    <div class="row" style="align-items: center; display: flex; justify-content: center;">
         <!-- este style es para centar el div de la clase col -->
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
@@ -103,7 +103,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Agregar un Nuevo Nombre de Producto!</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">¡Agregar un Nuevo Nombre de Producto!</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -121,7 +121,7 @@
 
                                                                     <div class="card-body">
 
-                                                                        <h5 class="card-title">Nombre del Producto!</h5>
+                                                                        <h5 class="card-title">¡Nombre del Producto!</h5>
 
                                                                         <!-- <form action="productos" method="post" id="id_form_modal"> -->
 
@@ -165,7 +165,8 @@
 
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button id="enviar_form" type="button" class="btn btn-outline-info float-right" data-dismiss="modal">Guardar</button>
+                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                                                    <button id="enviar_form" type="button" class="btn btn-outline-success float-right" data-dismiss="modal">Guardar</button>
                                                 </div>
 
                                                 
@@ -216,7 +217,8 @@
 
                         <!-- <input type="submit" class="btn btn-outline-info" value="Guardar"> -->
 
-                        <button id="enviar_principal" type="button" class="btn btn-outline-info">Guardar</button>
+                        <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary" value="Limpiar">Limpiar</button>
+                        <button id="enviar_principal" type="button" class="btn btn-outline-success">Guardar</button>
 
 
 
@@ -251,7 +253,7 @@
                                 }
                                 else
                                 {
-                                    alert('Por favor complete el formulario!!!');
+                                    alert('¡¡¡Por favor complete el formulario!!!');
                                 }
                             });
 

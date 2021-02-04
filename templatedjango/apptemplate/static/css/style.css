@@ -17,11 +17,96 @@ thead {
 }
 
 th{
-    color: #A3A6B4;
+    color: #007bff;
 }
-
+td{
+    color: #b1b1b1;
+    font-weight: bold;
+}
 /* icono para editar */
 
 #editar_icono{
     color: white;
+}
+
+tfoot{
+    background-color: #F5F6FA;
+}
+
+
+/* CLIENTES */
+.ahora{
+    display: flex;
+}
+#imgicon{
+    margin-right: 10px;
+}
+h1{
+    color: #a6a8b5;
+}
+h5{
+    color: #007bff;
+}
+h3{
+    color:  #007bff;
+    font-weight: bold;
+}
+#calle{
+    color: #a6a8b5;
+    /* font-weight: bold; */
+    /* font-size: large; */
+
+}
+#tituloMembrete{
+    color: #a6a8b5;
+    font-weight: bold;
+    font-size: large;
+}
+#telefonoMembrete{
+    color: #a6a8b5;
+}
+.agua {
+    background-color: #e9ecef;
+}
+#membreteContenedor{
+    display: none;
+}  
+
+.membreteModal{
+    display: none;
+}
+
+.ocultar{
+    margin-top: 20px;
+}
+
+.modal-body{
+    color: #a6a8b5;
+    font-weight: bold;
+}
+
+
+/* LISTADO PRODUCTOS */
+
+.padre{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hijo{
+    width: 100%;
+    height: 100%;
+}
+
+.imagen{
+    width: fit-content;
+    height: 250px;
+    min-height: 300px;
+    max-height: auto;
+    float: left;
+    margin: 3px;
+    padding: 3px;
+    object-fit: cover;
+
+    /* padding: 0 -21%; */
 }
