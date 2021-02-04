@@ -23,18 +23,20 @@
                 </thead>
                 <tbody>
 
+                    {% for mostrar_produccion in produccion reversed %}
+                      
                     <tr class="small">
-                        <td id="select{{insumo.id}}">20/10/2020</td>
-                        <td>En Proceso</td>
+                        <td id="select{{insumo.id}}">{{mostrar_produccion.fecha_produccion}}</td>
+                        <td>{{mostrar_produccion.estado_produccion}}</td>
                         <td>
                             {% load static %}
                             <i style="color: white; padding:0 10px ;" type="button" ; data-toggle="modal" ;
-                                data-target="#exampleModalCenter" ;>
+                                data-target="#produccion{{mostrar_produccion.id}}" >
                                 {% load static %}
                                 <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
                             </i>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="produccion{{mostrar_produccion.id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -52,7 +54,7 @@
 
                                                 <div class="form-group">
                                                     <label for="fecha_produccion">Fecha de Inicio:</label>
-                                                    <input type="date" readonly class="form-control" id="fecha" placeholder="Fecha de Inicio">
+                                                    <input type="date" readonly class="form-control" id="fecha" value="{{mostrar_produccion.fecha_produccion}}">
                                                 </div>
 
 
@@ -78,19 +80,37 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>Tunas</td>
-                                                                    <td>Tuna del desierto</td>
-                                                                    <td>5</td>
-                                                                    <td>
-                                                                        <form action="" method="post"></form>
-                                                                        <div class="form-group">
-                                                                            <input type="number" class="form-control"
-                                                                                name="cantidad_real_detalle"
-                                                                                placeholder="Cantidad Final">
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
+
+                                            
+                                                                  
+                                                                    {% for mostrar_detalles_produccion in detalles_produccion reversed %}
+
+                                                                
+                                                                        
+                                                                        {% if mostrar_detalles_produccion.id_produccion.id == mostrar_produccion.id %}
+                                                                            
+                                                                            <tr>
+                                                                                <td>{{mostrar_detalles_produccion.id_producto.id_nombre_producto.categoria}}</td>
+                                                                                <td>{{mostrar_detalles_produccion.id_producto.id_nombre_producto.nombre_productos}}</td>
+                                                                                <td>{{mostrar_detalles_produccion.cantidad_detalle}}</td>
+                                                                                <td>
+                                                                                    <form action="" method="post"></form>
+                                                                                    <div class="form-group">
+                                                                                        <input type="number" class="form-control"
+                                                                                            name="cantidad_real_detalle"
+                                                                                            placeholder="Cantidad Final">
+                                                                                            <input type="hidden" name="id_insumo" value="{{mostrar_detalles_produccion.id }}">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        {% endif %}
+                                                                            
+                                                                    
+                                                                    {% endfor %}
+
+                                                                
+
 
 
 
@@ -125,12 +145,26 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>Plantas Madre</td>
-                                                                    <td>5</td>
-                                                                    <td>2</td>
-                                                                    <td>unidades</td>
-                                                                </tr>
+
+
+                                                                {% for mostrar_detalles_insumos in detalles_insumos  reversed %}
+
+                                                                <!-- <p>{{mostrar_detalles_insumos.id_produccion.id}}</p>
+                                                                <p>{{mostrar_produccion.id}}</p> -->
+                                                                    
+                                                                    {% if mostrar_detalles_insumos.id_produccion.id == mostrar_produccion.id %}
+                                                                        <tr>
+                                                                            <td>{{mostrar_detalles_insumos.id_insumos.nombre}}</td>
+                                                                            <td>{{mostrar_detalles_insumos.id_insumos.cantidad}}</td>
+                                                                            <td>{{mostrar_detalles_insumos.Cantidad}}</td>
+                                                                            <td>{{mostrar_detalles_insumos.id_insumos.unidad_de_medida}}</td>
+                                                                        </tr>
+                                                                        
+                                                                    {% endif %}
+                                                                        
+
+                                                                {% endfor %}
+
 
                                                             </tbody>
                                                             <tfoot>
@@ -152,7 +186,7 @@
                                                     <div class="Fecha">
                                                         <div class="form-group">
                                                             <label for="fecha_produccion">Fecha de Acabado:</label>
-                                                            <input type="date" class="form-control" id="fecha_parcial"
+                                                            <input type="date" class="form-control" id="fecha_parcial{{mostrar_produccion.id}}"
                                                                 placeholder="Fecha de Inicio">
                                                         </div>
                                                     </div>
@@ -169,7 +203,7 @@
                                                         // document.write(today);
 
 
-                                                        fecha_parcial = document.getElementById('fecha_parcial');
+                                                        fecha_parcial = document.getElementById('fecha_parcial{{mostrar_produccion.id}}');
 
                                                         // fecha_utc = date.toUTCString()
                                                         fecha_parcial.value = date;
@@ -181,13 +215,13 @@
 
 
                                                         // en esta funcion se cambia el vlor de la fecha al input oculto ara poer enviarlo al servidor
-                                                        function cambio() {
+                                                        // function cambio() {
 
-                                                            fecha = document.getElementById('fecha');
-                                                            fecha_parcial = document.getElementById('fecha_parcial');
-                                                            fecha.value = fecha_parcial.value;
+                                                        //     fecha = document.getElementById('fecha');
+                                                        //     fecha_parcial = document.getElementById('fecha_parcial{{mostrar_produccion.id}}');
+                                                        //     fecha.value = fecha_parcial.value;
 
-                                                        }
+                                                        // }
                                                     </script>
 
 
@@ -201,7 +235,26 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-danger"
                                                 data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                                <form id="registrar_produccion" action="listado_produccion" method="post">
+                                                    {% for mostrar_detalles_insumos in detalles_insumos  reversed  %}
+                                                        
+                                                        {% if mostrar_detalles_insumos.id_produccion.id == mostrar_produccion.id %}
+                                                            <input type="hidden" name="detalles_insumos_registrar">    
+                                                        {% endif %}
+                                                            
+                                                    {% endfor %}
+
+                                                    {% for mostrar_detalles_produccion in detalles_produccion reversed %}
+                                                        
+                                                        {% if mostrar_detalles_produccion.id_produccion.id == mostrar_produccion.id %}
+                                                            <input type="hidden" name="detalles_produccion_registrar">
+                                                        {% endif %}
+                                                            
+                                                    {% endfor %}
+
+                                                    
+                                                </form>
+                                                <button type="button" class="btn btn-outline-success">Guardar Cambios</button>
                                         </div>
                                     </div>
                                 </div>
@@ -209,6 +262,8 @@
                         </td>
 
                     </tr>
+                    {% endfor %}
+
 
                 </tbody>
                 <tfoot>

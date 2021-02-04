@@ -498,7 +498,8 @@ def listado_produccion(request):
 
     show_detalles_produccion = Detalles_Produccion.objects.all()
     show_produccion = Produccion.objects.all()
-    return render(request,'produccion/listado_produccion.html',{'detalles_produccion':show_detalles_produccion,'produccion':show_produccion})
+    show_detalles_insumos = Detalles_insumos.objects.all()
+    return render(request,'produccion/listado_produccion.html',{'detalles_produccion':show_detalles_produccion,'produccion':show_produccion,'detalles_insumos':show_detalles_insumos})
 
 
 

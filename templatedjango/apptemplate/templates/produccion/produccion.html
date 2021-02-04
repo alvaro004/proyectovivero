@@ -633,11 +633,23 @@
                 {% csrf_token %}
 
                 {% for producto in productos  %}
-                  <input type="hidden" name="productos_enviar" value="{{producto.id}}">
+             
+                    {% if not producto.id_produccion %}
+
+                        <input type="hidden" name="productos_enviar" value="{{producto.id}}">
+                        
+                    {% endif %}
+                    
                 {% endfor %}
 
                 {% for ver_insumos in detalles_insumos reversed  %}
-                  <input type="hidden" name="insumos_enviar" value="{{ver_insumos.id}}">
+   
+                    {% if not ver_insumos.id_produccion %}
+
+                        <input type="hidden" name="insumos_enviar" value="{{ver_insumos.id}}">
+                        
+                    {% endif %}
+                        
                 {% endfor %}
 
                 
