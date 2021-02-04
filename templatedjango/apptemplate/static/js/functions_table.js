@@ -190,3 +190,21 @@ function cambiar_enviar(valor, enviar) {
       });
   
   }
+
+
+
+  // funcion para formatear los numeros con puntos
+
+  function separar_por_puntos(element){
+    if (element.value) {
+        
+        numero = parseInt(element.value)
+        // en esta linea de codigo se formatea los numeros para que se agreguen puntos
+        numero_separado = new Intl.NumberFormat().format(numero).toString().replace(/[,]/gi,'.')
+        element.value = numero_separado;
+    }
+    else{
+        element.value = '';
+    }
+   
+}
