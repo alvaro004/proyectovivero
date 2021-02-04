@@ -114,3 +114,79 @@ function cambiar_enviar(valor, enviar) {
     }
   }
 
+  function imprimir_tabla_modal(id_tabla,id_boton,id_membrete)
+  {
+      document.addEventListener("DOMContentLoaded", () => {
+          // Escuchamos el click del botón
+          const $boton = document.querySelector("#" + id_boton);
+          $boton.addEventListener("click", () => {
+              ocultar = document.getElementsByClassName("ocultar2");
+              dataTables_length = document.getElementsByClassName("dataTables_length");
+              formcontrolsm = document.getElementsByClassName("dataTables_filter");
+              membreteContenedor = document.getElementById(id_membrete);
+              membreteContenedor.style.display = 'block';
+              for (let i = 0; i < ocultar.length; i++) {
+                  
+                  ocultar[i].style.display = 'none';
+                  
+              }
+
+              for (let i = 0; i < dataTables_length.length; i++) {
+                dataTables_length[i].style.display = 'none';
+                 
+              }
+              for (let i = 0; i < formcontrolsm.length; i++) {
+                formcontrolsm[i].style.display = 'none';
+                  
+              }
+              
+              const $elementoParaConvertir = document.getElementById(id_tabla); // <-- Aquí puedes elegir cualquier elemento del DOM
+              html2pdf()
+                  .set({
+                      margin: 1,
+                      filename: 'Reporte.pdf',
+                      image: {
+                          type: 'jpeg',
+                          quality: 0.98
+                      },
+                      html2canvas: {
+                          scale: 3, // A mayor escala, mejores gráficos, pero más peso
+                          letterRendering: true,
+                      },
+                      jsPDF: {
+                          unit: "in",
+                          format: "a2",
+                          orientation: 'portrait' // landscape o portrait
+                      }
+                  })
+                  .from($elementoParaConvertir)
+                  .save()
+                  .catch(err => console.log(err));
+      
+                   setTimeout(function(){ 
+      
+                       for (var j = 0; j < ocultar.length; j++) {
+                          
+                           ocultar[j].style.display = '';
+                          
+                       }
+      
+                       membreteContenedor.style.display = '';
+
+                       for (let i = 0; i < dataTables_length.length; i++) {
+                        dataTables_length[i].style.display = '';
+                         
+                      }
+                      for (let i = 0; i < formcontrolsm.length; i++) {
+                        formcontrolsm[i].style.display = '';
+                          
+                      }
+      
+                   }, 100);
+      
+                  
+          });
+      
+      });
+  
+  }

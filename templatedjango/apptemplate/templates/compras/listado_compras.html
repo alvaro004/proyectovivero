@@ -36,7 +36,7 @@
                 </thead>
                 <tbody>
 
-                    {% for compra in compras  %}
+                    {% for compra in compras reversed %}
                       
                     <tr class="small">
                         <td >{{compra.fecha_compra}}</td>
@@ -53,11 +53,11 @@
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
+                                    <div class="modal-content" id="contenidoImprimir{{compra.id}}" >
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLongTitle">Detalles de la Compra</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span class="ocultar" aria-hidden="true">&times;</span>
+                                                <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
@@ -66,7 +66,7 @@
                                             <div class="container rounded">
 
                                                 {% load static %}
-                                                <div id="membreteContenedor">
+                                                <div id="membreteContenedor{{compra.id}}" class="membreteModal">
                                                     <div class="div ahora" >
                                                         <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
                                                         <!-- <h1>Vivero</h1> -->
@@ -78,8 +78,9 @@
 
                                                 <div class="form-group">
                                                     <label for="fecha_produccion">Fecha de la Compra:</label>
-                                                    <input type="date" readonly class="form-control" id="fecha"
-                                                        placeholder="Fecha de Inicio" value="{{compra.fecha_compra}}">
+                                                    <label class="form-control agua" id="fecha" name="{{compra.fecha_compra}}" >{{compra.fecha_compra}}</label>
+                                                    <!-- <input type="date" readonly class="form-control" id="fecha"
+                                                        placeholder="Fecha de Inicio" value="{{compra.fecha_compra}}"> -->
                                                 </div>
 
                                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded"
@@ -129,18 +130,19 @@
 
                                                 <div class="form-group">
                                                     <label for="total_compra">Total de la Compra:</label>
-                                                    <input type="number" readonly class="form-control" id="total_compra" value="{{compra.total_compra}}">
+                                                    <!-- <input type="number" readonly class="form-control" id="total_compra" value="{{compra.total_compra}}"> -->
+                                                    <label class="form-control agua" id="total_compra" name="{{compra.total_compra}}" >{{compra.total_compra}}</label>
                                                 </div>
 
                                             </div>
 
-                                            <!-- <div class="botones ocultar form-group">
-                                                <button id="btnCrearPdf" class="btn btn-outline-warning form-control">Generar PDF</button>
-                                            </div> -->
+                                           
                                         </div>
-                                        <div class="modal-footer ocultar">
-                                            <button type="button" class="btn btn-outline-danger"
-                                                data-dismiss="modal">Cerrar</button>
+                                        <div class="modal-footer ocultar2">
+                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+                                            <div class="botonPdf">
+                                                <button id="btnCrearPdfModal{{compra.id}}" type="button" class="btn btn-outline-warning">Generar PDF</button>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -150,6 +152,10 @@
                         </td>
 
                     </tr>
+
+                    <script>
+                        imprimir_tabla_modal("contenidoImprimir{{compra.id}}","btnCrearPdfModal{{compra.id}}","membreteContenedor{{compra.id}}");
+                    </script>
                     {% endfor %}
 
 
