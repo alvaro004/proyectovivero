@@ -14,7 +14,7 @@
 
       <div class="card shadow p-3 mb-5 bg-white rounded" style="border:none;">
         <div class="card-body">
-          <h5 class="card-title">Compras!</h5>
+          <h5 class="card-title">¡Compras!</h5>
 
           <form action="compras" method="POST">
             {% csrf_token %}
@@ -39,6 +39,7 @@
             </div>
 
             <button type="submit" class="btn btn-outline-info float-right" >Agregar</button>
+            <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
 
           </form>
         </div>
@@ -71,12 +72,12 @@
             {% for compra in compras  %}
 
             <tr class="tabla_compras">
-              <td class="small">{{compra.categoria}}</td>
-              <td class="small" id="select{{compra.id_detalles_compras}}">{{compra.nombre}}</td>
-              <td class="small">{{compra.cantidad}}</td>
-              <td class="small">{{compra.unidad_medida}}</td>
-              <td class="small">{{compra.precio}}</td>
-              <td class=" small calcular_compra">{{compra.subtotal}}</td>
+              <td>{{compra.categoria}}</td>
+              <td id="select{{compra.id_detalles_compras}}">{{compra.nombre}}</td>
+              <td>{{compra.cantidad}}</td>
+              <td>{{compra.unidad_medida}}</td>
+              <td>{{compra.precio}}</td>
+              <td class="calcular_compra">{{compra.subtotal}}</td>
 
 
               <!-- codigo para el boton de editar 
@@ -176,7 +177,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -185,7 +186,7 @@
                         {% csrf_token %}
                         <div class="modal-body">
                           <input type="hidden" name="id_borrar" value="{{compra.id_detalles_compras}}">
-                          Desea Eliminar este Registro ?
+                          <span>¿Desea Eliminar este Registro?</span> 
                         </div>
                         <div class="modal-footer">
 
@@ -300,7 +301,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  ¿Está Seguro que Desea Registrar Esta Compra?
+                  <span>¿Está Seguro que Desea Registrar Esta Compra?</span> 
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
@@ -321,7 +322,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  ¿Está Seguro que Desea Borrar Todos los Elementos de Esta Compra?
+                  <span>¿Está Seguro que Desea Borrar Todos los Elementos de Esta Compra?</span> 
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
