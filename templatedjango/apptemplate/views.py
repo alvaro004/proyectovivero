@@ -499,9 +499,59 @@ def listado_produccion(request):
     if request.user.is_authenticated:
         
         if request.POST.get('terminar_produccion'):
+            
+            id_produccion = request.POST.getlist('detalles_produccion_registrar')
+            id_producto = request.POST.getlist('id_producto')
             cantidad_final = request.POST.getlist('cantidad_final')
 
-            print(cantidad_final)
+            id_insumos = request.POST.getlist('detalles_insumos_registrar')
+            cantidad_restar_insumos = request.POST.getlist('insumos_restar_enviar')
+
+            fecha_final = request.POST.get('fecha_produccion')
+
+            # en este for se itera con los id de la produccion para sumar la cantidad a los productos y guardar la cantidad final utilizada
+
+            for i in range(int(len(id_produccion))):
+
+                get_produccion = Detalles_Produccion.objects.get(id=id_produccion[i])
+                get_produccion.cantidad_real_detalle = cantidad_final[i]
+                get_produccion_estado = Produccion.objects.get(id=get_produccion.id_produccion.id)
+                get_produccion_estado.estado_produccion = "Terminado"
+
+                # guardando el estado y la cantidad final
+
+                get_produccion_estado.save()
+                get_produccion.save()
+
+                # guardando la suma en productos
+
+                get_producto = Productos.objects.get(id=get_produccion.id_producto.id)
+
+                suma = int(get_producto.cantidad_stock,10) + int(cantidad_final[i],10)
+
+                get_producto.cantidad_stock = str(suma)
+                get_producto.save()
+
+                print(get_produccion)
+
+            for i in range(int(len(id_insumos))):
+
+                get_insumos = Insumos.objects.get(id=id_insumos[i])
+
+                # aca se hace la resta para guardar en insumos
+
+                resta = int(get_insumos.cantidad,10) - int(cantidad_restar_insumos[i],10) 
+                get_insumos.cantidad = str(resta)
+                get_insumos.save()
+
+
+
+            # print(id_produccion)
+            # print(cantidad_final)
+            # print(id_producto)
+            # print(id_insumos)
+            
+            # print(fecha_final)
 
         show_detalles_produccion = Detalles_Produccion.objects.all()
         show_produccion = Produccion.objects.all()
