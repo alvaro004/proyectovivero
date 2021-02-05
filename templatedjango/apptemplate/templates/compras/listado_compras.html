@@ -159,7 +159,9 @@
                         var tabala_formato = document.getElementsByClassName("tabala_formato");
                         for (let i = 0; i < tabala_formato.length; i++) {
                             // console.log(tabala_formato.length);
-                            separar_por_puntos2(tabala_formato[i]);
+                            // separar_por_puntos2(tabala_formato[i]);
+
+                            tabala_formato[i].innerHTML = numberWithCommas(tabala_formato[i].innerHTML)
                         }
                     </script>
                     {% endfor %}

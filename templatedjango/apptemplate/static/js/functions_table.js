@@ -224,3 +224,7 @@ function separar_por_puntos2(element){
     }
    
 }
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
