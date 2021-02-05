@@ -525,6 +525,7 @@ def ver_compras(request):
     if request.user.is_authenticated:
         compras = objeto_listado()
 
+        
         # print(imprimir[1]['compras'][0]['nombre'])
         return render(request, 'compras/listado_compras.html',{'compras':compras})
     else:

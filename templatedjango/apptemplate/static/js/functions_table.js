@@ -195,7 +195,7 @@ function cambiar_enviar(valor, enviar) {
 
   // funcion para formatear los numeros con puntos
 
-  function separar_por_puntos(element){
+function separar_por_puntos(element){
     if (element.value) {
         
         numero = parseInt(element.value)
@@ -205,6 +205,22 @@ function cambiar_enviar(valor, enviar) {
     }
     else{
         element.value = '';
+    }
+   
+}
+
+
+function separar_por_puntos2(element){
+    if (element.innerHTML) {
+        
+        numero = parseInt(element.innerHTML)
+        // en esta linea de codigo se formatea los numeros para que se agreguen puntos
+        numero_separado = new Intl.NumberFormat("es").format(numero);
+        element.innerHTML = numero_separado;
+        
+    }
+    else{
+        element.innerHTML = '';
     }
    
 }

@@ -40,7 +40,8 @@
                       
                     <tr class="small">
                         <td >{{compra.fecha_compra}}</td>
-                        <td>{{compra.total_compra}}</td>
+                        <td class="tabala_formato">{{compra.total_compra}}</td>
+                        
                         <td class="ocultar">
                             {% load static %}
                             <i style="color: white; padding:0 10px;" type="button" data-toggle="modal"
@@ -155,6 +156,11 @@
 
                     <script>
                         imprimir_tabla_modal("contenidoImprimir{{compra.id}}","btnCrearPdfModal{{compra.id}}","membreteContenedor{{compra.id}}");
+                        var tabala_formato = document.getElementsByClassName("tabala_formato");
+                        for (let i = 0; i < tabala_formato.length; i++) {
+                            // console.log(tabala_formato.length);
+                            separar_por_puntos2(tabala_formato[i]);
+                        }
                     </script>
                     {% endfor %}
 
