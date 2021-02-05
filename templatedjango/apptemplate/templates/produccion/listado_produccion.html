@@ -279,26 +279,38 @@
 
                                                     boton_finalizar{{mostrar_produccion.id}}.addEventListener('click',function(){
 
-                                                        if (input_cantidad_final{{mostrar_produccion.id}}.value != "") {
-                                                            
+                                                        var cont = 0;
+
+                                                        for (var i = 0; i < input_cantidad_final{{mostrar_produccion.id}}.length; i++) {
+                                                            if (parseInt(input_cantidad_final{{mostrar_produccion.id}}[i].value) > 0) {
+                                                                cont += 1;
+                                                            }
+                                                        };
+
+                                                        if (cont == parseInt(input_cantidad_final{{mostrar_produccion.id}}.length)) {
+                                                            console.log('se comprobo');
                                                             // console.log('entro en el onclick');
                                                             for (var i = 0; i < input_cantidad_final{{mostrar_produccion.id}}.length; i++) {
                                                                 
                                                                 // console.log(input_cantidad_final{{mostrar_produccion.id}}[i].value);
-    
+                                                                
                                                                 cantidad_final{{mostrar_produccion.id}}[i].value = input_cantidad_final{{mostrar_produccion.id}}[i].value;
                                                                 fecha_produccion{{mostrar_produccion.id}}.value = fecha_parcial.value;
-    
+                                                                
                                                                 // console.log(cantidad_final{{mostrar_produccion.id}}[i].value);
                                                                 form_registrar_produccion{{mostrar_produccion.id}}.submit()
                                                             }
-                                                            // console.log(input_cantidad_final{{mostrar_produccion.id}}.length);
                                                             // console.log(cantidad_final{{mostrar_produccion.id}}.length);
                                                         }
                                                         else
                                                         {
-                                                            alert('Por favor ingrese la cantidad de productos a utilizar...')
-                                                        }
+                                                            console.log('no se comprobo');
+                                                            alert('Por favor rellene todos los campos de la cantidad final...')
+                                                        };
+                                                        
+                                                        
+                                                            
+                                                      
 
                                                     });
                                                     
