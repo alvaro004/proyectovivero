@@ -237,37 +237,44 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-danger"
-                                                data-dismiss="modal">Cancelar</button>
-                                                <form id="terminar_produccion{{mostrar_produccion.id}}" action="listado_produccion" method="post">
-
-                                                    {% csrf_token %}
-
-                                                    {% for mostrar_detalles_insumos in detalles_insumos  reversed  %}
-                                                        
-                                                        {% if mostrar_detalles_insumos.id_produccion.id == mostrar_produccion.id %}
-                                                            <input type="hidden" class="detalles_insumos_registrar" name="detalles_insumos_registrar" value="{{mostrar_detalles_insumos.id_insumos.id}}"> 
-                                                            <input type="hidden" name="insumos_restar_enviar" value="{{mostrar_detalles_insumos.Cantidad}}"> 
-                                                            {% endif %}
+                                            <form id="terminar_produccion{{mostrar_produccion.id}}" action="listado_produccion" method="post">
+                                                
+                                                {% csrf_token %}
+                                                
+                                                {% for mostrar_detalles_insumos in detalles_insumos  reversed  %}
+                                                
+                                                    {% if mostrar_detalles_insumos.id_produccion.id == mostrar_produccion.id %}
+                                                        <input type="hidden" class="detalles_insumos_registrar" name="detalles_insumos_registrar" value="{{mostrar_detalles_insumos.id_insumos.id}}"> 
+                                                        <input type="hidden" name="insumos_restar_enviar" value="{{mostrar_detalles_insumos.Cantidad}}"> 
+                                                    {% endif %}
                                                             
-                                                            {% endfor %}
+                                                {% endfor %}
                                                             
-                                                            {% for mostrar_detalles_produccion in detalles_produccion reversed %}
+                                                {% for mostrar_detalles_produccion in detalles_produccion reversed %}
                                                             
-                                                            {% if mostrar_detalles_produccion.id_produccion.id == mostrar_produccion.id %}
-                                                            <input type="hidden" class="detalles_produccion_registrar" name="detalles_produccion_registrar" value="{{mostrar_detalles_produccion.id}}">
-                                                            <input type="hidden" class="cantidad_final{{mostrar_produccion.id}}" name="cantidad_final" value="nada">   
-                                                            <input type="hidden" name="id_producto" value="{{mostrar_detalles_produccion.id_producto.id}}">   
-                                                        {% endif %}
+                                                    {% if mostrar_detalles_produccion.id_produccion.id == mostrar_produccion.id %}
+                                                        <input type="hidden" class="detalles_produccion_registrar" name="detalles_produccion_registrar" value="{{mostrar_detalles_produccion.id}}">
+                                                        <input type="hidden" class="cantidad_final{{mostrar_produccion.id}}" name="cantidad_final" value="nada">   
+                                                        <input type="hidden" name="id_producto" value="{{mostrar_detalles_produccion.id_producto.id}}">   
+                                                    {% endif %}
                                                             
-                                                    {% endfor %}
-
+                                                {% endfor %}
+                                                            
                                                     <input type="hidden" name="terminar_produccion" value="terminar_produccion">
                                                     <input type="hidden" id="fecha_produccion{{mostrar_produccion.id}}" name="fecha_produccion" value="fecha_produccion">
+                                                            
+                                                            
+                                            </form>
 
-                                                    
-                                                </form>
+                                            
+                                            {% if mostrar_produccion.estado_produccion == "Terminado" %}
+                                                <button type="button" class="btn btn-outline-danger"data-dismiss="modal">Cerrar</button>
+                                            {% else %}
+                                                <button type="button" class="btn btn-outline-danger"data-dismiss="modal">Cancelar</button>
                                                 <button type="button" id="finalizar_produccion{{mostrar_produccion.id}}" class="btn btn-outline-success">Guardar Cambios</button>
+
+                                            {% endif %}
+                                                
 
                                                 <script>
                                                     var boton_finalizar{{mostrar_produccion.id}} = document.getElementById('finalizar_produccion{{mostrar_produccion.id}}');
