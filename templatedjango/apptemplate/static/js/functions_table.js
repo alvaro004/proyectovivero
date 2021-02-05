@@ -210,21 +210,6 @@ function separar_por_puntos(element){
 }
 
 
-function separar_por_puntos2(element){
-    if (element.innerHTML) {
-        
-        numero = parseInt(element.innerHTML)
-        // en esta linea de codigo se formatea los numeros para que se agreguen puntos
-        numero_separado = new Intl.NumberFormat("es").format(numero);
-        element.innerHTML = numero_separado;
-        
-    }
-    else{
-        element.innerHTML = '';
-    }
-   
-}
-
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }

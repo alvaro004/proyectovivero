@@ -63,7 +63,7 @@
 
           
           <div class="form-group col-xl-8">
-            <input class="form-control text-center text-primary" type="text" placeholder="{{mostrar.precio}} Gs."
+            <input class="form-control text-center text-primary tabala_formato" type="text" value="{{mostrar.precio}} Gs."
               readonly>
           </div>
 
@@ -111,7 +111,7 @@
 
                       <hr>
                       <div class="form-group col-xl-12">
-                        <input class="form-control text-center text-primary" type="text"
+                        <input class="form-control text-center text-primary tabala_formato" type="text"
                         readonly value="{{mostrar.precio}} Gs." >
                       </div>
 
@@ -195,6 +195,13 @@
 
 
               </script> -->
+
+              <script>
+                var tabala_formato = document.getElementsByClassName("tabala_formato");
+                for (let i = 0; i < tabala_formato.length; i++) {
+                    tabala_formato[i].value = numberWithCommas(tabala_formato[i].value)
+                }
+              </script>
             </div>
 
           </div>
