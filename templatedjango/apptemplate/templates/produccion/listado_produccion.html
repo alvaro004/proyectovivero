@@ -94,11 +94,21 @@
                                                                                 <td>{{mostrar_detalles_produccion.id_producto.id_nombre_producto.nombre_productos}}</td>
                                                                                 <td>{{mostrar_detalles_produccion.cantidad_detalle}}</td>
                                                                                 <td>
+
+                                                                                    
+                                                                                    {% if mostrar_detalles_produccion.cantidad_real_detalle %}
+                                                                                        {{mostrar_detalles_produccion.cantidad_real_detalle}}
+
+                                                                                    {% else %}
+
+                                                                                        <div class="form-group">
+                                                                                            <input type="number" class="form-control cantidad_real_detalle{{mostrar_produccion.id}}"  placeholder="Cantidad Final">
+                                                                                            
+                                                                                        </div>
+                                                                                        
+                                                                                    {% endif %}
+                                                                                        
                                                                     
-                                                                                    <div class="form-group">
-                                                                                        <input type="number" class="form-control cantidad_real_detalle{{mostrar_produccion.id}}"  placeholder="Cantidad Final">
-                                                                                           
-                                                                                    </div>
 
                                                                                 </td>
                                                                             </tr>
@@ -138,7 +148,6 @@
                                                             <thead>
                                                                 <tr style="color: #A3A6B4;">
                                                                     <th>Insumo</th>
-                                                                    <th>Cantidad Actual</th>
                                                                     <th>Cantidad a Usar</th>
                                                                     <th>Medida</th>
                                                                 </tr>
@@ -154,8 +163,7 @@
                                                                     {% if mostrar_detalles_insumos.id_produccion.id == mostrar_produccion.id %}
                                                                         <tr>
                                                                             <td>{{mostrar_detalles_insumos.id_insumos.nombre}}</td>
-                                                                            <td>{{mostrar_detalles_insumos.id_insumos.cantidad}}</td>
-                                                                            <td>{{mostrar_detalles_insumos.Cantidad}}</td>
+                                                                            <td class="restar_insumos{{mostrar_produccion.id}}">{{mostrar_detalles_insumos.Cantidad}}</td>
                                                                             <td>{{mostrar_detalles_insumos.id_insumos.unidad_de_medida}}</td>
                                                                         </tr>
                                                                         
@@ -169,7 +177,6 @@
                                                             <tfoot>
                                                                 <tr style="color: #A3A6B4;">
                                                                     <th>Insumo</th>
-                                                                    <th>Cantidad Actual</th>
                                                                     <th>Cantidad a Usar</th>
                                                                     <th>Medida</th>
                                                                 </tr>
@@ -185,8 +192,15 @@
                                                     <div class="Fecha">
                                                         <div class="form-group">
                                                             <label for="fecha_produccion">Fecha de Acabado:</label>
-                                                            <input type="date" class="form-control" id="fecha_parcial{{mostrar_produccion.id}}"
-                                                                placeholder="Fecha de Inicio">
+
+                                                            
+                                                            {% if mostrar_produccion.estado_produccion == "Terminado" %}
+
+                                                                <input type="date" class="form-control" id="fecha_parcial{{mostrar_produccion.id}}" readonly>
+                                                            {% else %}
+                                                                <input type="date" class="form-control" id="fecha_parcial{{mostrar_produccion.id}}">
+                                                            {% endif %}
+                                                                
                                                         </div>
                                                     </div>
 
@@ -232,7 +246,8 @@
                                                     {% for mostrar_detalles_insumos in detalles_insumos  reversed  %}
                                                         
                                                         {% if mostrar_detalles_insumos.id_produccion.id == mostrar_produccion.id %}
-                                                            <input type="hidden" class="detalles_insumos_registrar" name="detalles_insumos_registrar" value="{{mostrar_detalles_insumos.id}}"> 
+                                                            <input type="hidden" class="detalles_insumos_registrar" name="detalles_insumos_registrar" value="{{mostrar_detalles_insumos.id_insumos.id}}"> 
+                                                            <input type="hidden" name="insumos_restar_enviar" value="{{mostrar_detalles_insumos.Cantidad}}"> 
                                                             {% endif %}
                                                             
                                                             {% endfor %}
@@ -242,12 +257,13 @@
                                                             {% if mostrar_detalles_produccion.id_produccion.id == mostrar_produccion.id %}
                                                             <input type="hidden" class="detalles_produccion_registrar" name="detalles_produccion_registrar" value="{{mostrar_detalles_produccion.id}}">
                                                             <input type="hidden" class="cantidad_final{{mostrar_produccion.id}}" name="cantidad_final" value="nada">   
+                                                            <input type="hidden" name="id_producto" value="{{mostrar_detalles_produccion.id_producto.id}}">   
                                                         {% endif %}
                                                             
                                                     {% endfor %}
 
                                                     <input type="hidden" name="terminar_produccion" value="terminar_produccion">
-                                                    <input type="hidden" name="terminar_produccion" value="terminar_produccion">
+                                                    <input type="hidden" id="fecha_produccion{{mostrar_produccion.id}}" name="fecha_produccion" value="fecha_produccion">
 
                                                     
                                                 </form>
@@ -258,20 +274,31 @@
                                                     var input_cantidad_final{{mostrar_produccion.id}} = document.getElementsByClassName('cantidad_real_detalle{{mostrar_produccion.id}}');
                                                     var cantidad_final{{mostrar_produccion.id}} = document.getElementsByClassName('cantidad_final{{mostrar_produccion.id}}');
                                                     var form_registrar_produccion{{mostrar_produccion.id}} = document.getElementById('terminar_produccion{{mostrar_produccion.id}}');
+                                                    var fecha_produccion{{mostrar_produccion.id}} = document.getElementById('fecha_produccion{{mostrar_produccion.id}}');
+                                                   
 
                                                     boton_finalizar{{mostrar_produccion.id}}.addEventListener('click',function(){
-                                                        // console.log('entro en el onclick');
-                                                        for (var i = 0; i < input_cantidad_final{{mostrar_produccion.id}}.length; i++) {
+
+                                                        if (input_cantidad_final{{mostrar_produccion.id}}.value != "") {
                                                             
-                                                            // console.log(input_cantidad_final{{mostrar_produccion.id}}[i].value);
-
-                                                            cantidad_final{{mostrar_produccion.id}}[i].value = input_cantidad_final{{mostrar_produccion.id}}[i].value;
-
-                                                            // console.log(cantidad_final{{mostrar_produccion.id}}[i].value);
-                                                            form_registrar_produccion{{mostrar_produccion.id}}.submit()
+                                                            // console.log('entro en el onclick');
+                                                            for (var i = 0; i < input_cantidad_final{{mostrar_produccion.id}}.length; i++) {
+                                                                
+                                                                // console.log(input_cantidad_final{{mostrar_produccion.id}}[i].value);
+    
+                                                                cantidad_final{{mostrar_produccion.id}}[i].value = input_cantidad_final{{mostrar_produccion.id}}[i].value;
+                                                                fecha_produccion{{mostrar_produccion.id}}.value = fecha_parcial.value;
+    
+                                                                // console.log(cantidad_final{{mostrar_produccion.id}}[i].value);
+                                                                form_registrar_produccion{{mostrar_produccion.id}}.submit()
+                                                            }
+                                                            // console.log(input_cantidad_final{{mostrar_produccion.id}}.length);
+                                                            // console.log(cantidad_final{{mostrar_produccion.id}}.length);
                                                         }
-                                                        // console.log(input_cantidad_final{{mostrar_produccion.id}}.length);
-                                                        console.log(cantidad_final{{mostrar_produccion.id}}.length);
+                                                        else
+                                                        {
+                                                            alert('Por favor ingrese la cantidad de productos a utilizar...')
+                                                        }
 
                                                     });
                                                     
