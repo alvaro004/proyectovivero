@@ -648,6 +648,18 @@ def listado_productos(request):
                 get_productos = Productos.objects.get(id=iden)
                 get_productos.cantidad_stock = cantidad
                 get_productos.save()
+    
+        if request.POST.get('editar'):
+
+                #se estira el id del registro que se va a editar
+                iden = request.POST.get('iden')             
+                precio = request.POST.get('precio')
+                
+                get_productos = Productos.objects.get(id=iden)
+
+                get_productos.precio = precio
+                get_productos.save()
+
                 
         filtroNombre = request.POST.get('filtroNombre')
     

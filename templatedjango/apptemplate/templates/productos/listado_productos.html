@@ -67,7 +67,51 @@
               readonly>
           </div>
 
-          <div class="form-group col-xl-4">
+          <div class="form-group col-xl-4 text-center">
+            {% load static %}
+            <i class="form-control " style="border: none;" type="button" data-toggle="modal"
+                data-target="#editar{{mostrar.id}}"><i><img
+                src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+          </div>
+
+
+          <!-- modal para el boton de editar -->
+
+          <div class="modal fade" id="editar{{mostrar.id}}" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form method="POST" action="listado_productos">
+                              {% csrf_token %}
+
+                              <div class="form-group">
+                                  <label for="recipient-name" class="col-form-label">Precio del Producto:</label>
+                                  <input name="precio" value="{{mostrar.precio}}" type="text"
+                                  class="form-control tabala_formato" id="recipient-name" required>
+                              </div>
+
+                              <input type="hidden" name="iden" value="{{mostrar.id}}">
+                              <input type="hidden" name="editar" value="editar">
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger"
+                              data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                      </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-group col-xl-12">
             <input class="form-control text-center text-primary" type="text" placeholder="{{mostrar.cantidad_stock}}"
               readonly>
           </div>
@@ -110,15 +154,16 @@
 
 
                       <hr>
-                      <div class="form-group col-xl-12">
-                        <input class="form-control text-center text-primary tabala_formato" type="text"
+                      <div class="form-group col-xl-6">
+                        <input class="form-control text-primary tabala_formato" type="text"
                         readonly value="{{mostrar.precio}} Gs." >
                       </div>
 
-                      <div class="form-group col-xl-12">
-                        <input class="form-control text-center text-primary" type="text" id="cantidad{{mostrar.id}}"
+                      <div class="form-group col-xl-6">
+                        <input class="form-control text-primary" type="text" id="cantidad{{mostrar.id}}"
                           readonly value="{{mostrar.cantidad_stock}}" >
                       </div>
+                      
 
                       <!-- <div class="form-group col-xl-6" style="width: 200px;">
                         <button type="button" id="boton_activ{{mostrar.id}}" class="form-control btn btn-outline-success">Agg. Cantidad</button>
@@ -129,6 +174,14 @@
                     </div>
 
                   </div>
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                  </div>
+            
+
+
+
                   <!-- BOTONES PARA AGREGAR MAS CANTIDAD -->
                   <!-- <div class="modal-footer">
                     <button type="button" id="cerrar{{mostrar.id}}" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
@@ -210,7 +263,7 @@
 
       </div>
       <div class="card-footer text-center">
-        <button type="button" class="btn btn-outline-primary center" data-toggle="modal"
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal"
         data-target="#modal{{mostrar.id}}"> ¡Ver Más!</button>
       </div>
 
