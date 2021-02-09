@@ -125,7 +125,7 @@ class Detalles_pedidos(models.Model):
     id_pedido = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla pedido
     cantidad = models.CharField(max_length=400 ,blank=True, null=True)
     subtotal_producto = models.CharField(max_length=400 ,blank=True, null=True) 
-    precio = models.CharField(max_length=400 ,blank=True, null=True)
+    # precio = models.CharField(max_length=400 ,blank=True, null=True)
 
     def __str__(self):
         return "detalles {}".format(self.subtotal)

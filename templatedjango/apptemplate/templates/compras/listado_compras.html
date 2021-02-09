@@ -13,6 +13,8 @@
         <!-- este style es para centar el div de la clase col -->
 
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos" style="border:none;">
+
+            <h5 style="font-weight: bold;"> LISTADO DE LAS COMPRAS</h5>
             
             {% load static %}
             <div id="membreteContenedor">
@@ -106,10 +108,10 @@
                                                                 <tr>
                                                                     <td>{{compra_fecha.categoria}}</td>
                                                                     <td>{{compra_fecha.nombre}}</td>
-                                                                    <td>{{compra_fecha.cantidad}}</td>
+                                                                    <td class="tabala_formato">{{compra_fecha.cantidad}}</td>
                                                                     <td>{{compra_fecha.unidad_medida}}</td>
-                                                                    <td>{{compra_fecha.precio}}</td>
-                                                                    <td>{{compra_fecha.subtotal}}</td>
+                                                                    <td class="tabala_formato">{{compra_fecha.precio}}</td>
+                                                                    <td class="tabala_formato">{{compra_fecha.subtotal}}</td>
                                                                 </tr>
                                                                 {% endfor %}
                                                             </tbody>
@@ -132,7 +134,7 @@
                                                 <div class="form-group">
                                                     <label for="total_compra">Total de la Compra:</label>
                                                     <!-- <input type="number" readonly class="form-control" id="total_compra" value="{{compra.total_compra}}"> -->
-                                                    <label class="form-control agua" id="total_compra" name="{{compra.total_compra}}" >{{compra.total_compra}}</label>
+                                                    <label class="form-control agua tabala_formato" id="total_compra" name="{{compra.total_compra}}" >{{compra.total_compra}}</label>
                                                 </div>
 
                                             </div>
@@ -158,9 +160,6 @@
                         imprimir_tabla_modal("contenidoImprimir{{compra.id}}","btnCrearPdfModal{{compra.id}}","membreteContenedor{{compra.id}}");
                         var tabala_formato = document.getElementsByClassName("tabala_formato");
                         for (let i = 0; i < tabala_formato.length; i++) {
-                            // console.log(tabala_formato.length);
-                            // separar_por_puntos2(tabala_formato[i]);
-
                             tabala_formato[i].innerHTML = numberWithCommas(tabala_formato[i].innerHTML)
                         }
                     </script>
