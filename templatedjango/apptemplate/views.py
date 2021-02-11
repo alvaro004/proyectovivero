@@ -766,12 +766,27 @@ def pedidos(request):
 
     if request.user.is_authenticated:
 
-        clientes = Clientes.objects.all
-        categoria = Categoria_productos.objects.all()
-        nombre_productos = Nombre_productos.objects.all()
-        print(nombre_productos)
+        if request.POST.get('guardar'):
 
-        return render(request, 'pedidos/pedidos.html',{'clientes':clientes, 'categoria':categoria, 'nombre_productos':nombre_productos})
+            id_producto = request.POST.get('nombre_productos').split('-')[0]
+            cantidad_pedido = request.POST.get('cantidad_pedido')
+            precio_pedido = request.POST.get('precio_pedido')
+            precio_producto = request.POST.get('precio_producto')
+
+            get_productos = Productos.objects.get(id=id_producto)
+
+            # save_detalles_pedidos = Detalles_pedidos(id_producto=get_productos,)
+
+            print(get_productos)
+            print(cantidad_pedido)
+            print(precio_pedido)
+            print(precio_producto)
+
+        clientes = Clientes.objects.all()
+        categoria = Categoria_productos.objects.all()
+        nombre_productos = Productos.objects.all()
+
+        return render(request, 'pedidos/pedidos.html',{'clientes':clientes, 'categoria':categoria, 'productos':nombre_productos})
     else:
         return redirect('/')
 

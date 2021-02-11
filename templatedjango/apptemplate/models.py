@@ -119,16 +119,6 @@ class Detalles_insumos(models.Model):
 
 
 # tablas finales 
-class Detalles_pedidos(models.Model):
-    
-    id_producto = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla producto
-    id_pedido = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla pedido
-    cantidad = models.CharField(max_length=400 ,blank=True, null=True)
-    subtotal_producto = models.CharField(max_length=400 ,blank=True, null=True) 
-    # precio = models.CharField(max_length=400 ,blank=True, null=True)
-
-    def __str__(self):
-        return "detalles {}".format(self.subtotal)
 
 
 class Clientes(models.Model):
@@ -152,7 +142,7 @@ class Ventas(models.Model):
 
 class Pedidos(models.Model):
     
-    id_cliente = models.ForeignKey(Productos, on_delete=models.CASCADE,blank=True, null=True) # conectado a la tabla producto
+    id_cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE,blank=True, null=True) # conectado a la tabla producto
     id_ventas = models.ForeignKey(Ventas, on_delete=models.CASCADE,blank=True, null=True) # conectado a la tabla pedido
     estado_pedido = models.CharField(max_length=400 ,blank=True, null=True) # conectado a la tabla pedido
     fecha_pedido = models.CharField(max_length=400 ,blank=True, null=True)
@@ -162,4 +152,16 @@ class Pedidos(models.Model):
         return "detalles {}".format(self.subtotal)
 
 
+class Detalles_pedidos(models.Model):
+    
+    # id_producto = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla producto
+    id_producto = models.ForeignKey(Productos, on_delete=models.CASCADE,blank=True, null=True)
+    id_pedido = models.ForeignKey(Pedidos, on_delete=models.CASCADE,blank=True, null=True)
+    # id_pedido = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla pedido
+    cantidad = models.CharField(max_length=400 ,blank=True, null=True)
+    subtotal_producto = models.CharField(max_length=400 ,blank=True, null=True) 
+    precio = models.CharField(max_length=400 ,blank=True, null=True)
+
+    def __str__(self):
+        return "detalles {}".format(self.pk,self.id_producto.id_nombre_producto.nombre_productos)
 
