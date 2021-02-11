@@ -24,14 +24,14 @@
                 <div class="card-body responsive">
                     <h5 class="card-title">¡Pedidos!</h5>
 
-                    <form action="" method="post" id="formulario">
+                    <form action="pedidos" method="post" id="formulario">
                         {% csrf_token %}
 
                         <div class="form-group">
                             <select class="form-control" id="categoria_productos">
                                 <option disabled selected> Seleccionar Categoria</option>
                                 {% for categorias in categoria  %}
-                                <option class="categoria" id="opcion{{categorias.id}}"
+                                <option class="categoria" 
                                     value="{{categorias.nombre_categoria}}">{{categorias.nombre_categoria}}</option>
                                 {% endfor %}
                             </select>
@@ -40,31 +40,30 @@
                         <div class="form-group">
                             <select class="form-control" name="nombre_productos" id="select_producto" required>
                                 <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar Producto</option>
-                                {% for nombre in nombre_productos  %}
-                                <option class="nombre_productoss" id="opcion{{nombre.id}}"
-                                    value="{{nombre.id}}-{{nombre.categoria}}">{{nombre.nombre_productos}}</option>
+                                {% for nombre in productos  %}
+                                <option class="nombre_productoss" 
+                                    value="{{nombre.id}}-{{nombre.id_nombre_producto.categoria.nombre_categoria}}-{{nombre.precio}}-{{nombre.cantidad_stock}}">{{nombre.id_nombre_producto.nombre_productos}}</option>
                                 {% endfor %}
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="precio_producto" placeholder="Precio Producto" disabled>
+                            <input type="text" class="form-control" name="precio_producto" id="precio_producto" placeholder="Precio Producto" disabled>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cantidad_stock_producto" placeholder="Cantidad Existente" disabled>
+                            <input type="text" class="form-control" name="cantidad_stock_producto" id="cantidad_stock_producto" placeholder="Cantidad Existente" disabled>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cantidad" placeholder="Cantidad Pedido" required>
+                            <input type="number" class="form-control" name="cantidad_pedido" id="cantidad" placeholder="Cantidad Pedido" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="precio" placeholder="Precio Pedido" disabled>
+                            <input type="text" class="form-control" name="precio_pedido" id="precio" placeholder="Precio Pedido" readonly>
                         </div>
 
                         <input type="hidden" name="guardar" value="guardar">
-                        <input type="hidden" name="id_producto" id="id_producto" value="nombre_del_producto">
                         <button type="submit" class="btn btn-outline-info float-right">Agregar</button>
                         <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
 
@@ -74,28 +73,65 @@
 
                             // primero se cambia la propiedad de display a none para que no se muestren los datos 
 
-                            var categoria = document.getElementById('categoria_producto');
+                            var categoria = document.getElementById('categoria_productos');
                             var productos = document.getElementsByClassName('nombre_productoss');
                             var select_productos = document.getElementById('select_producto');
-                            var enviar_producto = document.getElementById('id_producto')
+                            var enviar_producto = document.getElementById('id_producto');
+                            // inputs que se deben cargar automaticamente
+                            var precio_producto = document.getElementById('precio_producto');
+                            var cantidad_stock_producto = document.getElementById('cantidad_stock_producto');
+                            var cantidad = document.getElementById('cantidad');
+                            var precio = document.getElementById('precio');
 
                             for (var i = 0; i < productos.length; i++) {
-                                productos[i].style.display = 'none';
+                                productos[i].style.display = 'none';    
 
                             }
 
                             categoria.addEventListener("change", function () {
                                 filtro(categoria, productos);
-                                cambiar_enviar(select_productos, enviar_producto);
+                                precio_producto.value = select_productos.value.split('-')[2];
+                                cantidad_stock_producto.value = select_productos.value.split('-')[3];
+                                
                             });
-
                             select_productos.addEventListener("change", function () {
-                                cambiar_enviar(select_productos, enviar_producto);
+                                precio_producto.value = select_productos.value.split('-')[2];
+                                cantidad_stock_producto.value = select_productos.value.split('-')[3];
+                                
                             });
 
+                            cantidad.addEventListener("keyup", function (event) {
+                                
+                                if (precio_producto.value != '' && cantidad.value != '') {
+                                    if ( parseInt(cantidad.value) > parseInt(cantidad_stock_producto.value) ){
+                                        confirm('Cantidad mayor a lo permitido');
+                                        precio.value = '';
+                                        cantidad.value = '';
+                                        
+                                    }
+                                    else
+                                    {
+                                        precio.value = '';
+                                        precio.value = parseInt(cantidad.value) * parseInt(precio_producto.value.toString().replace(/[.]/g,'')); 
+                                        
+                                    }
+                                    // event.preventDefault();
+                                    // if (parseInt(cantidad.value) > parseInt(cantidad_stock_producto.value.split('')[1] - 1) ) {
+                                        
+                                        // }
+                                    // cantidad.addEventListener("keydown", function (event) {
+                                        
+                                    // });
+                                    
+                                }
+                                else
+                                {
+                                    precio.value = '';
+                                }
+            
 
-                            // window.onload = function () {
-                            // };
+                            });
+
                         </script>
                     </form>
                 </div>
@@ -183,9 +219,9 @@
                         form = document.getElementById('id_form_modal')
                         button = document.getElementById('enviar')
 
-                        categoria.addEventListener("click", function () {
-                            send_form(form)
-                        });
+                        // categoria.addEventListener("click", function () {
+                        //     send_form(form)
+                        // });
                                 
                     </script>
 
