@@ -14,5 +14,7 @@ admin.site.register(Produccion)
 admin.site.register(Productos)
 admin.site.register(Clientes)
 admin.site.register(Detalles_insumos)
+admin.site.register(Detalles_pedidos)
+admin.site.register(Pedidos)
 
 

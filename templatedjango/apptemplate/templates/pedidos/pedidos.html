@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" name="precio_producto" id="precio_producto" placeholder="Precio Producto" disabled>
+                            <input type="text" class="form-control" name="precio_producto" id="precio_producto" placeholder="Precio Producto" readonly >
                         </div>
 
                         <div class="form-group">
@@ -68,7 +68,9 @@
                         <button style="margin-right: 10px;" type="reset" class="btn btn-outline-secondary float-right" value="Limpiar">Limpiar</button>
 
                         <script>
+
                             // en este codigo se realiza un filtro de los productos por sus categorias 
+
                             // para mostrar en los Selection
 
                             // primero se cambia la propiedad de display a none para que no se muestren los datos 
@@ -92,8 +94,11 @@
                                 filtro(categoria, productos);
                                 precio_producto.value = select_productos.value.split('-')[2];
                                 cantidad_stock_producto.value = select_productos.value.split('-')[3];
+
+                                console.log(precio_producto.value)
                                 
                             });
+
                             select_productos.addEventListener("change", function () {
                                 precio_producto.value = select_productos.value.split('-')[2];
                                 cantidad_stock_producto.value = select_productos.value.split('-')[3];
@@ -115,6 +120,7 @@
                                         precio.value = parseInt(cantidad.value) * parseInt(precio_producto.value.toString().replace(/[.]/g,'')); 
                                         
                                     }
+
                                     // event.preventDefault();
                                     // if (parseInt(cantidad.value) > parseInt(cantidad_stock_producto.value.split('')[1] - 1) ) {
                                         
@@ -160,8 +166,22 @@
                         </thead>
 
                         <tbody>
-                            
+                            {% for mostrar_pedidos in pedidos %}
+                                <tr>
 
+                                    <td>{{mostrar_pedidos.id_producto.id_nombre_producto.nombre_productos}}</td>
+                                    <td>{{mostrar_pedidos.id_producto.id_nombre_producto.categoria.nombre_categoria}}</td>
+                                    <td>{{mostrar_pedidos.cantidad}}</td>
+                                    <td>{{mostrar_pedidos.subtotal_producto}}</td>
+                                    <td>
+
+                                    </td>
+                                    
+                                        
+                                        
+                                </tr>
+                                
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -188,12 +208,12 @@
 
                         <div class="form-group">
 
-                            <select class="form-control selectpicker" name="nombre_cliente" data-live-search="true"
+                            <select class="form-control selectpicker" name="nombre_cliente" id="nombre_cliente" data-live-search="true"
                             title="Selecione un Cliente" data-live-search-placeholder="Buscar..." required>
                               
                               {% for mostrar in clientes  %}
 
-                              <option id="opcion{{mostrar.id}}" value="{{mostrar.id}}">{{mostrar.nombre_cliente}}</option>
+                              <option id="opcion{{mostrar.id}}" value="{{mostrar.id}}-{{mostrar.direccion}}-{{mostrar.telefono}}">{{mostrar.nombre_cliente}}</option>
               
                               {% endfor %}
                             </select>
@@ -202,13 +222,13 @@
 
                         <div class="form-group">
 
-                            <input type="text" class="form-control" name="direccion" placeholder="Direccion del Cliente" disabled>
+                            <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Direccion del Cliente" readonly>
 
                         </div>
 
                         <div class="form-group">
 
-                            <input type="text" class="form-control" name="telefono" placeholder="Telefono del Cliente" disabled>
+                            <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono del Cliente" readonly>
 
                         </div>
 
@@ -216,12 +236,14 @@
 
                     
                     <script>
-                        form = document.getElementById('id_form_modal')
-                        button = document.getElementById('enviar')
+                        direccion = document.getElementById('direccion');
+                        telefono = document.getElementById('telefono');
+                        select_clientes = document.getElementById('nombre_cliente');
 
-                        // categoria.addEventListener("click", function () {
-                        //     send_form(form)
-                        // });
+                        select_clientes.addEventListener("change", function () {
+                            direccion.value = select_clientes.value.split('-')[1]
+                            telefono.value = select_clientes.value.split('-')[2]
+                        });
                                 
                     </script>
 
