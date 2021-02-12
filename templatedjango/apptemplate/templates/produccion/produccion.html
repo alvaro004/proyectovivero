@@ -342,13 +342,9 @@
                                         <option class="insumos_nombres" value="{{mostrar_insumos.id}}-{{mostrar_insumos.categoria.Nombre}}-{{mostrar_insumos.cantidad}}-{{mostrar_insumos.unidad_de_medida}}"> {{mostrar_insumos.nombre}} </option>
       
                                     {% endfor %}   
-                                    
 
-                                    
-                                    
                                 </select>
                                    
-
                         </div>
 
 
@@ -357,7 +353,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="number" class="form-control" name="cantidad_usar" placeholder="Cantidad a Usar" required>
+                            <input type="number" id="cantidad_usar" class="form-control" name="cantidad_usar" placeholder="Cantidad a Usar" required>
                         </div>
 
                         <input type="hidden" name="guardar_insumo" value="guardar_insumo">
@@ -380,15 +376,29 @@
                             
                             categoria_insumo.onchange = function(){
                                 filtro(categoria_insumo,insumos);
-                                cantidad_disabled.value = select_insumo.value.split('-')[2] + ' ' + select_insumo.value.split('-')[3];
+                                cantidad_disabled.value = select_insumo.value.split('-')[2];
                                 // console.log(select_insumo.value)
 
                             };
                             
                             select_insumo.addEventListener("change", function () {
                                 filtro(categoria_insumos, insumos);
-                                cantidad_disabled.value = select_insumo.value.split('-')[2] + ' ' + select_insumo.value.split('-')[3];
+                                cantidad_disabled.value = select_insumo.value.split('-')[2];
                             });
+
+
+                            
+                            elemento_usuario = document.getElementById('cantidad_usar');
+                            elemento_comparar = document.getElementById('cantidad_disabled');
+
+                            elemento_usuario.addEventListener('keyup',function(){
+                                alertacantidadmayor(elemento_usuario,elemento_comparar);
+                                    
+                            });
+
+
+
+
 
                         </script>
                         
@@ -493,7 +503,7 @@
                                                             <div class="form-group">
                                                                 <label for="recipient-name"
                                                                 class="col-form-label">Cantidad:</label>
-                                                                <input name="cantidad" value="{{ver_insumos.Cantidad}}" type="text" class="form-control" id="recipient-name">
+                                                                <input name="cantidad" id="insumos_modal{{ver_insumos.id}}" value="{{ver_insumos.Cantidad}}" type="number" class="form-control" id="recipient-name">
                                                                 <!-- <p>{{ver_insumos.id}}</p> -->
                                                             </div>
     
@@ -525,6 +535,15 @@
         
         
                                                                     // console.log(input_editar)
+
+                                                                    elemento_usuario{{ver_insumos.id}} = document.getElementById('insumos_modal{{ver_insumos.id}}');
+                                                                    elemento_comparar{{ver_insumos.id}} = document.getElementById('cantidad_disabled');
+
+                                                                    elemento_usuario{{ver_insumos.id}}.addEventListener('keyup',function(){
+                                                                        alertacantidadmayor(elemento_usuario,elemento_comparar);
+                                                                            
+                                                                    });
+
                                                                 </script>
                                                     </div>
                                                     <div class="modal-footer">
