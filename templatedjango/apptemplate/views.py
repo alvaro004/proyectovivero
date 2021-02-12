@@ -775,7 +775,9 @@ def pedidos(request):
 
             get_productos = Productos.objects.get(id=id_producto)
 
-            # save_detalles_pedidos = Detalles_pedidos(id_producto=get_productos,)
+            save_detalles_pedidos = Detalles_pedidos(id_producto=get_productos,cantidad=cantidad_pedido,precio=precio_producto,subtotal_producto=precio_pedido)
+            save_detalles_pedidos.save()
+
 
             print(get_productos)
             print(cantidad_pedido)
@@ -785,8 +787,9 @@ def pedidos(request):
         clientes = Clientes.objects.all()
         categoria = Categoria_productos.objects.all()
         nombre_productos = Productos.objects.all()
+        detalles_pedidos = Detalles_pedidos.objects.all()
 
-        return render(request, 'pedidos/pedidos.html',{'clientes':clientes, 'categoria':categoria, 'productos':nombre_productos})
+        return render(request, 'pedidos/pedidos.html',{'clientes':clientes, 'categoria':categoria, 'productos':nombre_productos,'pedidos':detalles_pedidos})
     else:
         return redirect('/')
 
