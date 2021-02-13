@@ -517,6 +517,7 @@ def listado_produccion(request):
                 get_produccion.cantidad_real_detalle = cantidad_final[i]
                 get_produccion_estado = Produccion.objects.get(id=get_produccion.id_produccion.id)
                 get_produccion_estado.estado_produccion = "Terminado"
+                get_produccion_estado.fecha_acabado = fecha_final
 
                 # guardando el estado y la cantidad final
 
@@ -778,11 +779,49 @@ def pedidos(request):
             save_detalles_pedidos = Detalles_pedidos(id_producto=get_productos,cantidad=cantidad_pedido,precio=precio_producto,subtotal_producto=precio_pedido)
             save_detalles_pedidos.save()
 
+            # print(get_productos)
+            # print(cantidad_pedido)
+            # print(precio_pedido)
+            # print(precio_producto)
 
-            print(get_productos)
-            print(cantidad_pedido)
-            print(precio_pedido)
-            print(precio_producto)
+        if request.POST.get('borrar'):
+
+            id_pedido_borrar = request.POST.get('id_borrar')
+
+            print(id_pedido_borrar)
+
+            get_pedido_borrar = Detalles_pedidos.objects.get(id=id_pedido_borrar)
+            get_pedido_borrar.delete()
+
+        if request.POST.get('registrar_pedido'):
+
+            fecha_pedido = request.POST.get('fecha_pedido')
+            id_pedido = request.POST.getlist('id_pedidos')
+            enviar_cliente = request.POST.get('enviar_cliente')
+            total_pedido = request.POST.get('total_pedido')
+
+            print('entro en registrar')
+            print(fecha_pedido)
+            print(id_pedido)
+            print(enviar_cliente)
+            print(total_pedido)
+
+            # codigo para guardar el pedido antes de registrar 
+
+            get_cliente = Clientes.objects.get(id=enviar_cliente)
+
+            save_pedido = Pedidos(id_cliente=get_cliente,estado_pedido='En Proceso',fecha_pedido=fecha_pedido,precio_total=total_pedido)
+            save_pedido.save()
+
+            get_last_pedido = Pedidos.objects.last()
+
+            for pedidos in id_pedido:
+                
+                save_pedido_final = Detalles_pedidos.objects.get(id=pedidos)
+                save_pedido_final.id_pedido = get_last_pedido
+                save_pedido_final.save()
+
+
 
         clientes = Clientes.objects.all()
         categoria = Categoria_productos.objects.all()

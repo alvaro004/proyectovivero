@@ -95,3 +95,22 @@ $(".custom-file-input").on("change", function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
+
+
+function alertacantidadmayor(cantidad_input,cantidad_comparar)
+{
+  if(parseInt(cantidad_input.value) > parseInt(cantidad_comparar.value))
+  {
+    alert('Cantidad mayor a lo permitido')
+    cantidad_input.value = ''
+  }
+}
+
+function alertacantidadmayor2(cantidad_input,cantidad_comparar)
+{
+  if(parseInt(cantidad_input.value) > parseInt(cantidad_comparar.innerHTML))
+  {
+    alert('Cantidad mayor a lo permitido')
+    cantidad_input.value = ''
+  }
+}

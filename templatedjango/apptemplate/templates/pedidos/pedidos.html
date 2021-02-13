@@ -138,6 +138,14 @@
 
                             });
 
+                            // elemento_usuario = document.getElementById('id_elemento');
+                            // elemento_comparar = document.getElementById('id_elemento');
+
+                            // elemento.addEventListener('keyup',function(){
+                            //     alertacantidadmayor2(elemento_usuario,elemento_comparar);
+                                    
+                            // });
+
                         </script>
                     </form>
                 </div>
@@ -167,6 +175,7 @@
 
                         <tbody>
                             {% for mostrar_pedidos in pedidos %}
+<<<<<<< HEAD
                                 <tr>
 
                                     <td>{{mostrar_pedidos.id_producto.id_nombre_producto.nombre_productos}}</td>
@@ -180,6 +189,67 @@
                                         
                                         
                                 </tr>
+=======
+
+                                {% if not mostrar_pedidos.id_pedido %}
+                                    
+                                    <tr>
+
+                                        
+                                            
+
+                                        <td>{{mostrar_pedidos.id_producto.id_nombre_producto.nombre_productos}}</td>
+                                        <td>{{mostrar_pedidos.id_producto.id_nombre_producto.categoria.nombre_categoria}}</td>
+                                        <td>{{mostrar_pedidos.cantidad}}</td>
+                                        <td class="subtotal_productos">{{mostrar_pedidos.subtotal_producto}}</td>
+                                        <td>
+
+
+                                            <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                                data-target="#borrar{{mostrar_pedidos.id}}">
+                                                {% load static %}
+                                                <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                                            </i>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="borrar{{mostrar_pedidos.id}}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="pedidos" method="post">
+                                                            {% csrf_token %}
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="id_borrar"
+                                                                    value="{{mostrar_pedidos.id}}">
+                                                                <input type="hidden" name="borrar" value="borrar">
+                                                                ¿Desea Eliminar este Registro ?
+                                                            </div>
+                                                            <div class="modal-footer">
+
+                                                                <button type="button" class="btn btn-outline-warning"
+                                                                    data-dismiss="modal">Cancelar</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-outline-danger">Borrar</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        
+                                            
+                                            
+                                    </tr>
+                                {% endif %}
+>>>>>>> pruebas
                                 
                             {% endfor %}
                         </tbody>
@@ -241,8 +311,13 @@
                         select_clientes = document.getElementById('nombre_cliente');
 
                         select_clientes.addEventListener("change", function () {
+<<<<<<< HEAD
                             direccion.value = select_clientes.value.split('-')[1]
                             telefono.value = select_clientes.value.split('-')[2]
+=======
+                            direccion.value = select_clientes.value.split('-')[1];
+                            telefono.value = select_clientes.value.split('-')[2];
+>>>>>>> pruebas
                         });
                                 
                     </script>
@@ -268,10 +343,31 @@
     </div>
 
     <div class="botones">
-        <button type="submit" class="btn btn-outline-success float-right">Registrar</button>
-    </div>
+        <form action="pedidos" method="post" id="form_pedidos">
+            {% csrf_token %}
 
-    <input type="hidden" id="fecha" name="fecha">
+            
+            {% for enviar_detalles in pedidos %}
+                
+                {% if not enviar_detalles.id_pedido %}
+                    
+                    <input type="hidden" name="id_pedidos" value="{{enviar_detalles.id}}">
+
+                    <!-- <p>{{enviar_detalles.id}}</p> -->
+                
+                {% endif %}
+
+                    
+            {% endfor %}
+                
+
+            <input type="hidden" name="registrar_pedido" value="registrar_pedido" >
+            <input type="hidden" name="fecha_pedido" id="fecha_pedido">
+            <input type="hidden" name="enviar_cliente" id="enviar_cliente" value="">
+            <input type="hidden" name="total_pedido" id="total_pedido" value="">
+            <button type="button" id="enviar_pedido" class="btn btn-outline-success float-right">Registrar</button>
+        </form>
+    </div>
 
     <script>
         var today = new Date();
@@ -291,18 +387,56 @@
         fecha_parcial.innerHTML = date;
 
 
-        console.log(date)
+        console.log(date);
 
 
         // en esta funcion se cambia el valor de la fecha al input oculto ara poer enviarlo al servidor
         function cambio() {
-            fecha = document.getElementById('fecha')
+
+            fecha = document.getElementById('fecha_pedido');
             fecha_parcial = document.getElementById('fecha_parcial');
             fecha.value = fecha_parcial.value;
 
         }
+
+
+        // codigo para sumar los subtotales de la tabla
+        let totales = document.getElementsByClassName('subtotal_productos');
+        let total = document.getElementById('total');
+        let suma = 0;
+
+        if (totales.length > 0) {
+            for (let i = 0; i < totales.length; i++) {
+                suma += parseInt(totales[i].innerHTML);
+            }
+    
+            total.value = suma;
+            
+        }
+
+
+        console.log(total.value);
+
+        // codigo para enviar el formulario de registro de pedidos
+
+        let enviar_pedido = document.getElementById('enviar_pedido');
+        let form_pedidos = document.getElementById('form_pedidos');
+        let enviar_cliente = document.getElementById('enviar_cliente');
+        let total_pedido = document.getElementById('total_pedido');
+
+        enviar_pedido.addEventListener('click', function(){
+            if (confirm('Desea registrar el Pedido?..')) {
+                cambio()
+                enviar_cliente.value = select_clientes.value.split('-')[0];
+                total_pedido.value = total.value;
+                form_pedidos.submit();
+            }
+        });
+
+        
+
     </script>
 
 </div>
 
-{% endblock pedidos%}
+{% endblock pedidos %}

@@ -196,7 +196,7 @@
                                                             
                                                             {% if mostrar_produccion.estado_produccion == "Terminado" %}
 
-                                                                <input type="date" class="form-control" id="fecha_parcial{{mostrar_produccion.id}}" readonly>
+                                                                <input type="date" class="form-control" value="{{mostrar_produccion.fecha_acabado}}" readonly>
                                                             {% else %}
                                                                 <input type="date" class="form-control" id="fecha_parcial{{mostrar_produccion.id}}">
                                                             {% endif %}
@@ -303,6 +303,8 @@
                                                                 
                                                                 cantidad_final{{mostrar_produccion.id}}[i].value = input_cantidad_final{{mostrar_produccion.id}}[i].value;
                                                                 fecha_produccion{{mostrar_produccion.id}}.value = fecha_parcial.value;
+
+                                                                
                                                                 
                                                                 // console.log(cantidad_final{{mostrar_produccion.id}}[i].value);
                                                                 form_registrar_produccion{{mostrar_produccion.id}}.submit()
