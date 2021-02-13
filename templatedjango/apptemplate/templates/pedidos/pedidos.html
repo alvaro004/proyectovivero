@@ -175,21 +175,6 @@
 
                         <tbody>
                             {% for mostrar_pedidos in pedidos %}
-<<<<<<< HEAD
-                                <tr>
-
-                                    <td>{{mostrar_pedidos.id_producto.id_nombre_producto.nombre_productos}}</td>
-                                    <td>{{mostrar_pedidos.id_producto.id_nombre_producto.categoria.nombre_categoria}}</td>
-                                    <td>{{mostrar_pedidos.cantidad}}</td>
-                                    <td>{{mostrar_pedidos.subtotal_producto}}</td>
-                                    <td>
-
-                                    </td>
-                                    
-                                        
-                                        
-                                </tr>
-=======
 
                                 {% if not mostrar_pedidos.id_pedido %}
                                     
@@ -249,7 +234,6 @@
                                             
                                     </tr>
                                 {% endif %}
->>>>>>> pruebas
                                 
                             {% endfor %}
                         </tbody>
@@ -311,13 +295,8 @@
                         select_clientes = document.getElementById('nombre_cliente');
 
                         select_clientes.addEventListener("change", function () {
-<<<<<<< HEAD
-                            direccion.value = select_clientes.value.split('-')[1]
-                            telefono.value = select_clientes.value.split('-')[2]
-=======
                             direccion.value = select_clientes.value.split('-')[1];
                             telefono.value = select_clientes.value.split('-')[2];
->>>>>>> pruebas
                         });
                                 
                     </script>
