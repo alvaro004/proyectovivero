@@ -92,7 +92,7 @@
                                                                             <tr>
                                                                                 <td>{{mostrar_detalles_produccion.id_producto.id_nombre_producto.categoria}}</td>
                                                                                 <td>{{mostrar_detalles_produccion.id_producto.id_nombre_producto.nombre_productos}}</td>
-                                                                                <td>{{mostrar_detalles_produccion.cantidad_detalle}}</td>
+                                                                                <td id="cantidad_detalle{{mostrar_detalles_produccion.id}}">{{mostrar_detalles_produccion.cantidad_detalle}}</td>
                                                                                 <td>
 
                                                                                     
@@ -102,7 +102,7 @@
                                                                                     {% else %}
 
                                                                                         <div class="form-group">
-                                                                                            <input type="number" class="form-control cantidad_real_detalle{{mostrar_produccion.id}}"  placeholder="Cantidad Final">
+                                                                                            <input type="number"  class="form-control cantidad_real_detalle{{mostrar_produccion.id}}"  placeholder="Cantidad Final">
                                                                                             
                                                                                         </div>
                                                                                         
@@ -112,6 +112,18 @@
 
                                                                                 </td>
                                                                             </tr>
+
+                                                                            <!-- <script>
+
+                                                                                elemento_usuario = document.getElementById('cantidad_real_detalle{{mostrar_produccion.id}}');
+                                                                                elemento_comparar = document.getElementById('cantidad_detalle{{mostrar_detalles_produccion.id}}');
+
+                                                                                elemento_usuario.addEventListener('keyup',function(){
+                                                                                    alertacantidadmayor2(elemento_usuario,elemento_comparar);
+                                                                                        
+                                                                                });
+          
+                                                                            </script> -->
 
                                                                         {% endif %}
                                                                             

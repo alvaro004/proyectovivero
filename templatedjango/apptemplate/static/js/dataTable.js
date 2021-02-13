@@ -5,7 +5,8 @@ $(document).ready(function () {
       "bInfo" : false,
       "language": {
         "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-      }
+      },
+      "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todo"]]
       
 
       //Otra forma de cambiar el idioma
