@@ -149,7 +149,7 @@ class Pedidos(models.Model):
     precio_total = models.CharField(max_length=400 ,blank=True, null=True)
 
     def __str__(self):
-        return "detalles {}".format(self.subtotal)
+        return "detalles {}".format(self.pk,self.precio_total)
 
 
 class Detalles_pedidos(models.Model):
