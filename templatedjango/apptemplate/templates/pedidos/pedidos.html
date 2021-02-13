@@ -116,7 +116,7 @@
                                     }
                                     else
                                     {
-                                        precio.value = '';
+                                        // precio.value = '';
                                         precio.value = parseInt(cantidad.value) * parseInt(precio_producto.value.toString().replace(/[.]/g,'')); 
                                         
                                     }
@@ -330,7 +330,7 @@
                 
                 {% if not enviar_detalles.id_pedido %}
                     
-                    <input type="hidden" name="id_pedidos" value="{{enviar_detalles.id}}">
+                    <input type="hidden" name="id_pedidos" id="id_pedidos" value="{{enviar_detalles.id}}">
 
                     <!-- <p>{{enviar_detalles.id}}</p> -->
                 
@@ -388,7 +388,7 @@
             for (let i = 0; i < totales.length; i++) {
                 suma += parseInt(totales[i].innerHTML);
             }
-    
+            
             total.value = suma;
             
         }
@@ -402,13 +402,23 @@
         let form_pedidos = document.getElementById('form_pedidos');
         let enviar_cliente = document.getElementById('enviar_cliente');
         let total_pedido = document.getElementById('total_pedido');
+        let id_pedidos = document.getElementsByClassName('id_pedidos');
 
         enviar_pedido.addEventListener('click', function(){
             if (confirm('Desea registrar el Pedido?..')) {
+
                 cambio()
                 enviar_cliente.value = select_clientes.value.split('-')[0];
                 total_pedido.value = total.value;
-                form_pedidos.submit();
+
+                if (enviar_cliente.value != '' && select_clientes.value != null) {
+                    
+                    form_pedidos.submit();
+                }
+                else
+                {
+                    alert('Por favor complete los campos correspondientes...')
+                }
             }
         });
 
