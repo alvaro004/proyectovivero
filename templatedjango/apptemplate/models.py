@@ -132,12 +132,10 @@ class Clientes(models.Model):
 
 class Ventas(models.Model):
     
-    
-    fecha_entrega = models.CharField(max_length=400 ,blank=True, null=True) 
     fecha_venta = models.CharField(max_length=400 ,blank=True, null=True) 
 
     def __str__(self):
-        return "detalles {}".format(self.subtotal)
+        return "detalles {}".format(self.fecha_venta)
 
 
 class Pedidos(models.Model):

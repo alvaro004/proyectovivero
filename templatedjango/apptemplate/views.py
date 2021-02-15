@@ -885,7 +885,10 @@ def listado_pedidos(request):
 
         # clientes = Clientes.objects.all
 
-        return render(request, 'pedidos/listado_pedidos.html')
+        pedidos = Pedidos.objects.all()
+        detalles_pedidos = Detalles_pedidos.objects.all()
+
+        return render(request, 'pedidos/listado_pedidos.html',{'pedidos':pedidos,'detalles_pedidos':detalles_pedidos})
     else:
         return redirect('/')
 

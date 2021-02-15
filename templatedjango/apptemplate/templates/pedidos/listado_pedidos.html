@@ -24,188 +24,213 @@
                 </thead>
                 <tbody>
 
-                    <tr class="small">
-                        <td id="select{{insumo.id}}">18/01/2021</td>
-                        <td>En Proceso</td>
-                        <td>
-                            {% load static %}
-                            <i style="color: white; padding:0 10px ;" type="button" ; data-toggle="modal" ;
-                                data-target="#exampleModalCenter" ;>
+                {% for mostrar_pedidos in pedidos reversed %}
+
+                    
+                    {% if not mostrar_pedidos.id_ventas %}
+                        
+                        <tr class="small">
+                            <td id="select{{insumo.id}}">{{mostrar_pedidos.fecha_pedido}}</td>
+                            <td>{{mostrar_pedidos.estado_pedido}}</td>
+                            <td>
                                 {% load static %}
-                                <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
-                            </i>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <i style="color: white; padding:0 10px ;" type="button" ; data-toggle="modal" ;
+                                    data-target="#pedidos{{mostrar_pedidos.id}}">
+                                    {% load static %}
+                                    <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
+                                </i>
+                                <!-- Modal -->
+                                <div class="modal fade" id="pedidos{{mostrar_pedidos.id}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Pedido</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-
-                                            <div class="container rounded">
-
-                                                <div class="form-group">
-                                                    <label for="fecha_pedido">Fecha de Inicio:</label>
-                                                    <input type="date" readonly class="form-control" id="fecha" placeholder="Fecha de Inicio">
-                                                </div>
-
-                                                <button id="productos" class="btn btn-outline-info boton" data-li="productos">Pedidos</button>
-                                                <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Cliente</button>
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Pedido</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
 
 
-                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item productos"
-                                                    style="border:none; margin-top: 20px;">
-
-                                                    <div class="table-responsive">
-                                                        <table id="example"
-                                                            class="tablita table  table-hover table-bordered  display nowrap"
-                                                            cellspacing="0" width="100%">
-                                                            <thead>
-                                                                <tr style="color: #A3A6B4;">
-                                                                    <th>Categoría</th>
-                                                                    <th>Producto</th>
-                                                                    <th>Cantidad</th>
-                                                                    <th>Precio</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                                <tr>
-                                                                    
-                                                                    <td>Tunas</td>
-                                                                    <td>Tuna del desierto</td>
-                                                                    <td>5</td>
-                                                                    <td>50.000</td>
-                                                                    
-                                                                </tr>
-
-
-
-                                                            </tbody>
-                                                            <tfoot>
-                                                                <tr style="color: #A3A6B4;">
-                                                                    <th>Categoría</th>
-                                                                    <th>Producto</th>
-                                                                    <th>Cantidad</th>
-                                                                    <th>Precio</th>
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item insumos"
-                                                    style="border:none; margin-top: 20px; display: none;">
-
-                                                    <div class="table-responsive">
-                                                        <table id="example"
-                                                            class="tablita table  table-hover table-bordered  display nowrap"
-                                                            cellspacing="0" width="100%">
-                                                            <thead>
-                                                                <tr style="color: #A3A6B4;">
-                                                                    <th>Nombre</th>
-                                                                    <th>Direccion</th>
-                                                                    <th>Telefono</th>
-                                                                    <!-- <th>Accion</th> -->
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Alvaro Basilicio Rodriguez Llano</td>
-                                                                    <td>Eleuterio Cabrera c/ Juan Oleari</td>
-                                                                    <td>0973572212</td>
-                                                                </tr>
-                                                            </tbody>
-                                                            <tfoot>
-                                                                <tr style="color: #A3A6B4;">
-                                                                    <th>Nombre</th>
-                                                                    <th>Direccion</th>
-                                                                    <th>Telefono</th>
-                                                                    <!-- <th>Accion</th> -->
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-sm-12">
+                                                <div class="container rounded">
 
                                                     <div class="form-group">
-                                                        <label for="total_compra">Monto Total del Pedido:</label>
-                                                        <input type="number" readonly class="form-control" id="cantidad_total" value="">
+                                                        <label for="fecha_pedido">Fecha de Inicio:</label>
+                                                        <input type="fecha" readonly class="form-control" id="fecha" placeholder="Fecha de Inicio" value="{{mostrar_pedidos.fecha_pedido}}">
                                                     </div>
 
-                                                    <div class="Fecha">
-                                                        <div class="form-group">
-                                                            <label for="fecha_pedido">Fecha de Acabado:</label>
-                                                            <input type="date" class="form-control" id="fecha_parcial"
-                                                                placeholder="Fecha de Inicio">
+                                                    <button id="productos" class="btn btn-outline-info boton" data-li="productos">Pedidos</button>
+                                                    <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Cliente</button>
+                                                    
+                                                    
+                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item productos"
+                                                    style="border:none; margin-top: 20px;">
+                                                    
+                                                    <div class="table-responsive">
+                                                        <table id="example"
+                                                        class="tablita table  table-hover table-bordered  display nowrap"
+                                                        cellspacing="0" width="100%">
+                                                        <thead>
+                                                            <tr style="color: #A3A6B4;">
+                                                                <th>Categoría</th>
+                                                                <th>Producto</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Precio</th>
+                                                                <th>Sub Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                            {% for mostrar_detalles in detalles_pedidos reversed %}
+                                                                {% if mostrar_detalles.id_pedido.id == mostrar_pedidos.id %}
+                                                                    <tr>
+                                                                        
+                                                                        <td>{{mostrar_detalles.id_producto.id_nombre_producto.categoria}}</td>
+                                                                        <td>{{mostrar_detalles.id_producto.id_nombre_producto.nombre_productos}}</td>
+                                                                        <td>{{mostrar_detalles.cantidad}}</td>
+                                                                        <td>{{mostrar_detalles.precio}}</td>
+                                                                        <td>{{mostrar_detalles.subtotal_producto}}</td>
+                                    
+                                                                        
+                                                                    </tr>
+                                                                    
+                                                                {% endif %}
+                                                            
+                                                            {% endfor %}
+                                                                
+
+                                                                    
+
+
+
+
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr style="color: #A3A6B4;">
+                                                                        <th>Categoría</th>
+                                                                        <th>Producto</th>
+                                                                        <th>Cantidad</th>
+                                                                        <th>Precio</th>
+                                                                        <th>Sub Total</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+
                                                         </div>
+
                                                     </div>
 
-                                                    <script>
-                                                        // el codigo de abajo es para poder poner la fecha por defecto en el input de tipo date
+                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item insumos"
+                                                        style="border:none; margin-top: 20px; display: none;">
 
-                                                        var today = new Date();
-                                                        var dd = String(today.getDate()).padStart(2, '0');
-                                                        var mm = String(today.getMonth() + 1).padStart(2,
-                                                        '0'); //January is 0!
-                                                        var yyyy = String(today.getFullYear());
+                                                        <div class="table-responsive">
+                                                            <table id="example"
+                                                                class="tablita table  table-hover table-bordered  display nowrap"
+                                                                cellspacing="0" width="100%">
+                                                                <thead>
+                                                                    <tr style="color: #A3A6B4;">
+                                                                        <th>Nombre</th>
+                                                                        <th>Direccion</th>
+                                                                        <th>Telefono</th>
+                                                                        <!-- <th>Accion</th> -->
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>{{mostrar_pedidos.id_cliente.nombre_cliente}}</td>
+                                                                        <td>{{mostrar_pedidos.id_cliente.direccion}}</td>
+                                                                        <td>{{mostrar_pedidos.id_cliente.telefono}}</td>
 
-                                                        date = String(yyyy + '-' + mm + '-' + dd);
-                                                        // document.write(today);
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr style="color: #A3A6B4;">
+                                                                        <th>Nombre</th>
+                                                                        <th>Direccion</th>
+                                                                        <th>Telefono</th>
+                                                                        <!-- <th>Accion</th> -->
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+
+                                                        <div class="form-group">
+                                                            <label for="total_compra">Monto Total del Pedido:</label>
+                                                            <input type="text" readonly class="form-control" id="cantidad_total" value="{{mostrar_pedidos.precio_total}}">
+                                                        </div>
+
+                                                        <div class="Fecha">
+                                                            <div class="form-group">
+                                                                <label for="fecha_pedido">Fecha de Acabado:</label>
+                                                                <input type="date" class="form-control" id="fecha_parcial{{mostrar_pedidos}}"
+                                                                    placeholder="Fecha de Inicio">
+                                                            </div>
+                                                        </div>
+
+                                                        <script>
+                                                            // el codigo de abajo es para poder poner la fecha por defecto en el input de tipo date
+
+                                                            var today = new Date();
+                                                            var dd = String(today.getDate()).padStart(2, '0');
+                                                            var mm = String(today.getMonth() + 1).padStart(2,
+                                                            '0'); //January is 0!
+                                                            var yyyy = String(today.getFullYear());
+
+                                                            date = String(yyyy + '-' + mm + '-' + dd);
+                                                            // document.write(today);
 
 
-                                                        fecha_parcial = document.getElementById('fecha_parcial');
+                                                            fecha_parcial = document.getElementById('fecha_parcial{{mostrar_pedidos}}');
 
-                                                        // fecha_utc = date.toUTCString()
-                                                        fecha_parcial.value = date;
-                                                        fecha_parcial.defaulValue = date;
-                                                        fecha_parcial.innerHTML = date;
-
-
-                                                        console.log(date)
+                                                            // fecha_utc = date.toUTCString()
+                                                            fecha_parcial.value = date;
+                                                            fecha_parcial.defaulValue = date;
+                                                            fecha_parcial.innerHTML = date;
 
 
-                                                        // en esta funcion se cambia el vlor de la fecha al input oculto ara poer enviarlo al servidor
-                                                        function cambio() {
-                                                            fecha = document.getElementById('fecha')
-                                                            fecha_parcial = document.getElementById('fecha_parcial');
-                                                            fecha.value = fecha_parcial.value;
-
-                                                        }
-                                                    </script>
+                                                            console.log(date)
 
 
+                                                            // en esta funcion se cambia el vlor de la fecha al input oculto ara poer enviarlo al servidor
+                                                            function cambio() {
+                                                                fecha = document.getElementById('fecha')
+                                                                fecha_parcial = document.getElementById('fecha_parcial');
+                                                                fecha.value = fecha_parcial.value;
+
+                                                            }
+                                                        </script>
+
+
+
+                                                    </div>
 
                                                 </div>
 
+
                                             </div>
-
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-danger"
-                                                data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-outline-success">Finalizar Pedido</button>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-outline-success">Finalizar Pedido</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
+
+                    {% endif %}
+                        
+                {% endfor %}
+
 
                 </tbody>
                 <tfoot>
