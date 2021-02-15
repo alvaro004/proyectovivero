@@ -19,7 +19,7 @@
 
                     <h5 class="card-title">¡Productos!</h5>
 
-                    <form action="productos" method="POST" id="id_form" enctype="multipart/form-data">
+                    <form action="productos" name="name_form" method="POST" id="id_form" enctype="multipart/form-data">
 
                         {% csrf_token %}
 
@@ -30,7 +30,7 @@
                             <div class="form-group">
 
                                 <select class="form-control" title="Selecione una categoría" id="categoria">
-                                    <option id="desactivar" disabled='disabled' selected='selected'> Seleccionar
+                                    <option id="desactivar" value="" disabled='disabled' selected='selected'> Seleccionar
                                         Categorias
                                     </option>
 
@@ -194,21 +194,21 @@
 
                             <div class="form-group">
 
-                                <textarea class="form-control" id="" rows="3" placeholder="Ingrese una descripción"
+                                <textarea class="form-control" id="descripcion" rows="3" placeholder="Ingrese una descripción"
                                     name="descripcion"></textarea>
 
                             </div>
 
                             <div class="form-group">
 
-                                <input type="number" class="form-control" name="cantidad" placeholder="Cantidad"
+                                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad"
                                     required>
 
                             </div>
 
                             <div class="form-group">
 
-                                <input type="number" class="form-control" name="precio" placeholder="Ingrese el precio"
+                                <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio"
                                     required>
 
                             </div>
@@ -241,11 +241,28 @@
                             nombre_producto = document.getElementById('nombre_producto');
                             id_categoria_cambiar = document.getElementById('id_categoria_cambiar');
                             nombre_producto_cambiar = document.getElementById('nombre_producto_cambiar');
-                            id_imagen = document.getElementById('id_imagen');
 
-                            console.log(id_imagen.url);
+                            // campos del formulario para registrar el producto
+
+                            id_imagen = document.getElementById('id_imagen');
+                            cantidad = document.getElementById('cantidad');
+                            precio = document.getElementById('precio');
+                            descripcion = document.getElementById('descripcion');
+                            select_categoria = document.getElementById('categoria');
+
+                            
+                            // name_form = document.forms['name_form']['imagen']['precio']['cantidad'].value;
+                            
                             button.addEventListener("click", function () {
-                                if (form.value) {
+                                // form_validate = id_imagen.value.toString() + '-' + precio.value.toString() + '-' + cantidad.value.toString() + '-' + descripcion.value.toString(); 
+                                // console.log(form_validate);
+                                // console.log(id_imagen.value);
+
+                                if (  id_imagen.value != '' 
+                                && cantidad.value != '' 
+                                && precio.value != '' 
+                                && descripcion.value != '' 
+                                && select_categoria.value != '') {
                                     
                                     if (confirm(' Desea guardar este producto?. ')){
                                         form.submit();
@@ -269,7 +286,7 @@
 
                             boton_segundo_form.addEventListener("click", function () {
                                 
-                                if (confirm(' Desea guardar este nomre de producto?. ')){
+                                if (confirm(' Desea guardar este nombre de producto?. ')){
 
                                     id_categoria.value = id_categoria_cambiar.value;
                                     nombre_producto.value = nombre_producto_cambiar.value;
