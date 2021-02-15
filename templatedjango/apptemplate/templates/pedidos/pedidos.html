@@ -84,28 +84,31 @@
                             var cantidad_stock_producto = document.getElementById('cantidad_stock_producto');
                             var cantidad = document.getElementById('cantidad');
                             var precio = document.getElementById('precio');
-
+                            
                             for (var i = 0; i < productos.length; i++) {
                                 productos[i].style.display = 'none';    
-
+                                
                             }
-
+                            
                             categoria.addEventListener("change", function () {
                                 filtro(categoria, productos);
                                 precio_producto.value = select_productos.value.split('-')[2];
                                 cantidad_stock_producto.value = select_productos.value.split('-')[3];
-
+                                
                                 console.log(precio_producto.value)
                                 
                             });
-
+                            
                             select_productos.addEventListener("change", function () {
                                 precio_producto.value = select_productos.value.split('-')[2];
                                 cantidad_stock_producto.value = select_productos.value.split('-')[3];
                                 
                             });
-
+                            
                             cantidad.addEventListener("keyup", function (event) {
+                                
+                                var cantidad = document.getElementById('cantidad');
+                                var precio = document.getElementById('precio');
                                 
                                 if (precio_producto.value != '' && cantidad.value != '') {
                                     if ( parseInt(cantidad.value) > parseInt(cantidad_stock_producto.value) ){
