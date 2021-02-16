@@ -922,6 +922,12 @@ def listado_pedidos(request):
             get_productos.save()
             get_pedido.save()
 
+        if request.POST.get('borrar'):
+                id_borrar = request.POST.get('id_borrar')
+                get_pedidos = Pedidos.objects.get(id=id_borrar)
+                get_pedidos.delete()
+
+
 
         pedidos = Pedidos.objects.all()
         detalles_pedidos = Detalles_pedidos.objects.all()

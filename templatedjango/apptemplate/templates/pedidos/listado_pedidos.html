@@ -39,6 +39,13 @@
                                     {% load static %}
                                     <img src="{% static '/assets/icons/icon_alert-circle-exc.svg' %}" alt="">
                                 </i>
+
+                                <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                data-target="#borrar{{mostrar_pedidos.id}}">
+                                {% load static %}
+                                <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                                 </i>
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="pedidos{{mostrar_pedidos.id}}" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -234,6 +241,35 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Modal para borrar -->
+                                <div class="modal fade" id="borrar{{mostrar_pedidos.id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="listado_pedidos" method="post">
+                                            {% csrf_token %}
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id_borrar" value="{{mostrar_pedidos.id}}">
+                                                <input type="hidden" name="borrar" value="borrar">
+                                                ¿Desea Eliminar y dar por Cancelado este Pedido?
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-outline-success">Confirmar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             </td>
 
                         </tr>
