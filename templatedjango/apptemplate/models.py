@@ -81,7 +81,7 @@ class Productos(models.Model):
     precio = models.CharField(max_length=400 ,blank=True, null=True)
 
     def __str__(self):
-        return "{}-{}".format(self.id_nombre_producto.nombre_productos,self.cantidad_stock,self.precio)
+        return "{}-{}".format(self.pk,self.id_nombre_producto.nombre_productos,self.cantidad_stock,self.precio)
 
 
 # en esta tabla se guardan los datos al presionar el boton registrar en la vista produccion 

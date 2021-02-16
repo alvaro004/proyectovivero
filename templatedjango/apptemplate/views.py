@@ -679,14 +679,12 @@ def listado_productos(request):
 def ventas(request):
 
     if request.user.is_authenticated:
-        # if request.method == "POST":
-        #     if request.POST.get('guardar'):
-        categoria = Categoria_productos.objects.all()
 
-        nombre_producto = Nombre_productos.objects.all()
+        detalles_pedidos = Detalles_pedidos.objects.all()
+        pedidos = Pedidos.objects.all()
+        ventas = Ventas.objects.all()
 
-
-        return render(request, 'ventas/ventas.html',{'categoria':categoria,'nombre_producto':nombre_producto})
+        return render(request, 'ventas/ventas.html',{'ventas':ventas,'pedidos':pedidos,'detalles_pedidos':detalles_pedidos})
     else:
         return redirect('/')
 
@@ -887,9 +885,9 @@ def listado_pedidos(request):
             id_pedido = request.POST.get('id_pedido')
 
 
-            print('finalizar_pedido')
-            print(fecha_pedido)
-            print(id_pedido)
+            # print('finalizar_pedido')
+            # print(fecha_pedido)
+            # print(id_pedido)
 
             # en la linea de abajo se guarda la venta para despues instanciar el ultimo registro
     
@@ -903,8 +901,26 @@ def listado_pedidos(request):
             get_pedido = Pedidos.objects.get(id=id_pedido)
             get_pedido.id_ventas = get_venta
             get_pedido.estado_pedido = "Terminado"
-            get_pedido.save()
 
+            # en esta porcion de codigo se ealiza consutas para estirar el producto del cual se va a restar la cantidad que se solicito en el pedido una vez confirmado el mismo
+
+            get_detalles_pedidos = Detalles_pedidos.objects.get(id_pedido=get_pedido.id)
+            get_productos = Productos.objects.get(id=get_detalles_pedidos.id_producto.id)
+
+
+            cantidad_actual_productos = int(get_productos.cantidad_stock)
+            cantidad_restar_productos = int(get_detalles_pedidos.cantidad)
+
+            resultado_resta_productos = cantidad_actual_productos - cantidad_restar_productos
+
+            # print(type(cantidad_actual_productos))
+            # print(type(cantidad_restar_productos))
+            # print(resultado_resta_productos)
+
+            get_productos.cantidad_stock = str(resultado_resta_productos)
+
+            get_productos.save()
+            get_pedido.save()
 
 
         pedidos = Pedidos.objects.all()
