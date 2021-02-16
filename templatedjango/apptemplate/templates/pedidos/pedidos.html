@@ -106,7 +106,7 @@
                             });
                             
                             cantidad.addEventListener("keyup", function (event) {
-                                
+
                                 var cantidad = document.getElementById('cantidad');
                                 var precio = document.getElementById('precio');
                                 
@@ -406,8 +406,10 @@
         let enviar_cliente = document.getElementById('enviar_cliente');
         let total_pedido = document.getElementById('total_pedido');
         let id_pedidos = document.getElementsByClassName('id_pedidos');
-
+        
         enviar_pedido.addEventListener('click', function(){
+            select_clientes = document.getElementById('nombre_cliente');
+
             if (confirm('Desea registrar el Pedido?..')) {
 
                 cambio()
