@@ -882,8 +882,30 @@ def clientes(request):
 def listado_pedidos(request):
 
     if request.user.is_authenticated:
+        if request.POST.get('finalizar_pedido'):
+            fecha_pedido = request.POST.get('fecha_finalizar_pedido')
+            id_pedido = request.POST.get('id_pedido')
 
-        # clientes = Clientes.objects.all
+
+            print('finalizar_pedido')
+            print(fecha_pedido)
+            print(id_pedido)
+
+            # en la linea de abajo se guarda la venta para despues instanciar el ultimo registro
+    
+            save_venta = Ventas(fecha_venta=fecha_pedido)
+            save_venta.save()
+
+            get_venta = Ventas.objects.last()
+
+            # luego se estira el pedido con el id que rse recibio de la vista de listado pedido para luego guardar el id de la vista de ventas estirada anteriormente
+
+            get_pedido = Pedidos.objects.get(id=id_pedido)
+            get_pedido.id_ventas = get_venta
+            get_pedido.estado_pedido = "Terminado"
+            get_pedido.save()
+
+
 
         pedidos = Pedidos.objects.all()
         detalles_pedidos = Detalles_pedidos.objects.all()

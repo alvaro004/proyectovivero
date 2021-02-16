@@ -416,7 +416,7 @@
                 enviar_cliente.value = select_clientes.value.split('-')[0];
                 total_pedido.value = total.value;
 
-                if (select_clientes.value != null && parseInt(id_pedidos.length) > 0) {
+                if (select_clientes.value != '' && parseInt(id_pedidos.length) > 0) {
                     
                     form_pedidos.submit();
                 }

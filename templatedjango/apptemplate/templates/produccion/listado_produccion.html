@@ -219,9 +219,9 @@
                                                         fecha_parcial = document.getElementById('fecha_parcial{{mostrar_produccion.id}}');
 
                                                         // fecha_utc = date.toUTCString()
-                                                        fecha_parcial.value = date;
-                                                        fecha_parcial.defaulValue = date;
-                                                        fecha_parcial.innerHTML = date;
+                                                        fecha_parcial{{mostrar_produccion.id}}.value = date;
+                                                        fecha_parcial{{mostrar_produccion.id}}.defaulValue = date;
+                                                        fecha_parcial{{mostrar_produccion.id}}.innerHTML = date;
 
 
                                                         // console.log(date)
@@ -302,7 +302,7 @@
                                                                 // console.log(input_cantidad_final{{mostrar_produccion.id}}[i].value);
                                                                 
                                                                 cantidad_final{{mostrar_produccion.id}}[i].value = input_cantidad_final{{mostrar_produccion.id}}[i].value;
-                                                                fecha_produccion{{mostrar_produccion.id}}.value = fecha_parcial.value;
+                                                                fecha_produccion{{mostrar_produccion.id}}.value = fecha_parcial{{mostrar_produccion.id}}.value;
 
                                                                 
                                                                 

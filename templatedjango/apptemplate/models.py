@@ -135,7 +135,7 @@ class Ventas(models.Model):
     fecha_venta = models.CharField(max_length=400 ,blank=True, null=True) 
 
     def __str__(self):
-        return "detalles {}".format(self.fecha_venta)
+        return "detalles {}".format(self.pk,self.fecha_venta)
 
 
 class Pedidos(models.Model):
