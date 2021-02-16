@@ -904,7 +904,7 @@ def listado_pedidos(request):
 
             # en esta porcion de codigo se ealiza consutas para estirar el producto del cual se va a restar la cantidad que se solicito en el pedido una vez confirmado el mismo
 
-            get_detalles_pedidos = Detalles_pedidos.objects.get(id_pedido=get_pedido.id)
+            get_detalles_pedidos = Detalles_pedidos.objects.last()
             get_productos = Productos.objects.get(id=get_detalles_pedidos.id_producto.id)
 
 
