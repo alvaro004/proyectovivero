@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'templatedjango.apptemplate',
+    'dbbackup',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT  = os.path.join(BASE_DIR, '/static/')
 MEDIA_URL = '/media/' # add this
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # add this
+
+
+# settings for backup db
+
+DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+DBBACKUP_FILESYSTEM_DIRECTORY = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
