@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate, login as dj_login
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.db.models import Q
+import subprocess
+import os
+import datetime
 
 # Create your views here.
 
@@ -964,10 +967,59 @@ def auditoria(request):
     else:
         return redirect('/')
 
-def backup(request):
+def gestionar_usuario(request):
 
     if request.user.is_authenticated:
-        return render(request, 'backup/backup.html')
+        return render(request, 'gestionar_usuario/gestionar_usuario.html')
+    else:
+        return redirect('/')
+
+def back_up(request):
+
+    if request.user.is_authenticated:
+
+        if request.POST.get('make_backup'):
+
+            # print('entro en crear abckup')
+
+            # from subprocess import Popen, PIPE
+
+            # process = Popen(['python', 'manage.py dumpdata > db.json'], stdout=PIPE, stderr=PIPE)
+            # stdout, stderr = process.communicate()
+
+            # subprocess.call(["python ", "manage.py ","dumpdata"])
+
+            # subprocess.run(["python", "manage.py","dumpdata", " >. db.json"], stdout=subprocess.PIPE)
+
+
+            full_date_time = str(datetime.datetime.now()).split('.')[0].replace(' ','_').replace(':','_').replace('-','_')
+            full_date_time_for_db = str(datetime.datetime.now()).split('.')[0]
+
+            save_back_up = Back_up(nombre_back_up=full_date_time_for_db,nombre_archivo=full_date_time)
+            save_back_up.save()
+
+            print(full_date_time)
+            os.system("python manage.py dumpdata --exclude auth.permission --exclude contenttypes > backup/" + full_date_time + ".json")
+
+
+
+
+        if request.POST.get('restore_back_up'):
+            back_up = Back_up.objects.last()
+            nombre_archivo = back_up.nombre_archivo
+
+            print(nombre_archivo)
+            os.system("python manage.py loaddata backup/" + nombre_archivo + ".json")
+
+            # print('entro en restore')
+
+        
+        back_up = Back_up.objects.last()
+
+        return render(request, 'backup/backup.html',{'back_up':back_up})
+
+
+
     else:
         return redirect('/')
 
