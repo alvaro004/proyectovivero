@@ -41,7 +41,7 @@ urlpatterns = [
     path('listado_pedidos', listado_pedidos),
     path('login2', login2),
     path('auditoria', auditoria),
-    path('gestionar_usuario', gestionar_usuario),
+    path('backup', backup),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

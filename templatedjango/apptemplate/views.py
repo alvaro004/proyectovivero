@@ -964,10 +964,10 @@ def auditoria(request):
     else:
         return redirect('/')
 
-def gestionar_usuario(request):
+def backup(request):
 
     if request.user.is_authenticated:
-        return render(request, 'gestionar_usuario/gestionar_usuario.html')
+        return render(request, 'backup/backup.html')
     else:
         return redirect('/')
 

@@ -97,8 +97,8 @@
                                                                             <td>{{mostrar_detalles.id_producto.id_nombre_producto.categoria}}</td>
                                                                             <td>{{mostrar_detalles.id_producto.id_nombre_producto.nombre_productos}}</td>
                                                                             <td>{{mostrar_detalles.cantidad}}</td>
-                                                                            <td>{{mostrar_detalles.precio}}</td>
-                                                                            <td>{{mostrar_detalles.subtotal_producto}}</td>
+                                                                            <td class="tabala_formato">{{mostrar_detalles.precio}}</td>
+                                                                            <td class="tabala_formato">{{mostrar_detalles.subtotal_producto}}</td>
                                         
                                                                             
                                                                         </tr>
@@ -164,7 +164,8 @@
 
                                                         <div class="form-group">
                                                             <label for="total_compra">Monto Total del Pedido:</label>
-                                                            <input type="text" readonly class="form-control" value="{{mostrar_pedidos.precio_total}}">
+                                                            <!-- <input type="text" readonly class="form-control" value="{{mostrar_pedidos.precio_total}}"> -->
+                                                            <label class="form-control agua tabala_formato" id="" >{{mostrar_pedidos.precio_total}}</label>
                                                         </div>
 
                                                         <div class="Fecha">
@@ -198,6 +199,10 @@
 
                                                             // console.log(date)
 
+                                                            var tabala_formato = document.getElementsByClassName("tabala_formato");
+                                                            for (let i = 0; i < tabala_formato.length; i++) {
+                                                                tabala_formato[i].innerHTML = numberWithCommas(tabala_formato[i].innerHTML)
+                                                            }
 
                                                             
                                                         </script>

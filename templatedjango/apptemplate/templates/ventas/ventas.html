@@ -32,7 +32,7 @@
                             
                             <tr class="small">
                                 <td>{{mostrar_ventas.fecha_venta}}</td>
-                                <td>{{mostrar_pedidos.precio_total}}</td>
+                                <td class="tabala_formato">{{mostrar_pedidos.precio_total}}</td>
                                 <td>
                                     {% load static %}
                                     <i style="color: white; padding:0 10px ;" type="button" ; data-toggle="modal" ;
@@ -93,8 +93,8 @@
                                                                                     <td>{{mostrar_detalles.id_producto.id_nombre_producto.categoria.nombre_categoria}}</td>
                                                                                     <td>{{mostrar_detalles.id_producto.id_nombre_producto.nombre_productos}}</td>
                                                                                     <td>{{mostrar_detalles.cantidad}}</td>
-                                                                                    <td>{{mostrar_detalles.precio}}</td>
-                                                                                    <td>{{mostrar_detalles.subtotal_producto}}</td>
+                                                                                    <td class="tabala_formato">{{mostrar_detalles.precio}}</td>
+                                                                                    <td class="tabala_formato">{{mostrar_detalles.subtotal_producto}}</td>
                                                                                     
                                                                                 </tr>
 
@@ -162,7 +162,8 @@
 
                                                             <div class="form-group">
                                                                 <label for="total_compra">Monto Total de la Venta:</label>
-                                                                <input type="texto" readonly class="form-control" id="cantidad_total" value="{{mostrar_pedidos.precio_total}}">
+                                                                <!-- <input type="texto" readonly class="form-control tabala_formato" id="cantidad_total" value="{{mostrar_pedidos.precio_total}}"> -->
+                                                                <label class="form-control agua tabala_formato" id="cantidad_total" >{{mostrar_pedidos.precio_total}}</label>
                                                             </div>
 
                                                             <div class="Fecha">
@@ -188,6 +189,12 @@
                                 </td>
 
                             </tr>
+                            <script>
+                                var tabala_formato = document.getElementsByClassName("tabala_formato");
+                                for (let i = 0; i < tabala_formato.length; i++) {
+                                    tabala_formato[i].innerHTML = numberWithCommas(tabala_formato[i].innerHTML)
+                                }
+                            </script>
                         {% endif %}
                             
                       

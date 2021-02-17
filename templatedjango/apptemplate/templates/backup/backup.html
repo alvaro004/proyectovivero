@@ -1,0 +1,91 @@
+{% extends 'base/template.html' %}
+
+{% block gestionar_usuario %}
+
+{% block titulo_gestionar_usuario %}
+<title>Gestionar Usuario</title>
+{% endblock titulo_gestionar_usuario %}
+
+<div class="container rounded">
+
+    <div class="row" style="align-items: center; display: flex; justify-content: center;">
+        <!-- este style es para centar el div de la clase col -->
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded text-center" id="estos" style="border:none;">
+            <h3>BACK-UP DE LOS DATOS DEL SISTEMA.</h3>
+            <br>
+            <hr>
+            <br>
+            <div class="row">
+                <div class="col-xl-12 form-group">
+                    <button type="button" class="btn btn-outline-warning form-control" data-toggle="modal" data-target="#makebackup">
+                        Realizar Back-Up del Sistema
+                    </button>
+                    <div class="modal fade" id="makebackup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Back-Up del Sistema</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              ¿Está seguro que desea hacer el back-up del sistema?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-outline-success">Confirmar</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-4 form-group">
+                    <label class="form-control agua" radonly >Fecha del último Back-Up:</label>
+                </div>
+
+                <div class="col-xl-8 form-group">   
+                    <input class="form-control" type="date" value="2011-08-19" id="" readonly>
+                </div>
+
+                <div class="col-xl-12 form-group">
+                    <button type="button" class="btn btn-outline-danger form-control" data-toggle="modal" data-target="#restorebackup">
+                        Restaurar Back-Up del Sistema
+                    </button>
+                    <div class="modal fade" id="restorebackup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Back-Up del Sistema</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              ¿Está seguro que desea restaurar el back-up del sistema?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-outline-success">Confirmar</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                
+            </div>
+            <br>
+            <hr>
+            
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock gestionar_usuario %}
