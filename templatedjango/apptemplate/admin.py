@@ -17,5 +17,6 @@ admin.site.register(Detalles_insumos)
 admin.site.register(Detalles_pedidos)
 admin.site.register(Pedidos)
 admin.site.register(Ventas)
+admin.site.register(Back_up)
 
 

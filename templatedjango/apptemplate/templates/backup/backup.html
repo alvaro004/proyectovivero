@@ -24,19 +24,27 @@
                     <div class="modal fade" id="makebackup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Back-Up del Sistema</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              ¿Está seguro que desea hacer el back-up del sistema?
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                              <button type="button" class="btn btn-outline-success">Confirmar</button>
-                            </div>
+                            <form action="backup" method="post">
+
+                              {% csrf_token %}
+
+                              <input type="hidden" name="make_backup" value="make_backup">
+                              
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Back-Up del Sistema</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                ¿Está seguro que desea hacer el back-up del sistema?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-outline-success">Confirmar</button>
+                              </div>
+
+                            </form>
                           </div>
                         </div>
                     </div>
@@ -47,35 +55,51 @@
                     <label class="form-control agua" radonly >Fecha del último Back-Up:</label>
                 </div>
 
-                <div class="col-xl-8 form-group">   
-                    <input class="form-control" type="date" value="2021-02-17" id="" readonly>
-                </div>
+                
+                {% if back_up %}
+                  <div class="col-xl-8 form-group">   
+                      <input class="form-control" type="text" value="{{back_up.nombre_back_up}}" readonly>
+                  </div>
 
-                <div class="col-xl-12 form-group">
-                    <button type="button" class="btn btn-outline-danger form-control" data-toggle="modal" data-target="#restorebackup">
-                        Restaurar Back-Up del Sistema
-                    </button>
-                    <div class="modal fade" id="restorebackup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Back-Up del Sistema</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              ¿Está seguro que desea restaurar el back-up del sistema?
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                              <button type="button" class="btn btn-outline-success">Confirmar</button>
+                  <div class="col-xl-12 form-group">
+                      <button type="button" class="btn btn-outline-danger form-control" data-toggle="modal" data-target="#restorebackup">
+                          Restaurar Back-Up del Sistema
+                      </button>
+                      <div class="modal fade" id="restorebackup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <form action="backup" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="restore_back_up" value="restore_back_up">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Back-Up del Sistema</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  ¿Está seguro que desea restaurar el back-up del sistema?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                                  <button type="submit" class="btn btn-outline-success">Confirmar</button>
+  
+                              </form>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                    </div>
+                      </div>
+  
+                  </div>
+                  {% else %}
+                  <div class="col-xl-8 form-group">   
+                      <input class="form-control" type="text" value="Ningun Backup realizado" readonly>
+                  </div>
+                {% endif %}
 
-                </div>
+                <!-- <p>{{back_up}}</p> -->
+                  
+
                 
                 
             </div>

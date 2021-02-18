@@ -163,3 +163,11 @@ class Detalles_pedidos(models.Model):
     def __str__(self):
         return "detalles {}".format(self.pk,self.id_producto.id_nombre_producto.nombre_productos)
 
+
+class Back_up(models.Model):
+    
+    nombre_back_up = models.CharField(max_length=400 ,blank=True, null=True) 
+    nombre_archivo = models.CharField(max_length=400 ,blank=True, null=True) 
+
+    def __str__(self):
+        return "detalles {} , {}".format(self.pk,self.nombre_back_up)
