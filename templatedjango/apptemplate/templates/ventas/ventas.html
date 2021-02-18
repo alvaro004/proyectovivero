@@ -12,14 +12,27 @@
   <div class="row" style="align-items: center; display: flex; justify-content: center;">
     <!-- este style es para centar el div de la clase col -->
 
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" style="border:none;">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 card shadow p-3 mb-5 bg-white rounded" id="estos" style="border:none;">
+
+
+        <h5 style="font-weight: bold;"> LISTADO DE LAS VENTAS</h5>
+        {% load static %}
+        <div id="membreteContenedor">
+            <div class="div ahora" >
+                <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
+                <!-- <h1>Vivero</h1> -->
+                <span id="tituloMembrete">Vivero Pasión por las <br> Tunas y Suculentas</span>
+            </div>
+            <span id="telefonoMembrete">Tel: 0975663976</span> <br>
+            <span id="calle">Eleuterio Cabrera C/ Juan Oleari</span>
+        </div>
 
         <table id="example" class="tablita table  table-hover table-bordered  display nowrap" width="100%">
             <thead>
                 <tr>
                     <th>Fecha</th>
                     <th>Monto Total</th>
-                    <th>Ver mas</th>
+                    <th class="ocultar">Ver mas</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +46,7 @@
                             <tr class="small">
                                 <td>{{mostrar_ventas.fecha_venta}}</td>
                                 <td class="tabala_formato">{{mostrar_pedidos.precio_total}}</td>
-                                <td>
+                                <td class="ocultar">
                                     {% load static %}
                                     <i style="color: white; padding:0 10px ;" type="button" ; data-toggle="modal" ;
                                         data-target="#ventas{{mostrar_ventas.id}}" >
@@ -45,14 +58,16 @@
                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
                                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                            <div class="modal-content">
+                                            <div class="modal-content" id="contenidoImprimir{{mostrar_ventas.id}}">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Detalles de la Venta</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Detalles de la Venta "{{mostrar_ventas.id}}"</h5>
+                                                    <button type="button" class="close ocultar2" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
+
+
 
 
                                                     <div class="container rounded">
@@ -61,9 +76,19 @@
                                                             <label for="fecha_pedido">Fecha de Inicio:</label>
                                                             <input type="date" readonly class="form-control" id="fecha" placeholder="Fecha de Inicio">
                                                         </div> -->
+                                                        {% load static %}
+                                                        <div id="membreteContenedor{{mostrar_ventas.id}}" class="membreteModal">
+                                                            <div class="div ahora" >
+                                                                <img id="imgicon" src="/static/assets/icons/Path_406.svg" width="50px" height="50px" alt="">
+                                                                <!-- <h1>Vivero</h1> -->
+                                                                <span id="tituloMembrete">Vivero Pasión por las <br> Tunas y Suculentas</span>
+                                                            </div>
+                                                            <span id="telefonoMembrete">Tel: 0975663976</span> <br>
+                                                            <span id="calle">Eleuterio Cabrera C/ Juan Oleari</span>
+                                                        </div>
 
-                                                        <button id="productos" class="btn btn-outline-info boton" data-li="productos">Productos</button>
-                                                        <button id="insumos" class="btn btn-outline-info boton" data-li="insumos">Cliente</button>
+                                                        <button id="productos" class="btn btn-outline-info boton ocultar2" data-li="productos">Productos</button>
+                                                        <button id="insumos" class="btn btn-outline-info boton ocultar2" data-li="insumos">Cliente</button>
 
 
                                                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 card shadow p-3 mb-5 bg-white rounded item productos"
@@ -169,7 +194,8 @@
                                                             <div class="Fecha">
                                                                 <div class="form-group">
                                                                     <label for="fecha_pedido">Fecha de la Venta:</label>
-                                                                    <input type="text" class="form-control" placeholder="Fecha de Inicio" disabled value="{{mostrar_ventas.fecha_venta}}">
+                                                                    <!-- <input type="text" class="form-control" placeholder="Fecha de Inicio" disabled value="{{mostrar_ventas.fecha_venta}}"> -->
+                                                                    <label class="form-control agua" id="fecha" name="{{mostrar_ventas.fecha_venta}}">{{mostrar_ventas.fecha_venta}}</label>
                                                                 </div>
                                                             </div>
 
@@ -179,9 +205,11 @@
 
 
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger"
-                                                        data-dismiss="modal">Cerrar</button>
+                                                <div class="modal-footer ocultar2">
+                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+                                                    <div class="botonPdf">
+                                                        <button id="btnCrearPdfModal{{mostrar_ventas.id}}" type="button" class="btn btn-outline-warning">Generar PDF</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,6 +218,7 @@
 
                             </tr>
                             <script>
+                                imprimir_tabla_modal("contenidoImprimir{{mostrar_ventas.id}}","btnCrearPdfModal{{mostrar_ventas.id}}","membreteContenedor{{mostrar_ventas.id}}");
                                 var tabala_formato = document.getElementsByClassName("tabala_formato");
                                 for (let i = 0; i < tabala_formato.length; i++) {
                                     tabala_formato[i].innerHTML = numberWithCommas(tabala_formato[i].innerHTML)
@@ -209,10 +238,13 @@
                 <tr>
                     <th>Fecha</th>
                     <th>Monto Total</th>
-                    <th>Ver mas</th>
+                    <th class="ocultar">Ver mas</th>
                 </tr>
             </tfoot>
         </table>
+        <div class="botones ocultar">
+            <button id="btnCrearPdf" class="btn btn-outline-warning float-right">Generar PDF</button>
+        </div>
 
     </div>
 </div>
