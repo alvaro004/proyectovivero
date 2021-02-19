@@ -99,164 +99,170 @@
 
                     {% for insumo in insumos reversed %}
 
-                    <tr class="small"> 
-                        <td  id="select{{insumo.id}}">{{insumo.categoria}}</td>
-                        <td>{{insumo.nombre}}</td>
-                        <td>{{insumo.cantidad}}</td>
-                        <td  id="medida{{insumo.id}}">{{insumo.unidad_de_medida}}</td>
+                    
+                        {% if not insumo.estado %}
+                            
+                            <tr class="small"> 
+                                <td  id="select{{insumo.id}}">{{insumo.categoria}}</td>
+                                <td>{{insumo.nombre}}</td>
+                                <td>{{insumo.cantidad}}</td>
+                                <td  id="medida{{insumo.id}}">{{insumo.unidad_de_medida}}</td>
 
 
-                        <!-- codigo para el boton de editar 
-                            -------------------------------------------------- -->
-                        <td class="ocultar">
-                            {% load static %}
-                            <i style="color: white;" type="button" data-toggle="modal"
-                                data-target="#editar{{insumo.id}}"><i><img
-                                src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
+                                <!-- codigo para el boton de editar 
+                                    -------------------------------------------------- -->
+                                <td class="ocultar">
+                                    {% load static %}
+                                    <i style="color: white;" type="button" data-toggle="modal"
+                                        data-target="#editar{{insumo.id}}"><i><img
+                                        src="{% static '/assets/icons/icon_edit.svg' %}" alt=""></i></i>
 
-                            <!-- codigo para el boton de borrar  -->
-                            <!-- -------------------------------------------- -->
-                            <!-- Button trigger modal -->
-                            <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
-                                data-target="#borrar{{compra.id_detalles_compras}}">
-                                {% load static %}
-                                <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
-                            </i>
+                                    <!-- codigo para el boton de borrar  -->
+                                    <!-- -------------------------------------------- -->
+                                    <!-- Button trigger modal -->
+                                    <i style="color: white; padding:0 10px ;" type="button" data-toggle="modal"
+                                        data-target="#borrar{{insumo.id}}">
+                                        {% load static %}
+                                        <img src="{% static '/assets/icons/circle-remove.svg' %}" alt="">
+                                    </i>
 
-                        </td>
-                        <!-- modal para el boton de editar -->
+                                </td>
+                                <!-- modal para el boton de editar -->
 
-                        <div class="modal fade" id="editar{{insumo.id}}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="POST" action="/insumos">
-                                            {% csrf_token %}
-
-
-                                            <div class="form-group">
-
-                                                <label for="nombre{{insumo.id}}" class="col-form-label">Categoria:</label>
-                                                <select name="categoria" id="nombre{{insumo.id}}" class="form-control">
-
-                                                    {% for categorias in categoria  %}
-                                                    <option class="productos{{insumo.id}}" id="opcion{{insumo.nombre}}"
-                                                        value="{{categorias.id}}">{{categorias.Nombre}}</option>
-
-                                                    {% endfor %}
+                                <div class="modal fade" id="editar{{insumo.id}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="/insumos">
+                                                    {% csrf_token %}
 
 
-                                                </select>
+                                                    <div class="form-group">
 
-                                                <script>
-                                                    var elements = document.getElementsByClassName('productos{{insumo.id}}')
-                                                    // elements[1].setAttribute('selected','selected')
-                                                    var select = document.getElementById('select{{insumo.id}}')
+                                                        <label for="nombre{{insumo.id}}" class="col-form-label">Categoria:</label>
+                                                        <select name="categoria" id="nombre{{insumo.id}}" class="form-control">
 
-                                                    function selected(elements, select) {
+                                                            {% for categorias in categoria  %}
+                                                            <option class="productos{{insumo.id}}" id="opcion{{insumo.nombre}}"
+                                                                value="{{categorias.id}}">{{categorias.Nombre}}</option>
 
-                                                        for (var i = 0; i < elements.length; i++) {
-                                                            // console.log(elements[i].innerHTML)
-                                                            if (elements[i].innerHTML == select.innerHTML) {
-                                                                elements[i].setAttribute('selected', 'selected');
+                                                            {% endfor %}
 
+
+                                                        </select>
+
+                                                        <script>
+                                                            var elements = document.getElementsByClassName('productos{{insumo.id}}')
+                                                            // elements[1].setAttribute('selected','selected')
+                                                            var select = document.getElementById('select{{insumo.id}}')
+
+                                                            function selected(elements, select) {
+
+                                                                for (var i = 0; i < elements.length; i++) {
+                                                                    // console.log(elements[i].innerHTML)
+                                                                    if (elements[i].innerHTML == select.innerHTML) {
+                                                                        elements[i].setAttribute('selected', 'selected');
+
+                                                                    }
+
+
+                                                                }
                                                             }
 
-
-                                                        }
-                                                    }
-
-                                                    selected(elements, select)
+                                                            selected(elements, select)
 
 
-                                                    // console.log(select.innerHTML)
-                                                </script>
+                                                            // console.log(select.innerHTML)
+                                                        </script>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Nombre del
+                                                            Producto:</label>
+                                                        <input name="nombre" value="{{insumo.nombre}}" type="text"
+                                                            class="form-control" id="recipient-name">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Cantidad:</label>
+                                                        <input name="cantidad" value="{{insumo.cantidad}}" type="text"
+                                                            class="form-control" id="recipient-name">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Unidad de
+                                                            Medida:</label>
+                                                        <select class="form-control" name="medida" id="recipient-name">
+                                                            <!-- <option disabled selected>Medida</option> -->
+                                                            <option class="categoria_medida{{insumo.id}}" value="uds.">
+                                                                uds.</option>
+                                                            <option class="categoria_medida{{insumo.id}}" value="kg.">kg.</option>
+                                                        </select>
+                                                        <script type="text/javascript">
+                                                            categorias = document.getElementsByClassName(
+                                                                'categoria_medida{{insumo.id}}')
+                                                            opciones = document.getElementById('medida{{insumo.id}}')
+
+                                                            selected(categorias, opciones)
+
+                                                            // console.log(select.innerHTML, 'fuera del for')
+                                                        </script>
+
+
+                                                    </div>
+
+                                                    <input type="hidden" name="iden" value="{{insumo.id}}">
+                                                    <input type="hidden" name="editar" value="editar">
+
                                             </div>
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Nombre del
-                                                    Producto:</label>
-                                                <input name="nombre" value="{{insumo.nombre}}" type="text"
-                                                    class="form-control" id="recipient-name">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Cantidad:</label>
-                                                <input name="cantidad" value="{{insumo.cantidad}}" type="text"
-                                                    class="form-control" id="recipient-name">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Unidad de
-                                                    Medida:</label>
-                                                <select class="form-control" name="medida" id="recipient-name">
-                                                    <!-- <option disabled selected>Medida</option> -->
-                                                    <option class="categoria_medida{{insumo.id}}" value="uds.">
-                                                        uds.</option>
-                                                    <option class="categoria_medida{{insumo.id}}" value="kg.">kg.</option>
-                                                </select>
-                                                <script type="text/javascript">
-                                                    categorias = document.getElementsByClassName(
-                                                        'categoria_medida{{insumo.id}}')
-                                                    opciones = document.getElementById('medida{{insumo.id}}')
-
-                                                    selected(categorias, opciones)
-
-                                                    // console.log(select.innerHTML, 'fuera del for')
-                                                </script>
-
-
-                                            </div>
-
-                                            <input type="hidden" name="iden" value="{{insumo.id}}">
-                                            <input type="hidden" name="editar" value="editar">
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-danger"
-                                            data-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Modal para borrar -->
-                        <div class="modal fade" id="borrar{{compra.id_detalles_compras}}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="insumos" method="post">
-                                        {% csrf_token %}
-                                        <div class="modal-body">
-                                            <input type="hidden" name="id_borrar" value="{{insumo.id}}">
-                                            <input type="hidden" name="borrar" value="borrar">
-                                            ¿Desea Eliminar este Registro?
+                                            </form>
                                         </div>
-                                        <div class="modal-footer">
-
-                                            <button type="button" class="btn btn-outline-danger"
-                                                data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-outline-info">Borrar</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </tr>
+
+                                <!-- Modal para borrar -->
+                                <div class="modal fade" id="borrar{{insumo.id}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="insumos" method="post">
+                                                {% csrf_token %}
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id_borrar" value="{{insumo.id}}">
+                                                    <input type="hidden" name="borrar" value="borrar">
+                                                    ¿Desea Eliminar este Registro?
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-outline-danger"
+                                                        data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-outline-info">Borrar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+                        {% endif %}
+                        
+
                     {% endfor %}
 
 

@@ -362,8 +362,9 @@ def insumos(request):
 
                 id_borrar = request.POST.get('id_borrar')
 
-                borrar_insumos = Insumos.objects.filter(id=id_borrar)
-                borrar_insumos.delete()
+                borrar_insumos = Insumos.objects.get(id=id_borrar)
+                borrar_insumos.estado = 'borrado'
+                borrar_insumos.save()
 
                 categoria = Insumos_categoria.objects.all()
                 insumos = Insumos.objects.all()

@@ -102,11 +102,28 @@
                                                                                     {% else %}
 
                                                                                         <div class="form-group">
-                                                                                            <input type="number"  class="form-control cantidad_real_detalle{{mostrar_produccion.id}}"  placeholder="Cantidad Final">
+                                                                                            <input type="number" id="validar_cantidad{{mostrar_detalles_produccion.id}}" class="form-control cantidad_real_detalle{{mostrar_produccion.id}}"  placeholder="Cantidad Final">
                                                                                             
                                                                                         </div>
                                                                                         
+                                                                                        <script>
+                                                                                            var validar_cantidad{{mostrar_detalles_produccion.id}} = document.getElementById('validar_cantidad{{mostrar_detalles_produccion.id}}');
+                                                                                            var tabla_cantidad{{mostrar_detalles_produccion.id}} = document.getElementById('cantidad_detalle{{mostrar_detalles_produccion.id}}');
+
+                                                                                            console.log(validar_cantidad{{mostrar_detalles_produccion.id}},tabla_cantidad{{mostrar_detalles_produccion.id}})
+
+                                                                                            validar_cantidad{{mostrar_detalles_produccion.id}}.addEventListener('keyup',function(){
+                                                                                                // console.log('reconoce')
+                                                                                                if ( parseInt(validar_cantidad{{mostrar_detalles_produccion.id}}.value) > parseInt(tabla_cantidad{{mostrar_detalles_produccion.id}}.innerHTML) ) {
+                                                                                                    alert('La cantidad ingresada es superior a lo esperado...')
+                                                                                                    validar_cantidad{{mostrar_detalles_produccion.id}}.value = ''
+                                                                                                }
+                                                                                                
+                                                                                            });
+
+                                                                                        </script>
                                                                                     {% endif %}
+
                                                                                         
                                                                     
 

@@ -23,7 +23,14 @@
               title="Selecione un Producto" data-live-search-placeholder="Buscar..." required>
                 
                 {% for insumo in insumos  %}
-                <option id="opcion{{insumo.id}}" value="{{insumo.id}}">{{insumo.nombre}}</option>
+
+                  
+                  {% if not insumo.estado %}
+                  
+                    <option id="opcion{{insumo.id}}" value="{{insumo.id}}">{{insumo.nombre}}</option>
+                    
+                  {% endif %}
+                    
 
                 {% endfor %}
               </select>

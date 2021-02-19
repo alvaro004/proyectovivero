@@ -45,6 +45,8 @@ class Insumos(models.Model):
     unidad_de_medida = models.CharField(max_length=400 ,blank=True, null=True)
     cantidad = models.CharField(max_length=400 ,blank=True, null=True)
     categoria = models.ForeignKey(Insumos_categoria, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=400 ,blank=True, null=True)
+    
     
     
     def __str__(self):

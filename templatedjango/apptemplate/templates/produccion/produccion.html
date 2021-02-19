@@ -338,8 +338,13 @@
                                 <option disabled='disabled' selected='selected'> Seleccionar Insumo</option>
 
                                     {% for mostrar_insumos in insumos reversed %}
+                                        
+                                        {% if not mostrar_insumos.estado %}
+                                            <option class="insumos_nombres" value="{{mostrar_insumos.id}}-{{mostrar_insumos.categoria.Nombre}}-{{mostrar_insumos.cantidad}}-{{mostrar_insumos.unidad_de_medida}}"> {{mostrar_insumos.nombre}} </option>
+                                            
+                                        {% endif %}
+                                            
             
-                                        <option class="insumos_nombres" value="{{mostrar_insumos.id}}-{{mostrar_insumos.categoria.Nombre}}-{{mostrar_insumos.cantidad}}-{{mostrar_insumos.unidad_de_medida}}"> {{mostrar_insumos.nombre}} </option>
       
                                     {% endfor %}   
 
