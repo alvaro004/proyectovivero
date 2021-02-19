@@ -66,6 +66,7 @@ class Nombre_productos(models.Model):
     
     nombre_productos = models.CharField(max_length=400 ,blank=True, null=True)
     categoria = models.ForeignKey(Categoria_productos, on_delete=models.CASCADE,blank=True, null=True)
+    estado = models.CharField(max_length=400 ,blank=True, null=True)
 
     
     def __str__(self):
@@ -126,6 +127,8 @@ class Clientes(models.Model):
     nombre_cliente = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla pedido
     direccion = models.CharField(max_length=400 ,blank=True, null=True)
     telefono = models.CharField(max_length=400 ,blank=True, null=True) 
+    estado = models.CharField(max_length=400 ,blank=True, null=True) 
+
 
     def __str__(self):
         return "detalles {}".format(self.nombre_cliente, self.direccion, self.telefono)

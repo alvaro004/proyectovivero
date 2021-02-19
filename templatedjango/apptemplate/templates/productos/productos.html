@@ -54,9 +54,14 @@
                                             Productos
                                         </option>
                                         {% for mostrar in nombre %}
+                                            
+                                            {% if not mostrar.estado %}
 
-                                        <option class="nombre_productos" value="{{mostrar.id}}-{{mostrar.categoria}}">
-                                            {{mostrar.nombre_productos}}</option>
+                                                <option class="nombre_productos" value="{{mostrar.id}}-{{mostrar.categoria}}">{{mostrar.nombre_productos}}</option>
+                                                
+                                            {% endif %}
+                                                
+
                                         {% endfor %}
 
                                     </select>

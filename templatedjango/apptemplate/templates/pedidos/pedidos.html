@@ -270,7 +270,14 @@
                               
                               {% for mostrar in clientes  %}
 
-                              <option id="opcion{{mostrar.id}}" value="{{mostrar.id}}-{{mostrar.direccion}}-{{mostrar.telefono}}">{{mostrar.nombre_cliente}}</option>
+                              
+                                {% if not mostrar.estado %}
+                                
+                                    <option id="opcion{{mostrar.id}}" value="{{mostrar.id}}-{{mostrar.direccion}}-{{mostrar.telefono}}">{{mostrar.nombre_cliente}}</option>
+                                    
+                                {% endif %}
+                                  
+
               
                               {% endfor %}
                             </select>

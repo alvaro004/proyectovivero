@@ -338,7 +338,8 @@ def insumos(request):
 
                 # espacio de auditoria
 
-                
+                auditoria = Auditoria(fecha_auditoria=full_date_time,accion_realizada='Se edito el insumo: "' + editar_insumos.nombre + '"')
+                auditoria.save()
 
                 # espacio de auditoria
 
@@ -620,7 +621,7 @@ def productos(request):
                 save_productos.precio = precio
                 save_productos.save()
                 
-                print(id_producto,descripcion,cantidad,precio)
+                # print(id_producto,descripcion,cantidad,precio)
 
             if request.POST.get('agregar_nombre'):
                 id_categoria = request.POST.get('id_categoria')
@@ -629,7 +630,7 @@ def productos(request):
                 get_categoria = Categoria_productos.objects.get(id=id_categoria) 
                 save_productos = Nombre_productos(nombre_productos=nombre_producto,categoria=get_categoria)
                 save_productos.save()
-                print('entro en agregar')
+                # print('entro en agregar')
 
                 
                 
@@ -752,7 +753,8 @@ def nombre_productos(request):
             if request.POST.get('borrar'):
                 id_borrar = request.POST.get('id_borrar')
                 get_productos = Nombre_productos.objects.get(id=id_borrar)
-                get_productos.delete()
+                get_productos.estado = 'borrado'
+                get_productos.save()
 
             if request.POST.get('editar'):
 
@@ -870,7 +872,8 @@ def clientes(request):
         if request.POST.get('borrar'):
                 id_borrar = request.POST.get('id_borrar')
                 get_clientes = Clientes.objects.get(id=id_borrar)
-                get_clientes.delete()
+                get_clientes.estado = 'borrado'
+                get_clientes.save()
 
         if request.POST.get('editar'):
 
