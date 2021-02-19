@@ -164,6 +164,8 @@ class Detalles_pedidos(models.Model):
         return "detalles {}".format(self.pk,self.id_producto.id_nombre_producto.nombre_productos)
 
 
+# tabla para el backup 
+
 class Back_up(models.Model):
     
     nombre_back_up = models.CharField(max_length=400 ,blank=True, null=True) 
@@ -171,3 +173,16 @@ class Back_up(models.Model):
 
     def __str__(self):
         return "detalles {} , {}".format(self.pk,self.nombre_back_up)
+
+
+# tabla para la auditoria
+
+class Auditoria(models.Model):
+    
+    fecha_auditoria = models.CharField(max_length=400 ,blank=True, null=True) 
+    accion_realizada = models.CharField(max_length=400 ,blank=True, null=True) 
+
+    def __str__(self):
+        return "detalles {} , {} - {}".format(self.pk,self.fecha_auditoria,self.accion_realizada)
+
+
