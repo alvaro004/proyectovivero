@@ -11,6 +11,10 @@ import datetime
 
 # Create your views here.
 
+# variable global para la fecha y hora actual
+full_date_time = str(datetime.datetime.now()).split('.')[0]
+# variable global para la fecha y hora actual
+
 
 # VISTA DEL INICIO 
 
@@ -331,6 +335,13 @@ def insumos(request):
                 medida = request.POST.get('medida')
 
                 editar_insumos = Insumos.objects.get(id=iden)
+
+                # espacio de auditoria
+
+                
+
+                # espacio de auditoria
+
 
                 editar_insumos.cantidad = cantidad
                 editar_insumos.categoria_id = insumo_categoria
@@ -661,6 +672,13 @@ def listado_productos(request):
                 
                 get_productos = Productos.objects.get(id=iden)
 
+                # espacio de auditoria
+
+                save_auditoria = Auditoria(fecha_auditoria=full_date_time,accion_realizada='Se edito el producto: "' + get_productos.id_nombre_producto.nombre_productos + '" con precio: ' + get_productos.precio + ', al precio actual de: ' + precio)
+                save_auditoria.save()
+
+                # espacio de auditoria
+
                 get_productos.precio = precio
                 get_productos.save()
 
@@ -928,6 +946,13 @@ def listado_pedidos(request):
         if request.POST.get('borrar'):
                 id_borrar = request.POST.get('id_borrar')
                 get_pedidos = Pedidos.objects.get(id=id_borrar)
+
+                # espacio de auditoria
+
+                save_auditoria = Auditoria(fecha_auditoria=full_date_time,accion_realizada="Se elimino el pedido con la fecha: " + get_pedidos.fecha_pedido)
+                save_auditoria.save()
+                # espacio de auditoria
+
                 get_pedidos.delete()
 
 
@@ -963,7 +988,9 @@ def login2(request):
 def auditoria(request):
 
     if request.user.is_authenticated:
-        return render(request, 'auditoria/auditoria.html')
+
+        auditoria = Auditoria.objects.all()
+        return render(request, 'auditoria/auditoria.html',{'auditoria':auditoria})
     else:
         return redirect('/')
 
