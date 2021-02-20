@@ -866,8 +866,9 @@ def clientes(request):
                 nombre_cliente = request.POST.get('nombre_cliente')
                 direccion = request.POST.get('direccion')
                 telefono = request.POST.get('telefono')
+                email = request.POST.get('email')
 
-                save_clientes = Clientes(nombre_cliente=nombre_cliente, direccion=direccion, telefono=telefono)
+                save_clientes = Clientes(nombre_cliente=nombre_cliente, direccion=direccion, telefono=telefono,email=email)
                 save_clientes.save()
 
         if request.POST.get('borrar'):
@@ -884,6 +885,7 @@ def clientes(request):
                 nombre_cliente = request.POST.get('nombre_cliente')
                 direccion = request.POST.get('direccion')
                 telefono = request.POST.get('telefono')
+                email = request.POST.get('email')
                 
 
                 editar_clientes = Clientes.objects.get(id=iden)
@@ -892,6 +894,7 @@ def clientes(request):
                 editar_clientes.nombre_cliente = nombre_cliente
                 editar_clientes.direccion = direccion 
                 editar_clientes.telefono = telefono           
+                editar_clientes.email = email          
                 editar_clientes.save()
 
         

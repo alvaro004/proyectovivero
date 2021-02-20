@@ -129,6 +129,7 @@ class Clientes(models.Model):
     nombre_cliente = models.CharField(max_length=400 ,blank=True, null=True)# conectado a la tabla pedido
     direccion = models.CharField(max_length=400 ,blank=True, null=True)
     telefono = models.CharField(max_length=400 ,blank=True, null=True) 
+    email = models.CharField(max_length=400 ,blank=True, null=True) 
     estado = models.CharField(max_length=400 ,blank=True, null=True) 
 
 
